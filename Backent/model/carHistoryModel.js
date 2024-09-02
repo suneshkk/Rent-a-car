@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 
 
-const rentalHistorySchema = new mongoose.Schema({
+const HistorySchema = new mongoose.Schema({
     carId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Car',
@@ -41,4 +41,4 @@ const rentalHistorySchema = new mongoose.Schema({
     }
 });
 
-export const carHistory = mongoose.model("history", rentalHistorySchema);
+export {HistorySchema};

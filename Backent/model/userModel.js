@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { HistorySchema } from "./carHistoryModel.js";
 
 
 const userSchema = new mongoose.Schema({
@@ -62,7 +62,7 @@ const userSchema = new mongoose.Schema({
         default: 'user',
         required: true
     },
-    rentalHistory: [rentalHistorySchema], // Array of rental history documents
+    rentalHistory: [HistorySchema], // Array of rental history documents
 
 });
-export const user = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);

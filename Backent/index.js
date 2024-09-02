@@ -4,6 +4,7 @@ import { connectDB } from './confiq/dbConnection.js';
 import cors from 'cors';
 import { errorHandle } from './util/errorHandle.js';
 import cookieParser from 'cookie-parser';
+import { apiRouter } from './routes/index.js';
 
 
 dotenv.config();
@@ -26,6 +27,8 @@ app.use(cors(corsSetup));
 app.get('/', (req, res) => {
     res.send('Hello World!');
 })
+
+app.use("/api",apiRouter);
 
 app.use(errorHandle);
 
