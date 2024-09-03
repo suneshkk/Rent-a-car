@@ -52,7 +52,13 @@ const carSchema = new mongoose.Schema({
     imageUrl: {
         Type: String,
         default: "path",
+        required: true,
     }
-});
+},
+    {
+        timestamps: true,
+    },
 
-export {carSchema};
+);
+
+export { carSchema };

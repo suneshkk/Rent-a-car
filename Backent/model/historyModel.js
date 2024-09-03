@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 
 
-const HistorySchema = new mongoose.Schema({
+const rentalSchema = new mongoose.Schema({
     carId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Car',
@@ -21,14 +21,6 @@ const HistorySchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    pickupLocation: {
-        type: String,
-        required: true
-    },
-    dropLocation: {
-        type: String,
-        required: true
-    },
     totalPrice: {
         type: Number,
         required: true
@@ -39,6 +31,11 @@ const HistorySchema = new mongoose.Schema({
         default: 'booked',
         required: true
     }
-});
+},
+{
+    timestamps: true,
+  },
 
-export {HistorySchema};
+);
+
+export {rentalSchema};

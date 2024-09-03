@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import { HistorySchema } from "./carHistoryModel.js";
-
 
 const userSchema = new mongoose.Schema({
 
@@ -56,13 +54,22 @@ const userSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid phone number! It should contain exactly 10 digits.`
         }
     },
+    rentalHistory: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Rental',
+    }],
+
     role: {
         type: String,
         enum: ['user', 'admin', 'moderator'],
         default: 'user',
         required: true
     },
-    rentalHistory: [HistorySchema], // Array of rental history documents
 
-});
+},
+    {
+        timestamps: true,
+    },
+
+);
 export const User = mongoose.model("User", userSchema);
