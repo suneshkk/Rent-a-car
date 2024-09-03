@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 
 
-export const sellerAuth = (req, res, next) => {
+export const carAuth = (req, res, next) => {
     try {
         const { token } = req.cookies;
         if (!token) {

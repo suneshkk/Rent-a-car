@@ -2,14 +2,15 @@ import mongoose from "mongoose";
 
 
 const carSchema = new mongoose.Schema({
+    carName: {
+        type: String,
+        required: true
+    },
     brand: {
         type: String,
         required: true
     },
-    model: {
-        type: String,
-        required: true
-    },
+
     year: {
         type: Number,
         required: true,
@@ -49,7 +50,7 @@ const carSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    imageUrl: {
+    image: {
         Type: String,
         default: "path",
         required: true,

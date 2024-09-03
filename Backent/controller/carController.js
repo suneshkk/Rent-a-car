@@ -1,11 +1,32 @@
-import bcrypt from 'bcrypt';
-import { generateToken } from '../util/token';
 import { carSchema } from '../model/carModel.js';
-export const signup = async (req, res, next) => {
-    const { brand, model, year, type, fuelType, transmission, availabillty, rentalRate, lacation, imageUrl } = rea.body;
-    if (!brand || !model || !year || !type || !fuelType || !transmission || !availabillty || !rentalRate || !lacation || !imageUrl){
-        return res.status(400).json({ success: false, message: "all field required" });
+import { cloudConfig } from '../confiq/cloud.js';
+import { handleImageUpload } from '../util/imageUpload.js';
+
+
+
+export const createCar = async (req, res, next) => {
+    try {
+        const { carName, brand, year, type, fuelType, transmission, availabillty, rentalRate, location, image } = rea.body;
+        let imageUrl;
+
+        if (!brand || !carName || !year || !type || !fuelType || !transmission || !availabillty || !rentalRate || !location) {
+            return res.status(400).json({ success: false, message: "all field required" });
+
+        }
+        const isCarExist = await carSchema.findOne({ carName });
+
+        if (isCarExist) {
+            return res.status(400).json({ success: false, message: "Car Already Exist" });
+        }
+        if (req.file) {
+            const imageUrl = await handleImageUpload(req.file.path);
+        }
+        const newCar = new carSchema({ carName, brand, year, type, fuelType, transmission, availabillty, rentalRate, location, image: imageUrl && imageUrl })
+        await newCar.save();
 
     }
-
-}
+    catch (error) {
+        console.log(error);
+        return next(error);
+    };
+};

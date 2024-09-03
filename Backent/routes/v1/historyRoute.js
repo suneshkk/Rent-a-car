@@ -1,4 +1,3 @@
-import { userAuth } from "../../middlewares/userAuth.js";
 import express from "express"
 
 const router = express.Router();
