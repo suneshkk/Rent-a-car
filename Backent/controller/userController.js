@@ -7,7 +7,7 @@ export const userSignup = async (req, res, next) => {
 
     try {
         // arrya de structuring
-        const { name, email, password, phone, role, profilePic } = req.body;
+        const { name, email, password, role, profilePic } = req.body;
         //checking required field are filled or not
         if (!name || !email || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
@@ -22,9 +22,10 @@ export const userSignup = async (req, res, next) => {
         // Hash the password
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
+        // console.log(hashedPassword,"333333333333333" )
 
         // Create a new user
-        const newUser = new User({ name, email, password: hashedPassword, phone, role, profilePic });
+        const newUser = new User({ name, email, password: hashedPassword,role, profilePic });
         await newUser.save();
 
         // Generate token
@@ -47,9 +48,9 @@ export const userSignup = async (req, res, next) => {
 export const userLogin = async (req, res, next) => {
     // here is the error handler function 
     try {
-        const { email, password } = req.body;
+        const { email, password,name } = req.body;
 
-        if (!email || !password) {
+        if (!email || !password || !name) {
             return res.status(400).json({ success: false, message: "all field required" });
 
         }
@@ -132,7 +133,7 @@ export const updateUser = async (req, res, next) => {
 
     };
 };
-export const deletUser = async (req, res, next) => {
+export const deleteUser = async (req, res, next) => {
     try {
         const id = req.params.id;
         const result = await User.findByIdAndDelete(id);
@@ -147,9 +148,9 @@ export const deletUser = async (req, res, next) => {
         console.log(error);
         return next(error)
    
-    }
+    };
 
-}
+};
 
 
 

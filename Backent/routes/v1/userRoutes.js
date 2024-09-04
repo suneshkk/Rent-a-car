@@ -1,6 +1,6 @@
 import express from 'express';
 import { userAuth } from '../../middlewares/userAuth.js';
-import { userLogin, userLogout, userSignup, userProfile, checkUser, updateUser, deletUser } from '../../controller/userController.js';
+import { userLogin, userLogout, userSignup, userProfile, checkUser, updateUser, deleteUser } from '../../controller/userController.js';
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post("/logout", userLogout);
 
 router.get("/profile", userAuth, userProfile);
 router.put("/update", userAuth, updateUser);
-router.delete("/delete", userAuth, deletUser);
+router.delete("/delete", userAuth, deleteUser);
 
 router.get("/check-user", userAuth, checkUser);
 

@@ -53,7 +53,8 @@ const carModelSchema = new mongoose.Schema({
     image: {
     type: String,
         default:"image",
-    }
+    },
+    
 },
     {
         timestamps: true,
