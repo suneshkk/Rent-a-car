@@ -89,12 +89,12 @@ export const userLogout = async (req, res, next) => {
 };
 export const userProfile = async (req, res, next) => {
     try {
-        const { user } = req;
+        const { user } = req.params;
         const userData = await User.findOne({ _id: user._id });
         res.json({ success: true, data: userData, message: "User Data Ftched" })
     } catch (error) {
         console.log(error);
-        return res.status(error.statusCode || 500).json({ message: error.message || "Internal Server Error" });
+        return next(error)
 
     };
 };
@@ -108,7 +108,8 @@ export const checkUser = async (req, res, next) => {
         res.json({ success: true, message: "User autherized" });
     } catch (error) {
         console.log(error);
-        return res.status(error.statusCode || 500).json({ message: error.message || "internal server error" });
+        return next(error)
+
     }
 
 };
@@ -126,7 +127,8 @@ export const updateUser = async (req, res, next) => {
     }
     catch (error) {
         console.log(error.message);
-        return res.status(error.statusCode || 500).json({ message: error.message || "Internal Server Error" });
+        return next(error)
+
 
     };
 };
@@ -143,8 +145,10 @@ export const deletUser = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(error.statusCode || 500).json({ message: error.message || "Internal Server Error" });
+        return next(error)
+   
     }
+
 }
 
 

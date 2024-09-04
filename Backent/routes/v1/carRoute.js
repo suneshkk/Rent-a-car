@@ -1,15 +1,18 @@
 import express from 'express';
-import { sellerAuth } from '../../middlewares/sellerAuth.js';
+import { adminAuth } from '../../middlewares/adminAuth.js';
+import { createCar, carlist, getCarById, deleteCar, updateCar } from '../../controller/carController.js';
+import { upload } from '../../middlewares/multer.js';
+
 
 const router = express.Router();
 
 
-router.post("/createCar",);
-router.get("/carlist",);
-router.get("/oneCar",);
+router.post("/create", adminAuth, upload.single("image"), createCar);
+router.get("/list", adminAuth, carlist);
+router.get("/Car", adminAuth, getCarById);
 
-router.delete("/deleteCar", sellerAuth);
-router.put("/updateCar", sellerAuth,);
+router.delete("/delete", adminAuth, deleteCar);
+router.put("/update", adminAuth, upload.single("image"), updateCar);
 
 
 

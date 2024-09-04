@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 
 
-const rentalSchema = new mongoose.Schema({
+const rentalModelSchema = new mongoose.Schema({
     carId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Car',
@@ -38,4 +38,5 @@ const rentalSchema = new mongoose.Schema({
 
 );
 
-export {rentalSchema};
+export {};
+export const rentalSchema = mongoose.model(" rentalSchema",rentalModelSchema );

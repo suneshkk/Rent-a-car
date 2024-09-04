@@ -2,15 +2,15 @@ import jwt from 'jsonwebtoken';
 
 
 
-export const carAuth = (req, res, next) => {
+export const adminAuth = (req, res, next) => {
     try {
         const { token } = req.cookies;
         if (!token) {
-            return res.status(401).json({ success: false, message: "User Not Authorized" });
+            return res.status(401).json({ success: false, message: "Data Not Authorized" });
         }
         const tokenVerified = jwt.verify(token,process.env.JWT_KEY);
         if (!tokenVerified) {
-            return res.status(401).json({ success: false, message: "User Not Authorized" });
+            return res.status(401).json({ success: false, message: "Data Not Authorized" });
 
         }
 

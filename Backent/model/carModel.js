@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const carSchema = new mongoose.Schema({
+const carModelSchema = new mongoose.Schema({
     carName: {
         type: String,
         required: true
@@ -51,9 +51,8 @@ const carSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        Type: String,
-        default: "path",
-        required: true,
+    type: String,
+        default:"image",
     }
 },
     {
@@ -62,4 +61,4 @@ const carSchema = new mongoose.Schema({
 
 );
 
-export { carSchema };
+export const carSchema = mongoose.model("car",carModelSchema );
