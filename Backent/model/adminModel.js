@@ -4,7 +4,11 @@ import mongoose from "mongoose";
 
 
 const adminModelSchema = new mongoose.Schema({
-
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
     email: {
         type: String,
         required: true,
@@ -13,7 +17,7 @@ const adminModelSchema = new mongoose.Schema({
         validate: {
             validator: (v) => {
                 // Length check
-                if (v.length < 5 || v.length > 20) {
+                if (v.length < 5 || v.length > 255) {
                     return false;
                 }
                 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -24,12 +28,6 @@ const adminModelSchema = new mongoose.Schema({
         }
 
     },
-
-    name: {
-        type: String,
-        required: true,
-        unique: true
-    },
     password: {
         type: String,
         required: true,
@@ -37,7 +35,7 @@ const adminModelSchema = new mongoose.Schema({
         validate: {
             validator: function (v) {
                 // Length check
-                if (v.length < 8 || v.length > 10) {
+                if (v.length < 8 || v.length > 128) {
                     return false;
                 }
                 // Password pattern check
@@ -48,25 +46,25 @@ const adminModelSchema = new mongoose.Schema({
         }
 
     },
-    // phone: {
-    //     type: String,
-    //     required: true,
-    //     unique: true,
-    //     validate: {
-    //         validator: function (v) {
-    //             // Phone number length and pattern check
-    //             const phoneRegex = /^\d{10}$/; // Allows phone numbers with exactly 10 digits
-    //             return phoneRegex.test(v);
-    //         },
-    //         message: props => `${props.value} is not a valid phone number! It should contain exactly 10 digits.`
-    //     }
-    // },
+    phone: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
+            validator: function (v) {
+                // Phone number length and pattern check
+                const phoneRegex = /^\d{10,15}$/; // Allows phone numbers with exactly 10 digits
+                return phoneRegex.test(v);
+            },
+            message: props => `${props.value} is not a valid phone number! It should contain exactly 10 digits.`
+        }
+    },
 
     role: {
         type: String,
         enum: ['admin'],
         default: 'admin',
-        required:true,
+        required: true,
     },
 },
     {
@@ -74,4 +72,4 @@ const adminModelSchema = new mongoose.Schema({
     },
 );
 
-export const adminSchema = mongoose.model("adminChema", adminModelSchema);
+export const adminSchema = mongoose.model("adminsChema", adminModelSchema);

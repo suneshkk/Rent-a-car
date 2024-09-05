@@ -7,7 +7,7 @@ export const userSignup = async (req, res, next) => {
 
     try {
         // arrya de structuring
-        const { name, email, password, role, profilePic } = req.body;
+        const { name, email, password, role, profilePic, phone } = req.body;
         //checking required field are filled or not
         if (!name || !email || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
@@ -25,7 +25,7 @@ export const userSignup = async (req, res, next) => {
         // console.log(hashedPassword,"333333333333333" )
 
         // Create a new user
-        const newUser = new User({ name, email, password: hashedPassword,role, profilePic });
+        const newUser = new User({ name, email, password: hashedPassword, role, profilePic, phone });
         await newUser.save();
 
         // Generate token
@@ -48,9 +48,9 @@ export const userSignup = async (req, res, next) => {
 export const userLogin = async (req, res, next) => {
     // here is the error handler function 
     try {
-        const { email, password,name } = req.body;
+        const { email, password } = req.body;
 
-        if (!email || !password || !name) {
+        if (!email || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
 
         }
@@ -90,15 +90,20 @@ export const userLogout = async (req, res, next) => {
 };
 export const userProfile = async (req, res, next) => {
     try {
-        const { user } = req.params;
-        const userData = await User.findOne({ _id: user._id });
-        res.json({ success: true, data: userData, message: "User Data Ftched" })
+        // Assuming you are storing user info in req.user after authentication middleware
+        const { user } = req;
+
+        // Fetch user data from the database
+        const userData = await User.findOne({ _id: user.id});
+
+        // Respond with the user data
+        res.json({ success: true, data: userData, message: "User Data Fetched" });
     } catch (error) {
         console.log(error);
-        return next(error)
-
-    };
+        return next(error);
+    }
 };
+
 export const checkUser = async (req, res, next) => {
     try {
         const { user } = req;
@@ -147,7 +152,7 @@ export const deleteUser = async (req, res, next) => {
     } catch (error) {
         console.log(error);
         return next(error)
-   
+
     };
 
 };

@@ -10,7 +10,7 @@ export const adminSignup = async (req, res, next) => {
             return res.status(400).json({ success: false, message: "all field required" });
 
         }
-        const isAdminExist = await User.findOne({ email });
+        const isAdminExist = await adminSchema.findOne({ email });
         if (isAdminExist) {
             return res.status(400).json({ message: "Admin already exist" });
 
@@ -29,7 +29,7 @@ export const adminSignup = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return (error);
+        return next(error);
     };
 
 
@@ -37,12 +37,12 @@ export const adminSignup = async (req, res, next) => {
 
 export const adminLogin = async (req, res, nex) => {
     try {
-        const { name, email, password } = req.body;
-        if (!name || !email || !password) {
+        const { email, password } = req.body;
+        if (!email || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
 
         }
-        const adminExist = await User.findOne({ email });
+        const adminExist = await adminSchema.findOne({ email });
         if (!adminExist) {
             return res.status(400).json({ message: "Admin does not exist" });
 
@@ -67,17 +67,22 @@ export const adminLogin = async (req, res, nex) => {
 
 export const adminProfile = async (req, res, next) => {
     try {
-        const { admin } = req.params;
-        const adminData = await adminSchema.findOne({ _id: admin._id });
-        res.json({ success: true, data: adminData, message: "Admin Data Ftched" })
+        // Assuming you are storing user info in req.user after authentication middleware
+        const admin  = req.user;
+
+        // Fetch user data from the database
+        const adminData = await adminSchema.findOne({ _id: admin.id});
+
+        // Respond with the user data
+        res.json({ success: true, data: adminData, message: "User Data Fetched" });
     } catch (error) {
         console.log(error);
         return next(error);
+    }
 
-    };
 };
 
-export const adminLogout = async (req,res,next) => {
+export const adminLogout = async (req, res, next) => {
     try {
         res.clearCookie("token");
         return res.json({ message: "Admin logout success", success: true });
@@ -124,14 +129,14 @@ export const adminDelete = async (req, res, next) => {
     } catch (error) {
         console.log(error);
         return next(error)
-   
+
     };
 
 };
 
 export const adminCheck = async (req, res, next) => {
     try {
-        const { admin } = req;
+        const admin  = req.user;
         if (!admin) {
             return res.status(404).json({ success: false, message: "Admin not autherized" });
 

@@ -6,12 +6,12 @@ const router = express.Router();
 
 
 router.post("/signup", userSignup);
-router.post("/loging", userLogin);
+router.post("/login", userLogin);
 router.post("/logout", userLogout);
 
-router.get("/profile", userAuth, userProfile);
-router.put("/update", userAuth, updateUser);
-router.delete("/delete", userAuth, deleteUser);
+router.get("/profile/:id", userAuth, userProfile);
+router.put("/update/:id", userAuth, updateUser);
+router.delete("/delete/:id", userAuth, deleteUser);
 
 router.get("/check-user", userAuth, checkUser);
 
