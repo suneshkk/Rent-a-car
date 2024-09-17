@@ -1,6 +1,12 @@
 import express from 'express';
 import { adminAuth } from '../../middlewares/adminAuth.js';
-import { createCar, carlist, getCarById, deleteCar, updateCar } from '../../controller/carController.js';
+import {
+    createCar,
+    carlist,
+    getCarById,
+    deleteCar,
+    updateCar
+} from '../../controller/carController.js';
 import { upload } from '../../middlewares/multer.js';
 
 

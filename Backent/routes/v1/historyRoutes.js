@@ -1,12 +1,11 @@
 import express from "express"
-
 const router = express.Router();
 
-router.post("/rentals",);
-router.get("/rentals",);
-router.get("/rentals/user",);
-router.put("/rentals/:id",);
-router.delete("/rentals/:id",);
+router.post("/rentals",createRental);
+router.get("/rentals:rentalId", getRentalById);
+router.get("/rentals", getAllRentals);
+router.put("/rentals/:id",updateRentalStatus);
+router.delete("/rentals/:id",deleteREntal);
 
 
 export {router as historyRoter};

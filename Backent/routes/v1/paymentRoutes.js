@@ -1,6 +1,12 @@
 import express from 'express';
 import { userAuth } from '../../middlewares/userAuth.js';
-import { createPayment, getAllPayments, getPaymentById, updatePaymentStatus, deletePayment } from '../../controller/paymentController.js';
+import {
+    createPayment,
+    getAllPayments,
+    getPaymentById,
+    updatePaymentStatus,
+    deletePayment
+} from '../../controller/paymentController.js';
 
 
 
@@ -13,5 +19,5 @@ router.put('/payments/:id', userAuth, updatePaymentStatus);
 router.delete('/payments/:id', userAuth, deletePayment);
 
 
-export {router as paymentRouter};
+export { router as paymentRouter };
 
