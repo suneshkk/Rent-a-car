@@ -21,7 +21,7 @@ export const adminSignup = async (req, res, next) => {
         const newAdmin = new adminSchema({ name, email, password: hashedPassword, phone, role });
         await newAdmin.save();
 
-        const token = generateToken(newAdmin._id);
+        const token = generateToken(newAdmin._id,'admin');
 
         res.cookie("token", token, { httpOnly: true, secure: true });
 
@@ -53,7 +53,7 @@ export const adminLogin = async (req, res, nex) => {
             return res.status(404).json({ success: false, message: "Admin not authorized" });
         }
         // generate token 
-        const token = generateToken(adminExist._id);
+        const token = generateToken(adminExist._id,'admin');
 
         //set the token in a cookie
         res.cookie("token", token, { httpOnly: true, secure: true });
@@ -74,7 +74,7 @@ export const adminProfile = async (req, res, next) => {
         const adminData = await adminSchema.findOne({ _id: admin.id});
 
         // Respond with the user data
-        res.json({ success: true, data: adminData, message: "User Data Fetched" });
+       return res.json({ success: true, data: adminData, message: "User Data Fetched" });
     } catch (error) {
         console.log(error);
         return next(error);

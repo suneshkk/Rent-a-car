@@ -8,7 +8,7 @@ import { apiRouter } from './routes/index.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
-app.use(express.json());
+app.use(express.json());// important, for access json datas trough req.body 
 app.use(cookieParser());
 
 // cors controler setup

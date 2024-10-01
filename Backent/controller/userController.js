@@ -29,7 +29,7 @@ export const userSignup = async (req, res, next) => {
         await newUser.save();
 
         // Generate token
-        const token = generateToken(newUser._id);
+        const token = generateToken(newUser._id,'user');
 
         // Set the token in a cookie
         res.cookie("token", token, { httpOnly: true }); // Set httpOnly for security
@@ -90,7 +90,6 @@ export const userLogout = async (req, res, next) => {
 };
 export const userProfile = async (req, res, next) => {
     try {
-        // Assuming you are storing user info in req.user after authentication middleware
         const { user } = req;
 
         // Fetch user data from the database
