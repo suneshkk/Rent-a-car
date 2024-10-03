@@ -23,7 +23,7 @@ export const adminSignup = async (req, res, next) => {
 
         const token = generateToken(newAdmin._id,'admin');
 
-        res.cookie("token", token, { httpOnly: true, secure: true });
+        res.cookie("token", token);
 
         return res.status(201).json({ success: true, message: "Admin created successfully" });
 
@@ -35,7 +35,7 @@ export const adminSignup = async (req, res, next) => {
 
 };
 
-export const adminLogin = async (req, res, nex) => {
+export const adminLogin = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -58,11 +58,11 @@ export const adminLogin = async (req, res, nex) => {
         //set the token in a cookie
         res.cookie("token", token, { httpOnly: true, secure: true });
         return res.json({ success: true, message: "Admin login successfull" });
-
     } catch (error) {
         console.log(error);
-        return (error);
+        return next(error);
     };
+
 };
 
 export const adminProfile = async (req, res, next) => {

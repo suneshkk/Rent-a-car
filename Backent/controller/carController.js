@@ -1,5 +1,4 @@
 import { carSchema } from '../model/carModel.js';
-import { cloudConfig } from '../confiq/cloud.js';
 import { handleImageUpload } from '../util/imageUpload.js';
 
 

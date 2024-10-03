@@ -5,6 +5,6 @@ export const handleImageUpload = async (path) => {
         const uploadResult = await cloudConfig.uploader.upload(path);
         return uploadResult.url;
     } catch (error) {
-        next(error)
+       return next(error)
     };
 };

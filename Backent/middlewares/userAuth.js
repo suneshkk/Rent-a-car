@@ -16,6 +16,6 @@ export const userAuth = (req, res, next) => {
         }
     } catch (error) {
         console.log(error);
-        return res.status(error.statuscode || 500).json({ message: error.message || "server error" });
+        return next(error);
     }
 };

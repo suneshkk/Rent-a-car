@@ -14,7 +14,7 @@ export const adminAuth = (req, res, next) => {
 
         }
 
-        if (!tokenVerified.role === 'admin' && !tokenVerified.role === 'mentor') {
+        if (tokenVerified.role !== 'admin' && tokenVerified.role !== 'mentor') {
             return res.status(401).json({success: false, message:"user not Authorized"})
         }
 
@@ -26,7 +26,6 @@ export const adminAuth = (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(error.statuscode || 500).json({ message: error.message || "server error" });
-
+      return next(error);
     };
 };
