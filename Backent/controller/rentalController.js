@@ -1,5 +1,4 @@
-import { rentalSchema } from "../model/historyModel.js";
-
+import { rentalSchema } from "../model/renatalModel.js";
 export const createRental = async (req,res,next) => {
     try{
         

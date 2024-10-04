@@ -28,7 +28,7 @@ connectDB();
 
 // rout setup
 app.get('/', (req, res) => {
-    res.send({ message: "heloworld!" });
+    res.send("heloworld!");
 })
 
 app.use("/api", apiRouter);

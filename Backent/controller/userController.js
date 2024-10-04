@@ -8,8 +8,9 @@ export const userSignup = async (req, res, next) => {
     try {
         // arrya de structuring
         const { name, email, password, role, profilePic, phone } = req.body;
+        // let imageUrl;
         //checking required field are filled or not
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !phone) {
             return res.status(400).json({ success: false, message: "all field required" });
         }
         // user verifying with email for security
@@ -24,12 +25,24 @@ export const userSignup = async (req, res, next) => {
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
         // console.log(hashedPassword,"333333333333333" )
 
+        // if (req.file) {
+        //     imageUrl = await handleImageUpload(req.file.path);
+        // }
+
+
         // Create a new user
-        const newUser = new User({ name, email, password: hashedPassword, role, profilePic, phone });
+        const newUser = new User({
+            name,
+            email,
+            password: hashedPassword,
+            role,
+            profilePic: imageUrl || profilePic,
+            phone
+        });
         await newUser.save();
 
         // Generate token
-        const token = generateToken(newUser._id,'user');
+        const token = generateToken(newUser._id, 'user');
 
         // Set the token in a cookie
         res.cookie("token", token, { httpOnly: true }); // Set httpOnly for security
@@ -93,7 +106,7 @@ export const userProfile = async (req, res, next) => {
         const { user } = req;
 
         // Fetch user data from the database
-        const userData = await User.findOne({ _id: user.id});
+        const userData = await User.findOne({ _id: user.id });
 
         // Respond with the user data
         res.json({ success: true, data: userData, message: "User Data Fetched" });
