@@ -11,6 +11,7 @@ router.use("/user", userRouter);
 router.use("/car", carRouter);
 router.use("/payment", paymentRouter);
 router.use("/admin",admiRouter);
+router.use("/rental",rentalRoutes);
 
 
 export { router as v1Router };

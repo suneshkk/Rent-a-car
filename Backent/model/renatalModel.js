@@ -3,11 +3,20 @@ import mongoose from "mongoose";
 
 
 const rentalStatus = new mongoose.Schema({
-    carId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Car',
-        required: true
-    },
+    car: [
+        {
+            carId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Car',
+                required: true
+            },
+            totalPrice: {
+                type: Number,
+                required: true
+            },
+
+        },
+    ],
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -21,10 +30,7 @@ const rentalStatus = new mongoose.Schema({
         type: Date,
         required: true
     },
-    totalPrice: {
-        type: Number,
-        required: true
-    },
+
     status: {
         type: String,
         enum: ['booked', 'in-progress', 'completed', 'cancelled'],
@@ -32,11 +38,10 @@ const rentalStatus = new mongoose.Schema({
         required: true
     }
 },
-{
-    timestamps: true,
-  },
+    {
+        timestamps: true,
+    },
 
 );
 
-export {};
-export const rentalSchema = mongoose.model(" rentalSchema",rentalStatus );
+export const rentalSchema = mongoose.model(" rentalSchema", rentalStatus);
