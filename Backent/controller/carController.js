@@ -1,15 +1,15 @@
 import { carSchema } from '../model/carModel.js';
-import { handleImageUpload } from '../util/imageUpload.js';
+// import { handleImageUpload } from '../util/imageUpload.js';
 
 
 //creat car
 export const createCar = async (req, res, next) => {
     try {
         const { carName, brand, year, type, fuelType, transmission, availability, rentalRate, location, image } = req.body;
-        let imageUrl;
+        // let imageUrl;
 
         // Check if all required fields are provided
-        if (!carName || !brand || !year || !type || !fuelType || !transmission || !availability || !rentalRate || !location) {
+        if (!carName || !brand || !year || !type || !fuelType || !transmission || !availability || !rentalRate || !image ) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
 
@@ -20,9 +20,9 @@ export const createCar = async (req, res, next) => {
         }
 
         // Handle image upload if an image is provided
-        if (req.file) {
-            imageUrl = await handleImageUpload(req.file.path);
-        }
+        // if (req.file) {
+        //     imageUrl = await handleImageUpload(req.file.path);
+        // }
 
         // Create a new car object and save it to the database
         const newCar = new carSchema({

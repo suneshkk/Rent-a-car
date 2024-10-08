@@ -10,11 +10,14 @@ export const createRental = async (req, res, next) => {
         if (!startDate || !endDate) {
             return res.status(400).json({ success: false, message: " Proper dates required" });
         }
+        console.log("first")
         // finding the car user search
         const carData = await carSchema.findById(carId);
         if (!carData) {
             return res.status(400).json({ message: "There is no similar CAR" });
         }
+        console.log("second")
+        
         //for creating cart if there no existing cart
         let rental = await rentalSchema.findOne(userId);
         if (!rental) {

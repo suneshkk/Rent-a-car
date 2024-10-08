@@ -36,7 +36,7 @@ export const userSignup = async (req, res, next) => {
             email,
             password: hashedPassword,
             role,
-            profilePic: imageUrl || profilePic,
+            profilePic,
             phone
         });
         await newUser.save();
