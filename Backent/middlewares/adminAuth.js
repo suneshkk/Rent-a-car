@@ -3,26 +3,25 @@ import jwt from 'jsonwebtoken';
 
 
 export const adminAuth = (req, res, next) => {
+    console.log("function ===",adminAuth);
     try {
         const { token } = req.cookies;
 
         if (!token) {
 
-            return res.status(401).json({ success: false, message: "User Not Authorized" });
+            return res.status(401).json({ success: false, message: "Sorry Token Not Get" });
 
         }
-        console.log("tokenVerified=====", token);
 
         const tokenVerified = jwt.verify(token, process.env.JWT_KEY);
         if (!tokenVerified) {
-            return res.status(401).json({ success: false, message: "User Not Authorized" });
+            return res.status(401).json({ success: false, message: "Token Verification Filed" });
 
         }
-        console.log("tokenVerified=====", tokenVerified);
-        if (tokenVerified.role !== "admin") {
+        // if (tokenVerified.role !== "admin") {
 
-            return res.status(401).json({ success: false, message: "user not Authorized" })
-        }
+        //     return res.status(401).json({ success: false, message: "Admin Login Onlly" })
+        // }
 
 
         else {

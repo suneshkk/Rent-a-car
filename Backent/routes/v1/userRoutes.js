@@ -9,11 +9,12 @@ import {
     updateUser,
     deleteUser
 } from '../../controller/userController.js';
+import { upload } from '../../middlewares/multer.js';
 
 const router = express.Router();
 
 
-router.post("/signup", userSignup);
+router.post("/signup",upload.single("profilePic"), userSignup);
 router.post("/login", userLogin);
 router.post("/logout", userLogout);
 

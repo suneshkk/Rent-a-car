@@ -5,8 +5,8 @@ export const generateToken = (id, role) => {
     try {
         var token = jwt.sign(
             {
-                user: id,
-                user: role
+                id: id,
+                role: role
             }
             , process.env.JWT_KEY);
         return (token);

@@ -1,18 +1,25 @@
 import bcrypt from 'bcrypt';
 import { User } from '../model/userModel.js';
 import { generateToken } from '../util/token.js';
+import { handleImageUpload } from '../util/imageUpload.js';
 
 //user signup function
 export const userSignup = async (req, res, next) => {
 
     try {
         // arrya de structuring
-        const { name, email, password, role, profilePic, phone } = req.body;
-        // let imageUrl;
+        const { name, email, password,  profilePic, phone } = req.body;
+        let imageUrl;
+      console.log("image",imageUrl),
+        console.log( "name",name,"email",email,"password",password,"phone",phone,"profile",profilePic);
+
+
         //checking required field are filled or not
-        if (!name || !email || !password || !phone) {
+        if ( !email || !password || !phone || !name) {
             return res.status(400).json({ success: false, message: "all field required" });
         }
+        console.log( "name",name,"email",email,"password",password,"phone",phone,"profile",profilePic);
+
         // user verifying with email for security
         const isUserExist = await User.findOne({ email });
 
@@ -25,9 +32,9 @@ export const userSignup = async (req, res, next) => {
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
         // console.log(hashedPassword,"333333333333333" )
 
-        // if (req.file) {
-        //     imageUrl = await handleImageUpload(req.file.path);
-        // }
+        if (req.file) {
+            imageUrl = await handleImageUpload(req.file.path);
+        }
 
 
         // Create a new user
@@ -35,8 +42,7 @@ export const userSignup = async (req, res, next) => {
             name,
             email,
             password: hashedPassword,
-            role,
-            profilePic,
+            profilePic:imageUrl || profilePic,
             phone
         });
         await newUser.save();

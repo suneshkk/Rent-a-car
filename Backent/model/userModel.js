@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-
     name: {
         type: String,
         required: true,
+        unique: true
     },
+
     email: {
         type: String,
         required: true,
@@ -45,14 +46,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-    validate: {
-        validator: function (v) {
-            // Phone number length and pattern check
-            const phoneRegex = /^\d{10,15}$/; // Allows phone numbers with exactly 10 digits
-            return phoneRegex.test(v);
-        },
-        message: props => `${props.value} is not a valid phone number! It should contain exactly 10 digits.`
-    }
+        validate: {
+            validator: function (v) {
+                // Phone number length and pattern check
+                const phoneRegex = /^\d{10,15}$/; // Allows phone numbers with exactly 10 digits
+                return phoneRegex.test(v);
+            },
+            message: props => `${props.value} is not a valid phone number! It should contain exactly 10 digits.`
+        }
     },
     rentalHistory: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -61,10 +62,14 @@ const userSchema = new mongoose.Schema({
 
     role: {
         type: String,
-        enum: ['user'],
         default: 'user',
         required: true
     },
+    profilePic: {
+        type: String,
+        default: "profilePic",
+
+    }
 
 },
     {

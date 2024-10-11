@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken';
 export const userAuth = (req, res, next) => {
     try {
         const { token } = req.cookies;
+        console.log("token====",token)
+
         if (!token) {
 
             return res.status(401).json({ success: false, message: "User not autherized" });
@@ -15,8 +17,10 @@ export const userAuth = (req, res, next) => {
 
         else {
             req.user = tokenVerified
+
             next();
         }
+
 
     } catch (error) {
         console.log(error);
