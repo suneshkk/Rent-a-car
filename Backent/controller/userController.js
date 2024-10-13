@@ -7,18 +7,13 @@ import { handleImageUpload } from '../util/imageUpload.js';
 export const userSignup = async (req, res, next) => {
 
     try {
-        // arrya de structuring
-        const { name, email, password,  profilePic, phone } = req.body;
+        const { name, email, password, profilePic, phone } = req.body;
         let imageUrl;
-      console.log("image",imageUrl),
-        console.log( "name",name,"email",email,"password",password,"phone",phone,"profile",profilePic);
-
 
         //checking required field are filled or not
-        if ( !email || !password || !phone || !name) {
+        if (!name || !email || !password || !phone  ) {
             return res.status(400).json({ success: false, message: "all field required" });
         }
-        console.log( "name",name,"email",email,"password",password,"phone",phone,"profile",profilePic);
 
         // user verifying with email for security
         const isUserExist = await User.findOne({ email });
@@ -42,16 +37,16 @@ export const userSignup = async (req, res, next) => {
             name,
             email,
             password: hashedPassword,
-            profilePic:imageUrl || profilePic,
+            profilePic: imageUrl || profilePic,
             phone
         });
         await newUser.save();
 
         // Generate token
-        const token = generateToken(newUser._id, 'user');
+        const token = generateToken(newUser._id);
 
         // Set the token in a cookie
-        res.cookie("token", token, { httpOnly: true }); // Set httpOnly for security
+        res.cookie("token", token); 
 
         // Respond to the client
         return res.status(201).json({ success: true, message: "User created successfully" });
@@ -87,7 +82,7 @@ export const userLogin = async (req, res, next) => {
         const token = generateToken(userExist._id);
 
         //set the token in a cookie
-        res.cookie("token", token, { httpOnly: true, secure: true });
+        res.cookie("token", token,);
         return res.json({ success: true, message: "user login successfull" });
 
 
@@ -140,6 +135,15 @@ export const checkUser = async (req, res, next) => {
 export const updateUser = async (req, res, next) => {
     try {
         const id = req.params.id;
+        const dataUpdat = req.body;
+        let imageUrl;
+
+        if (req.file) {
+            imageUrl = await handleImageUpload(req.file.path);
+            dataUpdat.image = imageUrl;
+        }
+
+
         const result = await User.findByIdAndUpdate(id, req.body, { new: true });
         if (!result) {
             return res.status(404).json({ message: "User Not Find" });

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 
 export const adminAuth = (req, res, next) => {
-    console.log("function ===",adminAuth);
+    // console.log("function ===",adminAuth);
     try {
         const { token } = req.cookies;
 

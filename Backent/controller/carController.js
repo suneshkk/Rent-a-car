@@ -8,8 +8,9 @@ export const createCar = async (req, res, next) => {
         const { carName, brand, year, type, fuelType, transmission, availability, rentalRate, location, image } = req.body;
         let imageUrl;
 
+
         // Check if all required fields are provided
-        if (!carName || !brand || !year || !type || !fuelType || !transmission || !availability || !rentalRate || !image ) {
+        if (!carName || !brand || !rentalRate || !image ) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
 

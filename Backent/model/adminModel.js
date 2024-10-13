@@ -64,7 +64,6 @@ const adminModelSchema = new mongoose.Schema({
         type: String,
         enum: ['admin'],
         default: 'admin',
-        required: true
     },
 },
     {

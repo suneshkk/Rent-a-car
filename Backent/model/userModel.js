@@ -55,15 +55,12 @@ const userSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid phone number! It should contain exactly 10 digits.`
         }
     },
-    rentalHistory: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Rental',
-    }],
 
     role: {
         type: String,
+        enum: ['user'],
+
         default: 'user',
-        required: true
     },
     profilePic: {
         type: String,

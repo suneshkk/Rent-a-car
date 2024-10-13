@@ -15,10 +15,10 @@ const router = express.Router();
 
 router.post("/create", adminAuth, upload.single("image"), createCar);
 router.get("/list", carlist);
-router.get("/Car/:id", adminAuth, getCarById);
+router.get("/get-car/:id", adminAuth, getCarById);
 
-router.delete("/delete", adminAuth, deleteCar);
-router.put("/update", adminAuth, upload.single("image"), updateCar);
+router.delete("/delete/:id", adminAuth, deleteCar);
+router.put("/update/:id", adminAuth, upload.single("image"), updateCar);
 
 
 

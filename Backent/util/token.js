@@ -1,17 +1,12 @@
 import jwt from 'jsonwebtoken';
-// import dotenv from 'dotenv';
 
 export const generateToken = (id, role) => {
     try {
-        var token = jwt.sign(
-            {
-                id: id,
-                role: role
-            }
-            , process.env.JWT_KEY);
-        return (token);
+        var token = jwt.sign({ id: id, role: role || "user" }, process.env.JWT_KEY_SECRET);
+        return token;
+
     } catch (error) {
-        console.log(error);
+        return res.status(error.statusCode || 500).json({ message: error.message || "internal server error" });
 
     }
 }
