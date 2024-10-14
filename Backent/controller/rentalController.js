@@ -2,22 +2,17 @@ import { rentalSchema } from "../model/renatalModel.js";
 import { carSchema } from "../model/carModel.js";
 
 
-export const createRental = async (req, res, next) => {
+export const addToRental = async (req, res, next) => {
     try {
-        const userId = req.user._id;
-        const { carId } = req.body;
-        const { startDate, endDate, totalPrice } = req.body;
-        if (!startDate || !endDate) {
-            return res.status(400).json({ success: false, message: " Proper dates required" });
-        }
-        console.log("first")
+        const userId = req.user.id;
+        const { carId } = req.params.id;
+
         // finding the car user search
         const carData = await carSchema.findById(carId);
         if (!carData) {
             return res.status(400).json({ message: "There is no similar CAR" });
         }
-        console.log("second")
-        
+
         //for creating cart if there no existing cart
         let rental = await rentalSchema.findOne(userId);
         if (!rental) {
@@ -32,14 +27,33 @@ export const createRental = async (req, res, next) => {
         // Add the car to the cart
         rental.car.push({
             carId,
-            price: carData.totalPrice,
+            price: carData.Price,
         });
-
+         
+        rental.calculateTotalPrice();
 
         await rental.save();
+
+       return res.status(200).json({ message: "added to cart", data: cart });
 
     } catch (error) {
         console.log(error);
         return next(error);
     }
-}
+};
+
+export const getRental = async (req, res, next) => {
+    try {
+        const { user } = req;
+        const rental = await rentalSchema.findOne({ userId: user.id }).populate("car.carId")
+
+        if (!rental) {
+            return res.status(404).json({ message: "There is no Rental" })
+        }
+        res.json({ message: "Rental fetched successfully", data: rental });
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    };
+
+};

@@ -10,7 +10,7 @@ const rentalStatus = new mongoose.Schema({
                 ref: 'Car',
                 required: true
             },
-            totalPrice: {
+            price: {
                 type: Number,
                 required: true
             },
@@ -30,6 +30,12 @@ const rentalStatus = new mongoose.Schema({
         type: Date,
         required: true
     },
+    totalPrice: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+
 
     status: {
         type: String,
@@ -43,5 +49,18 @@ const rentalStatus = new mongoose.Schema({
     },
 
 );
+
+const days =
+    (new Date(rentalStatus.endDate) - new Date(rentalStatus.startDate)) /
+    (1000 * 60 * 60 * 24);
+
+const rentalDays = days > 0 ? days : 1;
+
+rentalStatus.methods.calculateTotalPrice = function () {
+    this.totalPrice = this.car.reduce((total, car) => total + car.price * rentalDays)
+
+};
+
+
 
 export const rentalSchema = mongoose.model(" rentalSchema", rentalStatus);

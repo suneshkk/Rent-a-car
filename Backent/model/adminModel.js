@@ -48,7 +48,6 @@ const adminModelSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        required: true,
         unique: true,
         validate: {
             validator: function (v) {
@@ -64,6 +63,7 @@ const adminModelSchema = new mongoose.Schema({
         type: String,
         enum: ['admin'],
         default: 'admin',
+        
     },
 },
     {

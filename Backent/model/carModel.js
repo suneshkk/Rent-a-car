@@ -36,25 +36,19 @@ const carModelSchema = new mongoose.Schema({
         default: true,
         required: true
     },
-    rentalRate: {
+    price: {
         type: Number,
-        required: true,
-        validate: {
-            validator: function (v) {
-                return v > 0; // Rental rate must be a positive number
-            },
-            message: props => `${props.value} should be a positive number!`
-        }
+        required: true
     },
     location: {
         type: String,
         required: true
     },
     image: {
-    type: String,
-        default:"image",
+        type: String,
+        default: "image",
     },
-    
+
 },
     {
         timestamps: true,
@@ -62,4 +56,4 @@ const carModelSchema = new mongoose.Schema({
 
 );
 
-export const carSchema = mongoose.model("car",carModelSchema );
+export const carSchema = mongoose.model("car", carModelSchema);

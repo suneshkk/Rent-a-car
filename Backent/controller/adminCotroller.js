@@ -5,8 +5,10 @@ import { generateToken } from "../util/token.js";
 
 export const adminSignup = async (req, res, next) => {
     try {
-        const { email, name, password, phone, } = req.body;
-        if (!email || !name || !password) {
+        const { email, name, password,phone, } = req.body;
+
+
+        if (!email || !name || !password ) {
             return res.status(400).json({ success: false, message: "all field required" });
 
         }
@@ -18,7 +20,7 @@ export const adminSignup = async (req, res, next) => {
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
-        const newAdmin = new adminSchema({ name, email, password: hashedPassword, phone });
+        const newAdmin = new adminSchema({ name, email, password:hashedPassword, phone });
         await newAdmin.save();
 
         const token = generateToken(newAdmin._id,'admin');
@@ -40,8 +42,7 @@ export const adminLogin = async (req, res, next) => {
         const { email, password } = req.body;
         if (!email || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
-
-        }
+       }
         const adminExist = await adminSchema.findOne({ email });
         if (!adminExist) {
             return res.status(400).json({ message: "Admin does not exist" });
