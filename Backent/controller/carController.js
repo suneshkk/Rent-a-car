@@ -5,12 +5,12 @@ import { handleImageUpload } from '../util/imageUpload.js';
 //creat car
 export const createCar = async (req, res, next) => {
     try {
-        const { carName, brand, year, type, fuelType, transmission, availability, rentalRate, location, image } = req.body;
+        const { carName, brand, year, type, fuelType, transmission, availability, price, location, image } = req.body;
         let imageUrl;
 
 
         // Check if all required fields are provided
-        if (!carName || !brand || !rentalRate || !image ) {
+        if (!carName || !brand || !price ) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
 
@@ -34,7 +34,7 @@ export const createCar = async (req, res, next) => {
             fuelType,
             transmission,
             availability,
-            rentalRate,
+            price,
             location,
             image: imageUrl || image
         });
