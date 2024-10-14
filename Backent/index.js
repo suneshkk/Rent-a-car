@@ -27,7 +27,6 @@ connectDB();
 app.get('/', (req, res) => {
     res.send("helloworld!");
 });
-
 app.use("/api", apiRouter);
 app.use(errorHandle);
 

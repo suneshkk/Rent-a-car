@@ -11,7 +11,7 @@ export const userSignup = async (req, res, next) => {
         let imageUrl;
 
         //checking required field are filled or not
-        if (!name || !email || !password || !phone  ) {
+        if (!name || !email || !password || !phone) {
             return res.status(400).json({ success: false, message: "all field required" });
         }
 
@@ -46,7 +46,7 @@ export const userSignup = async (req, res, next) => {
         const token = generateToken(newUser._id);
 
         // Set the token in a cookie
-        res.cookie("token", token); 
+        res.cookie("token", token);
 
         // Respond to the client
         return res.status(201).json({ success: true, message: "User created successfully" });
@@ -134,32 +134,60 @@ export const checkUser = async (req, res, next) => {
 };
 export const updateUser = async (req, res, next) => {
     try {
-        const id = req.params.id;
-        const dataUpdat = req.body;
+        const userId = req.params.id;
+        const userUpdate = req.body;
         let imageUrl;
+        console.log(userId)
+        console.log(userUpdate)
 
+
+        const isUserExists = await User.findById(userId);
+        if (!isUserExists) {
+            return res.status(404).json({ message: "User Not Found" });
+        }
         if (req.file) {
             imageUrl = await handleImageUpload(req.file.path);
-            dataUpdat.image = imageUrl;
+
+            userUpdate.profilePic = imageUrl;
         }
 
+        // Update the user details
+        const result = await User.findByIdAndUpdate(userId, userUpdate, { new: true });
 
-        const result = await User.findByIdAndUpdate(id, req.body, { new: true });
-        if (!result) {
-            return res.status(404).json({ message: "User Not Find" });
-        }
-        else {
-            return res.status(200).json({ message: "Profile Updated Successfully", data: result });
-        }
-
+        return res.status(200).json({ message: "Profile Updated Successfully", data: result });
+    } catch (error) {
+        console.log(error);
+        return next(error);
     }
-    catch (error) {
-        console.log(error.message);
-        return next(error)
-
-
-    };
 };
+
+// try {
+//     const id = req.params.id;
+//     const dataUpdat = req.body;
+//     let imageUrl;
+
+//     if (req.file) {
+//         imageUrl = await handleImageUpload(req.file.path);
+//         dataUpdat.image = imageUrl;
+//     }
+
+
+//     const result = await User.findByIdAndUpdate(id, req.body, { new: true });
+//     if (!result) {
+//         return res.status(404).json({ message: "User Not Find" });
+//     }
+//     else {
+//         return res.status(200).json({ message: "Profile Updated Successfully", data: result });
+//     }
+
+// }
+// catch (error) {
+//     console.log(error.message);
+//     return next(error)
+
+
+// };
+
 export const deleteUser = async (req, res, next) => {
     try {
         const id = req.params.id;

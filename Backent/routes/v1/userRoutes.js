@@ -19,7 +19,7 @@ router.post("/login", userLogin);
 router.post("/logout", userLogout);
 
 router.get("/profile/:id", userAuth, userProfile);
-router.put("/update/:id", userAuth, updateUser);
+router.put("/update/:id", userAuth,upload.single("profilePic"), updateUser);
 router.delete("/delete/:id", userAuth, deleteUser);
 
 router.get("/check-user", userAuth, checkUser);
