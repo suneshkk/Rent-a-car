@@ -7,8 +7,8 @@ export const createCar = async (req, res, next) => {
     try {
         const { carName, brand, year, type, fuelType, transmission, availability, price, location, image } = req.body;
         let imageUrl;
-
-
+        console.log("image", imageUrl)
+       console.log("data",carName, brand, year, type, fuelType, transmission, availability, price, location, image)
         // Check if all required fields are provided
         if (!carName || !brand || !price) {
             return res.status(400).json({ success: false, message: "All fields are required" });
@@ -88,7 +88,7 @@ export const getCarById = async (req, res, next) => {
 //delete car
 export const deleteCar = async (req, res, next) => {
     try {
-        const  carId  = req.params.id;
+        const carId = req.params.id;
 
         const carDeleted = await carSchema.findByIdAndDelete(carId);
 
@@ -117,7 +117,7 @@ export const updateCar = async (req, res, next) => {
         // Handle image upload if a new image is provided
         if (req.file) {
             imageUrl = await handleImageUpload(req.file.path);
-            updatedData.image = imageUrl;
+            carUpdated.image = imageUrl;
         }
         // Find and update the car by ID
         const result = await carSchema.findByIdAndUpdate(carId, carUpdated, { new: true });

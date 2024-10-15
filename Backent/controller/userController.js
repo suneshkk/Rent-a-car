@@ -161,32 +161,6 @@ export const updateUser = async (req, res, next) => {
     }
 };
 
-// try {
-//     const id = req.params.id;
-//     const dataUpdat = req.body;
-//     let imageUrl;
-
-//     if (req.file) {
-//         imageUrl = await handleImageUpload(req.file.path);
-//         dataUpdat.image = imageUrl;
-//     }
-
-
-//     const result = await User.findByIdAndUpdate(id, req.body, { new: true });
-//     if (!result) {
-//         return res.status(404).json({ message: "User Not Find" });
-//     }
-//     else {
-//         return res.status(200).json({ message: "Profile Updated Successfully", data: result });
-//     }
-
-// }
-// catch (error) {
-//     console.log(error.message);
-//     return next(error)
-
-
-// };
 
 export const deleteUser = async (req, res, next) => {
     try {

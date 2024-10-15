@@ -13,42 +13,42 @@ const carModelSchema = new mongoose.Schema({
 
     year: {
         type: Number,
-        // required: true,
+        required: true,
 
     },
     type: {
         type: String,
         enum: ['sedan', 'suv', 'truck', 'coupe', 'convertible', 'wagon', 'van', 'hatchback', 'other'],
-        // required: true
+        required: true
     },
     fuelType: {
         type: String,
         enum: ['petrol', 'diesel', 'electric', 'hybrid', 'cng', 'lpg', 'other'],
-        // required: true
+        required: true
     },
     transmission: {
         type: String,
         enum: ['manual', 'automatic', 'semi-automatic'],
-        // required: true
+        required: true
     },
     availability: {
-        type: Boolean,
+        type: String,
         default: true,
-        // required: true
+        required: true
     },
     price: {
         type: Number,
-        // required: true
+        required: true
     },
-location: {
+    location: {
         type: String,
-        // required: true
+        required: true
     },
     image: {
-    type: String,
-        default:"image",
+        type: String,
+        default: "image",
     },
-    
+
 },
     {
         timestamps: true,
@@ -56,4 +56,4 @@ location: {
 
 );
 
-export const carSchema = mongoose.model("car",carModelSchema );
+export const carSchema = mongoose.model("car", carModelSchema);

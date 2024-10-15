@@ -8,7 +8,7 @@ export const errorHandle = async (error, req, res, next) => {
        return res.status(statusCode).json({ message });
 
     } catch (error) {
-       return res.status(500).json({ error: err.message });
+       return res.status(500).json({ error:message });
 
     }
 }
