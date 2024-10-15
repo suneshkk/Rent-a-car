@@ -10,7 +10,7 @@ export const createCar = async (req, res, next) => {
 
 
         // Check if all required fields are provided
-        if (!carName || !brand || !price ) {
+        if (!carName || !brand || !price) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
 
@@ -68,12 +68,10 @@ export const carlist = async (req, res, next) => {
 //get one car
 export const getCarById = async (req, res, next) => {
     try {
-        const { Id } = req.params;
+        const { carId } = req.params;
 
         // Find car by ID
-        const car = await carSchema.findById(Id);
-
-        // Check if car exists
+        const car = await carSchema.findOne(carId);
         if (!car) {
             return res.status(404).json({ success: false, message: "Car not found" });
         }
@@ -90,11 +88,11 @@ export const getCarById = async (req, res, next) => {
 //delete car
 export const deleteCar = async (req, res, next) => {
     try {
-        const { carId } = req.params;
+        const  carId  = req.params.id;
 
-        const carDeleted = await carSchema.findByIdAndDelete({ _id: carId });
+        const carDeleted = await carSchema.findByIdAndDelete(carId);
 
-        if (!carDeleted) res.status(400).json({ success: true, message: "Car already deleted" });
+        if (!carDeleted) res.status(400).json({ success: false, message: "NO car for delete" });
 
         res.status(200).json({ success: true, message: "Car deleted successfully", data: carDeleted });
     } catch (error) {
@@ -106,9 +104,14 @@ export const deleteCar = async (req, res, next) => {
 export const updateCar = async (req, res, next) => {
 
     try {
-        const { carId } = req.params;
-        const updatedData = req.body;
+        const carId = req.params.id;
+        const carUpdated = req.body;
         let imageUrl;
+
+        const isCarExist = await carSchema.findById(carId);
+        if (!isCarExist) {
+            return res.status(404).json({ message: "car not found" })
+        }
 
 
         // Handle image upload if a new image is provided
@@ -117,16 +120,11 @@ export const updateCar = async (req, res, next) => {
             updatedData.image = imageUrl;
         }
         // Find and update the car by ID
-        const updatedCar = await carSchema.findByIdAndUpdate(carId.updatedData, { new: true });
+        const result = await carSchema.findByIdAndUpdate(carId, carUpdated, { new: true });
 
-        // Check if car exists
-
-        if (!updatedCar) {
-            return res.status(404).json({ success: false, message: "Car not found" });
-        }
 
         // Return the updated car details
-        return res.status(200).json({ success: true, message: "Car updated successfully", data: updatedCar });
+        return res.status(200).json({ success: true, message: "Car updated successfully", data: result });
 
 
     } catch (error) {
