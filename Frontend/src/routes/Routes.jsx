@@ -1,9 +1,12 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import Home from "../pages/Home.jsx";
 
 
 export const router = createBrowserRouter([
     {
-        path: "/",
-        element: <div>sunesh!</div>,
+      path: "/",
+      element: <Home />,
+
     },
-]);
+  ]);
+  
