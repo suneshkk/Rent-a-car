@@ -24,7 +24,7 @@ function DotButton() {
                 </svg>
             </button>
             {isOpen && (
-        <div className="absolute flex-col left-0  top-10 mt-1 w-32 h-40 bg-info-content rounded-lg shadow-lg py-2">
+        <div className="absolute flex-col  right-0 top-15 mt-1 w-32 h-40 bg-info-content rounded-lg shadow-lg py-2">
           <div className="p-4">
           <div className="py-2"><Link to={"/signup"}>Sign Up</Link></div>
           <div className="py-2"><Link to={"/login"}>Login</Link></div>

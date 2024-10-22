@@ -1,12 +1,24 @@
 import React from 'react'
-import Header from '../components/Header.jsx'
-import Footer from '../components/Footer.jsx'
+import { axiosInstance } from '../config/axiosInstance'
+
 function CarGallery() {
+  const fetchCar = async () => {
+
+    try {
+      const responce = axiosInstance({
+        method: 'Get',
+        url: '/car/list'
+      })
+
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
   return (
-    <div>
-        <Header/>
+    <div className='min-h-screen'>
       <h1>Car Gallery</h1>
-      <Footer/>
     </div>
   )
 }

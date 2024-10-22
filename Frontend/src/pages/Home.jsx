@@ -1,11 +1,8 @@
-import Header from "../components/Header.jsx"
-import Footer from "../components/Footer.jsx"
  
  function Home() {
     return (
-        <div>
-          <Header/>
-          <Footer/>
+        <div className="container mx-auto min-h-screen">
+          <h1>HOMe</h1>
         </div>
     )
 }

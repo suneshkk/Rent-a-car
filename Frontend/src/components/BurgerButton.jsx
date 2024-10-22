@@ -33,11 +33,11 @@ const BurgerButton = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute flex-col left-0  top-10 mt-1 w-32 h-40 bg-info-content rounded-lg shadow-lg py-2">
+        <div className="absolute flex-col bottom-0 top-11  mt-1 w-32 h-40 bg-info-content rounded-lg shadow-lg py-2">
           <div className="p-4">
           <div className="py-2"><Link to={"/"}>Home</Link></div>
-          <div className="py-2"><Link to={"/aboutus"}>CarGallery</Link></div>
-          <div className="py-2"><Link to={"/carGallery"}> AboutUs</Link></div>
+          <div className="py-2"><Link to={"/aboutus"}> AboutUs</Link></div>
+          <div className="py-2"><Link to={"/carGallery"}>CarGallery </Link></div>
           </div>
         </div>
       )}
