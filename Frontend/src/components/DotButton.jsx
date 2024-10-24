@@ -8,6 +8,9 @@ function DotButton() {
     const dotMenu = () => {
         setIsOpen(!isOpen);
     };
+    const closeMenu = ()=>{
+        setIsOpen(false)
+    }
     return (
         <div className='relative'>
             <button onClick={dotMenu} className="btn btn-square btn-ghost">
@@ -26,9 +29,15 @@ function DotButton() {
             {isOpen && (
         <div className="absolute flex-col  right-0 top-15 mt-1 w-32 h-40 bg-info-content rounded-lg shadow-lg py-2">
           <div className="p-4">
-          <div className="py-2"><Link to={"/signup"}>Sign Up</Link></div>
-          <div className="py-2"><Link to={"/login"}>Login</Link></div>
-          <div className="py-2"><Link to={"/joinus"}>Join Us</Link></div>
+          <div className="py-2">
+            <Link to="/signup" onClick={closeMenu}>Sign Up</Link>
+            </div>
+          <div className="py-2">
+            <Link to="/login"onClick={closeMenu}>Login</Link>
+            </div>
+          <div className="py-2">
+            <Link to="/joinus"onClick={closeMenu}>Join Us</Link>
+            </div>
           </div>
         </div>
       )}

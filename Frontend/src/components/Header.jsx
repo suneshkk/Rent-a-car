@@ -1,17 +1,25 @@
-import BurgerButton from "./BurgerButton.jsx"
-import DotButton from "./DotButton.jsx"
+import { Link } from "react-router-dom"
+
 function Header() {
   return (
-    <div className="navbar flex justify-between bg-info-content glass ">
-      <div className="flex ml-10">
-        <BurgerButton />
+    <div className="navbar bg-blue-400 flex justify-between">
+      <div> <Link to={"/"}>
+        <a className="btn btn-ghost text-xl">daisyUI</a>
+        </Link>
       </div>
-      <a className="btn btn-ghost text-xl">WheelzNow</a>
-      <div className="flex mr-10">
-        <DotButton />
+      <div>
+      <div className="btn btn-ghost ">
+        <Link to={"/"}>HOME</Link>
       </div>
-    </div>
-  )
+      <div className="btn btn-ghost">
+        <Link to={"/aboutus"}>ABOUT US</Link>
+      </div>
+      <div className="btn btn-ghost">
+        <Link to={"/carGallery"}>CAR GALLERY</Link>
+      </div>
+      </div>
+      
+    </div>)
 }
 
 export default Header

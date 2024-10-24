@@ -6,7 +6,7 @@ import Login from "../pages/Login.jsx";
 import JoinUs from "../pages/JoinUs.jsx";
 import RootLayOut from "../layout/RootLayOut.jsx";
 import Home from "../pages/Home.jsx";
-
+import Detailes from "../pages/detailes.jsx";
 
 export const router = createBrowserRouter([
 
@@ -26,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "carGallery",
         element: <CarGallery />
+      },
+      {
+        path:"car-Detailes/:id",
+        element:<Detailes/>
       },
       {
         path: "signup",

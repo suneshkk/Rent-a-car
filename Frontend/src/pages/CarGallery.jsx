@@ -4,9 +4,9 @@ import CarList from '../components/Cards.jsx';
 
 function CarGallery() {
 
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
 
-  console.log(data, 'data======')
+
   const fetchCar = async () => {
 
     try {
@@ -14,14 +14,15 @@ function CarGallery() {
         method: 'Get',
         url: '/car/car-list'
       })
-      setdata(responce?.data?.data);
+      setData(responce?.data?.data);
+      // console.log(responce)
     } catch (error) {
       console.log(error)
     }
   };
   useEffect(() => {
     fetchCar();
-  }, [])
+  },[])
   return (
     <div className='min-h-screen'>
       <h1>Car Gallery</h1>
