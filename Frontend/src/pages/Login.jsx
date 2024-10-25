@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 import { useForm } from "react-hook-form"
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { axiosInstance } from '../config/axiosInstance.js';
 
 function Login() {
+
+
   const {
     register,
     handleSubmit,
-  } = useForm()
+  } = useForm();
+  const navigate =  useNavigate();
 
-  // const  [data,loginData] = useState({});
 
   const onSubmit = async (data) => {
     try {
@@ -23,7 +25,8 @@ function Login() {
         {
           withCredentials: true,
         });
-        toast.success("log-in success")
+      toast.success("log-in success")
+      navigate('/user/profile')
       console.log("respon", responce)
 
     } catch (error) {
@@ -31,9 +34,6 @@ function Login() {
       console.log(error);
     };
   };
-  //  useEffect(()=>{
-  //    onSubmit()
-  //  },[])
 
   return (
     <div className="hero bg-base-200 min-h-screen">

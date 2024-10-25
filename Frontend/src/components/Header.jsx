@@ -1,6 +1,7 @@
 import { Dot } from "lucide-react";
 import { Link } from "react-router-dom";
 import DotButton from "./DotButton";
+import Theme from "./ui/Theme.jsx";
 
 function Header() {
   return (
@@ -28,7 +29,8 @@ function Header() {
         <Link to="/carGallery" className="btn btn-ghost">
           <h1 className="text-lg text-lime-200 italic">Car Gallery</h1>
         </Link>
-       <div>
+       <div className=" gap-2">
+        <Theme/>
         <DotButton/>
        </div>
          

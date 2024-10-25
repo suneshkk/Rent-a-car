@@ -3,24 +3,23 @@ import { axiosInstance } from "../config/axiosInstance";
 import { useEffect, useState } from "react";
 
 function Detailes() {
-   const [carDetailes,setCarDetailes] = useState([]);
+   const [carDetailes,setCarDetailes] = useState({});
     const { id } = useParams();
-    // console.log(id)
+    console.log(id)
     const fetchCarDetailes = async () => {
         try {
-            const response = await axiosInstance({
-                method: 'Get',
-                url: `/car/get-car/${id}`
+            const response = await axiosInstance.get(`/car/get-car/${id}`,{
+                withCredentials: true,
             })
             setCarDetailes(response?.data?.data);
-           console.log(response)
+            console.log(response?.data?.data);
         } catch (error) {
             console.log(error);
         };
     };
     useEffect(() => {
         fetchCarDetailes();
-    }, [])
+    }, [id])
 
 
     return (

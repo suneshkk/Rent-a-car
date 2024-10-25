@@ -68,10 +68,10 @@ export const carlist = async (req, res, next) => {
 //get one car
 export const getCarById = async (req, res, next) => {
     try {
-        const { carId } = req.params;
-
+        const  carId  = req.params.id;
+        console.log("car",carId)
         // Find car by ID
-        const car = await carSchema.findOne(carId);
+        const car = await carSchema.findById(carId)
         if (!car) {
             return res.status(404).json({ success: false, message: "Car not found" });
         }

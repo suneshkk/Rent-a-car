@@ -8,7 +8,8 @@ import RootLayOut from "../layout/RootLayOut.jsx";
 import Home from "../pages/Home.jsx";
 import Detailes from "../pages/detailes.jsx";
 import UserLayout from "../layout/UserLayout.jsx";
-import UserProfile from "../pages/user/UserProfile.jsx";
+import AuthUser from "./protectedRoutes/AuthUser.jsx";
+import Profile from "../pages/user/Profile.jsx";
 
 export const router = createBrowserRouter([
 
@@ -17,8 +18,8 @@ export const router = createBrowserRouter([
     element: <RootLayOut />,
     children: [
       {
-        path:"",
-        element:<Home/>,
+        path: "",
+        element: <Home />,
       },
 
       {
@@ -30,8 +31,8 @@ export const router = createBrowserRouter([
         element: <CarGallery />
       },
       {
-        path:"car-Detailes/:id",
-        element:<Detailes/>
+        path: "car-Detailes/:id",
+        element: <Detailes />
       },
       {
         path: "signup",
@@ -49,12 +50,15 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path:"user",
-    element:<UserLayout/>,
-    children:[
+    path: "user",
+    element:
+      <AuthUser>
+        <UserLayout />
+       </AuthUser>,
+    children: [
       {
-        path:"profile",
-        element:<UserProfile/>
+        path: "profile",
+        element: <Profile/>
       },
     ],
   },

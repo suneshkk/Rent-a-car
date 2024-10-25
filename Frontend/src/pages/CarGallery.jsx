@@ -10,14 +10,14 @@ function CarGallery() {
   const fetchCar = async () => {
 
     try {
-      const responce = await axiosInstance({
-        method: 'Get',
-        url: '/car/car-list'
-      })
+      const responce = await axiosInstance.get( '/car/car-list', {
+        withCredentials: true,
+      });
+
       setData(responce?.data?.data);
       // console.log(responce)
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   useEffect(() => {
