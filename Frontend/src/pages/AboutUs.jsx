@@ -1,7 +1,7 @@
 import React from 'react'
 function AboutUs() {
     return (
-        <div className='min-h-screen'>
+        <div className='container mx-auto min-h-screen'>
             <h1 >About us</h1>
         </div>
     )

@@ -24,7 +24,7 @@ function Detailes() {
 
 
     return (
-            <div className="artboard artboard-horizontal phone-6 min-h-max"> <h1>Car Detailes</h1>
+            <div className="container mx-auto min-h-max"> <h1>Car Detailes</h1>
             <div>
                 <h1>{carDetailes?.availability }</h1>
                 <h1>{carDetailes?.brand }</h1>

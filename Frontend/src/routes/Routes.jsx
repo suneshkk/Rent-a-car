@@ -7,6 +7,8 @@ import JoinUs from "../pages/JoinUs.jsx";
 import RootLayOut from "../layout/RootLayOut.jsx";
 import Home from "../pages/Home.jsx";
 import Detailes from "../pages/detailes.jsx";
+import UserLayout from "../layout/UserLayout.jsx";
+import UserProfile from "../pages/user/UserProfile.jsx";
 
 export const router = createBrowserRouter([
 
@@ -44,6 +46,16 @@ export const router = createBrowserRouter([
         path: "joinus",
         element: <JoinUs />
       },
-    ]
-  }
+    ],
+  },
+  {
+    path:"user",
+    element:<UserLayout/>,
+    children:[
+      {
+        path:"profile",
+        element:<UserProfile/>
+      },
+    ],
+  },
 ]);

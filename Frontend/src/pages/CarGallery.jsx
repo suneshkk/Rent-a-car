@@ -24,7 +24,7 @@ function CarGallery() {
     fetchCar();
   },[])
   return (
-    <div className='min-h-screen'>
+    <div className= ' container mx-auto min-h-screen'>
       <h1>Car Gallery</h1>
       {data.map((value) =>
         <CarList car={value} key={value?._id} />

@@ -8,7 +8,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        sans: ['ui-sans-serif', 'system-ui'],
+        serif: ['ui-serif', 'Georgia'],
+        mono: ['ui-monospace', 'SFMono-Regular'],
+        display: ['Oswald', 'sans-serif'],
+        body: ['"Open Sans"', 'sans-serif'],
+      }
+    },
   },
   plugins: [daisyui,
   ],

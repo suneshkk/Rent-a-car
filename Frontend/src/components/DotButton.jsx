@@ -13,12 +13,12 @@ function DotButton() {
     }
     return (
         <div className='relative'>
-            <button onClick={dotMenu} className="btn btn-square btn-ghost">
+            <button onClick={dotMenu} className="btn btn-square btn-ghost ">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    className="inline-block h-5 w-5 stroke-current">
+                    className="inline-block h- w-7 stroke-current">
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
