@@ -11,6 +11,7 @@ import UserLayout from "../layout/UserLayout.jsx";
 import AuthUser from "./protectedRoutes/AuthUser.jsx";
 import Profile from "../pages/user/Profile.jsx";
 import ErrorPage from "../pages/errorPage.jsx";
+import RentalCart from "../pages/user/RentalCart.jsx";
 
 export const router = createBrowserRouter([
 
@@ -61,7 +62,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "profile",
-        element: <Profile/>
+        element: <Profile/>,
+      },
+      {
+        path:"rental-Cart",
+        element:<RentalCart/>,
+      },
+      {
+        path: "carGallery",
+        element: <CarGallery />
       },
     ],
   },

@@ -54,7 +54,7 @@ function UserHeader() {
                     <Link to='/user/profile'>
                         <User className="w-6 h-6 text-gray-50" />
                     </Link>
-                    <Link>
+                    <Link to={'/user/rental-Cart'}>
                         <BaggageClaim className="w-6 h-6 text-gray-50" />
                     </Link>
                 </div>

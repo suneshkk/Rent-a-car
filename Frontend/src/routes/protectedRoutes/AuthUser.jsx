@@ -6,7 +6,6 @@ import { clearUser, saveUser } from '../../redux/features/userSlice.js';
 
 const AuthUser = ({ children }) => {
 
-    // const [isUser,setIsUser] = useState(false);
    const dispatch = useDispatch();
     const {isUserExist} =useSelector ((state) => state.user);
     const navigate = useNavigate();
@@ -15,11 +14,9 @@ const AuthUser = ({ children }) => {
         try {
             const response = await axiosInstance.get("/user/check-user",
                 { withCredentials: true, });
-            // setIsUser(true);
              dispatch(saveUser())
              console.log(response)
         } catch (error) {
-            // setIsUser(false);
             dispatch(clearUser())
             console.log(error);
             navigate('/login');
