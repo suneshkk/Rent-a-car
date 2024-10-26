@@ -29,7 +29,7 @@ function Header() {
         <Link to="/carGallery" className="btn btn-ghost">
           <h1 className="text-lg text-lime-200 italic">Car Gallery</h1>
         </Link>
-       <div className=" gap-2">
+       <div className=" flex gap-2 display-in">
         <Theme/>
         <DotButton/>
        </div>

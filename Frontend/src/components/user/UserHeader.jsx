@@ -3,6 +3,7 @@ import { AwardIcon, User } from 'lucide-react';
 import { BaggageClaim } from 'lucide-react';
 import { axiosInstance } from "../../config/axiosInstance";
 import Theme from "../ui/Theme.jsx";
+import toast from "react-hot-toast";
 
 function UserHeader() {
      const navigate = useNavigate()
@@ -13,8 +14,9 @@ function UserHeader() {
                 {
                     withCredentials: true
                 });
-               navigate('/')
 
+               navigate('/')
+               toast.success("logout-success")
         } catch (error) {
             console.log(error);
         };

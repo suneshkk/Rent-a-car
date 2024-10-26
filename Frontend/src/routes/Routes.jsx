@@ -10,12 +10,14 @@ import Detailes from "../pages/detailes.jsx";
 import UserLayout from "../layout/UserLayout.jsx";
 import AuthUser from "./protectedRoutes/AuthUser.jsx";
 import Profile from "../pages/user/Profile.jsx";
+import ErrorPage from "../pages/errorPage.jsx";
 
 export const router = createBrowserRouter([
 
   {
     path: "/",
     element: <RootLayOut />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "",
@@ -55,6 +57,7 @@ export const router = createBrowserRouter([
       <AuthUser>
         <UserLayout />
        </AuthUser>,
+       errorElement:<ErrorPage/>,
     children: [
       {
         path: "profile",

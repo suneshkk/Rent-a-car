@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 import { useForm } from "react-hook-form"
-
 import { Link, useNavigate } from "react-router-dom";
 import { axiosInstance } from '../config/axiosInstance.js';
 
 function Login() {
 
-
   const {
     register,
     handleSubmit,
   } = useForm();
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
 
 
   const onSubmit = async (data) => {
@@ -27,7 +24,7 @@ function Login() {
         });
       toast.success("log-in success")
       navigate('/user/profile')
-      console.log("respon", responce)
+      // console.log("respon", responce)
 
     } catch (error) {
       toast.error("log-in failed")
@@ -59,7 +56,7 @@ function Login() {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary" >Login</button>
             </div>
           </form>
         </div>
