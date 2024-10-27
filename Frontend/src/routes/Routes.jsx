@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import AboutUs from "../pages/AboutUs.jsx";
 import CarGallery from "../pages/CarGallery.jsx";
-import SignUp from "../pages/SignUp.jsx";
 import Login from "../pages/Login.jsx";
 import JoinUs from "../pages/JoinUs.jsx";
 import RootLayOut from "../layout/RootLayOut.jsx";
@@ -11,7 +10,8 @@ import UserLayout from "../layout/UserLayout.jsx";
 import AuthUser from "./protectedRoutes/AuthUser.jsx";
 import Profile from "../pages/user/Profile.jsx";
 import ErrorPage from "../pages/errorPage.jsx";
-import RentalCart from "../pages/user/RentalCart.jsx";
+import BookedCar from "../pages/user/RentalCart.jsx";
+import SignUp from "../pages/user/SignUp.jsx";
 
 export const router = createBrowserRouter([
 
@@ -38,9 +38,8 @@ export const router = createBrowserRouter([
         element: <Detailes />
       },
       {
-        path: "signup",
-        element: <SignUp />,
-
+        path:"sign-up",
+        element:<SignUp/>
       },
       {
         path: "login",
@@ -65,8 +64,8 @@ export const router = createBrowserRouter([
         element: <Profile/>,
       },
       {
-        path:"rental-Cart",
-        element:<RentalCart/>,
+        path:"booked-car",
+        element:<BookedCar/>,
       },
       {
         path: "carGallery",

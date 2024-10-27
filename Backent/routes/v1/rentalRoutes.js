@@ -5,9 +5,9 @@ import { getRental } from "../../controller/rentalController.js";
 import { removeRental } from "../../controller/rentalController.js";
 const router = express.Router();
 
-router.post("/create-rental",userAuth,addToRental);
-router.get("/get-rental",userAuth, getRental);
-router.delete("/remove-rental",userAuth,removeRental );
+router.post("/for-booking",userAuth,addToRental);
+router.get("/booked-car",userAuth, getRental);
+router.delete("/cancel-booking",userAuth,removeRental );
 
 
 export {router as rentalRoutes};

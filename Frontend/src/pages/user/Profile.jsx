@@ -26,7 +26,11 @@ function Profile() {
         <div className='container mx-auto min-h-screen'>
             <h1>user profile</h1>
             <h1>{profile?.name}</h1>
-            <img src={profile?.profilePic} alt="profil-pic" />
+            <div className=''>
+            <img src={profile?.profilePic} alt="profil-pic" className='w-32 h-32  object-cover' />
+
+            </div>
+            <button>edit profile</button>
         </div>
     )
 }

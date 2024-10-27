@@ -2,21 +2,7 @@ import { rentalSchema } from "../model/renatalModel.js";
 import { carSchema } from "../model/carModel.js";
 
 
-export const getRental = async (req, res, next) => {
-  try {
-    const { user } = req;
-    const rental = await rentalSchema.findOne({userId:user.id}).populate("car.carId");
 
-    if (!rental) {
-      return res.status(404).json({ message: "There is no Rental" })
-    }
-    res.json({ message: "Rental fetched successfully", data: rental });
-  } catch (error) {
-    console.log(error);
-    return next(error);
-  };
-
-};
 export const addToRental = async (req, res, next) => {
   try {
     const userId = req.user.id;
@@ -61,12 +47,28 @@ export const addToRental = async (req, res, next) => {
     return next(error);
   }
 };
+
+export const getRental = async (req, res, next) => {
+  try {
+    const { user } = req;
+    const rental = await rentalSchema.findOne({userId:user.id}).populate("car.carId");
+
+    if (!rental) {
+      return res.status(404).json({ message: "There is no Rental" })
+    }
+    res.json({ message: "Rental fetched successfully", data: rental });
+  } catch (error) {
+    console.log(error);
+    return next(error);
+  };
+
+};
 export const removeRental = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const  {carId}  = req.body;
-    console.log("user", userId);
-    console.log("car", carId);
+    // console.log("user", userId);
+    // console.log("car", carId);
 
       const rental = await rentalSchema.findOne( {userId} );
     if (!rental) {
