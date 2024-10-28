@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function Details() {
+function Detailes() {
     const [carDetails, setCarDetails] = useState({});
     const { id } = useParams();
     const navigate =useNavigate();
@@ -66,4 +66,4 @@ function Details() {
     )
 }
 
-export default Details
+export default Detailes
