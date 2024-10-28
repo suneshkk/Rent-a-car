@@ -3,20 +3,20 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { axiosInstance } from '../../config/axiosInstance.jsx';
+import { axiosInstance } from '../config/axiosInstance.jsx';
 
 function Details() {
     const [carDetails, setCarDetails] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
-    // console.log(id)
+    console.log(id)
     const fetchCarDetailes = async () => {
         try {
             const response = await axiosInstance.get(`/car/get-car/${id}`, {
                 withCredentials: true,
             })
             setCarDetails(response?.data?.data);
-            // console.log(response?.data?.data);
+            console.log(response);
         } catch (error) {
             console.log(error);
         };

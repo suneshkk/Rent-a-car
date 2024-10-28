@@ -24,12 +24,16 @@ function CarGallery() {
     fetchCar();
   },[])
   return (
-    <div className= ' container mx-auto min-h-screen'>
+    <div className= ' container  mx-auto min-h-screen'>
+      
       <h1>Car Gallery</h1>
+      <div className='flex flex-row'>
       {data.map((value) =>
         <CarList car={value} key={value?._id} />
-
       )}
+      </div>
+
+     
     </div>
   )
 }

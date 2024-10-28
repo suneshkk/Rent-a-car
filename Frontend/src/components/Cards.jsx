@@ -17,7 +17,7 @@ function CarList({ car }) {
         <h2 className="card-title">{car?.carName}</h2>
         <p>{car?.transmission}</p>
         <div className="card-actions justify-end">
-          <Link to={`/car-Detailes/${car?._id}`}>
+          <Link to={`/car-details/${car?._id}`}>
             <button className="btn btn-primary">More Detailes</button>
           </Link>
 
