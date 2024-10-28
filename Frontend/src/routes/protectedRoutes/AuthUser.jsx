@@ -2,7 +2,7 @@ import { useEffect} from 'react'
 import { axiosInstance } from '../../config/axiosInstance.js';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearUser, saveUser } from '../../redux/features/userSlice.js';
+import { clearUser, saveUser } from '../../redux/features/userSlice.jsx';
 
 const AuthUser = ({ children }) => {
 

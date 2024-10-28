@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { axiosInstance } from '../config/axiosInstance.js'
+import { axiosInstance } from '../config/axiosInstance.jsx'
 import CarList from '../components/Cards.jsx';
 
 function CarGallery() {

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { AwardIcon, User } from 'lucide-react';
 import { BaggageClaim } from 'lucide-react';
-import { axiosInstance } from "../../config/axiosInstance";
+import { axiosInstance } from "../../config/axiosInstance.jsx";
 import Theme from "../ui/Theme.jsx";
 import toast from "react-hot-toast";
 

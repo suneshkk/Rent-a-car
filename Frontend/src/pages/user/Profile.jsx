@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { axiosInstance } from '../../config/axiosInstance.js';
+import { axiosInstance } from '../../config/axiosInstance.jsx';
 
 function Profile() {
     const [profile, setProfile] = useState({});

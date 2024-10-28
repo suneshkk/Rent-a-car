@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast';
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom";
-import { axiosInstance } from '../config/axiosInstance.js';
+import { axiosInstance } from '../config/axiosInstance.jsx';
 
 function Login() {
 
