@@ -34,7 +34,7 @@ function Details() {
             console.log("response", responce)
         } catch (error) {
             navigate('/login')
-            toast.error('An error occurred')
+            toast.error('Please-login')
             console.log(error);
         };
     };
