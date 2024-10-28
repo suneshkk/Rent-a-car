@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import DotButton from "./DotButton";
+import DotButton from "./DotButton.jsx";
 import Theme from "./ui/Theme.jsx";
 
 function Header() {

@@ -1,4 +1,4 @@
-import DatePickerComponent from "../components/dateAndtime/datePIcker"
+import DatePickerComponent from "../components/dateAndtime/DatePIcker.jsx"
 
  
  function Home() {

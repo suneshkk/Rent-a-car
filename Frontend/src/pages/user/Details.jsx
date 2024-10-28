@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from "react-router-dom"
-import { axiosInstance } from "../config/axiosInstance";
+import { axiosInstance } from "../config/axiosInstance.js";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
