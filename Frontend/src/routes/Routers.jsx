@@ -10,7 +10,7 @@ import AuthUser from "./protectedRoutes/AuthUser.jsx";
 import Profile from "../pages/user/Profile.jsx";
 import BookedCar from "../pages/user/RentalCart.jsx";
 import SignUp from "../pages/user/SignUp.jsx";
-import Detailes from "../pages/user/Detailes.jsx";
+import  Detailes from "../pages/user/Detailes.jsx"
 import ErrorPage from "../components/ErrorPage.jsx";
 
 export const router = createBrowserRouter([
