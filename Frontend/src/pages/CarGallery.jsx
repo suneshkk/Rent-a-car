@@ -11,7 +11,7 @@ function CarGallery() {
 
     try {
       const responce = await axiosInstance.get( '/car/car-list', {
-        withCredentials: true,
+       withCredentials: true,
       });
 
       setData(responce?.data?.data);

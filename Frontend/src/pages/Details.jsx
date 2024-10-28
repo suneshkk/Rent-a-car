@@ -9,7 +9,6 @@ function Details() {
     const [carDetails, setCarDetails] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
-    // console.log(id)
     const fetchCarDetailes = async () => {
         try {
             const response = await axiosInstance.get(`/car/get-car/${id}`, {
@@ -33,7 +32,6 @@ function Details() {
             toast.success('added successfully')
             console.log("response", responce)
         } catch (error) {
-            navigate('/login')
             toast.error('Please-login')
             console.log(error);
         };

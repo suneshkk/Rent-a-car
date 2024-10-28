@@ -69,7 +69,6 @@ export const carlist = async (req, res, next) => {
 export const getCarById = async (req, res, next) => {
     try {
         const  carId  = req.params.id;
-        console.log("car",carId)
         // Find car by ID
         const car = await carSchema.findById(carId)
         if (!car) {

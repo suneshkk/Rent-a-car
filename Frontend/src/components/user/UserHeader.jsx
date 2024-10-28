@@ -12,7 +12,7 @@ function UserHeader() {
         try {
             const response = await axiosInstance.post('/user/logout/',
                 {
-                    withCredentials: true
+                    Credentials: true
                 });
 
                navigate('/')
