@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function Detailes() {
-    const [carDetailes, setCarDetailes] = useState({});
+function Details() {
+    const [carDetails, setCarDetails] = useState({});
     const { id } = useParams();
     const navigate =useNavigate();
     // console.log(id)
@@ -14,7 +14,7 @@ function Detailes() {
             const response = await axiosInstance.get(`/car/get-car/${id}`, {
                 withCredentials: true,
             })
-            setCarDetailes(response?.data?.data);
+            setCarDetails(response?.data?.data);
             // console.log(response?.data?.data);
         } catch (error) {
             console.log(error);
@@ -27,7 +27,7 @@ function Detailes() {
          const responce = await axiosInstance({
             method:'post',
             url:'/rental/for-booking',
-            data:{carId:carDetailes._id},
+            data:{carId:carDetails._id},
          });
          toast.success('added successfully')
          console.log("response",responce)
@@ -49,21 +49,21 @@ function Detailes() {
             </div>
 
             <div>
-                <h1>{carDetailes?.availability}</h1>
-                <h1>{carDetailes?.brand}</h1>
-                <h1>{carDetailes?.carName}</h1>
-                <h1>{carDetailes?.fuelType}</h1>
-                <h1>{carDetailes?.location}</h1>
-                <h1>{carDetailes?.price}</h1>
-                <h1>{carDetailes?.transmission}</h1>
-                <h1>{carDetailes?.type}</h1>
-                <h1>{carDetailes?.year}</h1>
+                <h1>{carDetails?.availability}</h1>
+                <h1>{carDetails?.brand}</h1>
+                <h1>{carDetails?.carName}</h1>
+                <h1>{carDetails?.fuelType}</h1>
+                <h1>{carDetails?.location}</h1>
+                <h1>{carDetails?.price}</h1>
+                <h1>{carDetails?.transmission}</h1>
+                <h1>{carDetails?.type}</h1>
+                <h1>{carDetails?.year}</h1>
             </div>
             <div>
-                <img src={carDetailes?.image} alt="car" />
+                <img src={carDetails?.image} alt="car" />
             </div></div>
 
     )
 }
 
-export default Detailes
+export default Details

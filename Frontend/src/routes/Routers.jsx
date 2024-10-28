@@ -10,8 +10,8 @@ import AuthUser from "./protectedRoutes/AuthUser.jsx";
 import Profile from "../pages/user/Profile.jsx";
 import BookedCar from "../pages/user/RentalCart.jsx";
 import SignUp from "../pages/user/SignUp.jsx";
-import  Detailes from "../pages/user/Detailes.jsx"
 import ErrorPage from "../components/ErrorPage.jsx";
+import Details from "../pages/user/Details.jsx";
 
 export const router = createBrowserRouter([
 
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "car-Detailes/:id",
-        element: <Detailes/>
+        element: <Details/>
       },
       {
         path:"sign-up",
