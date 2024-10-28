@@ -4,7 +4,7 @@ export const userAuth = (req, res, next) => {
   try {
     // Extract the token from cookies
     const { token } = req.cookies;
-    // console.log("token",token);
+
     // Check if the token exists
     if (!token) {
       return res.status(401).json({ message: 'User not authorized' });
@@ -12,7 +12,7 @@ export const userAuth = (req, res, next) => {
 
     // Verify the token with the secret key
     const tokenVerified = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    // console.log("token",tokenVerified);
+    
     // If token verification fails, handle it in the catch block
     if (!tokenVerified) {
       return res.status(401).json({ message: 'User not authorized' });
