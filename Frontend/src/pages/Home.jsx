@@ -1,8 +1,8 @@
-//  import DateTime from "../components/dateAndtime/DateTime.jsx"
+ import DateTime from "../components/dateAndtime/DateTime.jsx"
  function Home() {
     return (
         <div className="container mx-auto min-h-screen">
-          {/* <DateTime/> */}
+          <DateTime/>
           <h1>HOMe</h1>
         </div>
     )
