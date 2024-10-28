@@ -5,13 +5,13 @@ import Login from "../pages/Login.jsx";
 import JoinUs from "../pages/JoinUs.jsx";
 import RootLayOut from "../layout/RootLayOut.jsx";
 import Home from "../pages/Home.jsx";
-import Detailes from "../pages/detailes.jsx";
 import UserLayout from "../layout/UserLayout.jsx";
 import AuthUser from "./protectedRoutes/AuthUser.jsx";
 import Profile from "../pages/user/Profile.jsx";
-import ErrorPage from "../pages/errorPage.jsx";
 import BookedCar from "../pages/user/RentalCart.jsx";
 import SignUp from "../pages/user/SignUp.jsx";
+import Detailes from "../pages/user/Detailes.jsx";
+import ErrorPage from "../components/ErrorPage.jsx";
 
 export const router = createBrowserRouter([
 
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "car-Detailes/:id",
-        element: <Detailes />
+        element: <Detailes/>
       },
       {
         path:"sign-up",
