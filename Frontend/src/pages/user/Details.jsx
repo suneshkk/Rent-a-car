@@ -1,13 +1,14 @@
+import React from 'react'
 import { useParams } from "react-router-dom"
 import { axiosInstance } from "../config/axiosInstance";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function Detailes() {
+function Details() {
     const [carDetails, setCarDetails] = useState({});
     const { id } = useParams();
-    const navigate =useNavigate();
+    const navigate = useNavigate();
     // console.log(id)
     const fetchCarDetailes = async () => {
         try {
@@ -24,13 +25,13 @@ function Detailes() {
     const Booking = async () => {
 
         try {
-         const responce = await axiosInstance({
-            method:'post',
-            url:'/rental/for-booking',
-            data:{carId:carDetails._id},
-         });
-         toast.success('added successfully')
-         console.log("response",responce)
+            const responce = await axiosInstance({
+                method: 'post',
+                url: '/rental/for-booking',
+                data: { carId: carDetails._id },
+            });
+            toast.success('added successfully')
+            console.log("response", responce)
         } catch (error) {
             navigate('/login')
             toast.error('An error occurred')
@@ -42,10 +43,12 @@ function Detailes() {
     }, [id])
 
 
+
+
     return (
         <div className="container flex flex-row mx-auto min-h-max ">
             <div>
-                <button className="btn btn-active btn-primary"onClick={Booking}>Booking</button>
+                <button className="btn btn-active btn-primary" onClick={Booking}>Booking</button>
             </div>
 
             <div>
@@ -61,9 +64,10 @@ function Detailes() {
             </div>
             <div>
                 <img src={carDetails?.image} alt="car" />
-            </div></div>
+            </div>
+        </div>
 
     )
 }
 
-export default Detailes
+export default Details

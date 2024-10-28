@@ -11,7 +11,7 @@ import Profile from "../pages/user/Profile.jsx";
 import BookedCar from "../pages/user/RentalCart.jsx";
 import SignUp from "../pages/user/SignUp.jsx";
 import ErrorPage from "../components/ErrorPage.jsx";
-import Detailes from "../pages/user/Detailes.jsx";
+import Details from "../pages/user/Details.jsx";
 
 export const router = createBrowserRouter([
 
@@ -34,10 +34,9 @@ export const router = createBrowserRouter([
         element: <CarGallery />
       },
       {
-        path: "car-Detailes/:id",
-        element: <Detailes/>
-      },
-      {
+        path:"details",
+        element:<Details/>
+      },      {
         path:"sign-up",
         element:<SignUp/>
       },
