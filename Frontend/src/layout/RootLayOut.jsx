@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 function RootLayOut() {
     return (
-        <div>
+        <div >
             <Header />
             <Outlet />
 
