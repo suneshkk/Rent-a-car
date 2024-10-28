@@ -1,11 +1,9 @@
-import DatePickerComponent from "../components/dateAndtime/DatePIcker.jsx"
-
- 
+ import DateTime from "../components/dateAndtime/DateTime.jsx"
  function Home() {
     return (
         <div className="container mx-auto min-h-screen">
+          <DateTime/>
           <h1>HOMe</h1>
-          <DatePickerComponent/>
         </div>
     )
 }
