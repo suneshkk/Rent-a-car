@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 const corsSetup = {
-    origin: ['https://rent-a-car-tm1f.onrender.com/'],
+    origin: ['https://rent-a-car-1-0ek2.onrender.com/'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // Allow credentials like cookies, authorization headers
