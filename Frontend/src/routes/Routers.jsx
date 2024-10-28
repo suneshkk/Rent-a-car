@@ -13,7 +13,7 @@ import SignUp from "../pages/user/SignUp.jsx";
 import ErrorPage from "../components/ErrorPage.jsx";
 import Details from "../pages/user/Details.jsx";
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
 
   {
     path: "/",
@@ -73,3 +73,4 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+export  default router;

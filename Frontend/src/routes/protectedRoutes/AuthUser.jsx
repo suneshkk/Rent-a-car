@@ -1,8 +1,8 @@
 import { useEffect} from 'react'
-import { axiosInstance } from '../../config/axiosInstance.js';
+import { axiosInstance } from '../../config/axiosInstance.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearUser, saveUser } from '../../redux/features/userSlice.jsx';
+import { clearUser, saveUser } from '../../redux/features/userSlice.js';
 
 const AuthUser = ({ children }) => {
 
