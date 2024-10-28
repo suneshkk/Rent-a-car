@@ -22,7 +22,7 @@ app.use(cookieParser());
 // };
 // Updated CORS setup for both local and deployed environments
 const corsSetup = {
-    origin: ['http://localhost:5173', 'https://rent-a-car-frontend.onrender.com'],
+    origin: [ 'https://rent-a-car-frontend.onrender.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // Allow credentials like cookies, authorization headers

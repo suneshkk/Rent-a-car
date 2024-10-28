@@ -24,7 +24,7 @@ function Login() {
         });
       toast.success("log-in success")
       navigate('/user/profile')
-      console.log("respon", responce)
+      // console.log("respon", responce)
 
     } catch (error) {
       toast.error("log-in failed")
