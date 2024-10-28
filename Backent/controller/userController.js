@@ -46,7 +46,11 @@ export const userSignup = async (req, res, next) => {
         const token = generateToken(newUser._id);
 
         // Set the token in a cookie
-        res.cookie("token", token);
+        res.cookie("token", token,{
+            sameSite:"None",
+            secure:true,
+            httpOnly:true
+        });
 
         // Respond to the client
         return res.status(201).json({ success: true, message: "User created successfully" });
@@ -82,7 +86,12 @@ export const userLogin = async (req, res, next) => {
         const token = generateToken(userExist._id);
 
         //set the token in a cookie
-        res.cookie("token", token,);
+        res.cookie("token", token,{
+            sameSite:"None",
+            secure:true,
+            httpOnly:true
+        });
+        
         return res.json({ success: true, message: "user login successfull" });
 
 

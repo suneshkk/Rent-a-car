@@ -5,10 +5,10 @@ import { generateToken } from "../util/token.js";
 
 export const adminSignup = async (req, res, next) => {
     try {
-        const { email, name, password,phone, } = req.body;
+        const { email, name, password, phone, } = req.body;
 
 
-        if (!email || !name || !password ) {
+        if (!email || !name || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
 
         }
@@ -20,12 +20,16 @@ export const adminSignup = async (req, res, next) => {
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
-        const newAdmin = new adminSchema({ name, email, password:hashedPassword, phone });
+        const newAdmin = new adminSchema({ name, email, password: hashedPassword, phone });
         await newAdmin.save();
 
-        const token = generateToken(newAdmin._id,'admin');
+        const token = generateToken(newAdmin._id, 'admin');
 
-        res.cookie("token", token);
+        res.cookie("token", token, {
+            sameSite: "None",
+            secure: true,
+            httpOnly: true
+        });
 
         return res.status(201).json({ success: true, message: "Admin created successfully" });
 
@@ -42,7 +46,7 @@ export const adminLogin = async (req, res, next) => {
         const { email, password } = req.body;
         if (!email || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
-       }
+        }
         const adminExist = await adminSchema.findOne({ email });
         if (!adminExist) {
             return res.status(400).json({ message: "Admin does not exist" });
@@ -54,11 +58,15 @@ export const adminLogin = async (req, res, next) => {
             return res.status(404).json({ success: false, message: "Admin not authorized" });
         }
         // generate token 
-        const token = generateToken(adminExist._id,'admin');
+        const token = generateToken(adminExist._id, 'admin');
 
         //set the token in a cookie
-        res.cookie("token", token, { httpOnly: true, secure: true });
-        return res.json({ success: true, message: "Admin login successfull" });
+        res.cookie("token", token, {
+            sameSite: "None",
+            secure: true,
+            httpOnly: true
+            
+        }); return res.json({ success: true, message: "Admin login successfull" });
     } catch (error) {
         console.log(error);
         return next(error);
@@ -69,13 +77,13 @@ export const adminLogin = async (req, res, next) => {
 export const adminProfile = async (req, res, next) => {
     try {
         // Assuming you are storing user info in req.user after authentication middleware
-        const admin  = req.user;
+        const admin = req.user;
 
         // Fetch user data from the database
-        const adminData = await adminSchema.findOne({ _id: admin.id});
+        const adminData = await adminSchema.findOne({ _id: admin.id });
 
         // Respond with the user data
-       return res.json({ success: true, data: adminData, message: "User Data Fetched" });
+        return res.json({ success: true, data: adminData, message: "User Data Fetched" });
     } catch (error) {
         console.log(error);
         return next(error);
@@ -137,7 +145,7 @@ export const adminDelete = async (req, res, next) => {
 
 export const adminCheck = async (req, res, next) => {
     try {
-        const admin  = req.user;
+        const admin = req.user;
         if (!admin) {
             return res.status(404).json({ success: false, message: "Admin not autherized" });
 
