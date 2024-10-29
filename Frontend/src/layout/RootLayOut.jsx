@@ -9,7 +9,7 @@ function RootLayOut() {
             <Header />
             <Outlet />
 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

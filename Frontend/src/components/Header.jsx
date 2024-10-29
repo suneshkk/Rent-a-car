@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa'; // For icons (install with `npm install react-icons`)
+import { FaBars, FaTimes } from 'react-icons/fa';
+import MyImage from '../../src/assets/logo.jpg.png'
+import RoadImg from '../../src/assets/road.jpg'
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,41 +12,49 @@ function Navbar() {
 
     };
     const closeMen = () => {
-      setIsMobileMenuOpen(false)
+        setIsMobileMenuOpen(false)
     }
 
 
     return (
-        <div className="navbar  bg-base-100 flex justify-between items-center px-4 md:px-14 bg-cover border-b-2 h-20">
-            {/* Logo */}
-            <div className="flex-1 md:flex-none sm:grid content-center	none: grid  ">
-                <Link to="/" className="btn btn-ghost text-xl font-bold">
-                    Wheel Now
-                </Link>
-            </div>
+        <div >
+            <div className="navbar bg={../../src/assets/road.jpg} bg-transparent text-center flex justify-between items-center px-4 md:px-14 bg-cover h-20 " >
+            {/* <img src={RoadImg.jpg} alt="road" className='h-12' /> */}
 
-            {/* Mobile menu button */}
-            <button 
-                className="text-2xl md:hidden" 
-                onClick={toggleMobileMenu}
-            >
-                {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-            </button>
+                {/* Logo */}
+                <div className="flex-1 md:flex-none sm:grid content-center	none: grid leading-relaxed ">
+                    <Link to="/" className="btn btn-ghost text-xl font-bold">
+                    <img src={MyImage} alt="logo" className='h-12 ' />
 
-            {/* Links - hidden on mobile by default */}
-            <div className={`md:flex gap-7 ${isMobileMenuOpen ? 'flex' : 'hidden'} flex-col md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}>
-                <Link to="/aboutus" className="btn btn-ghost"onClick={closeMen}>
-                    <h1 className="text-base text-black font-mono">About Us</h1>
-                </Link>
-                <Link to="/carGallery" className="btn btn-ghost"onClick={closeMen}>
-                    <h1 className="text-base text-black font-mono">Book now</h1>
-                </Link>
-                <Link to="/login" className="btn btn-ghost"onClick={closeMen}>
-                    <h1 className="text-base text-black font-mono">Login</h1>
-                </Link>
-                <Link to="/sign-up" className="btn btn-ghost"onClick={closeMen}>
-                    <h1 className="text-base text-black font-mono">Sign Up</h1>
-                </Link>
+                        <span className='underline '>
+                            <b className='lg:text-4xl  font-bold text-opacity- italic text-amber-700 sm:text-lg' >W</b><b className='-tracking-wide'>eelzn</b><b>ow</b>
+                        </span>
+                    </Link>
+                </div>
+
+                {/* Mobile menu button */}
+                <button
+                    className="text-2xl md:hidden"
+                    onClick={toggleMobileMenu}
+                >
+                    {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+                </button>
+
+                {/* Links - hidden on mobile by default */}
+                <div className={`md:flex gap-7 ${isMobileMenuOpen ? 'flex' : 'hidden'} flex-col md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}>
+                    <Link to="/aboutus" className="btn btn-ghost" onClick={closeMen}>
+                        <h1 className="text-lg text-emerald-900 font-bold">About Us</h1>
+                    </Link>
+                    <Link to="/carGallery" className="btn btn-ghost" onClick={closeMen}>
+                        <h1 className="text-lg text-emerald-900 font-bold">Book now</h1>
+                    </Link>
+                    <Link to="/login" className="btn btn-ghost" onClick={closeMen}>
+                        <h1 className="text-lg text-emerald-900 font-bold">Login</h1>
+                    </Link>
+                    <Link to="/sign-up" className="btn btn-ghost" onClick={closeMen}>
+                        <h1 className="text-lg text-emerald-900 font-bold">Sign Up</h1>
+                    </Link>
+                </div>
             </div>
         </div>
     );
