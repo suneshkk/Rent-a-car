@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import MyImage from '../../src/assets/logo.jpg.png'
-import RoadImg from '../../src/assets/road.jpg'
+import MyImage from '../../src/assets/logo.png'
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,11 +16,7 @@ function Navbar() {
 
 
     return (
-        <div >
-            <div className="navbar bg={../../src/assets/road.jpg} bg-transparent text-center flex justify-between items-center px-4 md:px-14 bg-cover h-20 " >
-            {/* <img src={RoadImg.jpg} alt="road" className='h-12' /> */}
-
-                {/* Logo */}
+            <div className="navbar border-b-2 bg-transparent text-center flex justify-between items-center px-4 md:px-14 bg-cover h-20 " >
                 <div className="flex-1 md:flex-none sm:grid content-center	none: grid leading-relaxed ">
                     <Link to="/" className="btn btn-ghost text-xl font-bold">
                     <img src={MyImage} alt="logo" className='h-12 ' />
@@ -56,7 +51,6 @@ function Navbar() {
                     </Link>
                 </div>
             </div>
-        </div>
     );
 }
 

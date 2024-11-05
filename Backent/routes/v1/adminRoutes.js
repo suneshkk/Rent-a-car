@@ -13,11 +13,11 @@ import {
 
 const router = express.Router();
 
-router.post("/signup", adminSignup);
+router.post("/sign-up", adminSignup);
 router.post("/login", adminLogin);
 router.post("/logout", adminLogout);
 
-router.get("/profile/:id", adminAuth, adminProfile);
+router.get("/profile", adminAuth, adminProfile);
 router.put("/update/:id", adminAuth, adminUpdate);
 router.delete("/delete/:id", adminAuth, adminDelete);
 

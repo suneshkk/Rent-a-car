@@ -8,8 +8,7 @@ function RootLayOut() {
         <div >
             <Header />
             <Outlet />
-
-            {/* <Footer /> */}
+            <Footer/>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
+import toast from 'react-hot-toast';
 
 function Profile() {
     const [profile, setProfile] = useState({});
@@ -13,12 +14,17 @@ function Profile() {
                 });
 
             setProfile(responce?.data?.data);
-            console.log(responce)
+            toast.success("welcome")
+            // console.log(responce)
         } catch (error) {
+            toast.error("something went wrong")
             console.log(error);
 
         }
     }
+
+
+
     useEffect(() => {
         fetchUserProfile()
     }, [])
@@ -27,7 +33,7 @@ function Profile() {
             <h1>user profile</h1>
             <h1>{profile?.name}</h1>
             <div className=''>
-            <img src={profile?.profilePic} alt="profil-pic" className='w-32 h-32  object-cover' />
+                <img src={profile?.profilePic} alt="profil-pic" className='w-32 h-32  object-cover' />
 
             </div>
             <button>edit profile</button>

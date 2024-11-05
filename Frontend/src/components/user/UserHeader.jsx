@@ -1,12 +1,20 @@
-import { Link, useNavigate } from "react-router-dom";
-import { AwardIcon, User } from 'lucide-react';
-import { BaggageClaim } from 'lucide-react';
-import { axiosInstance } from "../../config/axiosInstance.jsx";
-import Theme from "../ui/Theme.jsx";
-import toast from "react-hot-toast";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import Logo from '../../assets/logo.png'
+import { axiosInstance } from '../../config/axiosInstance.jsx';
 
 function UserHeader() {
-     const navigate = useNavigate()
+
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const navigate = useNavigate()
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+
+    };
+    const closeMen = () => {
+        setIsMobileMenuOpen(false)
+    };
     const handleLogout = async () => {
 
         try {
@@ -15,52 +23,49 @@ function UserHeader() {
                     Credentials: true
                 });
 
-               navigate('/')
-               toast.success("logout-success")
+            navigate('/')
+            toast.success("logout-success")
         } catch (error) {
             console.log(error);
         };
     };
+
+
+
     return (
-        <div className="navbar bg-blue-400 flex flex-col md:flex-row justify-between items-center min-h-24 border-y-8 p-4 md:p-6">
-            <div className="flex items-center">
-                <Link to="/" className="btn btn-ghost text-xl">
-                    <h1 className="text-2xl text-gray-50">LOGO</h1>
-                </Link>
-            </div>
+            <div className="navbar border-b-2  bg-transparent text-center flex justify-between items-center px-4 md:px-14 bg-cover h-20 " >
+                <div className="flex-1 md:flex-none sm:grid content-center	none: grid leading-relaxed ">
+                    <Link to="/" className="btn btn-ghost text-xl font-bold">
+                        <img src={Logo} alt="logo" className='h-12 ' />
 
-            <div className="flex justify-center mb-2 md:mb-0">
-                <h1 className="font-mono text-2xl md:text-4xl font-extrabold tracking-wide text-yellow-200">
-                    Wheelz Now
-                </h1>
-            </div>
-
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 pr-0 md:pr-9">
-                <div className="flex space-x-4">
-                    <Link to="/" className="btn btn-ghost">
-                        <h1 className="text-lg text-lime-200 italic">Home</h1>
+                        <span className='underline '>
+                            <b className='lg:text-4xl  font-bold text-opacity- italic text-amber-700 sm:text-lg' >W</b><b className='-tracking-wide'>eelzn</b><b>ow</b>
+                        </span>
                     </Link>
-                    <Link to="/aboutus" className="btn btn-ghost">
-                        <h1 className="text-lg text-lime-200 italic">About Us</h1>
-                    </Link>
-                    <Link to="/carGallery" className="btn btn-ghost">
-                        <h1 className="text-lg text-lime-200 italic">Car Gallery</h1>
-                    </Link>
-                  <Theme/>
                 </div>
 
-                <div className="flex space-x-6 items-center">
+                {/* Mobile menu button */}
+                <button
+                    className="text-2xl md:hidden"
+                    onClick={toggleMobileMenu}
+                >
+                    {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+                </button>
+
+                {/* Links - hidden on mobile by default */}
+                <div className={`md:flex gap-7 ${isMobileMenuOpen ? 'flex' : 'hidden'} flex-col md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}>
+                    <Link to="/aboutus" className="btn btn-ghost" onClick={closeMen}>
+                        <h1 className="text-lg text-emerald-900 font-bold">About Us</h1>
+                    </Link>
+                    <Link to="/carGallery" className="btn btn-ghost" onClick={closeMen}>
+                        <h1 className="text-lg text-emerald-900 font-bold">Car gallery</h1>
+                    </Link>
                     <button onClick={handleLogout}>logout</button>
-                    <Link to='/user/profile'>
-                        <User className="w-6 h-6 text-gray-50" />
-                    </Link>
-                    <Link to={'/user/rental-Cart'}>
-                        <BaggageClaim className="w-6 h-6 text-gray-50" />
-                    </Link>
+
                 </div>
             </div>
-        </div>
     );
 }
 
 export default UserHeader;
+

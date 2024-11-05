@@ -24,7 +24,7 @@ export const addToRental = async (req, res, next) => {
     }
 
     // Check if the car is already in the rental
-    const carExists =rental.car.find((item) => item.carId.equals(carId));
+    const carExists =rental.car.find((item) => item.carId.equals(item));
 
     if (carExists) {
       return res.status(400).json({ message: "This item is already in your cart" });

@@ -24,16 +24,15 @@ const rentalStatus = new mongoose.Schema({
 
         },
     ],
-    startDate: {
+    pickUpDate: {
         type: Date,
-        default:12/10/2024,
         required: true
     },
-    endDate: {
+    returnDate: {
         type: Date,
-        default:14/10/2024,
         required: true
     },
+    
     totalPrice: {
         type: Number,
         required: true,
@@ -46,7 +45,7 @@ const rentalStatus = new mongoose.Schema({
         enum: ['booked', 'in-progress', 'completed', 'cancelled'],
         default: 'booked',
         required: true
-    }
+    },
 },
     {
         timestamps: true,

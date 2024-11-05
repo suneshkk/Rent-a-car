@@ -12,13 +12,19 @@ import BookedCar from "../pages/user/RentalCart.jsx";
 import SignUp from "../pages/user/SignUp.jsx";
 import ErrorPage from "../components/ErrorPage.jsx";
 import Details from "../pages/Details.jsx";
+import UpdateUser from "../pages/user/UpdateUser.jsx";
+import AdminSignup from "../pages/admin/AdminSignup.jsx";
+import AdminLogin from "../pages/admin/AdminLogin.jsx";
+import AdminProfile from "../pages/admin/AdminProfile.jsx";
+import AdminLayout from "../layout/AdminLayout.jsx";
+import AdminEdit from "../pages/admin/AdminEdit.jsx";
 
 const router = createBrowserRouter([
 
   {
     path: "/",
     element: <RootLayOut />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "",
@@ -34,12 +40,12 @@ const router = createBrowserRouter([
         element: <CarGallery />
       },
       {
-        path:"car-details/:id",
-          element:<Details/>
-      },     
-       {
-        path:"sign-up",
-        element:<SignUp/>
+        path: "car-details/:id",
+        element: <Details />
+      },
+      {
+        path: "sign-up",
+        element: <SignUp />
       },
       {
         path: "login",
@@ -49,6 +55,14 @@ const router = createBrowserRouter([
         path: "joinus",
         element: <JoinUs />
       },
+      {
+        path: "admin sign-up",
+        element: <AdminSignup />,
+      },
+      {
+        path: "admin-login",
+        element: <AdminLogin />
+      },
     ],
   },
   {
@@ -56,16 +70,20 @@ const router = createBrowserRouter([
     element:
       <AuthUser>
         <UserLayout />
-       </AuthUser>,
-       errorElement:<ErrorPage/>,
+      </AuthUser>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "profile",
-        element: <Profile/>,
+        element: <Profile />,
       },
       {
-        path:"booked-car",
-        element:<BookedCar/>,
+        path: "updateUser",
+        element: <UpdateUser />
+      },
+      {
+        path: "booked-car",
+        element: <BookedCar />,
       },
       {
         path: "carGallery",
@@ -73,5 +91,22 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/admin',
+    element:
+    <AdminLayout/>,
+    errorElement:<ErrorPage />,
+    children: [
+      {
+        path:"profile",
+        element:<AdminProfile/>
+      },
+      {
+        path:"edit",
+        element:<AdminEdit/>
+      },
+    ]
+  },
+
 ]);
-export  default router;
+export default router;
