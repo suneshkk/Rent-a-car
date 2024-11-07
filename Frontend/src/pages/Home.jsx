@@ -1,4 +1,4 @@
-import HeroImage from "../../src/assets/hero.jpg"
+import HeroImage from "../../src/assets/hero.jpg";
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../config/axiosInstance.jsx';
 import CarList from '../components/Cards.jsx';
