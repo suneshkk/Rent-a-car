@@ -6,16 +6,16 @@ import { Link } from 'react-router-dom';
 function Profile() {
     const [profile, setProfile] = useState([]);
     const fetchUserProfile = async () => {
-        console.log(profile,"data")
+        console.log(profile, "data")
 
         try {
             const responce = await axiosInstance.get('/user/profile',
                 {
                     withCredentials: true,
-                    timeout: 10000 
+                    timeout: 10000
 
                 });
-                console.log(responce,"response")
+            console.log(responce, "response")
 
             setProfile(responce?.data?.data);
             toast.success("welcome")
@@ -32,9 +32,9 @@ function Profile() {
 
 
     return (
-        <div className="container mx-auto min-h-screen">
-            <div className="flex justify-center pt-20">
-                <div className="bg-info border border-green-500 p-4 text-white rounded-lg max-w-md w-full">
+        <div className="container mx-auto min-h-screen bg-gray-600">
+            <div className="flex justify-center pt-20 ">
+                <div className="bg-white border border-green-500 p-4 text-black rounded-lg max-w-md w-full">
                     <div className="border-b border-green-500 pb-4 mb-6">
                         <h1 className="text-center text-2xl font-semibold">Profile</h1>
                     </div>
@@ -46,23 +46,26 @@ function Profile() {
                         />
                     </div>
                     <div className="mb-4">
-                        <span className="text-lg text-gray-300 mr-3">Name:</span>
+                        <span className="text-lg text-black mr-3">Name:</span>
                         <span>{profile?.name}</span>
                     </div>
                     <div className="mb-4">
-                        <span className="text-lg text-gray-300 mr-3">Phone:</span>
+                        <span className="text-lg text-black mr-3">Phone:</span>
                         <span>{profile?.phone}</span>
                     </div>
                     <div className="mb-4">
-                        <span className="text-lg text-gray-300 mr-3">Email:</span>
+                        <span className="text-lg text-black mr-3">Email:</span>
                         <span>{profile?.email}</span>
                     </div>
+                    <div>
+                        <Link to="/user/updateUser">
+                            <button className="btn bg-sky-500">Edit</button>
+                        </Link>
+
+                    </div>
+
                 </div>
                 <div>
-                    <Link to="/user/updateUser">
-                        <button className="text-3xl font-bold">Edit</button>
-
-                    </Link>
                 </div>
             </div>
         </div>

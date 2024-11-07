@@ -18,6 +18,7 @@ import AdminProfile from "../pages/admin/AdminProfile.jsx";
 import AdminLayout from "../layout/AdminLayout.jsx";
 import AdminEdit from "../pages/admin/AdminEdit.jsx";
 import Booking from "../pages/user/Booking.jsx";
+import CarGallery from "../pages/user/CarGallery.jsx";
 
 const router = createBrowserRouter([
 
@@ -55,6 +56,7 @@ const router = createBrowserRouter([
         path: "admin sign-up",
         element: <AdminSignup />,
       },
+
       {
         path: "admin-login",
         element: <AdminLogin />
@@ -78,8 +80,13 @@ const router = createBrowserRouter([
         element: <UpdateUser />
       },
       {
-        path:'booking-car',
-        element:<Booking/>
+        path: "car-gallery",
+        element: <CarGallery />
+      },
+
+      {
+        path: 'booking-car',
+        element: <Booking />
       },
       {
         path: "booked-car",
@@ -90,16 +97,21 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element:
-    <AdminLayout/>,
-    errorElement:<ErrorPage />,
+      <AdminLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path:"profile",
-        element:<AdminProfile/>
+        path: "profile",
+        element: <AdminProfile />
       },
       {
-        path:"edit",
-        element:<AdminEdit/>
+        path: "car-gallery",
+        element: <CarGallery />
+      },
+
+      {
+        path: "edit",
+        element: <AdminEdit />
       },
     ]
   },

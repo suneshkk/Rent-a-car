@@ -1,6 +1,7 @@
 import { adminSchema } from "../model/adminModel.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../util/token.js";
+import { User } from "../model/userModel.js";
 
 
 export const adminSignup = async (req, res, next) => {
@@ -65,7 +66,7 @@ export const adminLogin = async (req, res, next) => {
             sameSite: "None",
             secure: true,
             httpOnly: true
-            
+
         }); return res.json({ success: true, message: "Admin login successfull" });
     } catch (error) {
         console.log(error);
@@ -118,35 +119,8 @@ export const adminUpdate = async (req, res, next) => {
         res.status(500).send({ message: error.message });
     }
 
-        // try {
-        //     const userId = req.params.id;
-        //     const userUpdate = req.body;
-        //     let imageUrl;
-        //     // console.log(userId)
-        //     // console.log(userUpdate)
-    
-    
-        //     const isUserExists = await adminSchema.findById(userId);
-        //     console.log("user",isUserExists)
-        //     if (!isUserExists) {
-        //         return res.status(404).json({ message: "Admin Not Found" });
-        //     }
-        //     if (req.file) {
-        //         imageUrl = await handleImageUpload(req.file.path);
-    
-        //         userUpdate.profilePic = imageUrl;
-        //     }
-    
-        //     // Update the user details
-        //     const result = await adminSchema.findByIdAndUpdate(userId, userUpdate, { new: true });
-    
-        //     return res.status(200).json({ message: "Profile Updated Successfully", data: result });
-        // } catch (error) {
-        //     console.log(error);
-        //     return next(error);
-        // }
-    };
-    
+};
+
 
 export const adminDelete = async (req, res, next) => {
     try {
@@ -182,4 +156,18 @@ export const adminCheck = async (req, res, next) => {
     }
 
 };
+export const userlist = async (req, res, next) => {
+
+    try {
+        //find car list from schema
+        const user = await User.find()
+
+        return res.status(200).json({ success: true, message: "user List Fetched Successfully", data: user });
+
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    };
+};
+
 

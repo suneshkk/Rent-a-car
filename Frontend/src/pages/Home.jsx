@@ -5,11 +5,10 @@ import HeroImage from '../../src/assets/hero.png';
 import Car1 from '../../src/assets/car1.png';
 import Car2 from '../../src/assets/car2.png';
 import Car3 from '../../src/assets/car3.png';
+
 function Home() {
 
   const [data, setData] = useState([]);
-
-
   const fetchCar = async () => {
 
     try {
@@ -31,7 +30,7 @@ function Home() {
   return (
 
     <div>
-    
+
       <section
         className="bg-cover bg-center h-screen flex items-center justify-center"
         style={{ backgroundImage: `url(${HeroImage})` }}

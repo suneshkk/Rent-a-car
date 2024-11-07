@@ -7,7 +7,8 @@ import {
     adminLogout,
     adminDelete,
     adminUpdate,
-    adminCheck
+    adminCheck,
+    userlist,
 } from "../../controller/adminCotroller.js";
 
 
@@ -20,7 +21,8 @@ router.post("/logout",adminAuth, adminLogout);
 router.get("/profile", adminAuth, adminProfile);
 router.put("/update", adminAuth, adminUpdate);
 router.delete("/delete", adminAuth, adminDelete);
+router.get("/user-list",adminAuth,userlist);
 
-router.get("/check-admin", adminAuth, adminCheck)
+router.get("/check-admin", adminAuth, adminCheck);
 
 export { router as admiRouter };

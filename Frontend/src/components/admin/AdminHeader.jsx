@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import MyImage from '../../assets/logo.png'
 import toast from 'react-hot-toast';
@@ -6,6 +6,8 @@ import { axiosInstance } from '../../config/axiosInstance.jsx';
 
 function AdminHeader() {
     const navigate = useNavigate();
+    const [profile, setProfile] = useState([])
+
     const [isOpen, setIsopen] = useState(false);
 
 
@@ -38,6 +40,23 @@ function AdminHeader() {
             console.log(error)
         };
     };
+    const fetchAdminProfile = async () => {
+        try {
+            const responce = await axiosInstance.get('/admin/profile', {
+                withCredentials: true,
+            })
+
+            setProfile(responce?.data?.data);
+            console.log(responce)
+        } catch (error) {
+            toast.error("something went wrong");
+            console.log(error);
+        };
+    };
+    useEffect(() => {
+        fetchAdminProfile()
+    }, [])
+
 
     return (
         < div className="navbar border-b-2  bg-transparent text-center flex justify-between  items-center px-4 md:px-14 bg-cover h-20 " >
@@ -52,34 +71,22 @@ function AdminHeader() {
                 </Link>
             </div>
             <div className="relative inline-block text-right ">
-                <button
-                    onClick={toggleDropdown}
-                    className="flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-100 text-black font-bold hover:bg-lime-400 focus:outline-none"
-                >
-                    {/* <img
-                        src={profile?.profilePic}
-                        alt="User Avatar"
-                        className="w-9 h-9 rounded-full"
-                    /> */}
-                    {/* <span>{profile?.name}</span> */}
-                </button>
+                <div className=''>
+                    <button onClick={toggleDropdown} className="flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-100 text-black font-bold hover:bg-lime-400 focus:outline-none">
+                        <img
+                            className="w-14 h-7 rounded-full" />
+                        <span>{profile?.name}</span>
+                    </button>
+
+                </div>
                 {isOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
-                        {/* <div className='btn btn-ghost' >
-                            <h1 className="text-lg text-emerald-900 font-bold">Logout</h1>
-
-                        </div> */}
-
-                        <Link
-                            to="/admin/edit"
-                            onClick={closeDropdown}
-                            className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                        >
-                            Edit Profile
-                        </Link>
                         <button onClick={handleDelete}>
-                            delete account
+                            <h1 className="text-lg text-emerald-900 font-bold"> delete account</h1>
+
+
                         </button>
+
                         <button
                             onClick={() => {
                                 closeDropdown();
@@ -92,7 +99,7 @@ function AdminHeader() {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     )
 
 }
