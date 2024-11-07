@@ -1,11 +1,10 @@
-// import HeroImage from "../../src/assets/hero.jpg";
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../config/axiosInstance.jsx';
 import CarList from '../components/Cards.jsx';
+import HeroImage from '../../src/assets/hero.png';
 import Car1 from '../../src/assets/car1.png';
 import Car2 from '../../src/assets/car2.png';
 import Car3 from '../../src/assets/car3.png';
-// import Car4 from '../../src/assets/car4.png'
 function Home() {
 
   const [data, setData] = useState([]);
@@ -35,7 +34,7 @@ function Home() {
     
       <section
         className="bg-cover bg-center h-screen flex items-center justify-center"
-        // style={{ backgroundImage: `url(${})` }}
+        style={{ backgroundImage: `url(${HeroImage})` }}
       >
         <div className="bg-black bg-opacity-50 p-4 sm:p-6 md:p-10 lg:p-12 rounded-lg max-w-lg text-center">
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
