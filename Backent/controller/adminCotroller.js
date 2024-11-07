@@ -107,22 +107,46 @@ export const adminLogout = async (req, res, next) => {
 export const adminUpdate = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const result = await adminSchema.findByIdAndUpdate(id, req.body, { new: true });
+        const result = await adminSchema.findByIdAndUpdate(id, req.body);
         if (!result) {
-            return res.status(404).json({ message: "Admin Not Find" });
+            res.status(404).send({ message: "admin not found" });
+        } else {
+            res.status(200).send({ message: "Admin updated successfully" });
         }
-        else {
-            return res.status(200).json({ message: "Profile Updated Successfully", data: result });
-        }
-
+    } catch {
+        console.log(error);
+        res.status(500).send({ message: error.message });
     }
-    catch (error) {
-        console.log(error.message);
-        return next(error)
 
-
+        // try {
+        //     const userId = req.params.id;
+        //     const userUpdate = req.body;
+        //     let imageUrl;
+        //     // console.log(userId)
+        //     // console.log(userUpdate)
+    
+    
+        //     const isUserExists = await adminSchema.findById(userId);
+        //     console.log("user",isUserExists)
+        //     if (!isUserExists) {
+        //         return res.status(404).json({ message: "Admin Not Found" });
+        //     }
+        //     if (req.file) {
+        //         imageUrl = await handleImageUpload(req.file.path);
+    
+        //         userUpdate.profilePic = imageUrl;
+        //     }
+    
+        //     // Update the user details
+        //     const result = await adminSchema.findByIdAndUpdate(userId, userUpdate, { new: true });
+    
+        //     return res.status(200).json({ message: "Profile Updated Successfully", data: result });
+        // } catch (error) {
+        //     console.log(error);
+        //     return next(error);
+        // }
     };
-};
+    
 
 export const adminDelete = async (req, res, next) => {
     try {

@@ -31,17 +31,8 @@ const carModelSchema = new mongoose.Schema({
         enum: ['manual', 'automatic', 'semi-automatic'],
         required: true
     },
-    availability: {
-        type: String,
-        default: true,
-        required: true
-    },
     price: {
         type: Number,
-        required: true
-    },
-    location: {
-        type: String,
         required: true
     },
     image: {

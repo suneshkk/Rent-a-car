@@ -146,8 +146,8 @@ export const updateUser = async (req, res, next) => {
         const userId = req.params.id;
         const userUpdate = req.body;
         let imageUrl;
-        console.log(userId)
-        console.log(userUpdate)
+        // console.log(userId)
+        // console.log(userUpdate)
 
 
         const isUserExists = await User.findById(userId);

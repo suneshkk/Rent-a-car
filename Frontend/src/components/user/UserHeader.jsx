@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Logo from '../../assets/logo.png'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
+import toast from 'react-hot-toast';
 
 function UserHeader() {
 

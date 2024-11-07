@@ -3,13 +3,17 @@ import { carSchema } from "../model/carModel.js";
 
 
 
-export const addToRental = async (req, res, next) => {
+export const forBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const { carId } = req.body;
+    const  carId = req.params.id;
 
-  //  console.log("user",userId)
-  //   console.log("car", carId);
+    //  console.log("user",userId)
+    //   console.log("car", carId);
+    const {startUpDate,endDate,} =req.body;
+    if(!startUpDate || !endDate){
+      return res.ststus(400).json({message: "all fields required"})
+    }
 
     // Find the car using the provided ID
     const carData = await carSchema.findById(carId);
@@ -24,7 +28,7 @@ export const addToRental = async (req, res, next) => {
     }
 
     // Check if the car is already in the rental
-    const carExists =rental.car.find((item) => item.carId.equals(item));
+    const carExists = rental.car.find((item) => item.carId.equals(item));
 
     if (carExists) {
       return res.status(400).json({ message: "This item is already in your cart" });
@@ -48,10 +52,10 @@ export const addToRental = async (req, res, next) => {
   }
 };
 
-export const getRental = async (req, res, next) => {
+export const bookedCarDetials = async (req, res, next) => {
   try {
     const { user } = req;
-    const rental = await rentalSchema.findOne({userId:user.id}).populate("car.carId");
+    const rental = await rentalSchema.findOne({ userId: user.id }).populate("car.carId");
 
     if (!rental) {
       return res.status(404).json({ message: "There is no Rental" })
@@ -63,28 +67,28 @@ export const getRental = async (req, res, next) => {
   };
 
 };
-export const removeRental = async (req, res, next) => {
+export const deleteBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const  {carId}  = req.body;
+    const { carId } = req.body;
     // console.log("user", userId);
     // console.log("car", carId);
 
-      const rental = await rentalSchema.findOne( {userId} );
+    const rental = await rentalSchema.findOne({ userId });
     if (!rental) {
       return res.status(400).json({ message: "no rental found" });
     }
-   console.log("rental",rental)
+    console.log("rental", rental)
     // Delete the rental by carRental ID
-   rental.car = rental.car.filter((item) => !item.carId.equals(carId));
+    rental.car = rental.car.filter((item) => !item.carId.equals(carId));
 
-      
-   rental.calculateTotalPrice();
 
-    await rental.save();  
+    rental.calculateTotalPrice();
 
-      return res.json({ message: "Rental deleted successfully" });
-    
+    await rental.save();
+
+    return res.json({ message: "Rental deleted successfully" });
+
 
   } catch (error) {
     console.log(error);

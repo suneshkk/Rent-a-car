@@ -4,74 +4,77 @@ import { useParams } from 'react-router-dom'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
 
 function AdminEdit() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    // const [profilePic,setProfilePic] = useState([]);
-    const {id} = useParams();
-    // const [profilePic, setProfilePic] = useState(null)
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+       
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try{
+      const respopnce = await axiosInstance.put('/admin/update',{})
 
-    const handleUpdate = async () => {
-        const data ={
-            name,
-            email,
-            password,
-            phone,
-            // profilePic
-        };
-        try{
-            const response = await axiosInstance.put(`/admin/update ${id}`,data,
-                { Credential:true});
-
-        }catch(error){
-            toast.error("something went wrong");
-            console.log(error);
-        };
+    }catch(error){
+     toast.error("somthing went wrong");
+     console.log(error)
     };
+  };
 
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card card-body bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input type="text" placeholder="name" className="input input-bordered" required
-                onChange={(e) => setName(e.target.value)} />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input type="email" placeholder="email" className="input input-bordered" required
-                onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Phone</span>
-              </label>
-              <input type="text" placeholder="phone" className="input input-bordered" required
-                onChange={(e) => setPhone(e.target.value)} />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input type="password" placeholder="password" className="input input-bordered" required
-                onChange={(e) => setPassword(e.target.value)} />
-              <label className="label">
+    <div className="row justify-content-center pt-5">
+      <div className="card border-success  col-md-6 bg-info" style={{ maxWidth: "30rem" }}>
+        <div className="card-header bg-transparent border-success">
+          <h1 className="text-center my-4">Update Profile</h1>
+        </div>
 
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary" onClick={handleUpdate}>Save</button>
-            </div>
+        <div className="mb-3">
+          <label className="form-label text-muted">Name</label>
+          <input
+            type="text"
+            value={user.name}
+            onChange={(e) => setUser(e.target.value)}
+            className="form-control"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label text-muted">Email</label>
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="form-control"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label text-muted">Password</label>
+          <input
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="form-control"
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label text-muted">Phone</label>
+          <input
+            type="number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="form-control"
+          />
+        </div>
+
+        <div className="d-flex justify-content-between py-4">
+          <button className="btn btn-primary" onClick={handleUpdate}>
+            Save
+          </button>
         </div>
       </div>
     </div>
+
   )
 }
 

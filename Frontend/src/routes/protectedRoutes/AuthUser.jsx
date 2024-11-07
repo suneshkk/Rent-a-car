@@ -20,7 +20,7 @@ const AuthUser = ({ children }) => {
                     Credentials: true,
                 });
             dispatch(saveUser())
-
+           console.log(response,"data")
 
         } catch (error) {
             dispatch(clearUser())

@@ -32,9 +32,9 @@ function SignUp() {
   }
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-blue-100 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div className="card bg-white w-full max-w-sm shrink-0 shadow-2xl">
           <form className="card-body">
             <div className="form-control">
               <label className="label">
@@ -67,7 +67,6 @@ function SignUp() {
                 <Link to={'/login'}>
                   Existing User!
                 </Link>
-
               </label>
             </div>
             <div className="form-control mt-6">

@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import AboutUs from "../pages/AboutUs.jsx";
-import CarGallery from "../pages/CarGallery.jsx";
 import Login from "../pages/Login.jsx";
 import JoinUs from "../pages/JoinUs.jsx";
 import RootLayOut from "../layout/RootLayOut.jsx";
@@ -18,6 +17,7 @@ import AdminLogin from "../pages/admin/AdminLogin.jsx";
 import AdminProfile from "../pages/admin/AdminProfile.jsx";
 import AdminLayout from "../layout/AdminLayout.jsx";
 import AdminEdit from "../pages/admin/AdminEdit.jsx";
+import Booking from "../pages/user/Booking.jsx";
 
 const router = createBrowserRouter([
 
@@ -34,10 +34,6 @@ const router = createBrowserRouter([
       {
         path: "aboutus",
         element: <AboutUs />
-      },
-      {
-        path: "carGallery",
-        element: <CarGallery />
       },
       {
         path: "car-details/:id",
@@ -82,12 +78,12 @@ const router = createBrowserRouter([
         element: <UpdateUser />
       },
       {
-        path: "booked-car",
-        element: <BookedCar />,
+        path:'booking-car',
+        element:<Booking/>
       },
       {
-        path: "carGallery",
-        element: <CarGallery />
+        path: "booked-car",
+        element: <BookedCar />,
       },
     ],
   },

@@ -63,16 +63,10 @@ function DateTime() {
                     />
                 </div>
                 <div className='flex flex-col pt-6'>
-                    <Link to={"/carGallery"} >
-                        <button className="btn btn-primary ml-4">show Cars</button>
-
-                    </Link>
-
                 </div>
 
             </div>
 
-            {/* Show Button */}
         </body>
 
     )

@@ -15,11 +15,11 @@ const router = express.Router();
 
 router.post("/sign-up", adminSignup);
 router.post("/login", adminLogin);
-router.post("/logout", adminLogout);
+router.post("/logout",adminAuth, adminLogout);
 
 router.get("/profile", adminAuth, adminProfile);
-router.put("/update/:id", adminAuth, adminUpdate);
-router.delete("/delete/:id", adminAuth, adminDelete);
+router.put("/update", adminAuth, adminUpdate);
+router.delete("/delete", adminAuth, adminDelete);
 
 router.get("/check-admin", adminAuth, adminCheck)
 

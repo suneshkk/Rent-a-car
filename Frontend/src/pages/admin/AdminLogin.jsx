@@ -6,57 +6,76 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 function AdminLogin() {
-  const navigate = useNavigate()
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+
   const onSubmit = async (data) => {
     try {
       const response = await axiosInstance.post(
-        '/admin/login', 
-        {email: data. email,password: data. password }, 
-        { withCredentials: true, });
-          console.log(response)
-      toast.success("login Success");
-      navigate('/admin/profile')
-
+        '/admin/login',
+        { email: data.email, password: data.password },
+        { withCredentials: true }
+      );
+      // console.log(response);
+      toast.success("Login successful");
+      navigate('/admin/profile');
     } catch (error) {
-      toast.error("login-filed");
+      toast.error("Login failed");
       console.log(error);
-    };
+    }
   };
-  return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input type="email" {...register("email")} placeholder="email" className="input input-bordered" required />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input type="password" {...register("password")} placeholder="password" className="input input-bordered" required />
-              <label className="label">
-                <Link to={'/admin sign-up'}>
-                  New admin?
-                </Link>
 
+  return (
+    <div className="hero bg-gradient-to-r from-teal-500 to-cyan-500 min-h-screen flex items-center justify-center">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        {/* Card Container */}
+        <div className="card bg-white shadow-xl w-full max-w-md p-8 rounded-xl">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
+          <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+            {/* Email Input */}
+            <div className="form-control mb-4">
+              <label className="label mb-2">
+                <span className="label-text text-lg font-semibold text-gray-700">Email</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                {...register('email', { required: true })}
+              />
+            </div>
+
+            {/* Password Input */}
+            <div className="form-control mb-6">
+              <label className="label mb-2">
+                <span className="label-text text-lg font-semibold text-gray-700">Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                {...register('password', { required: true })}
+              />
+              <label className="label mt-2">
+                <Link to="/admin sign-up" className="text-teal-500 hover:text-teal-700 font-semibold">
+                  New user? Sign up here!
+                </Link>
               </label>
             </div>
+
+            {/* Submit Button */}
             <div className="form-control mt-6">
-              <button className="btn btn-primary" >Login</button>
+              <button
+                type="submit"
+                className="btn btn-teal w-full py-3 text-white font-semibold rounded-lg hover:bg-teal-700"
+              >
+                Login
+              </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
 export default AdminLogin

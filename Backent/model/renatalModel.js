@@ -24,11 +24,11 @@ const rentalStatus = new mongoose.Schema({
 
         },
     ],
-    pickUpDate: {
+    StartUpDate: {
         type: Date,
         required: true
     },
-    returnDate: {
+    EndDate: {
         type: Date,
         required: true
     },
