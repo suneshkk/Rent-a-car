@@ -1,4 +1,4 @@
-import HeroImage from "../../src/assets/hero.jpg";
+// import HeroImage from "../../src/assets/hero.jpg";
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../config/axiosInstance.jsx';
 import CarList from '../components/Cards.jsx';
@@ -35,7 +35,7 @@ function Home() {
     
       <section
         className="bg-cover bg-center h-screen flex items-center justify-center"
-        style={{ backgroundImage: `url(${HeroImage})` }}
+        // style={{ backgroundImage: `url(${})` }}
       >
         <div className="bg-black bg-opacity-50 p-4 sm:p-6 md:p-10 lg:p-12 rounded-lg max-w-lg text-center">
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
