@@ -1,7 +1,7 @@
-import HeroImage from '../../src/assets/Hero.jpg'
-import Car1 from '../src/assets/Car1.jpg'
-import Car2 from '../src/assets/Car2.jpg'
-import Car3 from '../src/assets/Car3.jpg'
+import HeroImage from '/src/assets/Hero.jpg'
+import Car1 from '/src/assets/Car1.jpg'
+import Car2 from '/src/assets/Car2.jpg'
+import Car3 from '/src/assets/Car3.jpg'
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../config/axiosInstance.jsx';
 import CarList from '../components/Cards.jsx';
