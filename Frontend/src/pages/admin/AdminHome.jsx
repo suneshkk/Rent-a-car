@@ -1,4 +1,3 @@
-import { useState } from "react"
 import DropDownBt from "../../components/util/DropDownBt";
 
 
@@ -23,12 +22,14 @@ function AdminHome() {
                     </li>
                     <hr />
                     <li className="content-start py-4">
-                        <DropDownBt><h1>bjkl</h1></DropDownBt>
-                     </li>
+                        <DropDownBt></DropDownBt>
+                    </li>
 
                 </ul>
+
             </div>
-        </div >)
+        </div >
+    )
 }
 
 export default AdminHome

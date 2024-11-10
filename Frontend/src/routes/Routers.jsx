@@ -20,6 +20,8 @@ import Booking from "../pages/user/Booking.jsx";
 import CarGallery from "../pages/user/CarGallery.jsx";
 import AdminHome from "../pages/admin/AdminHome.jsx";
 import CreateCar from "../pages/admin/CreateCar.jsx";
+import EditCar from "../pages/admin/EditCar.jsx";
+import CarList from "../pages/admin/CarList.jsx";
 
 const router = createBrowserRouter([
 
@@ -61,10 +63,6 @@ const router = createBrowserRouter([
       {
         path: "admin sign-up",
         element: <AdminSignup />,
-      },
-            {
-        path: "car-gallery",
-        element: <CarGallery />
       },
       {
         path: "car-gallery",
@@ -119,10 +117,9 @@ const router = createBrowserRouter([
         element: <AdminHome/>
       },
       {
-        path: "car-gallery",
-        element: <CarGallery />
+        path:"car-list",
+        element:<CarList/>
       },
-
       {
         path: "edit",
         element: <AdminEdit />
@@ -130,6 +127,10 @@ const router = createBrowserRouter([
       {
         path:"create-car",
         element:<CreateCar/>
+      },
+      {
+        path:"edit-car",
+        element:<EditCar/>
       },
     ]
   },

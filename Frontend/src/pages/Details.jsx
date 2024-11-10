@@ -1,22 +1,25 @@
 import React from 'react'
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { axiosInstance } from '../config/axiosInstance.jsx';
+import Loader from '../components/util/Loader.jsx';
 
 function Details() {
     const [carDetails, setCarDetails] = useState({});
+    const [loading,setLoading] = useState(true);
     const { id } = useParams();
     const fetchCarDetailes = async () => {
+        setLoading(true)
         try {
             const response = await axiosInstance.get(`/car/get-car/${id}`, {
                 withCredentials: true,
-            })
+            });
+            setLoading(false);
             setCarDetails(response?.data?.data);
             console.log(response);
         } catch (error) {
             console.log(error);
+            setLoading(false);
         };
     };
     useEffect(() => {
@@ -26,6 +29,7 @@ function Details() {
 
     return (
         <div className="container min-h-screen  ">
+            {loading ? ( <Loader/> ) : (
             <div className="md:flex flex-col " >
 
 
@@ -71,6 +75,7 @@ function Details() {
                     </div>
                 </div>
             </div>
+            )}
         </div>
     )
 }

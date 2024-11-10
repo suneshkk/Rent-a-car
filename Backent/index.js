@@ -13,20 +13,20 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 
-const corsSetup = {
-    origin: ['http://localhost:5173'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true // Allow credentials like cookies, authorization headers
-
-};
-// Updated CORS setup for both local and deployed environments
 // const corsSetup = {
-//     origin: [ 'https://rent-a-car-frontend.onrender.com' ],
+//     origin: ['http://localhost:5173'],
 //     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 //     allowedHeaders: ['Content-Type', 'Authorization'],
 //     credentials: true // Allow credentials like cookies, authorization headers
+
 // };
+// Updated CORS setup for both local and deployed environments
+const corsSetup = {
+    origin: [ 'https://rent-a-car-frontend.onrender.com' ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // Allow credentials like cookies, authorization headers
+};
 app.use(cors(corsSetup));
 
 connectDB();

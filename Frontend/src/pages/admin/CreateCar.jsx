@@ -59,99 +59,100 @@ function CreateCar() {
 
 
   return (
-    <div className="caontainer min-h-screen flex justify-center">
-      <div className="card card-body border-solid  bg-green-100 shadow-2xl shadow-stone-400  mx-96 my-36">
-        <div className=" card  card-title">
-          <h1 className="text-black  underline">Create New Car  </h1>
-        </div>
-        <div className="flex ">
-
-          <form className="ml-10" onSubmit={handleUploadCar}>
-            <div className="mb-3 flex gap-4">
-              <label className="form-label text-muted">Car Name :</label>
-              <input
-                type="text"
-                value={carName}
-                onChange={(e) => setCarName(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3 flex gap-4">
-              <label className="form-label text-muted">Car Brand :</label>
-              <input
-                type="text"
-                value={brand}
-                required
-                onChange={(e) => setBrand(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3 flex gap-2">
-              <label className="form-label text-muted">Model Year :</label>
-              <input
-                type="text"
-                value={year}
-                required
-                onChange={(e) => setYear(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3 flex gap-6">
-              <label className="form-label text-muted">Car Type :</label>
-              <input
-                type="text"
-                value={carType}
-                required
-                onChange={(e) => setCarType(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3 flex gap-5">
-              <label className="form-label text-muted">Fuel Type :</label>
-              <input
-                type="text"
-                value={fuelType}
-                required
-                onChange={(e) => setFuelType(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3 flex">
-              <label className="form-label text-muted">Transmission:</label>
-              <input
-                type="text"
-                value={transmission}
-                required
-                onChange={(e) => setTrasnsmission(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3 flex gap-14">
-              <label className="form-label text-muted"> Price :</label>
-              <input
-                type="text"
-                value={price}
-                required
-                onChange={(e) => setPrice(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3 flex gap-5">
-              <label className="form-label text-muted">Image:</label>
-              <input
-                type="file"
-                onChange={handleImageChange}
-                className="form-control"
-              />
-            </div>
-            <div>
-              <button>submit</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
+<div className="container min-h-screen flex items-center justify-center bg-gray-100">
+  <div className="card bg-white shadow-2xl rounded-lg px-10 py-8 mx-4 sm:mx-0 sm:w-3/4 md:w-1/2 lg:w-2/5">
+    <div className="text-center mb-8">
+      <h1 className="text-2xl font-semibold text-gray-800 underline">Create New Car</h1>
     </div>
+    <form onSubmit={handleUploadCar} className="space-y-4">
+      <div className="flex items-center space-x-4">
+        <label className="form-label text-gray-600 w-1/3">Car Name :</label>
+        <input
+          type="text"
+          value={carName}
+          onChange={(e) => setCarName(e.target.value)}
+          className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
+        />
+      </div>
+      <div className="flex items-center space-x-4">
+        <label className="form-label text-gray-600 w-1/3">Car Brand :</label>
+        <input
+          type="text"
+          value={brand}
+          required
+          onChange={(e) => setBrand(e.target.value)}
+          className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
+        />
+      </div>
+      <div className="flex items-center space-x-4">
+        <label className="form-label text-gray-600 w-1/3">Model Year :</label>
+        <input
+          type="text"
+          value={year}
+          required
+          onChange={(e) => setYear(e.target.value)}
+          className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
+        />
+      </div>
+      <div className="flex items-center space-x-4">
+        <label className="form-label text-gray-600 w-1/3">Car Type :</label>
+        <input
+          type="text"
+          value={carType}
+          required
+          onChange={(e) => setCarType(e.target.value)}
+          className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
+        />
+      </div>
+      <div className="flex items-center space-x-4">
+        <label className="form-label text-gray-600 w-1/3">Fuel Type :</label>
+        <input
+          type="text"
+          value={fuelType}
+          required
+          onChange={(e) => setFuelType(e.target.value)}
+          className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
+        />
+      </div>
+      <div className="flex items-center space-x-4">
+        <label className="form-label text-gray-600 w-1/3">Transmission:</label>
+        <input
+          type="text"
+          value={transmission}
+          required
+          onChange={(e) => setTrasnsmission(e.target.value)}
+          className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
+        />
+      </div>
+      <div className="flex items-center space-x-4">
+        <label className="form-label text-gray-600 w-1/3">Price :</label>
+        <input
+          type="text"
+          value={price}
+          required
+          onChange={(e) => setPrice(e.target.value)}
+          className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
+        />
+      </div>
+      <div className="flex items-center space-x-4">
+        <label className="form-label text-gray-600 w-1/3">Image:</label>
+        <input
+          type="file"
+          onChange={handleImageChange}
+          className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
+        />
+      </div>
+      <div className="text-center mt-6">
+        <button
+          type="submit"
+          className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition ease-in-out duration-300"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
   )
 }
 
