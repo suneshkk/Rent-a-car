@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import MyImage from '../../assets/logo.png'
 import toast from 'react-hot-toast';
+import ProfilPic from '../../assets/profile.png'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
+import Theme from '../ui/Theme.jsx';
 
 function AdminHeader() {
     const navigate = useNavigate();
@@ -70,21 +72,25 @@ function AdminHeader() {
                     </span>
                 </Link>
             </div>
-            <div className="relative inline-block text-right ">
+            <div className="relative text-right flex gap-4 ">
+
+                <Theme/>
                 <div className=''>
                     <button onClick={toggleDropdown} className="flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-100 text-black font-bold hover:bg-lime-400 focus:outline-none">
-                        <img
-                            className="w-14 h-7 rounded-full" />
+                        <img src={ProfilPic} alt="logo" className="w-14 h-7 rounded-full" />
                         <span>{profile?.name}</span>
                     </button>
 
                 </div>
                 {isOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
+                    <div className="absolute right-0 top-16 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
                         <button onClick={handleDelete}>
                             <h1 className="text-lg text-emerald-900 font-bold"> delete account</h1>
 
 
+                        </button>
+                        <button>
+                            
                         </button>
 
                         <button

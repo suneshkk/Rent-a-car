@@ -23,8 +23,8 @@ function CarGallery() {
     }, [])
 
     return (
-        <div className="container mt-6 mx-auto min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 py-8">
-            <div className="grid gap-8 sm:gap-6 md:gap-8 lg:gap-10 grid-cols-1 sm:grid-cols-4 md:grid-cols-3 xl:grid-cols-3 justify-items-center">
+        <div className="min-h-screen grid xl:grid lg:grid md:grid sm:grid ">
+            <div className="2xl:flex 2xl:flex-wrap xl:flex xl:flex-wrap lg:flex lg:flex-wrap md:flex md:flex-wrap  " >
                 {data.map((value) => (
                     <CarList car={value} key={value?._id} />
                 ))}

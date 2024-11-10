@@ -18,7 +18,7 @@ function AdminLogin() {
       );
       // console.log(response);
       toast.success("Login successful");
-      navigate('/admin/profile');
+      navigate('/admin/admin-home');
     } catch (error) {
       toast.error("Login failed");
       console.log(error);

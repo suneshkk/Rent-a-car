@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import MyImage from '../../src/assets/logo.png'
+import Theme from './ui/Theme.jsx';
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -69,7 +70,7 @@ function Navbar() {
                 <Link to="/sign-up" className="btn btn-ghost" onClick={closeMenu}>
                     <h1 className="text-lg text-emerald-900 font-bold">Sign Up</h1>
                 </Link>
-
+             <Theme />
             </div>
         </div>
     );

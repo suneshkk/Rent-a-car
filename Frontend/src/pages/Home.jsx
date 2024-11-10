@@ -5,6 +5,7 @@ import HeroImage from '../../src/assets/hero.png';
 import Car1 from '../../src/assets/car1.png';
 import Car2 from '../../src/assets/car2.png';
 import Car3 from '../../src/assets/car3.png';
+import { Link } from 'react-router-dom';
 
 function Home() {
 
@@ -47,17 +48,22 @@ function Home() {
       <div className='px-4 sm:px-6 md:px-8 lg:px-12 py-8'>
         <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center mb-4 sm:mb-6">
           <h1 className="font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center">
+            <Link to={'/car-gallery'}>
             Book Your car now
+
+            </Link>
           </h1>
         </div>
-        <div className="grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
-          {data.map((value) => (
-            <CarList car={value} key={value?._id} />
-          ))}
+        <div className="grid">
+          <div className='xl:grid xl:grid-cols-4 lg:flex lg:flex-wrap md:grid md:grid-cols-3 sm:flex sm:flex-wrap'>
+            {data.map((value) => (
+              <CarList car={value} key={value?._id} />
+            ))}
+
+          </div>
         </div>
 
       </div>
-
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 py-8">
         <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center mb-4 sm:mb-6">
           <h1 className="font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center">

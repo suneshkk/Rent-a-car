@@ -16,7 +16,7 @@ const carModelSchema = new mongoose.Schema({
         required: true,
 
     },
-    type: {
+    carType: {
         type: String,
         enum: ['sedan', 'suv', 'truck', 'coupe', 'convertible', 'wagon', 'van', 'hatchback', 'other'],
         required: true

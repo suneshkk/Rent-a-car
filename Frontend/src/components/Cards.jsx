@@ -5,29 +5,31 @@ import { Link } from 'react-router-dom'
 function CarList({ car }) {
   // console.log(car, "ffghj==")
   return (
-    <div className="ard bg-slate-300 w-72 sm:w-80 md:w-96 shadow-xl">
+    <div className="car card-body">
 
-      <div className="card bg-slate-300 w-72 sm:w-80 md:w-96 shadow-xl">
+      <div className=" card bg-slate-300 sm:w-52">
         <figure>
-          <img src={car?.image} alt="Car" className="w-full h-40 sm:h-48 object-cover" />
+          <img src={car?.image} alt="Car" className="" />
         </figure>
-        <div className="card-body p-4 flex flex-row justify-between">
-          <div>
+
+        <div className='flex justify-between m-2 '>
+          <div className=''>
             <h2 className="card-title">{car?.carName}</h2>
-            <p>{car?.transmission}</p>
+            <p className='text-sm font-bold text-neutral-700'>{car?.transmission}</p>
           </div>
-          <div>
+          <div className=''>
             <Link to={`/car-details/${car?._id}`}>
-              <button className="btn btn-primary">More Detailes</button>
+              <button className="btn btn-success">About Car</button>
             </Link>
 
           </div>
 
+
         </div>
       </div>
-
-
     </div>
+
+
   )
 }
 

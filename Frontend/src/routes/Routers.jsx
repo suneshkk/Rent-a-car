@@ -14,11 +14,12 @@ import Details from "../pages/Details.jsx";
 import UpdateUser from "../pages/user/UpdateUser.jsx";
 import AdminSignup from "../pages/admin/AdminSignup.jsx";
 import AdminLogin from "../pages/admin/AdminLogin.jsx";
-import AdminProfile from "../pages/admin/AdminProfile.jsx";
 import AdminLayout from "../layout/AdminLayout.jsx";
 import AdminEdit from "../pages/admin/AdminEdit.jsx";
 import Booking from "../pages/user/Booking.jsx";
 import CarGallery from "../pages/user/CarGallery.jsx";
+import AdminHome from "../pages/admin/AdminHome.jsx";
+import CreateCar from "../pages/admin/CreateCar.jsx";
 
 const router = createBrowserRouter([
 
@@ -53,8 +54,21 @@ const router = createBrowserRouter([
         element: <JoinUs />
       },
       {
+        path: "car-gallery",
+        element: <CarGallery />
+      },
+
+      {
         path: "admin sign-up",
         element: <AdminSignup />,
+      },
+            {
+        path: "car-gallery",
+        element: <CarGallery />
+      },
+      {
+        path: "car-gallery",
+        element: <CarGallery />
       },
 
       {
@@ -101,8 +115,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "profile",
-        element: <AdminProfile />
+        path: "admin-home",
+        element: <AdminHome/>
       },
       {
         path: "car-gallery",
@@ -112,6 +126,10 @@ const router = createBrowserRouter([
       {
         path: "edit",
         element: <AdminEdit />
+      },
+      {
+        path:"create-car",
+        element:<CreateCar/>
       },
     ]
   },
