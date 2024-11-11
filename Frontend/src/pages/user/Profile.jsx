@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
 import toast from 'react-hot-toast';
+<<<<<<< HEAD
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/util/Loader.jsx';
 import DeleteButton from '../../components/util/DeleteButton.jsx';
+=======
+import { Link } from 'react-router-dom';
+import Loader from '../../components/util/Loader.jsx';
+>>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
 
 function Profile() {
     const [profile, setProfile] = useState([]);
@@ -63,6 +68,7 @@ function Profile() {
                             <span>{profile?.email}</span>
                         </div>
                         <div>
+<<<<<<< HEAD
                             <Link to={`/user/updateUser/${profile?._id}`}>
                                 <button className="btn bg-sky-500">Edit</button>
                             </Link>
@@ -70,6 +76,12 @@ function Profile() {
                          <button className="btn bg-red-700">Delete</button>
 
                          </Link>
+=======
+                            <Link to="/user/updateUser">
+                                <button className="btn bg-sky-500">Edit</button>
+                            </Link>
+
+>>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
                         </div>
 
                     </div>

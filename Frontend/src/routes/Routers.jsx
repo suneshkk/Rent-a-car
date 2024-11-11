@@ -19,12 +19,18 @@ import AdminEdit from "../pages/admin/AdminEdit.jsx";
 import Booking from "../pages/user/Booking.jsx";
 import CarGallery from "../pages/user/CarGallery.jsx";
 import AdminHome from "../pages/admin/AdminHome.jsx";
+<<<<<<< HEAD
 import CarList from "../pages/admin/controller/CarList.jsx";
 import CreateCar from "../pages/admin/controller/CreateCar.jsx";
 import EditCar from "../pages/admin/controller/EditCar.jsx";
 import DeleteCar from "../pages/admin/controller/DeleteCar.jsx";
 import UserList from "../pages/admin/controller/UserList.jsx";
 import DeleteUser from "../pages/user/DeleteUser.jsx";
+=======
+import CreateCar from "../pages/admin/CreateCar.jsx";
+import EditCar from "../pages/admin/EditCar.jsx";
+import CarList from "../pages/admin/CarList.jsx";
+>>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
 
 const router = createBrowserRouter([
 
@@ -122,8 +128,11 @@ const router = createBrowserRouter([
         path: "admin-home",
         element: <AdminHome/>
       },
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
       {
         path:"car-list",
         element:<CarList/>
@@ -137,6 +146,7 @@ const router = createBrowserRouter([
         element:<CreateCar/>
       },
       {
+<<<<<<< HEAD
         path:"edit-car/:id",
         element:<EditCar/>
       },
@@ -152,6 +162,11 @@ const router = createBrowserRouter([
         path:"user-list",
         element:<UserList/>
       },
+=======
+        path:"edit-car",
+        element:<EditCar/>
+      },
+>>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
     ]
   },
 
