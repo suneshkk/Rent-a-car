@@ -6,13 +6,9 @@ import Loader from '../components/util/Loader.jsx';
 
 function Details() {
     const [carDetails, setCarDetails] = useState({});
-<<<<<<< HEAD
     const [loading, setLoading] = useState(true);
     const [comment, setComment] = useState("");
     const [ratting, setRatting] = useState("");
-=======
-    const [loading,setLoading] = useState(true);
->>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
     const { id } = useParams();
     const fetchCarDetailes = async () => {
         setLoading(true)
@@ -42,7 +38,7 @@ function Details() {
         try {
             const response = await axiosInstance.post('/review/add-review',
                 { withCredentials: true });
-                  console.log("responce data==",response)
+            console.log("responce data==", response)
             if (response.data.success) {
                 toast.success("Car Created successfully");
                 setLoading(false)
@@ -57,7 +53,6 @@ function Details() {
 
 
     return (
-<<<<<<< HEAD
         <div className="container min-h-screen flex items-center justify-evenly bg-gray-100">
             <form onSubmit={addReview} className='card card-body'>
                 <div className="flex items-center space-x-4">
@@ -68,15 +63,6 @@ function Details() {
                         onChange={(e) => setComment(e.target.value)}
                         className="form-control flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
                     />
-=======
-        <div className="container min-h-screen  ">
-            {loading ? ( <Loader/> ) : (
-            <div className="md:flex flex-col " >
-
-
-                <div className="flex justify-center md:justify-start">
-                    <img src={carDetails?.image} alt="car" className="w-full max-w-sm rounded-lg shadow-lg" />
->>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
                 </div>
                 <div className="flex items-center space-x-4">
                     <label className="form-label text-gray-600 w-1/3">Rating:</label>
@@ -153,14 +139,9 @@ function Details() {
                         </div>
                     </form>
                 </div>
-<<<<<<< HEAD
             )}
             <form ></form>
-=======
-            </div>
-            )}
->>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
-        </div>
+        </div >
     )
 }
 

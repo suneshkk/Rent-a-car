@@ -25,15 +25,12 @@ function AdminHome() {
                     <li className="content-start py-4">
                         <DropDownBt></DropDownBt>
                     </li>
-<<<<<<< HEAD
                     <hr />
                     <br />
                     <br />
                     <li className="content-start py-4">
-                     <DropDownUser></DropDownUser>
+                        <DropDownUser></DropDownUser>
                     </li>
-=======
->>>>>>> 3ac04731fefa62e6db524743f9f4788ff7f8e875
 
                 </ul>
 
