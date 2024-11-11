@@ -19,7 +19,12 @@ import AdminEdit from "../pages/admin/AdminEdit.jsx";
 import Booking from "../pages/user/Booking.jsx";
 import CarGallery from "../pages/user/CarGallery.jsx";
 import AdminHome from "../pages/admin/AdminHome.jsx";
-import CreateCar from "../pages/admin/CreateCar.jsx";
+import CarList from "../pages/admin/controller/CarList.jsx";
+import CreateCar from "../pages/admin/controller/CreateCar.jsx";
+import EditCar from "../pages/admin/controller/EditCar.jsx";
+import DeleteCar from "../pages/admin/controller/DeleteCar.jsx";
+import UserList from "../pages/admin/controller/UserList.jsx";
+import DeleteUser from "../pages/user/DeleteUser.jsx";
 
 const router = createBrowserRouter([
 
@@ -32,7 +37,6 @@ const router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
-
       {
         path: "aboutus",
         element: <AboutUs />
@@ -59,12 +63,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "admin sign-up",
+        path: "admin-sign-up",
         element: <AdminSignup />,
-      },
-            {
-        path: "car-gallery",
-        element: <CarGallery />
       },
       {
         path: "car-gallery",
@@ -90,7 +90,11 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "updateUser",
+        path:"delet-user/:id",
+        element:<DeleteUser/>
+      },
+      {
+        path: "updateUser/:id",
         element: <UpdateUser />
       },
       {
@@ -118,11 +122,12 @@ const router = createBrowserRouter([
         path: "admin-home",
         element: <AdminHome/>
       },
-      {
-        path: "car-gallery",
-        element: <CarGallery />
-      },
 
+
+      {
+        path:"car-list",
+        element:<CarList/>
+      },
       {
         path: "edit",
         element: <AdminEdit />
@@ -130,6 +135,22 @@ const router = createBrowserRouter([
       {
         path:"create-car",
         element:<CreateCar/>
+      },
+      {
+        path:"edit-car/:id",
+        element:<EditCar/>
+      },
+      {
+        path:"car-detail/:id",
+        element:<Details/>
+      },
+      {
+        path:"delete-car/:id",
+        element:<DeleteCar/>
+      },
+      {
+        path:"user-list",
+        element:<UserList/>
       },
     ]
   },

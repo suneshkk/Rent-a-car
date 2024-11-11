@@ -57,7 +57,7 @@ function AdminLogin() {
                 {...register('password', { required: true })}
               />
               <label className="label mt-2">
-                <Link to="/admin sign-up" className="text-teal-500 hover:text-teal-700 font-semibold">
+                <Link to="/admin-sign-up" className="text-teal-500 hover:text-teal-700 font-semibold">
                   New user? Sign up here!
                 </Link>
               </label>

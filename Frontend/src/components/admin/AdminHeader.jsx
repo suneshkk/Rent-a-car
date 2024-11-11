@@ -49,9 +49,8 @@ function AdminHeader() {
             })
 
             setProfile(responce?.data?.data);
-            console.log(responce)
         } catch (error) {
-            toast.error("something went wrong");
+            toast.error("Please Login..!");
             console.log(error);
         };
     };
@@ -74,7 +73,7 @@ function AdminHeader() {
             </div>
             <div className="relative text-right flex gap-4 ">
 
-                <Theme/>
+                <Theme />
                 <div className=''>
                     <button onClick={toggleDropdown} className="flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-100 text-black font-bold hover:bg-lime-400 focus:outline-none">
                         <img src={ProfilPic} alt="logo" className="w-14 h-7 rounded-full" />
@@ -86,13 +85,11 @@ function AdminHeader() {
                     <div className="absolute right-0 top-16 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
                         <button onClick={handleDelete}>
                             <h1 className="text-lg text-emerald-900 font-bold"> delete account</h1>
-
-
                         </button>
-                        <button>
-                            
-                        </button>
+                        <Link to={'/admin/edit'}>
+                            <h1 className="text-lg text-emerald-900 font-bold"> Edit </h1>
 
+                        </Link>
                         <button
                             onClick={() => {
                                 closeDropdown();

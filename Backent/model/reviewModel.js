@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const reviewSchema = new mongoose.Schema({
     carId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Car',
+        ref: 'car',
         required: true,
     },
     userId: {
@@ -33,4 +33,4 @@ const reviewSchema = new mongoose.Schema({
     },
 );
 
-export const review = mongoose.model('Review', reviewSchema);
+export const Review = mongoose.model('Review', reviewSchema);

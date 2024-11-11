@@ -1,4 +1,4 @@
-import { useEffect} from 'react'
+import { useEffect } from 'react'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,14 +13,12 @@ const AuthUser = ({ children }) => {
 
     const checkUser = async () => {
 
-     console.log(isUserExist,"user")
         try {
             const response = await axiosInstance.get("/user/check-user",
                 {
-                    Credentials: true,
+                    withCredentials: true,
                 });
             dispatch(saveUser())
-           console.log(response,"data")
 
         } catch (error) {
             dispatch(clearUser())

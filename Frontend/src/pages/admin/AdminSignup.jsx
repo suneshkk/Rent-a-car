@@ -14,23 +14,23 @@ function AdminSignup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    
+
 
     if (secretKey !== "Wheelznow") {
       alert("Invalid admin");
     } else {
       try {
         const response = await axiosInstance.post(
-          '/admin/sign-up',
-          name,phone,email,password,
+          '/admin/sign-up', {
+          name, phone, email, password,
+        },
           { withCredentials: true }
         );
-
+        console.log("data res---", response)
         if (response?.data?.success) {
           toast.success("Signup successful!");
-          navigate('/admin/profile');
+          navigate('/admin/admin-home');
         }
-
       } catch (error) {
         toast.error("Something went wrong");
         console.log(error);

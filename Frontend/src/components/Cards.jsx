@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function CarList({ car }) {
-  // console.log(car, "ffghj==")
   return (
     <div className="car card-body">
 

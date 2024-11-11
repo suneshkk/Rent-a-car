@@ -19,8 +19,8 @@ router.post("/login", adminLogin);
 router.post("/logout",adminAuth, adminLogout);
 
 router.get("/profile", adminAuth, adminProfile);
-router.put("/update", adminAuth, adminUpdate);
-router.delete("/delete", adminAuth, adminDelete);
+router.put("/update/:id", adminAuth, adminUpdate);
+router.delete("/delete/:id", adminAuth, adminDelete);
 router.get("/user-list",adminAuth,userlist);
 
 router.get("/check-admin", adminAuth, adminCheck);

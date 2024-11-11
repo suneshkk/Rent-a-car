@@ -58,11 +58,6 @@ const adminModelSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid phone number! It should contain exactly 10 digits.`
         }
     },
-    profilePic: {
-        type: String,
-        default: "profilePic",
-
-    },
     role: {
         type: String,
         enum: ['admin'],
