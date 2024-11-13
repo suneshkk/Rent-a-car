@@ -4,7 +4,7 @@ import CarList from '../../components/Cards.jsx';
 import Loader from '../../components/util/Loader.jsx';
 
 function CarGallery() {
-    const [data, setData] = useState([]);
+    const [car, setcar] = useState([]);
     const [loading, setLoading] = useState(true)
 
     const fetchCar = async () => {
@@ -14,7 +14,7 @@ function CarGallery() {
                 withCredentials: true,
             });
             setLoading(false);
-            setData(responce?.data?.data);
+            setcar(responce?.data?.data);
             // console.log(responce)
         } catch (error) {
             console.log(error);
@@ -31,7 +31,7 @@ function CarGallery() {
             {loading ?
                 (<Loader />) : (
                     <div className="2xl:flex 2xl:flex-wrap xl:flex xl:flex-wrap lg:flex lg:flex-wrap md:flex md:flex-wrap  " >
-                        {data.map((value) => (
+                        {car.map((value) => (
                             <CarList car={value} key={value?._id} />
                         ))}
                     </div>

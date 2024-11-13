@@ -1,4 +1,4 @@
-import { carSchema } from '../model/carModel.js';
+import { car } from '../model/carModel.js';
 import { handleImageUpload } from '../util/imageUpload.js';
 
 
@@ -13,7 +13,7 @@ export const createCar = async (req, res, next) => {
         }
 
         // Check if the car already exists
-        const isCarExist = await carSchema.findOne({ carName });
+        const isCarExist = await car.findOne({ carName });
         if (isCarExist) {
             return res.status(400).json({ success: false, message: "Car already exists" });
         }
@@ -24,7 +24,7 @@ export const createCar = async (req, res, next) => {
         }
 
         // Create a new car object and save it to the database
-        const newCar = new carSchema({
+        const newCar = new car({
             carName,
             brand,
             year,
@@ -51,7 +51,7 @@ export const carlist = async (req, res, next) => {
 
     try {
         //find car list from schema
-        const cars = await carSchema.find()
+        const cars = await car.find()
 
         return res.status(200).json({ success: true, message: "Car List Fetched Successfully", data: cars });
 
@@ -66,13 +66,13 @@ export const getCarById = async (req, res, next) => {
     try {
         const  carId  = req.params.id;
         // Find car by ID
-        const car = await carSchema.findById(carId)
-        if (!car) {
+        const cars = await car.findById(carId)
+        if (!cars) {
             return res.status(404).json({ success: false, message: "Car not found" });
         }
 
         // Return the car details
-        return res.status(200).json({ success: true, message: "Car fetched successfully", data: car });
+        return res.status(200).json({ success: true, message: "Car fetched successfully", data:cars });
 
     } catch (error) {
         console.log(error);
@@ -85,7 +85,7 @@ export const deleteCar = async (req, res, next) => {
     try {
         const carId = req.params.id;
 
-        const carDeleted = await carSchema.findByIdAndDelete(carId);
+        const carDeleted = await car.findByIdAndDelete(carId);
 
         if (!carDeleted) res.status(400).json({ success: false, message: "NO car for delete" });
 
@@ -103,7 +103,7 @@ export const updateCar = async (req, res, next) => {
         const carUpdated = req.body;
         let imageUrl;
 
-        const isCarExist = await carSchema.findById(carId);
+        const isCarExist = await car.findById(carId);
         if (!isCarExist) {
             return res.status(404).json({ message: "car not found" })
         }
@@ -115,7 +115,7 @@ export const updateCar = async (req, res, next) => {
             carUpdated.image = imageUrl;
         }
         // Find and update the car by ID
-        const result = await carSchema.findByIdAndUpdate(carId, carUpdated, { new: true });
+        const result = await car.findByIdAndUpdate(carId, carUpdated, { new: true });
 
 
         // Return the updated car details
@@ -125,6 +125,6 @@ export const updateCar = async (req, res, next) => {
     } catch (error) {
         console.log(error);
         return next(error);
-    }
+    };
 
-}
+};

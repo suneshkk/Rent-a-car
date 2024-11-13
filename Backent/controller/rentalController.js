@@ -1,57 +1,66 @@
 import { rentalSchema } from "../model/renatalModel.js";
-import { carSchema } from "../model/carModel.js";
-
-
+import { car } from "../model/carModel.js";
 
 export const forBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const  carId = req.params.id;
-
-    //  console.log("user",userId)
-    //   console.log("car", carId);
-    const {startUpDate,endDate,} =req.body;
-    if(!startUpDate || !endDate){
-      return res.ststus(400).json({message: "all fields required"})
-    }
-
-    // Find the car using the provided ID
-    const carData = await carSchema.findById(carId);
+    const carId = req.params.id;
+    const { fromDate, toDate, totalHours, totalAmount } = req.body;
+    const carData = await car.findById(carId);
     if (!carData) {
-      return res.status(400).json({ message: "There is no similar CAR" });
-    }
-
-    // Find existing rental or create a new one if it doesn't exist
-    let rental = await rentalSchema.findOne({ userId });
-    if (!rental) {
-      rental = new rentalSchema({ userId, car: [] });
-    }
-
-    // Check if the car is already in the rental
-    const carExists = rental.car.find((item) => item.carId.equals(item));
-
-    if (carExists) {
-      return res.status(400).json({ message: "This item is already in your cart" });
-    }
-
-    // Add the car to the rental
-    rental.car.push({
-      carId,
-      price: carData.price,
+      return res.status(404).json({ message: "car not found" })
+    };
+    const creatBooking = new rentalSchema({
+      car: carId,
+      user: userId,
+      fromDate,
+      toDate,
+      totalHour: Number(totalHours),
+      totalAmount: Number(totalAmount),
     });
-    // Calculate total price if you have this method in your schema
-    rental.calculateTotalPrice();
 
-    // Save the rental
-    await rental.save();
+    console.log("saved data", creatBooking)
+    await creatBooking.save();
 
-    return res.status(200).json({ message: "Added to Rent Book", data: carData });
+    return res.status(201).json({ success: true, message: "Booked successfully", data: creatBooking });
   } catch (error) {
-    console.error("Error adding to rental:", error);
+    console.error(error);
     return next(error);
   }
 };
 
+
+// const { fromDate, toDate, totalHours, totalAmount, } = req.body;
+// if (!fromDate || !toDate || !totalHours || !totalAmount) {
+//   return res.status(404).json({ message: "All fields required" });
+// };
+
+// const from = new Date(fromDate);
+// const to = new Date(toDate);
+// // checking the cardata is existing and fetching 
+// const carData = await car.findById(carId);
+// if (!carData) {
+//   return res.status(404).json({ message: "car not found" })
+// };
+
+
+// // Find existing booking for the user
+// let carBooking = await rentalSchema.findOne({ userId });
+// if (!carBooking) {
+//   carBooking = new rentalSchema({ userId, cars: [], });
+// };
+
+// carBooking.cars.push({
+//   carId: carId,
+//   price: carData.price,
+//   image: carData.image,
+//   fromDate: from,
+//   toDate: to,
+//   totalHours: Number(totalHours),
+//   totalAmount: Number(totalAmount),
+// });
+
+// Save the booking
 export const bookedCarDetials = async (req, res, next) => {
   try {
     const { user } = req;
@@ -60,7 +69,7 @@ export const bookedCarDetials = async (req, res, next) => {
     if (!rental) {
       return res.status(404).json({ message: "There is no Rental" })
     }
-    res.json({ message: "Rental fetched successfully", data: rental });
+    return res.json({ message: "Rental fetched successfully", data: rental });
   } catch (error) {
     console.log(error);
     return next(error);

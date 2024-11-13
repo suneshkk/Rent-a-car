@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.post("/for-booking/:id", userAuth, forBooking);
+router.post("/booking/:id", userAuth, forBooking);
 router.get("/booked-car/:id", userAuth, bookedCarDetials);
 router.delete("/cancel-booking/:id", userAuth, deleteBooking);
 

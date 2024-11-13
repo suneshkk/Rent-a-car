@@ -42,10 +42,6 @@ const router = createBrowserRouter([
         element: <AboutUs />
       },
       {
-        path: "car-details/:id",
-        element: <Details />
-      },
-      {
         path: "sign-up",
         element: <SignUp />
       },
@@ -103,7 +99,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: 'booking-car',
+        path: 'book-now/:id',
         element: <Booking />
       },
       {

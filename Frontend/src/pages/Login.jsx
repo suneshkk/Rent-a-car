@@ -29,7 +29,7 @@ function Login() {
       // console.log("respon", responce)
 
     } catch (error) {
-      toast.error("log-in failed")
+      toast.error("wrong password or User Name")
       navigate('/login')
       console.log(error);
     };

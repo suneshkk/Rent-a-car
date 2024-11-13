@@ -17,8 +17,8 @@ function CarList({ car }) {
             <p className='text-sm font-bold text-neutral-700'>{car?.transmission}</p>
           </div>
           <div className=''>
-            <Link to={`/car-details/${car?._id}`}>
-              <button className="btn btn-success">About Car</button>
+            <Link to={`/user/book-now/${car?._id}`}>
+              <button className="btn btn-success">Book Now</button>
             </Link>
 
           </div>

@@ -9,7 +9,7 @@ import {
 const router = express.Router();
 
 
-router.post("/add-review", userAuth, addReview);
+router.post("/add-review/:carId", userAuth, addReview);
 router.delete("/delete",userAuth,deletReviewById);
 router.get("/car-review/:id", userAuth, getCarReview);
 // router.get("/get-avarege-review",userAuth,avaregeReview);
