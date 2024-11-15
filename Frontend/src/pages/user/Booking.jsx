@@ -48,33 +48,6 @@ function Booking() {
     }, [id])
 
 
-    // const handleDateAndTime = async () => {
-    //     try {
-    //         const hours = calculateTotalHours(fromDate, toDate);
-    //         setTotalHours(hours);
-    //         const price = carData?.price;
-    //         setTotalAmount((totalHours * price));
-    //         const data = {
-    //             fromDate,
-    //             toDate,
-    //             totalHours: hours,
-    //             totalAmount,
-    //         }; 
-    //         // console.log(data)
-    //         // console.log(fromDate, "fromDate")
-    //         // console.log(toDate, "toDate")
-    //         // console.log(totalHours, "totalHours")
-    //         // console.log(totalAmount, "totalPrice")
-
-    //         const response = await axiosInstance.post(`/rental/booking/${id}`, data, {
-    //         }, { withcredentionl: true });
-    //         console.log("response", response);
-    //         toast.success("Car Booked Successfully");
-    //     } catch (error) {
-    //         console.error(error);
-    //         toast.error("Error from backend");
-    //     }
-    // };
     const handleDateAndTime = async () => {
         try {
             const from = moment().format('MM/dd/YYYY, h:mm:a');

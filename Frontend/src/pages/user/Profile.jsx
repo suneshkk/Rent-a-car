@@ -36,18 +36,18 @@ function Profile() {
 
 
     return (
-        <div className="container mx-auto min-h-screen bg-gray-600">
+        <div className="hero flex justify-center lg:min-h-screen p-10 bg bg-cover bg-orange-100">
             {loading ? (<Loader />) : (
-                <div className="flex justify-center pt-20 ">
-                    <div className="bg-white border border-green-500 p-4 text-black rounded-lg max-w-md w-full">
-                        <div className="border-b border-green-500 pb-4 mb-6">
-                            <h1 className="text-center text-2xl font-semibold">Profile</h1>
+                <div className=" ">
+                    <div className="car car-body bg-orange-50 border p-3 text-black rounded-lg max-w-md w-full">
+                        <div className="border-b border-cyan-400 pb-4 mb-6">
+                            <h1 className="text-center text-indigo-500 font-serif text-base font-semibold">Profile</h1>
                         </div>
                         <div>
                             <img
                                 src={profile?.profilePic}
                                 alt="profile-pic"
-                                className="w-32 h-32 object-cover rounded-full mx-auto"
+                                className="w-20 h-20 object-cover rounded-full mx-auto"
                             />
                         </div>
                         <div className="mb-4">

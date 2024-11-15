@@ -1,5 +1,5 @@
 import { Review } from "../model/reviewModel.js";
-import { car } from "../model/carModel.js";
+import { Car } from "../model/carModel.js";
 
 
 export const addReview = async (req, res, next) => {
@@ -14,7 +14,7 @@ export const addReview = async (req, res, next) => {
         console.log("data", carId)
 
         // checking if the car is exist
-        const carData = await car.findById(carId);
+        const carData = await Car.findById(carId);
         if (!carData) {
             return res.status(404).json({ message: "car not found" });
         }
