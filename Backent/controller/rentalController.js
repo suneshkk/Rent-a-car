@@ -6,7 +6,9 @@ export const forBooking = async (req, res, next) => {
     const userId = req.user.id;
     const carId = req.params.id;
     const { totalHours, totalAmount } = req.body;
-
+          if(!totalAmount || !totalHours){
+            return res.status(404).json({message:"All field required"})
+          }
     // find the car and ensure it exists and fetch its data
     const carData = await Car.findById(carId);
     if (!carData) {
@@ -22,18 +24,22 @@ export const forBooking = async (req, res, next) => {
     if (existingBooking) {
       return res.status(400).json({ message: "This car is already booked bby the user" })
     };
-     const newRental = new RentalSchema({
-      totalAmount:totalAmount,
-      totalHours:totalHours,
-     })
-    cars.car.push({
-      carId,
-      price: carData.price,
-      image: carData.image,
-    })
-  
+    const newRental = new RentalSchema({
+      car: [
+        {
+          carId,
+          price: carData.price,
+          image: carData.image,
+        }
+      ],
+      userId:userId,
+      totalAmount: totalAmount,
+      totalHours: totalHours,
+    });
+    await newRental.save();
 
-    return res.status(201).json({ success: true, message: "Booked successfully" });
+
+    return res.status(201).json({ success: true, message: "Booked successfully",data:newRental });
   } catch (error) {
     console.error(error);
     return next(error);

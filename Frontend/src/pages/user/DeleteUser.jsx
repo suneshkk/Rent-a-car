@@ -15,7 +15,6 @@ function DeleteUser() {
             const response = await axiosInstance.delete(`/user/delete/${id}`,
                 { withCredentials: true });
 
-            console.log("resp data ===", response)
             toast.success("account deleted...");
             navigate("/")
             setLoading(false)

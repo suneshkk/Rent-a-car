@@ -43,7 +43,7 @@ function CreateCar() {
 
       if (response.data.success) {
         toast.success("Car Created successfully");
-        navigate('/admin/car-gallery');
+        navigate('/admin/car-list');
         // console.log("response", response);
 
       } else {

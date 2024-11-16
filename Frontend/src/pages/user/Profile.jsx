@@ -36,10 +36,10 @@ function Profile() {
 
 
     return (
-        <div className="hero flex justify-center lg:min-h-screen p-10 bg bg-cover bg-orange-100">
+        <div className="hero flex justify-center min-h-screen lg:min-h-screen p-10 bg bg-cover bg-orange-100">
             {loading ? (<Loader />) : (
                 <div className=" ">
-                    <div className="car car-body bg-orange-50 border p-3 text-black rounded-lg max-w-md w-full">
+                    <div className="car car-body bg-orange-50 border p-3 text-black rounded-lg max-w-md w-full lg:size-80">
                         <div className="border-b border-cyan-400 pb-4 mb-6">
                             <h1 className="text-center text-indigo-500 font-serif text-base font-semibold">Profile</h1>
                         </div>
@@ -47,27 +47,27 @@ function Profile() {
                             <img
                                 src={profile?.profilePic}
                                 alt="profile-pic"
-                                className="w-20 h-20 object-cover rounded-full mx-auto"
+                                className="w-20 h-20 object-cover rounded-full mx-auto mb-2"
                             />
                         </div>
-                        <div className="mb-4">
-                            <span className="text-lg text-black mr-3">Name:</span>
-                            <span>{profile?.name}</span>
+                        <div className="mb-2">
+                            <span className="mr-3 text-base font-semibold">Name :</span>
+                            <span className='font-serif font-semibold'>{profile?.name}</span>
                         </div>
-                        <div className="mb-4">
-                            <span className="text-lg text-black mr-3">Phone:</span>
-                            <span>{profile?.phone}</span>
+                        <div className="mb-2">
+                            <span className=" text-black text-base font-semibold mr-3">Phone:</span>
+                            <span className='font-serif font-semibold'>{profile?.phone}</span>
                         </div>
-                        <div className="mb-4">
-                            <span className="text-lg text-black mr-3">Email:</span>
-                            <span>{profile?.email}</span>
+                        <div className="mb-2 ">
+                            <span className=" text-base font-semibold mr-3 text-black mr-3">Email:</span>
+                            <span className='font-serif font-semibold'>{profile?.email}</span>
                         </div>
-                        <div>
+                        <div className='flex justify-evenly'>
                             <Link to={`/user/updateUser/${profile?._id}`}>
-                                <button className="btn bg-sky-500">Edit</button>
+                                <button className="btn btn-ghost w-3 text-blue-600">Edit</button>
                             </Link>
                          <Link to={`/user/delet-user/${profile?._id}`}>
-                         <button className="btn bg-red-700">Delete</button>
+                         <button className="btn btn-ghost text-red-700">Delete</button>
 
                          </Link>
                         </div>

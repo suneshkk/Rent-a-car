@@ -25,6 +25,7 @@ import EditCar from "../pages/admin/controller/EditCar.jsx";
 import DeleteCar from "../pages/admin/controller/DeleteCar.jsx";
 import UserList from "../pages/admin/controller/UserList.jsx";
 import DeleteUser from "../pages/user/DeleteUser.jsx";
+import Payment from "../pages/user/Payment.jsx";
 
 const router = createBrowserRouter([
 
@@ -102,9 +103,13 @@ const router = createBrowserRouter([
         path: 'book-now/:id',
         element: <Booking />
       },
+      { 
+        path:'payment',
+        element:<Payment/>
+      } ,
       {
         path: "booked-car",
-        element: <BookedCar />,
+        element: <BookedCar/>,
       },
     ],
   },
