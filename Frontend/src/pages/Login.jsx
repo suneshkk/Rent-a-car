@@ -22,15 +22,15 @@ function Login() {
         {
           withCredentials: true,
         });
-        console.log(responce)
+        console.log(responce);
 
-      toast.success("log-in success")
-      navigate('/user/profile')
-      // console.log("respon", responce)
+      toast.success("log-in success");
+      navigate('/user/profile');
+      // console.log("respon", responce);
 
     } catch (error) {
-      toast.error("wrong password or User Name")
-      navigate('/login')
+      toast.error("wrong password or User Name");
+      navigate('/login');
       console.log(error);
     };
   };

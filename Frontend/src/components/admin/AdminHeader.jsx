@@ -4,7 +4,6 @@ import MyImage from '../../assets/logo.png'
 import toast from 'react-hot-toast';
 import ProfilPic from '../../assets/profile.png'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
-import Theme from '../ui/Theme.jsx';
 
 function AdminHeader() {
     const navigate = useNavigate();
@@ -60,11 +59,11 @@ function AdminHeader() {
 
 
     return (
-        < div className="navbar border-b-2  bg-transparent text-center flex justify-between  items-center px-4 md:px-14 bg-cover h-20 " >
+        < div className="container navbar border-b-2  bg-transparent text-center flex justify-between  items-center px-4 md:px-14 bg-cover h-20 " >
 
             <div className=" flex-1 md:flex-none sm:grid content-center	none: grid leading-relaxed ">
-                <Link to="/" className="btn btn-ghost text-xl font-bold">
-                    <img src={MyImage} alt="logo" className='h-12 ' />
+                <Link to="/" className="btn btn-ghost font-bold">
+                    <img src={MyImage} alt="logo" className='h-9 lg:h-12 md:h-11  ' />
 
                     <span className='underline '>
                         <b className='lg:text-4xl  font-bold text-opacity- italic text-amber-700 sm:text-lg' >W</b><b className='-tracking-wide'>eelzn</b><b>ow</b>
@@ -73,18 +72,18 @@ function AdminHeader() {
             </div>
             <div className="relative text-right flex gap-4 ">
 
-                <Theme />
-                <div className=''>
-                    <button onClick={toggleDropdown} className="flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-100 text-black font-bold hover:bg-lime-400 focus:outline-none">
-                        <img src={ProfilPic} alt="logo" className="w-14 h-7 rounded-full" />
-                        <span>{profile?.name}</span>
+                <div className='flex gap-2'>
+                    <button onClick={toggleDropdown} className="flex md:w- size-12 items-center space-x-2 px-4 py-2 rounded-full bg-gray-100 text-black font-bold hover:bg-lime-400 focus:outline-none">
+                        <img src={ProfilPic} alt="logo" className="rounded-full" />
                     </button>
+                    <span className='hidden md:block mt-3'>{profile?.name}</span>
+
 
                 </div>
                 {isOpen && (
-                    <div className="absolute right-0 top-16 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
+                    <div className="absolute right-0 top-16 lg:mt-2 lg:w-48 bg-white border rounded-lg shadow-lg size-28">
                         <button onClick={handleDelete}>
-                            <h1 className="text-lg text-emerald-900 font-bold"> delete account</h1>
+                            <h1 className="text-lg text-emerald-900 font-bold"> delete</h1>
                         </button>
                         <Link to={'/admin/edit'}>
                             <h1 className="text-lg text-emerald-900 font-bold"> Edit </h1>

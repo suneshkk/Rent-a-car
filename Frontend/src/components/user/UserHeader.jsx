@@ -77,7 +77,7 @@ function UserHeader() {
             </div>
 
             {/* Links - visible on larger screens */}
-            <div className={`md:flex gap-7 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}>
+            {/* <div className={`md:flex gap-7 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}>
                 <Link to="/aboutus" className="btn btn-ghost" onClick={closeMenu}>
                     <h1 className="text-lg text-emerald-900 font-bold">About Us</h1>
                 </Link>
@@ -88,7 +88,7 @@ function UserHeader() {
                 <Link to="/sign-up" className="btn btn-ghost" onClick={handleLogout}>
                     <h1 className="text-lg text-emerald-900 font-bold">Logout</h1>
                 </Link>
-            </div>
+            </div> */}
         </div>
     );
 }
