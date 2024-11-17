@@ -8,7 +8,8 @@ import DeleteButton from '../../components/util/DeleteButton.jsx';
 function Profile() {
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true)
-    const fetchUserProfile = async () => {
+    const fetchUserProfile = async (e) => {
+        e.prevenDefault()
         setLoading(true)
         try {
             const response = await axiosInstance.get('/user/profile',
@@ -47,35 +48,54 @@ function Profile() {
                                 {/* Page content here */}
                                 <label htmlFor="my-drawer" className="btn btn-ghost drawer-button">Drawer</label>
                             </div>
-                            <div className="drawer-side">
+                            <div className="drawer-side  ">
                                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
 
                                 <ul className="menu bg-cyan-700 text-base-content min-h-full w-80 p-4">
                                     {/* Sidebar content here */}
                                     <li className="content-center m-4">
-                                        <h2 className=" font-bold text-xl text-amber-600">Dashboard</h2>
+                                        <h2 className=" font-bold text-base text-amber-600">Dashboard</h2>
                                     </li>
                                     <hr />
-                                    <li className="content-start py-4">
-                                    <Link to="/aboutus" className="btn btn-ghost">
-                                            <h1 className="text-lg text-emerald-900 font-bold">About Us</h1>
+                                    <li className="content-start">
+                                        <Link to="/aboutus">
+                                            <h1 className=" text-white font-bold">About Us</h1>
                                         </Link>
                                     </li>
                                     <hr />
-                                    <br />
-                                    <br />
-                                    <li className="content-start py-4">
-                                    </li>
-                                    <div className={`md:flex gap-7 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}>
-                                      
-                                        <Link to="/user/car-Gallery" className="btn btn-ghost" >
-                                            <h1 className="text-lg text-emerald-900 font-bold">Car Gallery</h1>
+                                    <li className="content-start ">
+                                        <Link to="/user/car-Gallery" >
+                                            <h1 className=" text-white font-bold">Car Gallery</h1>
                                         </Link>
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        <Link to="/sign-up" className="" >
+                                            <h1 className=" text-white font-bold">Your Booking</h1>
+                                        </Link>
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        <Link to="/sign-up" className="" >
+                                            <h1 className=" text-white font-bold">Delete Booking</h1>
+                                        </Link>
+                                    </li>
 
-                                        <Link to="/sign-up" className="btn btn-ghost" >
-                                            <h1 className="text-lg text-emerald-900 font-bold">Logout</h1>
+                                    <hr />
+                                    <li>
+                                        <Link to="/sign-up" className="" >
+                                            <h1 className=" text-white font-bold">Delete Account</h1>
                                         </Link>
-                                    </div>
+                                    </li>
+
+                                    <hr />
+                                    <li>
+                                        <Link to="/sign-up" className="" >
+                                            <h1 className=" text-white font-bold">Sign Out</h1>
+                                        </Link>
+                                    </li>
+
+
 
 
                                 </ul>
