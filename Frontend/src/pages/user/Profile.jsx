@@ -85,7 +85,7 @@ function Profile() {
                                         </Link>
                                     </li>
                                     <hr />
-                                    <li>
+                                    {/* <li>
                                         <Link to="/sign-up" className="" >
                                             <h1 className=" text-white font-bold">Your Booking</h1>
                                         </Link>
@@ -96,7 +96,7 @@ function Profile() {
                                             <h1 className=" text-white font-bold">Delete Booking</h1>
                                         </Link>
                                     </li>
-
+                                        */}
                                     <hr />
                                     <li>
                                         <Link to="/sign-up" className="" >
@@ -158,65 +158,71 @@ function Profile() {
                     </div>
                 </div>
             )}
-            <div className="divider lg:divider-vertical text-lg font-serif font-bold text-amber-950">Booked Car Details</div>
-            <div className='m-10'>
-                <div className='flex flex-col lg:flex lg:flex-row card card-body bg-cover backdrop-brightness-90 '>
-                    <div className='card card-body bg-white'>
-                        <h3 className=' border-b-4 text- text-center font-serif text-base font-medium lg:text-lg lg:font-semibold'>Boooking Details</h3>
+            <div className="divider lg:divider-vertical text-sm lg:text-lg font-serif font-bold text-amber-950">Your Booking</div>
+            <div className='m-8 lg:m-10'>
+                <div className='flex flex-col  md:flex md:flex-row lg:flex lg:flex-row card card-body bg-cover backdrop-brightness-90 '>
+                    <div className='card card-body bg-slate-400'>
+                        <h3 className='border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Boooking Details</h3>
                         <ul className="mt-3 space-y-2">
                             <li>
-                                <label className='font-medium'><b>Total Amount :</b> </label>
-                                <span className='font-medium'><b>{bookedCar?.totalAmount || "N/A"}</b></span>
+                                <label className='text-sm   lg:text-base font-medium'><b>Total Amount :</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.totalAmount || "N/A"}</b></span>
                             </li>
+                            <hr />
                             <li>
-                                <label className='font-medium'><b>Booking Status :</b> </label>
-                                <span className='font-medium'><b>{bookedCar?.status}</b></span>
+                                <label className='text-sm   lg:text-base font-medium'><b>Booking Status :</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.status}</b></span>
                             </li>
+                            <hr />
                             <li>
-                                <label className='font-medium'><b>From Date:</b> </label>
-                                <span className='font-medium'><b>{moment(bookedCar?.fromDate).format('DD-MM-YYYY')}</b></span>
+                                <label className='text-sm   lg:text-base font-medium'><b>From Date:</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{moment(bookedCar?.fromDate).format('DD-MM-YYYY') || "N/A"}</b></span>
                             </li>
-                            <li>
-                                <label className='font-medium'><b>Todate Date:</b> </label>
-                                <span className='font-medium'><b>{moment(bookedCar?.toDate).format('DD-MM-YYYY')}</b></span>
+                            <hr />
+                            <li >
+                                <label className='text-sm   lg:text-base font-medium'><b>Todate Date:</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{moment(bookedCar?.toDate).format('DD-MM-YYYY')}</b></span>
                             </li>
-
+                               <hr />
 
                         </ul>
 
-                        
+
 
 
                     </div>
                     <div className='divider divider-vertical'></div>
-                    <div className='card card-body bg-white'>
-                        <h3 className=' border-b-4 text- text-center font-serif text-base font-medium lg:text-lg lg:font-semibold'>Booked Car Details</h3>
+                    <div className='card card-body bg-slate-400'>
+                        <h3 className='border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Booked Car Details</h3>
                         <ul className="mt-3 space-y-2">
-                        <li>
-                                <label className='font-medium'><b>Rent Per Hour :</b> </label>
-                                <span className='font-medium'><b>{bookedCar?.car?.[0]?.price}</b></span>
-                            </li>
                             <li>
-                                <label className='font-medium'><b>Car Name :</b> </label>
-                                <span className='font-medium'><b>{bookedCar?.car?.[0]?.carId?.carName}</b></span>
+                                <label className='text-sm  lg:text-base font-medium'><b>Rent Per Hour :</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.car?.[0]?.price}</b></span>
                             </li>
+                            <hr />
                             <li>
-                                <label className='font-medium'><b>Fueltype :</b> </label>
-                                <span className='font-medium'><b>{bookedCar?.car?.[0]?.carId?.fuelType}</b></span>
+                                <label className='text-sm  lg:text-base font-medium'><b>Car Name :</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.car?.[0]?.carId?.carName}</b></span>
                             </li>
-                             </ul>
+                            <hr />
+                            <li>
+                                <label className='text-sm  lg:text-base font-medium'><b>Fueltype :</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.car?.[0]?.carId?.fuelType}</b></span>
+                            </li>
+                            <hr />
+                        </ul>
 
                         <Link to={`/user/delete-booking/${bookedCar?._id}`}>
-                                    <button className="btn btn-ghost text-red-700">Delete</button>
+                            <button className="btn btn-ghost text-red-700">Delete</button>
 
-                                </Link>
-                                
+                        </Link>
+
                     </div>
-                    <div className='flex justify-center items-center card card-body bg-white '>
-                    <h3 className=' border-b-4 text- text-center font-serif text-base font-medium lg:text-lg lg:font-semibold'>Car</h3>
-                    <img src={bookedCar?.car?.[0]?.image} alt="car image" className=' lg:w-80' />
-
-                            </div>
+                    <div className='flex justify-center items-center card card-body bg-slate-400 '>
+                        <h3 className=' border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Car</h3>
+                        <img src={bookedCar?.car?.[0]?.image} alt="car image" className='md:w-40 lg:w-80' />
+                       <p className='text-blue-500'><b>Add Rating And Review</b></p>
+                    </div>
 
 
                 </div>
