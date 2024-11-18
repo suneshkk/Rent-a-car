@@ -63,6 +63,8 @@ function Booking() {
             const calculatedTotalAmount = hours * price;
             setTotalAmount(calculatedTotalAmount);
             const data = {
+                fromDate,
+                toDate,
                 totalHours: hours,
                 totalAmount: calculatedTotalAmount,
             };
@@ -75,11 +77,6 @@ function Booking() {
                 navigation('/user/payment');
 
             }
-            // else if(response?.data?.error) {
-            //     toast.error("Car is not Available. Please check another car.....!");
-            //     navigation('/user/car-gallery');
-
-            // }
         } catch (error) {
             console.error(error);
             toast.error("server error")
@@ -196,6 +193,9 @@ function Booking() {
                     </div>
                 )}
             </div >
+            <div>
+                
+            </div>
         </div>
     )
 }

@@ -3,13 +3,15 @@ import { axiosInstance } from '../../config/axiosInstance.jsx';
 import toast from 'react-hot-toast';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/util/Loader.jsx';
-import DeleteButton from '../../components/util/DeleteButton.jsx';
+import moment from 'moment'
 
 function Profile() {
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true)
-    const fetchUserProfile = async (e) => {
-        e.prevenDefault()
+    const [bookedCar, setBookedCar] = useState([]);
+    const { id } = useParams();
+    console.log("booked car", bookedCar)
+    const fetchUserProfile = async () => {
         setLoading(true)
         try {
             const response = await axiosInstance.get('/user/profile',
@@ -18,21 +20,34 @@ function Profile() {
                     timeout: 10000
 
                 });
-            setLoading(false)
+            setLoading(false);
 
             setProfile(response?.data?.data);
-            toast.success("welcome")
-            console.log("res", response)
+            toast.success("welcome");
 
         } catch (error) {
-            toast.error("something went wrong")
+            toast.error("something went wrong");
             console.log(error);
-            setLoading(false)
+            setLoading(false);
         };
     };
+    const fetchBookedCarDetails = async () => {
+        setLoading(true);
+        try {
+            const response = await axiosInstance.get(`/rental/booked-car/${id}`,
+                { withCredentials: true });
+            setLoading(false);
+            setBookedCar(response?.data?.data);
+
+        } catch (error) {
+            console.log(error);
+        };
+    };
+
     useEffect(() => {
-        fetchUserProfile()
-    }, [])
+        fetchUserProfile();
+        fetchBookedCarDetails();
+    }, []);
 
 
 
@@ -40,8 +55,9 @@ function Profile() {
         <div className="min-h-screen lg:min-h-screen p-2 bg bg-cover bg-orange-100">
             {loading ? (<Loader />) : (
 
-                <div className=" ">
+                <div className=" mb-20">
                     <div className=''>
+
                         <div className="drawer">
                             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                             <div className="drawer-content">
@@ -94,16 +110,17 @@ function Profile() {
                                             <h1 className=" text-white font-bold">Sign Out</h1>
                                         </Link>
                                     </li>
-
-
-
-
                                 </ul>
+
+
+
+
 
                             </div>
                         </div >
                     </div>
-                    <div className='flex justify-center items-center mt-10'>
+
+                    <div className='flex justify-center items-center'>
                         <div className="car  size-72 car-body bg-orange-50  text-black rounded-lg max-w-md lg:size-80">
                             <div className="border-b border-cyan-400 pb-4 mb-6">
                                 <h1 className=" text-center text-indigo-500 font-serif text-base font-semibold">Profile</h1>
@@ -141,7 +158,71 @@ function Profile() {
                     </div>
                 </div>
             )}
-        </div>
+            <div className="divider lg:divider-vertical text-lg font-serif font-bold text-amber-950">Booked Car Details</div>
+            <div className='m-10'>
+                <div className='flex flex-col lg:flex lg:flex-row card card-body bg-cover backdrop-brightness-90 '>
+                    <div className='card card-body bg-white'>
+                        <h3 className=' border-b-4 text- text-center font-serif text-base font-medium lg:text-lg lg:font-semibold'>Boooking Details</h3>
+                        <ul className="mt-3 space-y-2">
+                            <li>
+                                <label className='font-medium'><b>Total Amount :</b> </label>
+                                <span className='font-medium'><b>{bookedCar?.totalAmount || "N/A"}</b></span>
+                            </li>
+                            <li>
+                                <label className='font-medium'><b>Booking Status :</b> </label>
+                                <span className='font-medium'><b>{bookedCar?.status}</b></span>
+                            </li>
+                            <li>
+                                <label className='font-medium'><b>From Date:</b> </label>
+                                <span className='font-medium'><b>{moment(bookedCar?.fromDate).format('DD-MM-YYYY')}</b></span>
+                            </li>
+                            <li>
+                                <label className='font-medium'><b>Todate Date:</b> </label>
+                                <span className='font-medium'><b>{moment(bookedCar?.toDate).format('DD-MM-YYYY')}</b></span>
+                            </li>
+
+
+                        </ul>
+
+                        
+
+
+                    </div>
+                    <div className='divider divider-vertical'></div>
+                    <div className='card card-body bg-white'>
+                        <h3 className=' border-b-4 text- text-center font-serif text-base font-medium lg:text-lg lg:font-semibold'>Booked Car Details</h3>
+                        <ul className="mt-3 space-y-2">
+                        <li>
+                                <label className='font-medium'><b>Rent Per Hour :</b> </label>
+                                <span className='font-medium'><b>{bookedCar?.car?.[0]?.price}</b></span>
+                            </li>
+                            <li>
+                                <label className='font-medium'><b>Car Name :</b> </label>
+                                <span className='font-medium'><b>{bookedCar?.car?.[0]?.carId?.carName}</b></span>
+                            </li>
+                            <li>
+                                <label className='font-medium'><b>Fueltype :</b> </label>
+                                <span className='font-medium'><b>{bookedCar?.car?.[0]?.carId?.fuelType}</b></span>
+                            </li>
+                             </ul>
+
+                        <Link to={`/user/delete-booking/${bookedCar?._id}`}>
+                                    <button className="btn btn-ghost text-red-700">Delete</button>
+
+                                </Link>
+                                
+                    </div>
+                    <div className='flex justify-center items-center card card-body bg-white '>
+                    <h3 className=' border-b-4 text- text-center font-serif text-base font-medium lg:text-lg lg:font-semibold'>Car</h3>
+                    <img src={bookedCar?.car?.[0]?.image} alt="car image" className=' lg:w-80' />
+
+                            </div>
+
+
+                </div>
+
+            </div>
+        </div >
     );
 }
 

@@ -24,8 +24,6 @@ const rentalStatus = new mongoose.Schema({
                 type: String,
                 default: "image",
             },
-
-
         },
     ],
     totalHours: {
@@ -39,7 +37,14 @@ const rentalStatus = new mongoose.Schema({
         required: true,
         default: 0,
     },
-
+    fromDate:{
+        type:Date,
+        required:true,
+    },
+    toDate:{
+        type:Date,
+        required:true,
+    },
 
     status: {
         type: String,
@@ -55,6 +60,6 @@ const rentalStatus = new mongoose.Schema({
 );
 
 
-export const RentalSchema = mongoose.model("rentalSchema", rentalStatus);
+export const RentalModel = mongoose.model("bookingcollections", rentalStatus);
 
 
