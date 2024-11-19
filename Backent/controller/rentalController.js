@@ -1,5 +1,6 @@
 import {  RentalModel } from "../model/rentalModel.js"
 import { Car } from "../model/carModel.js";
+import { populate } from "dotenv";
 
 export const forBooking = async (req, res, next) => {
   try {
@@ -41,6 +42,7 @@ export const forBooking = async (req, res, next) => {
       toDate:toDate,
     });
     await newRental.save();
+    console.log("ca===========r",newRental)
 
 
     return res.status(201).json({ success: true, message: "Booked successfully",data:newRental });
@@ -57,15 +59,30 @@ export const bookedCarDetials = async (req, res, next) => {
     const rental = await RentalModel.findOne({ userId: user.id }).populate("car.carId");
 
     if (!rental) {
-      return res.status(404).json({ message: "There is no Rental" })
+      return res.status(404).json({ message: "There is no Rental"})
     }
     return res.json({ message: "Rental fetched successfully", data: rental });
   } catch (error) {
     console.log(error);
     return next(error);
   };
-
 };
+// try {
+//   const bookedCar = req.params.id
+//   const bookedData = await RentalModel.findById(({bookedCar}),populate("car.carid"));
+//   if(!bookedCar){
+//     return res.status(404).json({message:"No booking"})
+
+//   }
+//   return res.status(200).json({message:"Rental fetched successfully", data:bookedCar})
+
+// }catch(error){
+//   console.log(error);
+//   return next(error);
+// }
+
+
+// };
 export const deleteBooking = async (req, res, next) => {
   try {
       const bookingId = req.params.id;

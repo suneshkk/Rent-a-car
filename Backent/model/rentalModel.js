@@ -24,6 +24,10 @@ const rentalStatus = new mongoose.Schema({
                 type: String,
                 default: "image",
             },
+            fuelType:{
+            type:String,
+            reuired:true,
+            },
         },
     ],
     totalHours: {

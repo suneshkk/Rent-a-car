@@ -10,7 +10,7 @@ function Profile() {
     const [loading, setLoading] = useState(true)
     const [bookedCar, setBookedCar] = useState([]);
     const { id } = useParams();
-    console.log("booked car", bookedCar)
+    // console.log("booked car", bookedCar)
     const fetchUserProfile = async () => {
         setLoading(true)
         try {
@@ -34,11 +34,11 @@ function Profile() {
     const fetchBookedCarDetails = async () => {
         setLoading(true);
         try {
-            const response = await axiosInstance.get(`/rental/booked-car/${id}`,
+            const response = await axiosInstance.get(`/rental/booked-car`,
                 { withCredentials: true });
             setLoading(false);
             setBookedCar(response?.data?.data);
-
+            console.log("response profile",response);
         } catch (error) {
             console.log(error);
         };
@@ -47,7 +47,7 @@ function Profile() {
     useEffect(() => {
         fetchUserProfile();
         fetchBookedCarDetails();
-    }, []);
+    }, [id]);
 
 
 
@@ -183,7 +183,7 @@ function Profile() {
                                 <label className='text-sm   lg:text-base font-medium'><b>Todate Date:</b> </label>
                                 <span className='text-sm lg:text-base font-medium'><b>{moment(bookedCar?.toDate).format('DD-MM-YYYY')}</b></span>
                             </li>
-                               <hr />
+                            <hr />
 
                         </ul>
 
@@ -221,7 +221,7 @@ function Profile() {
                     <div className='flex justify-center items-center card card-body bg-slate-400 '>
                         <h3 className=' border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Car</h3>
                         <img src={bookedCar?.car?.[0]?.image} alt="car image" className='md:w-40 lg:w-80' />
-                       <p className='text-blue-500'><b>Add Rating And Review</b></p>
+                        <p className='text-blue-500'><b>Add Rating And Review</b></p>
                     </div>
 
 

@@ -5,6 +5,7 @@ import Loader from '../../components/util/Loader.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
 import moment from 'moment';
 
 function Booking() {
@@ -16,6 +17,7 @@ function Booking() {
     const { id } = useParams();
     const [loading, setLoading] = useState(false);
     const navigation = useNavigate()
+
 
     // Function to calculate total hours
     const calculateTotalHours = (fromDate, toDate) => {
@@ -51,10 +53,6 @@ function Booking() {
 
     const handleDateAndTime = async () => {
         try {
-            if (totalAmount == 0 && totalHours == 0) {
-                toast.error("alfields required");
-            };
-
 
             const hours = calculateTotalHours(fromDate, toDate);
             setTotalHours(hours);
@@ -68,12 +66,16 @@ function Booking() {
                 totalHours: hours,
                 totalAmount: calculatedTotalAmount,
             };
+            if (fromDate >= toDate) {
+                toast.error("Invalid Date Range, Please Select valid date")
+            }
             const response = await axiosInstance.post(`/rental/booking/${id}`, data,
                 {
                     withCredentials: true,
                 });
             if (response?.data?.data) {
                 toast.success("Car Booked Successfully");
+                // console.log(response, "resData")
                 navigation('/user/payment');
 
             }
@@ -81,8 +83,7 @@ function Booking() {
             console.error(error);
             toast.error("server error")
         };
-    }
-
+    };
 
 
     return (
@@ -180,12 +181,10 @@ function Booking() {
                                 {totalAmount !== null && (
                                     <div>total amount:{totalAmount.toFixed()}</div>
                                 )}
-                                <button
-                                    onClick={handleDateAndTime}
-                                    className="mt-6 px-4 py-2  hover:bg-amber-600 text-white rounded-md hover:"
-                                >
-                                    save
+                                <button className="mt-6 px-4 py-2  hover:bg-amber-600 text-blue-600 rounded-md font-bold" onClick={handleDateAndTime}>
+                                    Book Now
                                 </button>
+
                             </div>
 
                         </div>
@@ -194,7 +193,7 @@ function Booking() {
                 )}
             </div >
             <div>
-                
+
             </div>
         </div>
     )

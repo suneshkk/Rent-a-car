@@ -18,7 +18,7 @@ function CarList({ car }) {
           </div>
           <div className=''>
             <Link to={`/user/book-now/${car?._id}`}>
-              <button className="btn btn-success">Book Now</button>
+              <button className="btn btn-success">About Car</button>
             </Link>
 
           </div>

@@ -9,7 +9,7 @@ import {
 const router = express.Router();
 
 router.post("/booking/:id", userAuth, forBooking);
-router.get("/booked-car/:id", userAuth, bookedCarDetials);
+router.get("/booked-car", userAuth, bookedCarDetials);
 router.delete("/cancel-booking/:id", userAuth, deleteBooking);
 
 
