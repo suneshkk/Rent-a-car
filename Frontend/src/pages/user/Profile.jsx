@@ -38,7 +38,7 @@ function Profile() {
                 { withCredentials: true });
             setLoading(false);
             setBookedCar(response?.data?.data);
-            console.log("response profile",response);
+            // console.log("response profile",response);
         } catch (error) {
             console.log(error);
         };
@@ -85,18 +85,6 @@ function Profile() {
                                         </Link>
                                     </li>
                                     <hr />
-                                    {/* <li>
-                                        <Link to="/sign-up" className="" >
-                                            <h1 className=" text-white font-bold">Your Booking</h1>
-                                        </Link>
-                                    </li>
-                                    <hr />
-                                    <li>
-                                        <Link to="/sign-up" className="" >
-                                            <h1 className=" text-white font-bold">Delete Booking</h1>
-                                        </Link>
-                                    </li>
-                                        */}
                                     <hr />
                                     <li>
                                         <Link to="/sign-up" className="" >
@@ -166,7 +154,7 @@ function Profile() {
                         <ul className="mt-3 space-y-2">
                             <li>
                                 <label className='text-sm   lg:text-base font-medium'><b>Total Amount :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.totalAmount || "N/A"}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.totalAmount}</b></span>
                             </li>
                             <hr />
                             <li>
@@ -221,7 +209,9 @@ function Profile() {
                     <div className='flex justify-center items-center card card-body bg-slate-400 '>
                         <h3 className=' border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Car</h3>
                         <img src={bookedCar?.car?.[0]?.image} alt="car image" className='md:w-40 lg:w-80' />
-                        <p className='text-blue-500'><b>Add Rating And Review</b></p>
+                        <Link to={`/user/add-review/${bookedCar?._id}`}>                      
+                          <p className='text-blue-500'><b>Add Rating And Review</b></p>
+                        </Link>
                     </div>
 
 

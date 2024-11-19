@@ -31,8 +31,7 @@ export const forBooking = async (req, res, next) => {
           carId,
           price: carData.price,
           image: carData.image,
-          fuelType:carData.fuelType,
-          
+          carName:carData.carName,
         }
       ],
       userId:userId,
@@ -42,10 +41,7 @@ export const forBooking = async (req, res, next) => {
       toDate:toDate,
     });
     await newRental.save();
-    console.log("ca===========r",newRental)
-
-
-    return res.status(201).json({ success: true, message: "Booked successfully",data:newRental });
+   return res.status(201).json({ success: true, message: "Booked successfully",data:newRental });
   } catch (error) {
     console.error(error);
     return next(error);
@@ -67,22 +63,6 @@ export const bookedCarDetials = async (req, res, next) => {
     return next(error);
   };
 };
-// try {
-//   const bookedCar = req.params.id
-//   const bookedData = await RentalModel.findById(({bookedCar}),populate("car.carid"));
-//   if(!bookedCar){
-//     return res.status(404).json({message:"No booking"})
-
-//   }
-//   return res.status(200).json({message:"Rental fetched successfully", data:bookedCar})
-
-// }catch(error){
-//   console.log(error);
-//   return next(error);
-// }
-
-
-// };
 export const deleteBooking = async (req, res, next) => {
   try {
       const bookingId = req.params.id;

@@ -22,11 +22,11 @@ const payment = new mongoose.Schema(
         ],
         totalPrice: {
             type: Number,
-            required: true,
+            // required: true,
         },
     },
     { timestamps: true }
 
 
 );
-export const order = mongoose.model("order", carModelSchema);
+export const Order = mongoose.model("Order", payment);

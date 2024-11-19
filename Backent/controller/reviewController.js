@@ -5,7 +5,7 @@ import { Car } from "../model/carModel.js";
 export const addReview = async (req, res, next) => {
 
     try {
-        // carid rating commet gets throuhg body
+        // carid rating and commet gets throuhg body
 
         const { carId } = req.params;
         const { rating, comment } = req.body;

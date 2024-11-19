@@ -27,6 +27,8 @@ import UserList from "../pages/admin/controller/UserList.jsx";
 import DeleteUser from "../pages/user/DeleteUser.jsx";
 import Payment from "../pages/user/Payment.jsx";
 import DeleteBooking from "../pages/user/DeleteBooking.jsx"
+import PaymentSuccess from "../pages/user/SuccessPage.jsx";
+import AddReview from "../pages/user/AddReview.jsx";
 
 const router = createBrowserRouter([
 
@@ -86,6 +88,14 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path:"add-review/:id",
+        element:<AddReview/>
+      },
+      {
+        path:"success",
+        element:<PaymentSuccess/>
       },
       {
         path:"delet-user/:id",
