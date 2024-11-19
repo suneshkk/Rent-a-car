@@ -10,7 +10,6 @@ function Profile() {
     const [loading, setLoading] = useState(true)
     const [bookedCar, setBookedCar] = useState([]);
     const navigate = useNavigate();
-    const { id } = useParams();
 
     const fetchUserProfile = async () => {
         setLoading(true)
@@ -53,9 +52,9 @@ function Profile() {
     const handleLogout = async () => {
 
         try {
-            const response = await axiosInstance.post('/user/logout/',
+            const response = await axiosInstance.post('/user/logout/',{},
                 {
-                    Credentials: true
+                    withCredentials: true
                 });
 
             navigate('/')
@@ -71,7 +70,8 @@ function Profile() {
 
     return (
         <div className="min-h-screen lg:min-h-screen p-2 bg bg-cover bg-orange-100">
-            {loading ? (<Loader />) : (
+            {loading ? 
+             (<Loader />) : (
 
                 <div className=" mb-20">
                     <div className=''>
