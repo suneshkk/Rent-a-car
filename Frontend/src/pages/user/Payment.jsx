@@ -50,9 +50,8 @@ function Payment() {
   return (
     <div className='min-h-screen flex justify-center items-center bg-slate-400 bg-cover '>
       {loading ? (<Loader />) : (
-        <div className='card card-body bg-cover bg-amber-300'>
-          <h1 className='card card-title'><b>Conforme Your payment</b></h1>
-        <h1>{bookingData?.totalAmount}</h1>
+        <div className='card card-body bg-cover bg-amber-300 m-60'>
+          <h1 className='card card-title'><b>Confirm Your payment</b></h1>
         <button onClick={makePayment} className="btn btn-success"><b>Pay Now</b></button>
 
         </div>

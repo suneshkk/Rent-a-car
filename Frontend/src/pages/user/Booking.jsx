@@ -148,6 +148,7 @@ function Booking() {
                                             selected={fromDate}
                                             required:true
                                             onChange={(date) => setFromDate(date)}
+                                            minDate={new Date()}
                                             showTimeSelect
                                             dateFormat="MM/dd/yyyy, h:mm a"
                                             className="input input-bordered"
@@ -163,6 +164,7 @@ function Booking() {
                                             selected={toDate}
                                             required:true
                                             onChange={(date) => setToDate(date)}
+                                            minDate={new Date()}
                                             showTimeSelect
                                             dateFormat="MM/dd/yyyy, h:mm a"
                                             className="input input-bordered"

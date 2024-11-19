@@ -81,20 +81,21 @@ function AdminHeader() {
 
                 </div>
                 {isOpen && (
-                    <div className="absolute right-0 top-16 lg:mt-2 lg:w-48 bg-white border rounded-lg shadow-lg size-28">
-                        <button onClick={handleDelete}>
-                            <h1 className="text-lg text-emerald-900 font-bold"> delete</h1>
-                        </button>
+                    <div className="absolute p-3 right-0 top-16 lg:mt-2 lg:w-48 bg-white border rounded-lg shadow-lg size-28">
                         <Link to={'/admin/edit'}>
-                            <h1 className="text-lg text-emerald-900 font-bold"> Edit </h1>
+                            <h1 className=" text-emerald-900 font-semibold border-b-4"> Edit </h1>
 
                         </Link>
+                        <button onClick={handleDelete} className=''>
+                            <h1 className=" text-red-700 font-semibold border-b-4">Delete account </h1>
+                        </button>
+
                         <button
                             onClick={() => {
                                 closeDropdown();
                                 handleLogout();
                             }}
-                            className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+                            className="w-full text-left px-4 py-2 text-red-700 hover:bg-gray-100"
                         >
                             Logout
                         </button>

@@ -9,8 +9,9 @@ function Profile() {
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true)
     const [bookedCar, setBookedCar] = useState([]);
+    const navigate = useNavigate();
     const { id } = useParams();
-    // console.log("booked car", bookedCar)
+
     const fetchUserProfile = async () => {
         setLoading(true)
         try {
@@ -49,6 +50,23 @@ function Profile() {
         fetchBookedCarDetails();
     }, [id]);
 
+    const handleLogout = async () => {
+
+        try {
+            const response = await axiosInstance.post('/user/logout/',
+                {
+                    Credentials: true
+                });
+
+            navigate('/')
+            toast.success("logout-success")
+        } catch (error) {
+            console.log(error);
+        };
+    };
+
+
+
 
 
     return (
@@ -72,12 +90,12 @@ function Profile() {
                                     <li className="content-center m-4">
                                         <h2 className=" font-bold text-base text-amber-600">Dashboard</h2>
                                     </li>
-                                    <hr />
+                                    {/* <hr />
                                     <li className="content-start">
                                         <Link to="/aboutus">
-                                            <h1 className=" text-white font-bold">About Us</h1>
+                                            <h1 className=" text-white font-bold ">About Us</h1>
                                         </Link>
-                                    </li>
+                                    </li> */}
                                     <hr />
                                     <li className="content-start ">
                                         <Link to="/user/car-Gallery" >
@@ -87,17 +105,40 @@ function Profile() {
                                     <hr />
                                     <hr />
                                     <li>
-                                        <Link to="/sign-up" className="" >
-                                            <h1 className=" text-white font-bold">Delete Account</h1>
-                                        </Link>
+                                        <button><h1 className=" text-white font-bold" >Delete Account</h1></button>
                                     </li>
 
                                     <hr />
+                                  
                                     <li>
-                                        <Link to="/sign-up" className="" >
-                                            <h1 className=" text-white font-bold">Sign Out</h1>
+                                        <Link to={`/user/updateUser/${profile?._id}`}>
+                                            <button ><h1 className=" text-white font-bold">Edit Account</h1></button>
                                         </Link>
+
                                     </li>
+                                    <hr />
+                                    <li>
+                                        <button className='' onClick={handleLogout}><h1 className=" text-white font-bold">Sign Out</h1></button>
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        <Link to={`/user/delet-user/${profile?._id}`}>
+                                            <button><h1 className=" text-red-700 font-bold">Delete Account</h1></button>
+
+                                        </Link>
+
+                                    </li>
+                                    <hr />
+                                    <li>
+
+                                        <Link to={`/user/delete-booking/${bookedCar?._id}`}>
+                                            <button ><h1  className=" text-red-700 font-bold">Delete booking</h1></button>
+
+                                        </Link>
+
+                                    </li>
+                                    <hr />
+
                                 </ul>
 
 
@@ -133,13 +174,6 @@ function Profile() {
                                 <span className='font-serif font-semibold'>{profile?.email}</span>
                             </div>
                             <div className='flex justify-evenly'>
-                                <Link to={`/user/updateUser/${profile?._id}`}>
-                                    <button className="btn btn-ghost w-3 text-blue-600">Edit</button>
-                                </Link>
-                                <Link to={`/user/delet-user/${profile?._id}`}>
-                                    <button className="btn btn-ghost text-red-700">Delete</button>
-
-                                </Link>
                             </div>
 
                         </div>
@@ -200,17 +234,12 @@ function Profile() {
                             <hr />
                         </ul>
 
-                        <Link to={`/user/delete-booking/${bookedCar?._id}`}>
-                            <button className="btn btn-ghost text-red-700">Delete</button>
-
-                        </Link>
-
                     </div>
                     <div className='flex justify-center items-center card card-body bg-slate-400 '>
                         <h3 className=' border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Car</h3>
                         <img src={bookedCar?.car?.[0]?.image} alt="car image" className='md:w-40 lg:w-80' />
-                        <Link to={`/user/add-review/${bookedCar?._id}`}>                      
-                          <p className='text-blue-500'><b>Add Rating And Review</b></p>
+                        <Link to={`/user/add-review/${bookedCar?._id}`}>
+                            <p className='text-blue-500'><b>Add Rating And Review</b></p>
                         </Link>
                     </div>
 

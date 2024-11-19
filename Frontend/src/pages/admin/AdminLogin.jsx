@@ -56,15 +56,15 @@ function AdminLogin() {
                 className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
                 {...register('password', { required: true })}
               />
-              <label className="label mt-2">
+              <label className="label">
                 <Link to="/admin-sign-up" className="text-teal-500 hover:text-teal-700 font-semibold">
-                  New user? Sign up here!
+                  New admin? Sign up here!
                 </Link>
               </label>
             </div>
 
             {/* Submit Button */}
-            <div className="form-control mt-6">
+            <div className="form-control ">
               <button
                 type="submit"
                 className="btn btn-teal w-full py-3 text-white font-semibold rounded-lg hover:bg-teal-700"
