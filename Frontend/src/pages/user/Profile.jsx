@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
 import toast from 'react-hot-toast';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../../components/util/Loader.jsx';
 import moment from 'moment'
 
@@ -47,12 +47,12 @@ function Profile() {
     useEffect(() => {
         fetchUserProfile();
         fetchBookedCarDetails();
-    }, [id]);
+    }, []);
 
     const handleLogout = async () => {
 
         try {
-            const response = await axiosInstance.post('/user/logout/',{},
+            const response = await axiosInstance.post('/user/logout/', {},
                 {
                     withCredentials: true
                 });
@@ -70,116 +70,100 @@ function Profile() {
 
     return (
         <div className="min-h-screen lg:min-h-screen p-2 bg bg-cover bg-orange-100">
-            {loading ? 
-             (<Loader />) : (
+            {loading ?
+                (<Loader />) : (
 
-                <div className=" mb-20">
-                    <div className=''>
+                    <div className=" mb-20">
+                        <div className=''>
 
-                        <div className="drawer">
-                            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-                            <div className="drawer-content">
-                                {/* Page content here */}
-                                <label htmlFor="my-drawer" className="btn btn-ghost drawer-button">Drawer</label>
+                            <div className="drawer">
+                                <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                                <div className="drawer-content">
+                                    {/* Page content here */}
+                                    <label htmlFor="my-drawer" className="btn btn-ghost drawer-button">Drawer</label>
+                                </div>
+                                <div className="drawer-side  ">
+                                    <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+
+                                    <ul className="menu bg-cyan-700 text-base-content min-h-full w-80 p-4">
+                                        {/* Sidebar content here */}
+                                        <li className="content-center m-4">
+                                            <h2 className=" font-bold text-base text-amber-600">Dashboard</h2>
+                                        </li>
+                                        <hr />
+                                        <li className="content-start ">
+                                            <Link to="/user/car-Gallery" >
+                                                <h1 className=" text-white font-bold">Car Gallery</h1>
+                                            </Link>
+                                        </li>
+
+                                        <hr />
+
+                                        <li>
+                                            <Link to={`/user/updateUser/${profile?._id}`}>
+                                                <button ><h1 className=" text-white font-bold">Edit Account</h1></button>
+                                            </Link>
+
+                                        </li>
+                                        <hr />
+                                        <li>
+                                            <button className='' onClick={handleLogout}><h1 className=" text-white font-bold">Sign Out</h1></button>
+                                        </li>
+                                        <hr />
+                                        <li>
+                                            <Link to={`/user/delet-user/${profile?._id}`}>
+                                                <button><h1 className=" text-red-700 font-bold">Delete Account</h1></button>
+
+                                            </Link>
+
+                                        </li>
+                                        <hr />
+                                        <li>
+
+                                            <Link to={`/user/delete-booking/${bookedCar?._id}`}>
+                                                <button ><h1 className=" text-red-700 font-bold">Delete booking</h1></button>
+
+                                            </Link>
+
+                                        </li>
+                                        <hr />
+
+                                    </ul>
+                                </div>
+                            </div >
+                        </div>
+
+                        <div className='flex justify-center items-center'>
+                            <div className="car  size-72 car-body bg-orange-50  text-black rounded-lg max-w-md lg:size-80">
+                                <div className="border-b border-cyan-400 pb-4 mb-6">
+                                    <h1 className=" text-center text-indigo-500 font-serif text-base font-semibold">Profile</h1>
+                                </div>
+                                <div>
+                                    <img
+                                        src={profile?.profilePic}
+                                        alt="profile-pic"
+                                        className="w-20 h-20 object-cover rounded-full mx-auto mb-2"
+                                    />
+                                </div>
+                                <div className="mb-2 ml-2">
+                                    <span className="mr-3 text-base font-semibold">Name :</span>
+                                    <span className='font-serif font-semibold'>{profile?.name}</span>
+                                </div>
+                                <div className="mb-2 ml-2">
+                                    <span className=" text-black text-base font-semibold mr-3">Phone:</span>
+                                    <span className='font-serif font-semibold'>{profile?.phone}</span>
+                                </div>
+                                <div className="mb-2 ml-2">
+                                    <span className=" text-base font-semibold text-black mr-3">Email:</span>
+                                    <span className='font-serif font-semibold'>{profile?.email}</span>
+                                </div>
+                                <div className='flex justify-evenly'>
+                                </div>
+
                             </div>
-                            <div className="drawer-side  ">
-                                <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-
-                                <ul className="menu bg-cyan-700 text-base-content min-h-full w-80 p-4">
-                                    {/* Sidebar content here */}
-                                    <li className="content-center m-4">
-                                        <h2 className=" font-bold text-base text-amber-600">Dashboard</h2>
-                                    </li>
-                                    {/* <hr />
-                                    <li className="content-start">
-                                        <Link to="/aboutus">
-                                            <h1 className=" text-white font-bold ">About Us</h1>
-                                        </Link>
-                                    </li> */}
-                                    <hr />
-                                    <li className="content-start ">
-                                        <Link to="/user/car-Gallery" >
-                                            <h1 className=" text-white font-bold">Car Gallery</h1>
-                                        </Link>
-                                    </li>
-                                    <hr />
-                                    <hr />
-                                    <li>
-                                        <button><h1 className=" text-white font-bold" >Delete Account</h1></button>
-                                    </li>
-
-                                    <hr />
-                                  
-                                    <li>
-                                        <Link to={`/user/updateUser/${profile?._id}`}>
-                                            <button ><h1 className=" text-white font-bold">Edit Account</h1></button>
-                                        </Link>
-
-                                    </li>
-                                    <hr />
-                                    <li>
-                                        <button className='' onClick={handleLogout}><h1 className=" text-white font-bold">Sign Out</h1></button>
-                                    </li>
-                                    <hr />
-                                    <li>
-                                        <Link to={`/user/delet-user/${profile?._id}`}>
-                                            <button><h1 className=" text-red-700 font-bold">Delete Account</h1></button>
-
-                                        </Link>
-
-                                    </li>
-                                    <hr />
-                                    <li>
-
-                                        <Link to={`/user/delete-booking/${bookedCar?._id}`}>
-                                            <button ><h1  className=" text-red-700 font-bold">Delete booking</h1></button>
-
-                                        </Link>
-
-                                    </li>
-                                    <hr />
-
-                                </ul>
-
-
-
-
-
-                            </div>
-                        </div >
-                    </div>
-
-                    <div className='flex justify-center items-center'>
-                        <div className="car  size-72 car-body bg-orange-50  text-black rounded-lg max-w-md lg:size-80">
-                            <div className="border-b border-cyan-400 pb-4 mb-6">
-                                <h1 className=" text-center text-indigo-500 font-serif text-base font-semibold">Profile</h1>
-                            </div>
-                            <div>
-                                <img
-                                    src={profile?.profilePic}
-                                    alt="profile-pic"
-                                    className="w-20 h-20 object-cover rounded-full mx-auto mb-2"
-                                />
-                            </div>
-                            <div className="mb-2 ml-2">
-                                <span className="mr-3 text-base font-semibold">Name :</span>
-                                <span className='font-serif font-semibold'>{profile?.name}</span>
-                            </div>
-                            <div className="mb-2 ml-2">
-                                <span className=" text-black text-base font-semibold mr-3">Phone:</span>
-                                <span className='font-serif font-semibold'>{profile?.phone}</span>
-                            </div>
-                            <div className="mb-2 ml-2">
-                                <span className=" text-base font-semibold mr-3 text-black mr-3">Email:</span>
-                                <span className='font-serif font-semibold'>{profile?.email}</span>
-                            </div>
-                            <div className='flex justify-evenly'>
-                            </div>
-
                         </div>
                     </div>
-                </div>
-            )}
+                )}
             <div className="divider lg:divider-vertical text-sm lg:text-lg font-serif font-bold text-amber-950">Your Booking</div>
             <div className='m-8 lg:m-10'>
                 <div className='flex flex-col  md:flex md:flex-row lg:flex lg:flex-row card card-body bg-cover backdrop-brightness-90 '>
@@ -198,7 +182,7 @@ function Profile() {
                             <hr />
                             <li>
                                 <label className='text-sm   lg:text-base font-medium'><b>From Date:</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{moment(bookedCar?.fromDate).format('DD-MM-YYYY') || "N/A"}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{moment(bookedCar?.fromDate).format('DD-MM-YYYY')}</b></span>
                             </li>
                             <hr />
                             <li >
