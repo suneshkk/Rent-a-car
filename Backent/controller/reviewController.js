@@ -11,7 +11,6 @@ export const addReview = async (req, res, next) => {
         const { rating, comment } = req.body;
         //user id from cookies
         const userId = req.user.id;
-        console.log("data", carId)
 
         // checking if the car is exist
         const carData = await Car.findById(carId);

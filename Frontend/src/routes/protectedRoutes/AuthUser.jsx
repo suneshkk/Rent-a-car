@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser, saveUser } from '../../redux/features/userSlice.js';
 

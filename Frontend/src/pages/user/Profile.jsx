@@ -222,9 +222,6 @@ function Profile() {
                     <div className='flex justify-center items-center card card-body bg-slate-400 '>
                         <h3 className=' border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Car</h3>
                         <img src={bookedCar?.car?.[0]?.image} alt="car image" className='md:w-40 lg:w-80' />
-                        <Link to={`/user/add-review/${bookedCar?._id}`}>
-                            <p className='text-blue-500'><b>Add Rating And Review</b></p>
-                        </Link>
                     </div>
 
 

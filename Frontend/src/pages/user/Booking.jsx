@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
 import toast from 'react-hot-toast';
 import Loader from '../../components/util/Loader.jsx';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -89,7 +89,7 @@ function Booking() {
 
 
     return (
-        <div>
+        <div className='mb-7 mx-3'>
             <div className='bg-slate-600 bg-cover h-16 flex items-center justify-center '>
                 <h1 className='text-lg font-semibold text-red-200 sm:text-lg sm:font-bold sm:text-indigo-800 md:text-xl md:font-extrabold md:text-orange-400lg:text-3xl lg:font-extrabold lg:text-red-600 xl:text-4xl xl:text-black'> Car Booking Window...!
                 </h1>
@@ -99,11 +99,11 @@ function Booking() {
             <div className='container mx-auto min-h-screen flex items-center justify-center   '>
                 {loading ? (<Loader />) : (
                     <div className="flex w-full flex-col lg:flex-row mt-4">
-                        <div className="card card-body rounded-box h-144 flex flex-grow place-items-center bg-orange-300">
+                        <div className="card card-body rounded-box lg:h-144 flex flex-grow place-items-center bg-orange-300">
                             <div className='card  rounded mb-3'>
-                                <img src={carData?.image} alt="image" className='w-full max-w-sm rounded-lg shadow-lg' />
+                                <img src={carData?.image} alt="image" className=' lg:w-full lg:max-w-sm rounded-lg shadow-lg ' />
                             </div>
-                            <div className='size-96'>
+                            <div className='lg:size-96'>
                                 <div className="flex items-center space-x-4">
                                     <label className="form-label text-black font-bold w-1/3">Name :</label>
                                     <span className="form-control flex-1 px-4 py-2 border rounded-md bg-white font-serif font-bold"
@@ -136,6 +136,11 @@ function Booking() {
                                     <span className="form-control flex-1 px-4 py-2 border rounded-md bg-white font-serif font-bold"
                                     >{carData?.year}</span>
                                 </div>
+                                <button className='mt-4 btn-ghost'>
+                                    <Link to={`/user/add-review/${carData?._id}`}>
+                                        <p className='text-blue-500'><b>Add Rating And Review</b></p>
+                                    </Link>
+                                </button>
                             </div>
                         </div>
                         <div className="divider lg:divider-horizontal"></div>
@@ -198,7 +203,7 @@ function Booking() {
                                 {totalAmount !== null && (
                                     <div>total amount:{totalAmount.toFixed()}</div>
                                 )}
-                                <button className="mt-6 px-4 py-2  hover:bg-amber-600 text-blue-600 rounded-md font-bold" onClick={handleDateAndTime}>
+                                <button className="lg:mt-6 lg:px-4 lg:py-2  hover:bg-amber-600 text-blue-600 rounded-md font-bold" onClick={handleDateAndTime}>
                                     Book Now
                                 </button>
 

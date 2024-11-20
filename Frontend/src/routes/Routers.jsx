@@ -29,6 +29,7 @@ import Payment from "../pages/user/Payment.jsx";
 import DeleteBooking from "../pages/user/DeleteBooking.jsx"
 import PaymentSuccess from "../pages/user/SuccessPage.jsx";
 import AddReview from "../pages/user/AddReview.jsx";
+import AuthAdmin from "./protectedRoutes/AuthAdmin.jsx";
 
 const router = createBrowserRouter([
 
@@ -84,22 +85,23 @@ const router = createBrowserRouter([
         <UserLayout />
       </AuthUser>,
     errorElement: <ErrorPage />,
+
     children: [
       {
         path: "profile",
         element: <Profile />,
       },
       {
-        path:"add-review/:id",
-        element:<AddReview/>
+        path: "add-review/:id",
+        element: <AddReview />
       },
       {
-        path:"success",
-        element:<PaymentSuccess/>
+        path: "success",
+        element: <PaymentSuccess />
       },
       {
-        path:"delet-user/:id",
-        element:<DeleteUser/>
+        path: "delet-user/:id",
+        element: <DeleteUser />
       },
       {
         path: "updateUser/:id",
@@ -109,64 +111,67 @@ const router = createBrowserRouter([
         path: "car-gallery",
         element: <CarGallery />
       },
-        {
-      path:"delete-booking/:id",
-      element:<DeleteBooking/>
+      {
+        path: "delete-booking/:id",
+        element: <DeleteBooking />
 
-        },
+      },
       {
         path: 'book-now/:id',
         element: <Booking />
       },
-      { 
-        path:'payment',
-        element:<Payment/>
-      } ,
+      {
+        path: 'payment',
+        element: <Payment />
+      },
       {
         path: "booked-car",
-        element: <BookedCar/>,
+        element: <BookedCar />,
       },
     ],
   },
   {
     path: '/admin',
-    element:
+    element: 
+    <AuthAdmin>
       <AdminLayout />,
+    </AuthAdmin>,
     errorElement: <ErrorPage />,
+
     children: [
       {
         path: "admin-home",
-        element: <AdminHome/>
+        element: <AdminHome />
       },
 
 
       {
-        path:"car-list",
-        element:<CarList/>
+        path: "car-list",
+        element: <CarList />
       },
       {
         path: "edit",
         element: <AdminEdit />
       },
       {
-        path:"create-car",
-        element:<CreateCar/>
+        path: "create-car",
+        element: <CreateCar />
       },
       {
-        path:"edit-car/:id",
-        element:<EditCar/>
+        path: "edit-car/:id",
+        element: <EditCar />
       },
       {
-        path:"car-detail/:id",
-        element:<Details/>
+        path: "car-detail/:id",
+        element: <Details />
       },
       {
-        path:"delete-car/:id",
-        element:<DeleteCar/>
+        path: "delete-car/:id",
+        element: <DeleteCar />
       },
       {
-        path:"user-list",
-        element:<UserList/>
+        path: "user-list",
+        element: <UserList />
       },
     ]
   },
