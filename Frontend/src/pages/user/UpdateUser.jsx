@@ -64,9 +64,9 @@ function UpdateUser() {
 
 
     return (
-        <div className="container hero  flex justify-center bg-gray-100 lg:min-h-screen">
+        <div className='min-h-screen flex justify-center items-center bg-cover bg-sky-400'>
             {loading ? (<Loader />) : (
-                <div className="card card-body w-4/5  bg-white shadow-2xl rounded-lg px-10 py-8 mx-4 sm:mx-0 sm:w-3/4 md:w-1/2 lg:w-2/5">
+        <div className='card card-body min-h-96 w-48 mx-2 bg-white shadow-md lg:min-h-128 lg:mx-128 md:mx-20'>
                     <div className="text-center">
                         <h1 className=" font-semibold text-gray-800 underline">Edit User</h1>
                     </div>
@@ -90,8 +90,9 @@ function UpdateUser() {
                                 className="form-control flex-1 px-1 lg:px-4 py-1 lg:py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
                             />
                         </div>
+                        <label className="lg:form-label text-gray-600 lg:w-1/2">Image:</label>
+
                         <div className="flex mt-2 mb-3 items-center space-x-2 lg:space-x-4">
-                            <label className="lg:form-label text-gray-600 lg:w-1/2">Image:</label>
                             <input
                                 type="file"
                                 onChange={handleEditprofilePic}
