@@ -28,7 +28,7 @@ export const payment = async (req, res, next) => {
             line_items: lineItems,
             mode: "payment",
             success_url: `${client_domain}/user/success`,
-            cancel_url: `${client_domain}/user/payment/cancel`,
+            cancel_url: `${client_domain}/user/cancel`,
         });
 
         const order = new Order({
