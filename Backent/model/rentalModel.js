@@ -57,6 +57,10 @@ const rentalStatus = new mongoose.Schema({
         default: 'booked',
         required: true
     },
+    dLicence:{
+        type:String,
+        required:true
+    },
 },
     {
         timestamps: true,

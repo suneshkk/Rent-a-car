@@ -6,8 +6,8 @@ export const forBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const carId = req.params.id;
-    const { totalHours, totalAmount,fromDate,toDate } = req.body;
-          if(!totalAmount || !totalHours || !fromDate || !toDate){
+    const { totalHours, totalAmount,fromDate,toDate,dLicence} = req.body;
+          if(!totalAmount || !totalHours || !fromDate || !toDate || !dLicence){
             return res.status(404).json({message:"All field required"})
           }
     // find the car and ensure it exists and fetch its data
@@ -39,6 +39,7 @@ export const forBooking = async (req, res, next) => {
       totalHours: totalHours,
       fromDate:fromDate,
       toDate:toDate,
+      dLicence:dLicence,
     });
     await newRental.save();
    return res.status(201).json({ success: true, message: "Booked successfully",data:newRental });

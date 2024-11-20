@@ -12,6 +12,7 @@ function Booking() {
     const [carData, setCarData] = useState({});
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
+    const [dLicence, setDLicence] = useState("")
     const [totalHours, setTotalHours] = useState(null);
     const [totalAmount, setTotalAmount] = useState(null);
     const { id } = useParams();
@@ -61,6 +62,7 @@ function Booking() {
             const calculatedTotalAmount = hours * price;
             setTotalAmount(calculatedTotalAmount);
             const data = {
+                dLicence,
                 fromDate,
                 toDate,
                 totalHours: hours,
@@ -81,7 +83,7 @@ function Booking() {
             }
         } catch (error) {
             console.error(error);
-            toast.error("server error")
+            toast.error("Afield required")
         };
     };
 
@@ -168,6 +170,19 @@ function Booking() {
                                             showTimeSelect
                                             dateFormat="MM/dd/yyyy, h:mm a"
                                             className="input input-bordered"
+                                        />
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <label className="text-lg font-bold text-white">
+                                            Driving License Number:
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={dLicence}
+                                            onChange={(e) => setDLicence(e.target.value)}
+                                            placeholder="Enter your Driving License Number"
+                                            className="input input-bordered w-full"
+                                            required
                                         />
                                     </div>
                                 </div>
