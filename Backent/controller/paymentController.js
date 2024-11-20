@@ -1,6 +1,6 @@
 import { Order } from "../model/paymentModel.js";
 import Stripe from "stripe";
-const stripe = new Stripe(process.env.Stripe_Private_Api_Key);
+const stripe = new Stripe(process.env.STRIPE_API_KEY);
 
 const client_domain = process.env.CLIENT_DOMAIN;
 
