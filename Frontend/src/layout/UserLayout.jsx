@@ -1,14 +1,14 @@
 
 import React from 'react'
-import Footer from '../components/Footer.jsx'
 import { Outlet } from 'react-router-dom'
 import UserHeader from '../components/user/UserHeader.jsx'
+import UserFooter from '../components/user/UserFooter.jsx'
 function UserLayout() {
     return (
         <div>
             <UserHeader/>
             <Outlet />
-            <Footer />
+            <UserFooter/>
 
         </div>
     )

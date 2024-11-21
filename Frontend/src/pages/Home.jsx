@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../config/axiosInstance.jsx';
 import CarList from '../components/Cards.jsx';
-import HeroImage from '../../src/assets/hero.png';
+import HeroImage from "../../src/assets/hero.png";
 import Car1 from '../../src/assets/car1.png';
 import Car2 from '../../src/assets/car2.png';
 import Car3 from '../../src/assets/car3.png';

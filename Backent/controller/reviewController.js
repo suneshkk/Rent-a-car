@@ -55,7 +55,7 @@ export const getCarReview = async (req, res, next) => {
 export const deletReviewById = async (req, res, next) => {
 
     try {
-        const { reviewId } = req.body;
+        const { reviewId } = req.params.id;
         const userId = req.user.id;
         console.log(reviewId, "data")
         const review = await Review.findOneAndDelete({ _id: reviewId, userId });

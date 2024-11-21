@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/util/Loader.jsx';
 
 function AddReview() {
@@ -8,6 +8,7 @@ function AddReview() {
   const { id } = useParams();
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState("");
+  const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
@@ -26,6 +27,7 @@ function AddReview() {
 
       const response = await axiosInstance.post(`/review/add-review/${id}`,data, { withCredentials: true });
       setLoading(false);
+    navigate('/user/profile')
     } catch (error) {
       setLoading(false)
       console.log(error);

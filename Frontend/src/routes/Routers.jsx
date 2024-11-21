@@ -10,7 +10,6 @@ import Profile from "../pages/user/Profile.jsx";
 import BookedCar from "../pages/user/RentalCart.jsx";
 import SignUp from "../pages/user/SignUp.jsx";
 import ErrorPage from "../components/ErrorPage.jsx";
-import Details from "../pages/Details.jsx";
 import UpdateUser from "../pages/user/UpdateUser.jsx";
 import AdminSignup from "../pages/admin/AdminSignup.jsx";
 import AdminLogin from "../pages/admin/AdminLogin.jsx";
@@ -30,6 +29,7 @@ import DeleteBooking from "../pages/user/DeleteBooking.jsx"
 import PaymentSuccess from "../pages/user/SuccessPage.jsx";
 import AddReview from "../pages/user/AddReview.jsx";
 import AuthAdmin from "./protectedRoutes/AuthAdmin.jsx";
+import UserHome from "../pages/user/UserHome.jsx";
 
 const router = createBrowserRouter([
 
@@ -87,6 +87,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
 
     children: [
+      {
+        path:"home",
+        element:<UserHome/>
+      },
       {
         path: "profile",
         element: <Profile />,
@@ -161,10 +165,10 @@ const router = createBrowserRouter([
         path: "edit-car/:id",
         element: <EditCar />
       },
-      {
-        path: "car-detail/:id",
-        element: <Details />
-      },
+      // {
+      //   path: "car-detail/:id",
+      //   element: <Details />
+      // },
       {
         path: "delete-car/:id",
         element: <DeleteCar />

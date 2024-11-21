@@ -15,11 +15,12 @@ function Booking() {
     const [dLicence, setDLicence] = useState("")
     const [totalHours, setTotalHours] = useState(null);
     const [totalAmount, setTotalAmount] = useState(null);
+    const [review, setReview] = useState({});
     const { id } = useParams();
     const [loading, setLoading] = useState(false);
     const navigation = useNavigate()
 
-
+    //    console.log("car-=====data",carData);
     // Function to calculate total hours
     const calculateTotalHours = (fromDate, toDate) => {
         // Calculate the difference in milliseconds
@@ -49,7 +50,7 @@ function Booking() {
     };
     useEffect(() => {
         fetchCarDetailes();
-    }, [id])
+    }, [])
 
 
     const handleDateAndTime = async () => {
@@ -86,6 +87,23 @@ function Booking() {
             toast.error("Afield required")
         };
     };
+
+    const fetchCarReview = async () => {
+
+        try {
+
+            const response = await axiosInstance.get(`/review/car-review/${id}`, { withCredentials: true })
+            setReview(response?.data?.data);
+        } catch (error) {
+            toast.error("somthing went Wrong review fetching");
+            console.log(error);
+            setFetchReview(false);
+        };
+    };
+    useEffect(() => {
+        fetchCarReview();
+    }, [])
+
 
 
     return (
@@ -214,9 +232,56 @@ function Booking() {
                     </div>
                 )}
             </div >
-            <div>
+            <div className='divider lg:divider-vertical'>Review</div>
+            <div className='flex '>
+                <div className="reviews-container grid">
+                    {review.length > 0 ? (
+                        review.map((rev) => (
+                            <div className="card">
+                                <div className="card-header">
+                                    <h4>{rev?.userId?.name || "Anonymous"}</h4>
+                                </div>
+                                <div className="card-body">
+                                    <p><b>Comment:</b> {rev?.comment || "No comment provided"}</p>
+                                    <p><b>Rating:</b> {rev?.rating || "No rating given"}</p>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="no-reviews">
+                            <p>No reviews available</p>
+                        </div>
+                    )}
+                </div>
 
+                {/* <table className='card card-body table text-center shadow-lg w-48'>
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Commend</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {review.length > 0 ? (
+                            review.map((rev) => (
+                                <tr key={rev?._id}>
+                                    <td>{rev?.userId?.name}</td>
+
+                                    <td>{rev?.comment}</td>
+                                    <td>{rev?.rating}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="6">No reviewavailable</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table> 
+ */}
             </div>
+
         </div>
     )
 }
