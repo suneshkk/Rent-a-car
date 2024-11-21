@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 import { axiosInstance } from '../../../config/axiosInstance.jsx';
 import Loader from '../../../components/util/Loader.jsx';
-import AdminHome from '../AdminHome';
-import { Link } from 'react-router-dom';
 
 function UserList() {
     const [user, setUser] = useState([]);
@@ -29,10 +27,7 @@ function UserList() {
         fetchUserList();
     }, []);
     return (
-        <div className='min-h-screen'>
-            {/* <Link to={"/admin/admin-home"}>
-                <AdminHome />
-            </Link> */}
+        <div className='min-h-screen bg-black bg-cover'>
             {loading ? (
                 <Loader />
             ) : (
@@ -40,35 +35,20 @@ function UserList() {
                     <table className='container table text-center '>
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>user Name</th>
-                                <th>Phone</th>
-                                <th>user Id</th>
+                                <th className='font-semibold text-lg text-slate-200'>No</th>
+                                <th className='font-semibold text-lg text-slate-200'>user Name</th>
+                                <th className='font-semibold text-lg text-slate-200'>Phone</th>
+                                <th className='hidden md:table-cell font-semibold text-lg text-slate-200'>user Id</th>
                             </tr>
                         </thead>
                         <tbody>
                             {user.length > 0 ? (
                                 user.map((user, index) => (
                                     <tr key={user._id}>
-                                        <td>{index + 1}</td>
-                                        <td>{user?.name}</td>
-                                        <td>{user?.phone}</td>
-                                        <td>{user?._id}</td>
-                                        {/* <td>
-                                            <div className="flex justify-between ">
-                                                <Link to={`/admin/edit-car/${car?._id}`} className='text-success'>
-                                                    <EditButton />
-                                                </Link>
-                                                <Link to={`/admin/car-detail/${car?._id}`} className='text-blue-600' >
-                                                    <DetailButton />
-
-                                                </Link>
-                                                <Link to={`/admin/delete-car/${car?._id}`} className='text-orange-700 ' >
-                                                    <DeleteButton />
-                                                </Link>
-                                            </div>
-
-                                        </td> */}
+                                        <td className='font-medium text-base text-slate-200 font-serif'>{index}</td>
+                                        <td className='font-medium text-base text-slate-200 font-serif'>{user?.name}</td>
+                                        <td className='font-medium text-base text-slate-200 font-serif'>{user?.phone}</td>
+                                        <td className='hidden md:table-cell font-medium text-base text-slate-200 font-serif'>{user?._id}</td>
                                     </tr>
                                 ))
                             ) : (

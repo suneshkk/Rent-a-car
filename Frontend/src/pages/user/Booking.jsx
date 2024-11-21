@@ -108,9 +108,18 @@ function Booking() {
 
     return (
         <div className='mb-7 mx-3'>
-            <div className='bg-slate-600 bg-cover h-16 flex items-center justify-center '>
-                <h1 className='text-lg font-semibold text-red-200 sm:text-lg sm:font-bold sm:text-indigo-800 md:text-xl md:font-extrabold md:text-orange-400lg:text-3xl lg:font-extrabold lg:text-red-600 xl:text-4xl xl:text-black'> Car Booking Window...!
+            <div className='bg-slate-600 bg-cover h-16 flex items-center justify-between '>
+                <div className='flex-1 '>
+                    <Link>
+                        <h4  className='ml-4'>Profile</h4>
+                    </Link>
+
+
+                </div>
+                <h1 className='text-lg font-semibold text-red-200 sm:text-lg sm:font-bold sm:text-indigo-800 md:text-xl md:font-extrabold md:text-orange-400lg:text-3xl lg:font-extrabold lg:text-red-600 xl:text-4xl xl:text-black'>
+                    Car Booking Window...!
                 </h1>
+                <div className='flex-1'></div>
 
             </div>
 
@@ -168,7 +177,7 @@ function Booking() {
                                     <h1 className='card card-title underline text-center lg:text-xl font-bold text-slate-800'>Please select your time and date </h1>
 
                                     <div className="flex">
-                                        <label className="text-lg font-bold text-white w-1/">From Date</label>
+                                        <label className="text-lg font-bold text-white w-1/">From Date:</label>
                                         <DatePicker
                                             selected={fromDate}
                                             required:true
@@ -179,11 +188,11 @@ function Booking() {
                                             className="input input-bordered"
                                         />
                                     </div>
-
+                                    <hr />
 
                                     <div className="flex ">
                                         <label className="text-lg font-bold text-white">
-                                            To Date:
+                                            To Date  :
                                         </label>
                                         <DatePicker
                                             selected={toDate}
@@ -195,6 +204,7 @@ function Booking() {
                                             className="input input-bordered"
                                         />
                                     </div>
+                                    <hr />
                                     <div className="flex flex-col">
                                         <label className="text-lg font-bold text-white">
                                             Driving License Number:
@@ -208,6 +218,7 @@ function Booking() {
                                             required
                                         />
                                     </div>
+                                    <hr />
                                 </div>
                                 <div className="mt-4 text-xl font-semibold text-gray-700">
                                     Rent per hour:{carData?.price}
@@ -221,6 +232,7 @@ function Booking() {
                                 {totalAmount !== null && (
                                     <div>total amount:{totalAmount.toFixed()}</div>
                                 )}
+
                                 <button className="lg:mt-6 lg:px-4 lg:py-2  hover:bg-amber-600 text-blue-600 rounded-md font-bold" onClick={handleDateAndTime}>
                                     Book Now
                                 </button>
@@ -254,32 +266,6 @@ function Booking() {
                     )}
                 </div>
 
-                {/* <table className='card card-body table text-center shadow-lg w-48'>
-                    <thead>
-                        <tr>
-                            <th>User Name</th>
-                            <th>Commend</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {review.length > 0 ? (
-                            review.map((rev) => (
-                                <tr key={rev?._id}>
-                                    <td>{rev?.userId?.name}</td>
-
-                                    <td>{rev?.comment}</td>
-                                    <td>{rev?.rating}</td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="6">No reviewavailable</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table> 
- */}
             </div>
 
         </div>

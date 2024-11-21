@@ -34,7 +34,7 @@ function Home() {
 
   return (
 
-    <div>
+    <div className='bg-cover bg-black'>
 
       <section
         className="bg-cover bg-center h-screen flex items-center justify-center"
@@ -49,7 +49,7 @@ function Home() {
           </p>
         </div>
       </section>
-      <div className='px-4 sm:px-6 md:px-8 lg:px-12 py-8'>
+      {/* <div className='px-4 sm:px-6 md:px-8 lg:px-12 py-8'>
         <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center mb-4 sm:mb-6">
           <h1 className="font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center">
             <Link to={'/car-gallery'}>
@@ -68,10 +68,10 @@ function Home() {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 py-8">
-        <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center mb-4 sm:mb-6">
-          <h1 className="font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center">
+        <div className=" flex h-16 sm:h-20 items-center justify-center mb-4 sm:mb-6">
+          <h1 className="text-orange-500 font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center ">
             Our Future Cars
           </h1>
         </div>

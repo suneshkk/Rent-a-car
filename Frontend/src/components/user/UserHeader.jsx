@@ -52,49 +52,6 @@ function UserHeader() {
 
                 )}
             </div>
-            {/* Mobile menu button */}
-            {/* <button
-                className="text-2xl md:hidden"
-                onClick={toggleMobileMenu}
-            >
-                {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-            </button> */}
-
-            {/* Mobile Dropdown menu */}
-            {/* <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} absolute top-full left-0 w-full bg-base-100 z-10`}>
-                <div className="relative">
-                    <select
-                        className="w-full text-lg text-emerald-900 font-bold bg-white border border-emerald-300 rounded-md p-3"
-                        defaultValue=""
-                        onChange={(e) => {
-                            const value = e.target.value;
-                            if (value) {
-                                navigate(value);
-                                closeMenu();
-                            }
-                        }}
-                    >
-                        <option value="" disabled>Menu</option>
-                        <option value="/aboutus">About Us</option>
-                        <option value="/user/car-Gallery">Car Gallery</option>
-
-                    </select>
-                </div>
-            </div>
- */}
-            {/* Links - visible on larger screens */}
-            {/* <div className={`md:flex gap-7 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}>
-                <Link to="/aboutus" className="btn btn-ghost" onClick={closeMenu}>
-                    <h1 className="text-lg text-emerald-900 font-bold">About Us</h1>
-                </Link>
-                <Link to="/user/car-Gallery" className="btn btn-ghost" onClick={closeMenu}>
-                    <h1 className="text-lg text-emerald-900 font-bold">Car Gallery</h1>
-                </Link>
-
-                <Link to="/sign-up" className="btn btn-ghost" >
-                    <h1 className="text-lg text-emerald-900 font-bold">Logout</h1>
-                </Link>
-            </div> */}
         </div>
     );
 }
