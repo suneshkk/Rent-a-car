@@ -7,6 +7,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  
   theme: {
     extend: {
       fontFamily:{
@@ -66,6 +67,12 @@ export default {
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
+      mono: ['ui-monospace', 'SFMono-Regular'],
+      sans: ['ui-sans-serif', 'system-ui'],
+      serif: ['ui-serif', 'Georgia'],
+      display: ['Oswald'],
+      body: ['"Open Sans"'],
+
     },
     extend: {
       spacing: {
