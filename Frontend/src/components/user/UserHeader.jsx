@@ -7,15 +7,6 @@ import toast from 'react-hot-toast';
 
 function UserHeader() {
 
-    // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    // const navigate = useNavigate()
-    // const toggleMobileMenu = () => {
-    //     setIsMobileMenuOpen(!isMobileMenuOpen);
-
-    // };
-    // const closeMenu = () => {
-    //     setIsMobileMenuOpen(false)
-    // };
     const location = useLocation();
 
 
