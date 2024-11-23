@@ -63,11 +63,11 @@ function Navbar() {
                 {/* Links - visible on larger screens */}
                 <div className={`md:flex gap-6 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}>
                     <Link to="/aboutus" className="" onClick={closeMenu}>
-                        <h1 className="text-bold font-serif text-slate-300 font-bold">About Us</h1>
+                        <h1 className="text-bold font-serif text-slate-300 font-bold hover:text-sky-600">About Us</h1>
                     </Link>
-                    <div className='flex'>
+                    <div className='flex border-b-2'>
                         <Link to="/login" className="" onClick={closeMenu}>
-                            <h1 className="text-bold font-serif text-slate-300 font-bold">Login</h1>
+                            <h1 className="text-bold font-serif text-slate-300 font-bold hover:text-sky-600">Login</h1>
                         </Link>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -83,10 +83,11 @@ function Navbar() {
                         </svg>
 
                         <Link to="/sign-up" className="" onClick={closeMenu}>
-                            <h1 className="text-bold font-serif text-slate-300 font-bold">Register</h1>
+                            <h1 className="text-bold font-serif text-slate-300 font-bold hover:text-sky-500">Register</h1>
                         </Link>
 
                     </div>
+                    
                 </div>
 
             </div>
