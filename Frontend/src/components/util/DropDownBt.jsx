@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
-function DropDownBt({ car }) {
+function DropDownBt() {
 
     const [isOpen, setIsOpen] = useState(false);
 
