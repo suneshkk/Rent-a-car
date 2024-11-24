@@ -130,7 +130,13 @@ function Home() {
               </div>
 
             </div>
-            <div className=' bg-cover bg-center md:mx-40 rounded-md md:h-128'style={{ backgroundImage: `url(${Mustang})` }}>
+            <div className=' bg-cover bg-center md:mx-40 rounded-md md:h-128 opacity-75' style={{ backgroundImage: `url(${Mustang})` }}>
+              <div className='md:pt-7 md:pl-9'>
+                <h1 className=' underline md:font-extrabold md:text-4xl text-slate-300 '>This week deal</h1>
+              </div>
+              <div className='md:pt-7 md:pl-9'>
+                <h1 className='text-yellow-400 md:font-bold md:text-xl'>20% discount on SUV booking for more than 2 days</h1>
+              </div>
             </div>
 
           </div>
