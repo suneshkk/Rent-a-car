@@ -1,5 +1,5 @@
-import DropDownBt from "../../components/util/DropDownBt";
-import DropDownUser from "../../components/util/DropDownUser";
+import DropDownBt from "../../components/util/DropDownBt.jsx";
+import DropDownUser from "../../components/util/DropDownUser.jsx";
 
 
 function AdminHome() {

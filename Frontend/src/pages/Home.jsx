@@ -53,7 +53,7 @@ function Home() {
         </div>
         <div>
           <div className='h-10 pt-4 md:h-28 md:mt-20 '>
-            <h1 className='text-xl font-semibold text-slate-400 text-center md:text-6xl font-serif md:font-bold hover:text-slate-100 '>
+            <h1 className='text-xl font-semibold text-slate-400 text-center hover:underline md:text-6xl font-serif md:font-bold hover:text-slate-100 '>
               The perfect car for your next trip
               </h1>
           </div>

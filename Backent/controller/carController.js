@@ -64,7 +64,7 @@ export const carlist = async (req, res, next) => {
 //get one car
 export const getCarById = async (req, res, next) => {
     try {
-        const  carId  = req.params.id;
+        const carId = req.params.id;
         // Find car by ID
         const cars = await Car.findById(carId)
         if (!cars) {
@@ -72,7 +72,7 @@ export const getCarById = async (req, res, next) => {
         }
 
         // Return the car details
-        return res.status(200).json({ success: true, message: "Car fetched successfully", data:cars });
+        return res.status(200).json({ success: true, message: "Car fetched successfully", data: cars });
 
     } catch (error) {
         console.log(error);
@@ -127,4 +127,23 @@ export const updateCar = async (req, res, next) => {
         return next(error);
     };
 
+};
+
+//get car by car type
+export const filterCarByType = async (req, res, next) => {
+    const { car } = req.body;
+    try {
+        const carType = await Car.find({ carType: car });
+
+        if (!carType) {
+            return res.status(404).json({ message: "not found" })
+        }
+        else {
+            return res.status(200).json({ message: "Data fetched successfuly", data: carType });
+        }
+
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    };
 };

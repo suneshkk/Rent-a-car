@@ -5,7 +5,8 @@ import {
     carlist,
     getCarById,
     deleteCar,
-    updateCar
+    updateCar,
+    filterCarByType,
 } from '../../controller/carController.js';
 import { upload } from '../../middlewares/multer.js';
 
@@ -15,6 +16,7 @@ const router = express.Router();
 
 router.post("/create", adminAuth, upload.single("image"), createCar);
 router.get("/car-list", carlist);
+router.get("/car-type",filterCarByType);
 router.get("/get-car/:id", getCarById);
 
 router.delete("/delete-car/:id", adminAuth, deleteCar);
