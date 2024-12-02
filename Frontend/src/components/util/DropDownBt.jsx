@@ -8,7 +8,7 @@ function DropDownBt() {
     return (
         <div className="w-52 relative">
             <button
-                className="flex  gap-4 justify-between items-center w-full px-4 py-2 btn-ghost rownded"
+                className="flex gap-4 justify-between items-center w-full px-4 py-2 rownded"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <h1 className='text-start font-semibold'>Car Controller </h1>  <span className=' text-green-50' > {isOpen ? "▲" : "▼"}</span>

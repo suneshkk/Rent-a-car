@@ -14,14 +14,16 @@ const userSlice = createSlice({
             state.isUserExist = true;
             state.user = action.payload;
         },
+        
         clearUser: (state) => {
             state.isUserExist = false;
             state.user = {};
 
         }
+        
     },
+    
 })
-
 // Action creators are generated for each case reducer function
 export const { saveUser, clearUser } = userSlice.actions
 

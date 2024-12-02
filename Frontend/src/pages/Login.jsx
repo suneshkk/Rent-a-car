@@ -22,7 +22,7 @@ function Login() {
         {
           withCredentials: true,
         });
-        console.log(responce);
+        // console.log(responce);
 
       toast.success("log-in success");
       navigate('/user/home');

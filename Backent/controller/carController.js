@@ -135,8 +135,8 @@ export const filterCarByType = async (req, res, next) => {
     try {
         const carType = await Car.find({ carType: car });
 
-        if (!carType) {
-            return res.status(404).json({ message: "not found" })
+        if (carType == 0) {
+            return res.status(404).json({ message: "No Result For This Search" })
         }
         else {
             return res.status(200).json({ message: "Data fetched successfuly", data: carType });

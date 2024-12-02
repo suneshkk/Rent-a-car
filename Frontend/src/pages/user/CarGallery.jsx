@@ -2,21 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
 import CarList from '../../components/Cards.jsx';
 import Loader from '../../components/util/Loader.jsx';
+import FilterCarCard from '../../components/FilterCarCard.jsx';
 
 function CarGallery() {
     const [isOpen, setIsOpen] = useState(false);
     const [car, setcar] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [typeLoading, setTypeLoading] = useState(true);
-    const [sedan, setSedan] = useState("")
-    const [suv, setSuv] = useState("")
-    const [truck, setTruck] = useState("")
-    const [coupe, setCoupe] = useState("")
-    const [convertible, setConvertible] = useState("")
-    const [wagon, setWagon] = useState("")
-    const [van, setVan] = useState("")
-    const [hatchBack, setHatchkBack] = useState("")
-
+    const [carType, setCarType] = useState("");
+    const [carData, setCarData] = useState([]);
+    //  console.log("cartype",carData)
     const fetchCar = async () => {
         setLoading(true);
         try {
@@ -31,29 +25,22 @@ function CarGallery() {
             setLoading(false)
         }
     };
+    const handleSearch = async () => {
 
-    const fetchCartype = async () => {
-        setTypeLoading(true);
         try {
-            const responce = await axiosInstance.get('/car/car-type', { withCredentials: true });
-            setSedan(responce?.data?.data);
-            setSuv(responce?.data?.data);
-            setTruck(responce?.data?.data);
-            setCoupe(responce?.data?.data);
-            setConvertible(responce?.data?.data);
-            setWagon(responce?.data?.data);
-            setVan(responce?.data?.data);
-            setHatchkBack(responce?.data?.data);
-            console.log("response========++++++", responce)
+            const responce = await axiosInstance.post('/car/filter', { car: carType }, { withCredentials: true, });
+            // console.log("data",responce)
+            setCarData(responce?.data?.data);
+
         } catch (error) {
             console.log(error);
-            setTypeLoading(false);
 
-        }
-    }
+        };
+    };
+
     useEffect(() => {
         fetchCar();
-        fetchCartype();
+        handleSearch();
     }, [])
 
     return (
@@ -64,60 +51,68 @@ function CarGallery() {
                 </div>
                 <div className='bg-slate-100'>
                     <button className='mb-3' onClick={() => setIsOpen(!isOpen)}>
-                        <h1 className='text-base font-medium ml-7 hover:underline'>Car Type  <span className='ml-40'> {isOpen ? "▲" : "▼"}</span></h1>
+                        <h1 className='text-base font-medium hover:underline ml-2'>Search car by type  <span className='ml-28'> {isOpen ? "▲" : "▼"}</span></h1>
 
                     </button>
                     {isOpen && (
-                        <div>
 
+                        <div>
+                            <div className='ml-4'>
+                                <input
+                                    type="text"
+                                    value={carType}
+                                    onChange={(e) => setCarType(e.target.value)}
+                                    placeholder="Enter car type (e.g,Sedan)"
+                                />
+                                <button className='ml-4 font-medium' onClick={handleSearch}>Search</button>
+
+                            </div>
                             <li className='ml-3 mb-2'>
                                 <span className='text-sm font-semibold text-slate-600'>
+                                    sedan
                                 </span>
-                                <button value={sedan}
-                                    onClick={(e) => setSedan(e.target.value)}>
-                                    Sedan
-                                </button>
+
                                 <hr />
                             </li>
                             <li className='ml-3 mb-2'>
                                 <span className='text-sm font-semibold text-slate-600'>
-                                    SUV
-                                </span>
-                                <hr />
-                            </li>
-                            <li className='ml-3 mb-2'>
-                                <span className='text-sm font-semibold text-slate-600'>
-                                    Truck
-                                </span>
-                                <hr />
-                            </li>
-                            <li className='ml-3 mb-2'>
-                                <span className='text-sm font-semibold text-slate-600'>
-                                    Coupe
+                                    suv
                                 </span>
                                 <hr />
                             </li>
                             <li className='ml-3 mb-2'>
                                 <span className='text-sm font-semibold text-slate-600'>
-                                    Convertible
+                                    truck
                                 </span>
                                 <hr />
                             </li>
                             <li className='ml-3 mb-2'>
                                 <span className='text-sm font-semibold text-slate-600'>
-                                    Wagon
+                                    coupe
                                 </span>
                                 <hr />
                             </li>
                             <li className='ml-3 mb-2'>
                                 <span className='text-sm font-semibold text-slate-600'>
-                                    Van
+                                    convertible
                                 </span>
                                 <hr />
                             </li>
                             <li className='ml-3 mb-2'>
                                 <span className='text-sm font-semibold text-slate-600'>
-                                    Hatch Back
+                                    wagon
+                                </span>
+                                <hr />
+                            </li>
+                            <li className='ml-3 mb-2'>
+                                <span className='text-sm font-semibold text-slate-600'>
+                                    van
+                                </span>
+                                <hr />
+                            </li>
+                            <li className='ml-3 mb-2'>
+                                <span className='text-sm font-semibold text-slate-600'>
+                                    hatchback
                                 </span>
                                 <hr />
                             </li>
@@ -126,6 +121,7 @@ function CarGallery() {
 
 
                     )}
+
                 </div>
 
             </div>
@@ -134,12 +130,23 @@ function CarGallery() {
             {loading ?
                 (<Loader />) : (
                     <div className="md:grid md:grid-cols-5 mr-5" >
-                        {car.map((value) => (
+                        {/* {car.map((value) => (
                             <CarList car={value} key={value?._id} />
-                        ))}
+                        ))} */}
                     </div>
                 )}
+
+            <div>
+                <div className="md:grid md:grid-cols-5 mr-5" >
+                    {carData.map((v) => (
+                        <FilterCarCard carData={v} key={v?._id} />
+                    ))}
+                </div>
+
+            </div>
+
         </div>
+
 
 
     )

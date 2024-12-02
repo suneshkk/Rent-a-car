@@ -20,7 +20,7 @@ function AddReview() {
         comment,
         rating,
       };
-      console.log(data,"data========")
+      // console.log(data,"data========")
       if (!comment || !rating) {
         alert("alfields required");
       };

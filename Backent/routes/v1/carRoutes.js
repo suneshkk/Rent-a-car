@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.post("/create", adminAuth, upload.single("image"), createCar);
 router.get("/car-list", carlist);
-router.get("/car-type",filterCarByType);
+router.post("/filter",filterCarByType);
 router.get("/get-car/:id", getCarById);
 
 router.delete("/delete-car/:id", adminAuth, deleteCar);
