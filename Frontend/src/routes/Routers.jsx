@@ -22,7 +22,6 @@ import CarList from "../pages/admin/controller/CarList.jsx";
 import CreateCar from "../pages/admin/controller/CreateCar.jsx";
 import EditCar from "../pages/admin/controller/EditCar.jsx";
 import DeleteCar from "../pages/admin/controller/DeleteCar.jsx";
-import UserList from "../pages/admin/controller/UserList.jsx";
 import DeleteUser from "../pages/user/DeleteUser.jsx";
 import Payment from "../pages/user/Payment.jsx";
 import DeleteBooking from "../pages/user/DeleteBooking.jsx"
@@ -172,10 +171,6 @@ const router = createBrowserRouter([
       {
         path: "delete-car/:id",
         element: <DeleteCar />
-      },
-      {
-        path: "user-list",
-        element: <UserList />
       },
     ]
   },

@@ -53,7 +53,7 @@ function Booking() {
     }, [])
 
 
-    const handleDateAndTime = async () => {
+    const handleBookeCa = async () => {
         try {
 
             const hours = calculateTotalHours(fromDate, toDate);
@@ -84,7 +84,7 @@ function Booking() {
             }
         } catch (error) {
             console.error(error);
-            toast.error("Afield required")
+            // toast.error("Afield required")
         };
     };
 
@@ -110,8 +110,8 @@ function Booking() {
         <div className='mb-7 mx-3'>
             <div className='bg-slate-600 bg-cover h-16 flex items-center justify-between '>
                 <div className='flex-1 '>
-                    <Link>
-                        <h4  className='ml-4'>Profile</h4>
+                    <Link to={"/user/profile"}>
+                        <h4 className='ml-4 font-extrabold text-slate-300'>Profile</h4>
                     </Link>
 
 
@@ -213,7 +213,7 @@ function Booking() {
                                             type="text"
                                             value={dLicence}
                                             onChange={(e) => setDLicence(e.target.value)}
-                                            placeholder="Enter your Driving License Number"
+                                            placeholder="enter:55/14391/2016"
                                             className="input input-bordered w-full"
                                             required
                                         />
@@ -223,17 +223,23 @@ function Booking() {
                                 <div className="mt-4 text-xl font-semibold text-gray-700">
                                     Rent per hour:{carData?.price}
                                 </div>
-                                <h1 className="mt-4 text-xl font-semibold text-gray-700">Total Hours:</h1>
-                                {totalHours !== null && (
-                                    <div className="mt-4 text-xl font-semibold text-gray-700">
-                                        {totalHours.toFixed()}
-                                    </div>
-                                )}
+                                <div className='flex'>
+                                    <h1 className="mt-4 text-xl font-semibold text-gray-700">Total Hours:</h1>
+                                    <span>
+                                        {totalHours !== null && (
+                                            <div className="mt-4 text-xl font-semibold text-gray-700">
+                                                {totalHours.toFixed()}
+                                            </div>
+                                        )}
+
+                                    </span>
+
+                                </div>
                                 {totalAmount !== null && (
                                     <div>total amount:{totalAmount.toFixed()}</div>
                                 )}
 
-                                <button className="lg:mt-6 lg:px-4 lg:py-2  hover:bg-amber-600 text-blue-600 rounded-md font-bold" onClick={handleDateAndTime}>
+                                <button className="lg:mt-6 lg:px-4 lg:py-2  hover:bg-amber-600 text-blue-600 rounded-md font-bold" onClick={handleBookeCa}>
                                     Book Now
                                 </button>
 

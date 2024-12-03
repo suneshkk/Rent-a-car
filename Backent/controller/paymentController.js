@@ -27,8 +27,8 @@ export const payment = async (req, res, next) => {
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: `${client_domain}/user/success`,
-            cancel_url: `${client_domain}/user/cancel`,
+            success_url: `${client_domain}user/success`,
+            cancel_url: `${client_domain}user/cancel`,
         });
 
         const order = new Order({

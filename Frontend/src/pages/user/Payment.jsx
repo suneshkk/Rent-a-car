@@ -11,13 +11,13 @@ function Payment() {
   const fetchBookedCarDetails = async () => {
     
     setLoading(true);
-    console.log("==========)(",bookingData)
+    // console.log("==========)(",bookingData)
     try {
       const response = await axiosInstance.get(`/rental/booked-car`,
         { withCredentials: true });
       setLoading(false);
       setBookingData(response?.data?.data);
-      console.log(response, "from booking")
+      // console.log(response, "from booking")
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -37,7 +37,7 @@ function Payment() {
         { bookingData },
         { withCredentials: true }
       );
-    console.log("session+++++",session)
+    // console.log("session+++++",session)
       const result = stripe.redirectToCheckout({
         sessionId: session.data.sessionId,
       });
