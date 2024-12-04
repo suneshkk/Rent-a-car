@@ -3,29 +3,29 @@ import mongoose from "mongoose";
 
 
 const rentalStatus = new mongoose.Schema({
-    user: [
-        {
-            userId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'User',
-                required: true,
-            },
-            name: {
-                type: String,
-                required: true,
-            },
-            phone: {
-                type: String,
-                required: true,
-            }
+    // user: [
+    //     {
+    //         userId: {
+    //             type: mongoose.Schema.Types.ObjectId,
+    //             ref: 'User',
+    //             required: true,
+    //         },
+    //         name: {
+    //             type: String,
+    //             required: true,
+    //         },
+    //         phone: {
+    //             type: String,
+    //             required: true,
+    //         }
 
-        }
-    ],
-    // userId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User',
-    //     required: true,
-    // },
+    //     }
+    // ],
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
 
     car: [
         {

@@ -19,7 +19,7 @@ function BoookHistory({ booking }) {
                         src={booking?.car[0]?.image}
                         alt="car" className='md:w-48 md:pl-3 rounded-md shadow-lg md:ml-2 md:mt-1' />
                 </figure>
-                <div className='bg-white mt-2 rounded-md p-2'>
+                {/* <div className='bg-white mt-2 rounded-md p-2'>
                     <div className='flex justify-between'>
                         <label>User Name :</label>
                         <span> {booking?.user[0]?.name}</span>
@@ -34,7 +34,7 @@ function BoookHistory({ booking }) {
                     </div>
 
 
-                </div>
+                </div> */}
 
             </div>
             <div className='divider-horizontal'></div>

@@ -6,25 +6,27 @@ function CarList({ car }) {
   return (
     <div className="car card-body">
 
-      <div className=" card bg-slate-300 sm:w-52">
-        <figure>
+      <div className=" card bg-slate-300 w-36">
+        <figure className='w-36'>
           <img src={car?.image} alt="Car" />
         </figure>
 
-        <div className='flex justify-between m-2 '>
+        <div className='p-1'>
           <div className=''>
-            <h2 className="card-title">{car?.carName}</h2>
-            <p className='text-sm font-bold text-neutral-700'>{car?.transmission}</p>
+            <h2 className="text-xs font-bold">{car?.carName}</h2>
+            <p className='text-xs font-bold text-neutral-700'>{car?.transmission}</p>
+
           </div>
-          <div className=''>
+          <div className='text-end'>
             <Link to={`/user/book-now/${car?._id}`}>
-              <button className="btn btn-success">About Car</button>
+              <button className="btn btn-xs  btn-success ">About Car</button>
             </Link>
 
           </div>
 
 
         </div>
+
       </div>
     </div>
 

@@ -47,8 +47,8 @@ function UserHome() {
                     </p>
                 </div>
             </section>
-            <div className='px-4 sm:px-6 md:px-8 lg:px-12 py-8'>
-                <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center mb-4 sm:mb-6">
+            <div className='  lg:px-12 py-1'>
+                <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center">
                     <h1 className="font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center">
                         <Link to={'/car-gallery'}>
                             Book Your car now
@@ -56,14 +56,14 @@ function UserHome() {
                         </Link>
                     </h1>
                 </div>
+            </div>
+            <div className='-m-3'>
                 {loading ? (<Loader />) : (
-                    <div className="grid">
-                        <div className='xl:grid xl:grid-cols-4 lg:flex lg:flex-wrap md:grid md:grid-cols-3 sm:flex sm:flex-wrap'>
-                            {data.map((value) => (
-                                <CarList car={value} key={value?._id} />
-                            ))}
+                    <div className='grid grid-cols-2 xl:grid xl:grid-cols-4 lg:flex lg:flex-wrap md:grid md:grid-cols-3 sm:flex sm:flex-wrap'>
+                        {data.map((value) => (
+                            <CarList car={value} key={value?._id} />
+                        ))}
 
-                        </div>
                     </div>
                 )}
             </div>
@@ -104,7 +104,7 @@ function UserHome() {
                     </div>
                 </div>
             </div>
- 
+
 
         </div>
     )

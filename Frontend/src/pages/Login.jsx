@@ -36,7 +36,7 @@ function Login() {
   };
 
   return (
-<div className="hero bg-sky-500 content-center min-h-screen  lg:min-h-screen"> 
+<div className="hero bg-slate-400 content-center min-h-screen  lg:min-h-screen"> 
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="card bg-lime-50 w-full max-w-sm shrink-0 shadow-2xl">
       <form className="card-body w-64 " onSubmit={handleSubmit(onSubmit)}>

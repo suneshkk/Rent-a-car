@@ -37,14 +37,14 @@ export const forBooking = async (req, res, next) => {
           carName: carData.carName,
         }
       ],
-      user: [
-        {
-          userId,
-           name:userData.name,
-           phone:userData.phone,
-        }
-      ],
-      // userId:userId,
+      // user: [
+      //   {
+      //     userId,
+      //      name:userData.name,
+      //      phone:userData.phone,
+      //   }
+      // ],
+      userId:userId,
       totalAmount: totalAmount,
       totalHours: totalHours,
       fromDate: fromDate,
@@ -64,7 +64,7 @@ export const forBooking = async (req, res, next) => {
 export const bookedCarDetials = async (req, res, next) => {
   try {
     const { user } = req;
-    const rental = await RentalModel.findOne({ userId: user._id }).populate("car.carId");
+    const rental = await RentalModel.findOne({userId:user.id}).populate("car.carId");
 
     if (!rental) {
       return res.status(404).json({ message: "There is no Rental" })

@@ -45,7 +45,7 @@ function CarGallery() {
 
     return (
         <div className="min-h-screen md:flex md:gap-3">
-            <div className='w-80 bg-sky-300'>
+            {/* <div className='w-80 bg-sky-300'>
                 <div className='text-center'>
                     <h1 className='text-lg font-semibold m-5'>Filter Car <hr /></h1>
                 </div>
@@ -122,28 +122,28 @@ function CarGallery() {
 
                     )}
 
-                </div>
+                </div> */}
 
-            </div>
+            {/* </div> */}
 
 
             {loading ?
                 (<Loader />) : (
-                    <div className="md:grid md:grid-cols-5 mr-5" >
-                        {/* {car.map((value) => (
+                    <div className="md:grid md:grid-cols-6 mr-5" >
+                        {car.map((value) => (
                             <CarList car={value} key={value?._id} />
-                        ))} */}
+                        ))}
                     </div>
                 )}
 
-            <div>
+            {/* <div>
                 <div className="md:grid md:grid-cols-5 mr-5" >
                     {carData.map((v) => (
                         <FilterCarCard carData={v} key={v?._id} />
                     ))}
                 </div>
 
-            </div>
+            </div> */}
 
         </div>
 

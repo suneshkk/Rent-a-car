@@ -6,7 +6,7 @@ function FilterCarCard({carData}) {
   return (
     <div className="car card-body">
 
-      <div className=" card bg-slate-300 sm:w-52">
+      {/* <div className=" card bg-slate-300 sm:w-52">
         <figure>
           <img src={carData?.image} alt="Car" className="" />
         </figure>
@@ -25,7 +25,7 @@ function FilterCarCard({carData}) {
 
 
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
