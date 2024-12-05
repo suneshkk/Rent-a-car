@@ -29,6 +29,7 @@ import PaymentSuccess from "../pages/user/SuccessPage.jsx";
 import AddReview from "../pages/user/AddReview.jsx";
 import AuthAdmin from "./protectedRoutes/AuthAdmin.jsx";
 import UserHome from "../pages/user/UserHome.jsx";
+import DeleteAccount from "../pages/admin/DeleteAccount.jsx";
 
 const router = createBrowserRouter([
 
@@ -146,8 +147,9 @@ const router = createBrowserRouter([
         path: "admin-home",
         element: <AdminHome />
       },
-
-
+     {path:"delete-account/:id",
+      element:<DeleteAccount/>
+     },
       {
         path: "car-list",
         element: <CarList />

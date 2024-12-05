@@ -107,16 +107,20 @@ export const adminLogout = async (req, res, next) => {
 
 export const adminUpdate = async (req, res, next) => {
     try {
-        const id = req.params.id;
-        const result = await adminSchema.findByIdAndUpdate(id, req.body);
+        const adminId = req.params.id;
+        const formData = req.body;
+        console.log("admin id=======++",adminId)
+        console.log("admin data=======++",formData)
+
+        const result = await adminSchema.findByIdAndUpdate(adminId,formData, {new:true});
         if (!result) {
             res.status(404).send({ message: "admin not found" });
         } else {
-            res.status(200).send({ message: "Admin updated successfully" });
+          return  res.status(200).send({ message: "Admin updated successfully" });
         }
-    } catch {
+    } catch(error) {
         console.log(error);
-        res.status(500).send({ message: error.message });
+        return next(error);
     }
 
 };

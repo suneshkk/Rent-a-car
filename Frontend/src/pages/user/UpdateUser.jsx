@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { axiosInstance } from "../../config/axiosInstance.jsx";
 import { useEffect, useState } from "react";
 import Loader from "../../components/util/Loader.jsx";
-import {  useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function UpdateUser() {
     const [loading, setLoading] = useState(false);
@@ -10,7 +10,7 @@ function UpdateUser() {
     const [phone, setPhone] = useState("");
     const [profilePic, setprofilePic] = useState(null);
     const { id } = useParams();
-      const navigate = useNavigate();
+    const navigate = useNavigate();
     const fetchUserData = async () => {
 
         setLoading(true);
@@ -66,7 +66,7 @@ function UpdateUser() {
     return (
         <div className='min-h-screen flex justify-center items-center bg-cover bg-sky-400'>
             {loading ? (<Loader />) : (
-        <div className='card card-body min-h-96 w-48 mx-2 bg-white shadow-md lg:min-h-128 lg:mx-128 md:mx-20'>
+                <div className='card card-body min-h-96 w-48 mx-2 bg-white shadow-md lg:min-h-128 lg:mx-128 md:mx-20'>
                     <div className="text-center">
                         <h1 className=" font-semibold text-gray-800 underline">Edit User</h1>
                     </div>
@@ -85,7 +85,6 @@ function UpdateUser() {
                             <input
                                 type="text"
                                 value={phone}
-                                required
                                 onChange={(e) => setPhone(e.target.value)}
                                 className="form-control flex-1 px-1 lg:px-4 py-1 lg:py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
                             />
@@ -102,7 +101,7 @@ function UpdateUser() {
                         <div className="text-center mt-6">
                             <button
                                 type="submit"
-                                className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition ease-in-out duration-300"
+                                className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition  duration-300"
                             >
                                 Submit
                             </button>

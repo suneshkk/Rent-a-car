@@ -46,26 +46,13 @@ function AdminHeader() {
             console.log(error)
         };
     };
-    const handleDelete = async () => {
-        try {
-            const response = await axiosInstance.delete('/admin/delete',
-                { withCredentials: true });
-            toast.success("profile deleted successfully")
-            navigate('/')
-
-        } catch (error) {
-            toast.error("something went wrong");
-            console.log(error)
-        };
-    };
 
     return (
         < div className="navbar border-b-2 bg-black text-center flex justify-between  items-center px-4 md:px-14 bg-cover h-20  " >
-            <div className="">
+            {/* <div className="">
                 <div className="drawer p-1">
                     <input id="my-drawer" type="checkbox" className="drawer-toggle " />
                     <div className="drawer-content">
-                        {/* Page content here */}
                         <label htmlFor="my-drawer" className="btn drawer-button">Drawer</label>
                     </div>
                     <div className="drawer-side">
@@ -91,12 +78,12 @@ function AdminHeader() {
 
                             </div> */}
 
-                        </div>
+            {/* </div> */}
 
-                    </div>
-                </div>
+            {/* </div> */}
+            {/* </div> */}
 
-            </div >
+            {/* </div >  */}
             <div className=" flex-2 md:flex-none sm:grid content-center	none: grid leading-relaxed ">
                 <Link to="/" className="btn btn-ghost font-bold">
                     <img src={MyImage} alt="logo" className="h-8 md:h-12" />
@@ -117,29 +104,43 @@ function AdminHeader() {
                 {isOpen && (
                     <div>
                         <div className="absolute h-44 md:h-72 md:p-3 right-0 top-16 md:mt-2 md:size-52 bg-white border rounded-lg size-36">
-                            <div className='text-center '>
-                                <h3 className='my-1 text-base font-semibold md:text-xl md:font-semibold'>{profile?.name}</h3>
+                            <div>
+                                <div className='text-center '>
+
+                                    <Link to={'/admin/admin-home'}>
+                                        <button className='my-1 text-base font-semibold md:text-xl md:font-semibold' onClick={() => {
+                                            closeDropdown();
+                                        }}>{profile?.name}</button>
+                                    </Link>
+                                    <hr />
+                                </div>
+                                <Link to={'/admin/edit'}>
+                                    <button className=" text-emerald-900 text-sm my-1 mx-2 font-semibold lg:mt-3 lg:mb-2" onClick={() => {
+                                        closeDropdown();
+                                    }}>Edit </button>
+                                    <h1 > </h1>
+                                </Link>
+                                <hr />
+                                <Link to={`/admin/delete-account/${profile?._id}`}>
+                                    <button className='font-medium mx-2 my-1 text-red-700 md:font-semibold lg:mt-2 lg:mb-2' onClick={() => {
+                                        closeDropdown();
+
+                                    }}>Delete account </button>
+
+                                </Link>
+                                <hr />
+
+                                <button
+                                    onClick={() => {
+                                        closeDropdown();
+                                        handleLogout();
+                                    }}
+                                    className="text-base font-medium my-1 mx-2 md:w-full md:text-left md:px-4 md:py-2 text-red-700 md:text-xl md:font-semibold"
+                                >
+                                    Logout
+                                </button>
                                 <hr />
                             </div>
-                            <Link to={'/admin/edit'}>
-                                <h1 className=" text-emerald-900 text-sm my-1 mx-2 font-semibold lg:mt-3 lg:mb-2"> Edit </h1>
-                            </Link>
-                            <hr />
-                            <button onClick={handleDelete} className=''>
-                                <h1 className="font-medium mx-2 my-1 text-red-700 md:font-semibold lg:mt-2 lg:mb-2">Delete account </h1>
-                            </button>
-                            <hr />
-
-                            <button
-                                onClick={() => {
-                                    closeDropdown();
-                                    handleLogout();
-                                }}
-                                className="text-base font-medium my-1 mx-2 md:w-full md:text-left md:px-4 md:py-2 text-red-700 md:text-xl md:font-semibold"
-                            >
-                                Logout
-                            </button>
-                            <hr />
                             <div>
                                 <h4 className='mx-1 font-semibold '>{profile?.role}</h4>
                                 <h4 className='mx-1 font-semibold '>{profile?.phone}</h4>

@@ -6,32 +6,29 @@ import BmwCar from "../../src/assets/bmw.png"
 import Benz from '../../src/assets/benz.png';
 import Car2 from '../../src/assets/car2.png';
 import Mustang from '../../src/assets/mustang.png';
-import { Link } from 'react-router-dom';
-import Loader from '../components/util/Loader.jsx';
 import { FaCar } from "react-icons/fa6";
 
 function Home() {
 
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false)
+  // const [data, setData] = useState([]);
 
-  const fetchCar = async () => {
-    setLoading(true)
-    try {
-      const responce = await axiosInstance.get('/car/car-list', {
-        withCredentials: true,
-      });
-      setLoading(false)
-      setData(responce?.data?.data);
-    } catch (error) {
-      console.log(error);
-      setLoading(false)
+  // const fetchCar = async () => {
+  //   setLoading(true)
+  //   try {
+  //     const responce = await axiosInstance.get('/car/car-list', {
+  //       withCredentials: true,
+  //     });
+  //     setLoading(false)
+  //     setData(responce?.data?.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setLoading(false)
 
-    }
-  };
-  useEffect(() => {
-    fetchCar();
-  }, [])
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchCar();
+  // }, [])
 
 
   return (
@@ -45,9 +42,9 @@ function Home() {
           <h1 className="text-lg p-2 font-extrabold md:text-5xl md:font-extrabold text-black md:mb-3">
             RENT YOUR DREAM CAR TODAY
           </h1>
-          <hr className='hidden'/>
+          <hr className='hidden' />
           <p className="font-semibold font-mono md:text-lg md:font-black text-black ">
-            Choose from a wide range of 
+            Choose from a wide range of
             vehicles to suit your needs.
           </p>
         </div>
@@ -55,19 +52,19 @@ function Home() {
           <div className='h-10 pt-4 md:h-28 md:mt-20 '>
             <h1 className='font-semibold text-slate-400 text-center hover:underline md:text-6xl font-serif md:font-bold hover:text-slate-100 '>
               The perfect car for your next trip
-              </h1>
+            </h1>
           </div>
           <div className="md:grid md:grid-cols-2 mt-3 mx-4 grid grid-cols-1">
             <div className='h-52 m-2 bg-center rounded-md md:h-80 bg-cover grid md:grid-cols-2  ' style={{ backgroundImage: `url(${BmwCar})` }} >
               <div className='md:mt-14 md:ml-8'>
                 <h1 className='font-bold md:text-3xl text-slate-200 font-serif md:font-extrabold ml-1 mt-2'>Our Brand New Car </h1>
-                <hr className='hidden'/>
+                <hr className='hidden' />
                 <p className='ml-1 md:text-2xl text-black md:font-extrabold font-bold  '>BMW 7 series</p>
               </div>
               <div className='ml-44 mb-10 flex flex-col-reverse'>
                 <p className='font-semibold md:text-lg text-gray-300 md:font-bold font-serif'>First 5 Booking</p>
                 <p className='text-sm font-semibold md:text-lg text-white font-mono md:font-bold'>Up to 5% Discount For</p>
-                <hr  className='hidden'/>
+                <hr className='hidden' />
               </div>
 
             </div>
@@ -128,7 +125,7 @@ function Home() {
                 </div>
                 <div className='p-3'>
                   <p className=' font-bold text-sm md:text-xl md:font-bold'> Small size cars to suvs are available in affordable price </p>
-                   
+
                 </div>
               </div>
 
