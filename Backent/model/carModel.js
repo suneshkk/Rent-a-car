@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 
 const carModelSchema = new mongoose.Schema({
+    // add admin detals
     carName: {
         type: String,
         required: true
