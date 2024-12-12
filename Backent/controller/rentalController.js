@@ -6,9 +6,16 @@ export const forBooking = async (req, res, next) => {
     const userId = req.user.id;
     const carId = req.params.id;
     const { totalHours, totalAmount, fromDate, toDate, dLicence } = req.body;
+    if(fromDate >= toDate){
+      return res.status(404).json({message:"invalid date range"})
+    };
     if (!totalAmount || !totalHours || !fromDate || !toDate || !dLicence) {
       return res.status(404).json({ message: "All field required" })
-    }
+    };
+    // const existingCar = await RentalModel.findOne({"car.carId":carId});
+    // if(existingCar){
+    //   return res.status(404).json({message:"this car is not available"})
+    // }
     // find the car and ensure it exists and fetch its data
     const carData = await Car.findById(carId);
     if (!carData) {
@@ -17,17 +24,13 @@ export const forBooking = async (req, res, next) => {
     const userData = await User.findById(userId);
     if (!userData) {
       return res.status(404).json({ message: "User not find" });
-    }
+    };
 
     let cars = await RentalModel.findOne({ userId })
     if (!cars) {
       cars = new RentalModel({ userId, car: [] });
     };
 
-    const existingBooking = await RentalModel.findOne({ userId, "car.carId": carId });
-    if (existingBooking) {
-      return res.status(400).json({ message: "This car is already booked bby the user" })
-    };
     const newRental = new RentalModel({
       car: [
         {

@@ -3,6 +3,7 @@ import { axiosInstance } from '../../config/axiosInstance.jsx';
 import CarList from '../../components/Cards.jsx';
 import Loader from '../../components/util/Loader.jsx';
 import FilterCarCard from '../../components/FilterCarCard.jsx';
+import toast from 'react-hot-toast';
 
 function CarGallery() {
     const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,7 @@ function CarGallery() {
             setLoading(false)
         }
     };
+    
     const handleSearch = async () => {
 
         try {
@@ -41,6 +43,7 @@ function CarGallery() {
     useEffect(() => {
         fetchCar();
         handleSearch();
+        handle();
     }, [])
 
     return (

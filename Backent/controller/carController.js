@@ -1,4 +1,5 @@
 import { Car } from '../model/carModel.js';
+import { RentalModel } from '../model/rentalModel.js';
 import { handleImageUpload } from '../util/imageUpload.js';
 
 
@@ -65,6 +66,10 @@ export const carlist = async (req, res, next) => {
 export const getCarById = async (req, res, next) => {
     try {
         const carId = req.params.id;
+        const existingBooking = await RentalModel.findOne({ "car.carId": carId });
+        if (existingBooking) {
+            return res.status(404).json({ message: "This car is already booked", data: existingBooking })
+        }
         // Find car by ID
         const cars = await Car.findById(carId)
         if (!cars) {

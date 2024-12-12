@@ -15,7 +15,7 @@ function DeleteBooking() {
             const response = await axiosInstance.delete(`/rental/cancel-booking/${id}`,
                 { withCredentials: true });
 
-            toast.success("account deleted...");
+            toast.success("deleted...");
             setLoading(false)
            navigate("/user/profile")
 

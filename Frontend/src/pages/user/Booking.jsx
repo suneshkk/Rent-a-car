@@ -69,9 +69,13 @@ function Booking() {
                 totalHours: hours,
                 totalAmount: calculatedTotalAmount,
             };
+            if(!dLicence || !fromDate || !toDate){
+                    toast.error("All field required");
+            };
             if (fromDate >= toDate) {
-                toast.error("Invalid Date Range, Please Select valid date")
-            }
+                    toast.error("Invalid Date Range, Please Select valid date")
+
+            };
             const response = await axiosInstance.post(`/rental/booking/${id}`, data,
                 {
                     withCredentials: true,
@@ -95,7 +99,7 @@ function Booking() {
             const response = await axiosInstance.get(`/review/car-review/${id}`, { withCredentials: true })
             setReview(response?.data?.data);
         } catch (error) {
-            toast.error("somthing went Wrong review fetching");
+            toast.error("somthing went Wrong in review fetching");
             console.log(error);
             setFetchReview(false);
         };
@@ -254,8 +258,8 @@ function Booking() {
             <div className='flex '>
                 <div className="reviews-container grid">
                     {review.length > 0 ? (
-                        review.map((rev) => (
-                            <div className="card">
+                        review.map((rev,index) => (
+                            <div className="card" key={rev._id || "Anonymous"}>
                                 <div className="card-header">
                                     <h4>{rev?.userId?.name || "Anonymous"}</h4>
                                 </div>
