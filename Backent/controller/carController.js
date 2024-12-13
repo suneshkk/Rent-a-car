@@ -1,3 +1,4 @@
+import { adminSchema } from '../model/adminModel.js';
 import { Car } from '../model/carModel.js';
 import { RentalModel } from '../model/rentalModel.js';
 import { handleImageUpload } from '../util/imageUpload.js';
@@ -6,13 +7,18 @@ import { handleImageUpload } from '../util/imageUpload.js';
 //creat car
 export const createCar = async (req, res, next) => {
     try {
+        const admin = req.user.id;
         const { carName, brand, year, carType, fuelType, transmission, price, image } = req.body;
         let imageUrl;
         // Check if all required fields are provided
         if (!carName || !brand || !price) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
-
+           
+        const adminData = await adminSchema.findById(admin);
+        if(!adminData){
+            return res.status(404).json({message:"admin not found"});
+        }
         // Check if the car already exists
         const isCarExist = await Car.findOne({ carName });
         if (isCarExist) {
@@ -26,6 +32,7 @@ export const createCar = async (req, res, next) => {
 
         // Create a new car object and save it to the database
         const newCar = new Car({
+            adminId:admin,
             carName,
             brand,
             year,
