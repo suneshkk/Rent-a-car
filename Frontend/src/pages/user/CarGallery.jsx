@@ -27,23 +27,22 @@ function CarGallery() {
         }
     };
     
-    const handleSearch = async () => {
+    // const handleSearch = async () => {
 
-        try {
-            const responce = await axiosInstance.post('/car/filter', { car: carType }, { withCredentials: true, });
-            // console.log("data",responce)
-            setCarData(responce?.data?.data);
+    //     try {
+    //         const responce = await axiosInstance.post('/car/filter', { car: carType }, { withCredentials: true, });
+    //         // console.log("data",responce)
+    //         setCarData(responce?.data?.data);
 
-        } catch (error) {
-            console.log(error);
+    //     } catch (error) {
+    //         console.log(error);
 
-        };
-    };
+    //     };
+    // };
 
     useEffect(() => {
         fetchCar();
-        handleSearch();
-        handle();
+        // handleSearch();
     }, [])
 
     return (

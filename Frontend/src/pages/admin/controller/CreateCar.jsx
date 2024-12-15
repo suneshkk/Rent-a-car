@@ -42,8 +42,8 @@ function CreateCar() {
 
       if (response.data.success) {
         toast.success("Car Created successfully");
-        navigate('/admin/car-list');
-        // console.log("response", response);
+        navigate('/admin/admin-home')
+        console.log("response", response);
 
       } else {
         toast.error("car already existe")

@@ -7,6 +7,7 @@ import {
     deleteCar,
     updateCar,
     filterCarByType,
+    getAdminCars,
 } from '../../controller/carController.js';
 import { upload } from '../../middlewares/multer.js';
 
@@ -18,6 +19,7 @@ router.post("/create", adminAuth, upload.single("image"), createCar);
 router.get("/car-list", carlist);
 router.post("/filter",filterCarByType);
 router.get("/get-car/:id", getCarById);
+router.get("/get-admin-cars/:id", getAdminCars);
 
 router.delete("/delete-car/:id", adminAuth, deleteCar);
 router.put("/update/:id", adminAuth, upload.single("image"), updateCar);

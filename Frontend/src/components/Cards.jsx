@@ -40,7 +40,6 @@ function CarList({ car }) {
             </Link>
 
           </div>
-          {/* <button onClick={handle}>click</button> */}
 
         </div>
 

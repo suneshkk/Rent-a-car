@@ -41,6 +41,7 @@ function Booking() {
             });
             setLoading(false);
             setCarData(response?.data?.data);
+            console.log("populate admin",response)
             toast.success("Car data fetched successsfully")
         } catch (error) {
             console.log(error);
@@ -82,13 +83,11 @@ function Booking() {
                 });
             if (response?.data?.data) {
                 toast.success("Car Booked Successfully");
-                // console.log(response, "resData")
                 navigation('/user/payment');
 
             }
         } catch (error) {
             console.error(error);
-            // toast.error("Afield required")
         };
     };
 
@@ -98,6 +97,7 @@ function Booking() {
 
             const response = await axiosInstance.get(`/review/car-review/${id}`, { withCredentials: true })
             setReview(response?.data?.data);
+            // console.log("review  ==",response);
         } catch (error) {
             toast.error("somthing went Wrong in review fetching");
             console.log(error);

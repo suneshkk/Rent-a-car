@@ -29,6 +29,7 @@ import AddReview from "../pages/user/AddReview.jsx";
 import AuthAdmin from "./protectedRoutes/AuthAdmin.jsx";
 import UserHome from "../pages/user/UserHome.jsx";
 import DeleteAccount from "../pages/admin/DeleteAccount.jsx";
+import UserList from "../pages/admin/controller/UserList.jsx";
 
 const router = createBrowserRouter([
 
@@ -83,8 +84,8 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path:"home",
-        element:<UserHome/>
+        path: "home",
+        element: <UserHome />
       },
       {
         path: "profile",
@@ -131,10 +132,10 @@ const router = createBrowserRouter([
   },
   {
     path: '/admin',
-    element: 
-    <AuthAdmin>
-      <AdminLayout />,
-    </AuthAdmin>,
+    element:
+      <AuthAdmin>
+        <AdminLayout />,
+      </AuthAdmin>,
     errorElement: <ErrorPage />,
 
     children: [
@@ -142,11 +143,12 @@ const router = createBrowserRouter([
         path: "admin-home",
         element: <AdminHome />
       },
-     {path:"delete-account/:id",
-      element:<DeleteAccount/>
-     },
       {
-        path: "car-list",
+        path: "delete-account/:id",
+        element: <DeleteAccount />
+      },
+      {
+        path: "car-list/:id",
         element: <CarList />
       },
       {
@@ -161,6 +163,11 @@ const router = createBrowserRouter([
         path: "edit-car/:id",
         element: <EditCar />
       },
+      {
+        path:"user-list",
+        element:<UserList/>
+      },
+
       // {
       //   path: "car-detail/:id",
       //   element: <Details />

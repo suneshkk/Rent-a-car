@@ -11,13 +11,12 @@ function Payment() {
   const fetchBookedCarDetails = async () => {
     
     setLoading(true);
-    // console.log("==========)(",bookingData)
     try {
       const response = await axiosInstance.get(`/rental/booked-car`,
         { withCredentials: true });
       setLoading(false);
       setBookingData(response?.data?.data);
-      // console.log(response, "from booking")
+      console.log("booking data======",response) 
     } catch (error) {
       console.log(error);
       setLoading(false);

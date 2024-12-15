@@ -16,8 +16,8 @@ export const payment = async (req, res, next) => {
                 price_data: {
                     currency: "inr",
                     product_data: {
-                        name: bookingData?.car[0].carName,
-                        images: [bookingData?.car[0].image],
+                        name: bookingData?.carId?.carName,
+                        images: [bookingData?.carId?.image],
                     },
                     unit_amount: Math.round(bookingData?.totalAmount * 100),
                 },

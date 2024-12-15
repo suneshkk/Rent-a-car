@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 
 const carModelSchema = new mongoose.Schema({
-    // add admin detals
-    adminId:{
-        type:mongoose.Schema.Types.ObjectId,
-        refer:"adminsChema",
-        required:true,
+    adminId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Admin',
+        required: true,
     },
+
     carName: {
         type: String,
         required: true

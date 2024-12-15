@@ -1,4 +1,4 @@
-import { adminSchema } from '../model/adminModel.js';
+import { Admin } from '../model/adminModel.js';
 import { Car } from '../model/carModel.js';
 import { RentalModel } from '../model/rentalModel.js';
 import { handleImageUpload } from '../util/imageUpload.js';
@@ -14,10 +14,10 @@ export const createCar = async (req, res, next) => {
         if (!carName || !brand || !price) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
-           
-        const adminData = await adminSchema.findById(admin);
-        if(!adminData){
-            return res.status(404).json({message:"admin not found"});
+
+        const adminData = await Admin.findById(admin);
+        if (!adminData) {
+            return res.status(404).json({ message: "admin not found" });
         }
         // Check if the car already exists
         const isCarExist = await Car.findOne({ carName });
@@ -32,7 +32,7 @@ export const createCar = async (req, res, next) => {
 
         // Create a new car object and save it to the database
         const newCar = new Car({
-            adminId:admin,
+            adminId: admin,
             carName,
             brand,
             year,
@@ -73,12 +73,12 @@ export const carlist = async (req, res, next) => {
 export const getCarById = async (req, res, next) => {
     try {
         const carId = req.params.id;
-        const existingBooking = await RentalModel.findOne({ "car.carId": carId });
+        const existingBooking = await RentalModel.findOne({ "carId": carId });
         if (existingBooking) {
             return res.status(404).json({ message: "This car is already booked", data: existingBooking })
         }
         // Find car by ID
-        const cars = await Car.findById(carId)
+        const cars = await Car.findById(carId).populate("adminId")
         if (!cars) {
             return res.status(404).json({ success: false, message: "Car not found" });
         }
@@ -90,6 +90,24 @@ export const getCarById = async (req, res, next) => {
         console.log(error);
         return next(error);
     }
+};
+
+export const getAdminCars = async (req, res, next) => {
+    try {
+        const adminId = req.params.id;
+        console.log("adminId ++++++",adminId)
+        const carData = await Car.find({adminId});
+        if (!carData) {
+            return res.status(404).json({ message: "no created cars for this admin" })
+        } else {
+            return res.status(200).json({ success: true, message: "Cardata fetched successfuly", data: carData })
+        }
+
+
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    };
 };
 
 //delete car

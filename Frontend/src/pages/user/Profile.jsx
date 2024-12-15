@@ -39,7 +39,7 @@ function Profile() {
                 { withCredentials: true });
             setLoading(false);
             setBookedCar(response?.data?.data);
-            // console.log("response profile",response);
+            console.log("booked car detailes ",response);
         } catch (error) {
             console.log(error);
         };
@@ -182,6 +182,13 @@ function Profile() {
                             </li>
                             <hr />
                             <li>
+                                <label className='text-sm   lg:text-base font-medium'><b>Total hours :</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.totalHours
+                                }</b></span>
+                            </li>
+                            <hr />
+
+                            <li>
                                 <label className='text-sm   lg:text-base font-medium'><b>From Date:</b> </label>
                                 <span className='text-sm lg:text-base font-medium'><b>{moment(bookedCar?.fromDate).format('DD-MM-YYYY')}</b></span>
                             </li>
@@ -204,25 +211,31 @@ function Profile() {
                         <ul className="mt-3 space-y-2">
                             <li>
                                 <label className='text-sm  lg:text-base font-medium'><b>Rent Per Hour :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.car?.[0]?.price}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.carId?.price}</b></span>
                             </li>
                             <hr />
                             <li>
                                 <label className='text-sm  lg:text-base font-medium'><b>Car Name :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.car?.[0]?.carId?.carName}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.carId?.carName}</b></span>
                             </li>
                             <hr />
                             <li>
                                 <label className='text-sm  lg:text-base font-medium'><b>Fueltype :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.car?.[0]?.carId?.fuelType}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.carId?.fuelType}</b></span>
                             </li>
                             <hr />
+                            <li>
+                                <label className='text-sm  lg:text-base font-medium'><b>driving :</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.carId?.transmission}</b></span>
+                            </li>
+                            <hr />
+
                         </ul>
 
                     </div>
                     <div className='flex justify-center items-center card card-body bg-slate-400 '>
                         <h3 className=' border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Car</h3>
-                        <img src={bookedCar?.car?.[0]?.image} alt="car image" className='md:w-40 lg:w-80' />
+                        <img src={bookedCar?.carId?.image} alt="car image" className='md:w-40 lg:w-80' />
                     </div>
 
 

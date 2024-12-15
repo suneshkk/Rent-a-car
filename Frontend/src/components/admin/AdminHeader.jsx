@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import MyImage from '../../assets/wheelz.png'
 import toast from 'react-hot-toast';
 import ProfilPic from '../../assets/profile.png'
@@ -7,6 +7,7 @@ import { axiosInstance } from '../../config/axiosInstance.jsx';
 import DropDownBt from '../util/DropDownBt.jsx';
 
 function AdminHeader() {
+    const location = useLocation();
     const navigate = useNavigate();
     const [profile, setProfile] = useState([])
 
@@ -49,41 +50,34 @@ function AdminHeader() {
 
     return (
         < div className="navbar border-b-2 bg-black text-center flex justify-between  items-center px-4 md:px-14 bg-cover h-20  " >
-            {/* <div className="">
-                <div className="drawer p-1">
-                    <input id="my-drawer" type="checkbox" className="drawer-toggle " />
-                    <div className="drawer-content">
-                        <label htmlFor="my-drawer" className="btn drawer-button">Drawer</label>
+            {location.pathname == '/admin/admin-home' &&
+                <div className='flex gap-5'>
+                    <div className='hover:border-b-2' >
+                        <Link to={`/admin/car-list/${profile?._id}`}>
+                            <h3 className='text-center text-lg font-bold text-slate-100'>Car List</h3>
+
+                        </Link>
+
                     </div>
-                    <div className="drawer-side">
-                        <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                    <div className='hover:border-b-2'>
+                        <Link to={"/admin/create-car"}>
+                            <h3 className='text-center text-lg font-bold text-slate-100'>Create Car</h3>
 
-                        <div className="menu bg-cyan-700 text-base-content min-h-full w-80 p-4">
-                            <div className="text-center m-3">
-                                <h2 className=" font-bold text-xl text-amber-600">Dashboard</h2>
-                                <hr />
-                            </div>
-                            <div>
-                                <li className="content-start py-4">
-                                    <DropDownBt></DropDownBt>
-                                    <hr />
+                        </Link>
 
-                                </li>
-                            </div>
-                            {/* <div>
-                                <li className="content-start py-4">
-                                    <DropDownUser></DropDownUser>
-                                    <hr />
-                                </li>
+                    </div>
+                    <div className='hover:border-b-2'>
+                        <Link to={"/admin/user-list"}>
+                            <h3 className='text-center text-lg font-bold text-slate-100'>User List</h3>
 
-                            </div> */}
+                        </Link>
 
-            {/* </div> */}
+                    </div>
 
-            {/* </div> */}
-            {/* </div> */}
 
-            {/* </div >  */}
+
+                </div>
+            }
             <div className=" flex-2 md:flex-none sm:grid content-center	none: grid leading-relaxed ">
                 <Link to="/" className="btn btn-ghost font-bold">
                     <img src={MyImage} alt="logo" className="h-8 md:h-12" />

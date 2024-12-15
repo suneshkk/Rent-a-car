@@ -12,7 +12,7 @@ const router = express.Router();
 router.post("/booking/:id", userAuth, forBooking);
 router.get("/booked-car", userAuth, bookedCarDetials);
 router.delete("/cancel-booking/:id", userAuth, deleteBooking);
-router.get("/booking-list",bookedCars);
+router.get("/booking-list/:id",bookedCars);
 
 
 export { router as rentalRoutes };

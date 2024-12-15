@@ -42,7 +42,7 @@ export const getCarReview = async (req, res, next) => {
     try {
         const { carId } = req.params.id;
 
-        const reviews = await Review.find(carId).populate("userId", "name")
+        const reviews = await Review.find(carId).populate("userId").populate("carId")
         if (!reviews.length) {
             return res.status(404).json({ message: "no reviews for this car" })
         } else {

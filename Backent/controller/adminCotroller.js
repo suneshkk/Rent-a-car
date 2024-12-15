@@ -1,4 +1,4 @@
-import { adminSchema } from "../model/adminModel.js";
+import { Admin } from "../model/adminModel.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../util/token.js";
 import { User } from "../model/userModel.js";
@@ -13,7 +13,7 @@ export const adminSignup = async (req, res, next) => {
             return res.status(400).json({ success: false, message: "all field required" });
 
         }
-        const isAdminExist = await adminSchema.findOne({ email });
+        const isAdminExist = await Admin.findOne({ email });
         if (isAdminExist) {
             return res.status(400).json({ message: "Admin already exist" });
 
@@ -21,7 +21,7 @@ export const adminSignup = async (req, res, next) => {
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
-        const newAdmin = new adminSchema({ name, email, password: hashedPassword, phone });
+        const newAdmin = new Admin({ name, email, password: hashedPassword, phone });
         await newAdmin.save();
 
         const token = generateToken(newAdmin._id, 'admin');
@@ -48,7 +48,7 @@ export const adminLogin = async (req, res, next) => {
         if (!email || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
         }
-        const adminExist = await adminSchema.findOne({ email });
+        const adminExist = await Admin.findOne({ email });
         if (!adminExist) {
             return res.status(400).json({ message: "Admin does not exist" });
 
@@ -81,7 +81,7 @@ export const adminProfile = async (req, res, next) => {
         const admin = req.user;
 
         // Fetch user data from the database
-        const adminData = await adminSchema.findOne({ _id: admin.id });
+        const adminData = await Admin.findOne({ _id: admin.id });
 
         // Respond with the user data
         return res.json({ success: true, data: adminData, message: "User Data Fetched" });
@@ -109,10 +109,10 @@ export const adminUpdate = async (req, res, next) => {
     try {
         const adminId = req.params.id;
         const formData = req.body;
-        console.log("admin id=======++",adminId)
-        console.log("admin data=======++",formData)
+        // console.log("admin id=======++",adminId)
+        // console.log("admin data=======++",formData)
 
-        const result = await adminSchema.findByIdAndUpdate(adminId,formData, {new:true});
+        const result = await Admin.findByIdAndUpdate(adminId,formData, {new:true});
         if (!result) {
             res.status(404).send({ message: "admin not found" });
         } else {
@@ -129,7 +129,7 @@ export const adminUpdate = async (req, res, next) => {
 export const adminDelete = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const result = await adminSchema.findByIdAndDelete(id);
+        const result = await Admin.findByIdAndDelete(id);
         if (!result) {
             return res.status(404).json({ message: "Admin Not Found" });
         }

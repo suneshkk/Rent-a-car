@@ -3,52 +3,18 @@ import mongoose from "mongoose";
 
 
 const rentalStatus = new mongoose.Schema({
-    // user: [
-    //     {
-    //         userId: {
-    //             type: mongoose.Schema.Types.ObjectId,
-    //             ref: 'User',
-    //             required: true,
-    //         },
-    //         name: {
-    //             type: String,
-    //             required: true,
-    //         },
-    //         phone: {
-    //             type: String,
-    //             required: true,
-    //         }
-
-    //     }
-    // ],
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
     },
+    carId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'car',
+        required: true
+    },
 
-    car: [
-        {
-            carId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'car',
-                required: true
-            },
-            price: {
-                type: Number,
-                required: true
-            },
-            image: {
-                type: String,
-                default: "image",
-            },
-            carName: {
-                type: String,
-                required: true,
-            },
 
-        },
-    ],
     totalHours: {
         type: Number,
         required: true,

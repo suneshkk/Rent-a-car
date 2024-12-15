@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
-import { axiosInstance } from '../../config/axiosInstance'
+import { axiosInstance } from '../../config/axiosInstance.jsx'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearAdmin, saveAdmin } from '../../redux/features/adminSlice';
+import { clearAdmin, saveAdmin } from '../../redux/features/adminSlice.js';
 import toast from 'react-hot-toast';
 
 function AuthAdmin({ children }) {
   const { isAdminExist } = useSelector((state) => state.admin);
+        console.log("saveadmin",isAdminExist)
+
   const dispatch = useDispatch();
   const navigate = useNavigate()
 

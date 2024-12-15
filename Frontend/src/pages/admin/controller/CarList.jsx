@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import EditButton from '../../../components/util/EditButton.jsx';
 import DetailButton from '../../../components/util/DetailButton.jsx';
 import DeleteButton from '../../../components/util/DeleteButton.jsx';
@@ -11,13 +11,16 @@ function CarList() {
     const [car, setCar] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const fetchCar = async () => {
+    const { id } = useParams();
+
+    const fetchAdminCar = async () => {
         setLoading(true);
         try {
-            const response = await axiosInstance.get('/car/car-list', { withCredentials: true });
+            const response = await axiosInstance.get(`/car/get-admin-cars/${id}`, { withCredentials: true });
 
             if (response?.data?.data) {
                 setCar(response?.data?.data)
+                console.log("admin Car++++", response);
                 setLoading(false);
             } else {
                 setLoading(false);
@@ -32,13 +35,13 @@ function CarList() {
     };
 
     useEffect(() => {
-        fetchCar();
+        fetchAdminCar();
     }, []);
 
     return (
         <div className='min-h-screen'>
             <Link to={"/admin/admin-home"}>
-            <HomeButton />
+                <HomeButton />
             </Link>
             {loading ? (
                 <Loader />
