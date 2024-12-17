@@ -3,7 +3,7 @@ import moment from 'moment'
 
 function BoookHistory({ booking }) {
 
-    console.log("booking", booking)
+    // console.log("booking", booking)
     const toDate = moment(booking?.toDate).format('MMMM Do YYYY, h:mm:ss a');
     const fromDate = moment(booking?.fromDate).format('MMMM Do YYYY, h:mm:ss a')
     return (

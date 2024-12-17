@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { loadStripe } from "@stripe/stripe-js";
 import { axiosInstance } from '../../config/axiosInstance.jsx';
 import Loader from '../../components/util/Loader';
+import { Link } from 'react-router-dom';
 
 
 
@@ -48,6 +49,12 @@ function Payment() {
 
   return (
     <div className='min-h-screen flex justify-center items-center bg-slate-400 bg-cover '>
+                <div className="flex">
+                  <Link to={"/user/profile"}>
+                    <button className='btn btn-info text-white hover:bg-cyan-400' >Home</button>
+                  </Link>
+                </div>
+      
       {loading ? (<Loader />) : (
         <div className='card card-body bg-cover bg-amber-300 m-60'>
           <h1 className='card card-title'><b>Confirm Your payment</b></h1>

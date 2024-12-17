@@ -131,7 +131,7 @@ function CarGallery() {
 
             {loading ?
                 (<Loader />) : (
-                    <div className="md:grid md:grid-cols-6 mr-5" >
+                    <div className="md:grid md:grid-cols-4 mr-5" >
                         {car.map((value) => (
                             <CarList car={value} key={value?._id} />
                         ))}

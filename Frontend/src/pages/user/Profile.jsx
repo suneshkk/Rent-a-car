@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../../components/util/Loader.jsx';
 import moment from 'moment'
+import { FaUser } from "react-icons/fa";
 
 function Profile() {
     const [profile, setProfile] = useState([]);
@@ -77,7 +78,7 @@ function Profile() {
                     <div className=" mb-20">
                         <div className=''>
 
-                            <div className="drawer">
+                            <div className="drawer z-50">
                                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                                 <div className="drawer-content">
                                     {/* Page content here */}
@@ -141,10 +142,11 @@ function Profile() {
                                 </div>
                                 <div>
                                     <img
-                                        src={profile?.profilePic}
+                                        src={profile?.profilePic }
                                         alt="profile-pic"
                                         className="w-20 h-20 object-cover rounded-full mx-auto mb-2"
                                     />
+                                    
                                 </div>
                                 <div className="mb-2 ml-2">
                                     <span className="mr-3 text-base font-semibold">Name :</span>

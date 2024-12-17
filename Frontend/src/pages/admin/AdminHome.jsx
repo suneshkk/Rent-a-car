@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import Loader from "../../components/util/Loader.jsx";
 import { axiosInstance } from "../../config/axiosInstance.jsx";
 import BoookHistory from "../../components/admin/BoookHistory.jsx";
+import { useParams } from "react-router-dom";
 
 function AdminHome() {
 
     const [booking, setBooking] = useState([]);
     const [loading2, setLoading2] = useState(false);
+    const {id} = useParams();
     // const [name, setName] = useState("");
     // const [phone, setPhone] = useState("");
     // const [email, setEmail] = useState("");
-    const [profile, setProfile] = useState([]);
+    // const [profile, setProfile] = useState(null);
     // console.log("data", name, email, phone)
 
     // const editProfile = async (e) => {
@@ -43,24 +45,24 @@ function AdminHome() {
     // };
 
 
-    const fetchAdminProfile = async () => {
-        try {
-            const responce = await axiosInstance.get('/admin/profile', {
-                withCredentials: true,
-            })
-            setProfile(responce?.data?.data);
-        } catch (error) {
-            toast.error("Please Login..!");
-            console.log(error);
-        };
-    };
-
+    // const fetchAdminProfile = async () => {
+    //     try {
+    //         const responce = await axiosInstance.get('/admin/profile', {
+    //             withCredentials: true,
+    //         })
+    //         setProfile(responce?.data?.data);
+    //         console.log("profile", responce)
+    //     } catch (error) {
+    //         toast.error("Please Login..!");
+    //         console.log(error);
+    //     };
+    // };
     const fetchBookingHistory = async () => {
         setLoading2(true);
         try {
-            const response = await axiosInstance.get(`/rental/booking-list/${profile?._id}`, { withCredential: true });
+            const response = await axiosInstance.get(`/rental/booking-list`, { withCredential: true });
             setBooking(response?.data?.data)
-            console.log("history", response);
+            // console.log("history", response);
             setLoading2(false);
         } catch (error) {
             console.log(error);
@@ -68,8 +70,9 @@ function AdminHome() {
         }
     };
     useEffect(() => {
+        // fetchAdminProfile();
+
         fetchBookingHistory();
-       fetchAdminProfile();
     }, []);
 
     return (
@@ -82,11 +85,14 @@ function AdminHome() {
                     {loading2 ? (
                         <Loader />
                     ) : (
-                        <div className=" flex">
-                            {booking.map((v) => (
-                                <BoookHistory booking={v} key={v?._id} />
-                            ))}
-
+                        <div className="flex">
+                            {booking.length > 0 ? (
+                                booking.map((v) => (
+                                    <BoookHistory booking={v} key={v?._id} />
+                                ))
+                            ) : (
+                                <p className="text-center w-full">No bookings found</p>
+                            )}
                         </div>
                     )}
 

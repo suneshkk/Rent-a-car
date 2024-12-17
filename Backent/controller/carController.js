@@ -78,7 +78,7 @@ export const getCarById = async (req, res, next) => {
             return res.status(404).json({ message: "This car is already booked", data: existingBooking })
         }
         // Find car by ID
-        const cars = await Car.findById(carId).populate("adminId")
+        const cars = await Car.findById(carId)
         if (!cars) {
             return res.status(404).json({ success: false, message: "Car not found" });
         }

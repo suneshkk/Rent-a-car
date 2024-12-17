@@ -6,7 +6,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import moment from 'moment';
 
 function Booking() {
     const [carData, setCarData] = useState({});
@@ -41,7 +40,7 @@ function Booking() {
             });
             setLoading(false);
             setCarData(response?.data?.data);
-            console.log("populate admin",response)
+            // console.log("populate admin", response)
             toast.success("Car data fetched successsfully")
         } catch (error) {
             console.log(error);
@@ -69,12 +68,14 @@ function Booking() {
                 toDate,
                 totalHours: hours,
                 totalAmount: calculatedTotalAmount,
+                adminId:carData?.adminId,
             };
-            if(!dLicence || !fromDate || !toDate){
-                    toast.error("All field required");
+            console.log("data",data)
+            if (!dLicence || !fromDate || !toDate) {
+                toast.error("All field required");
             };
             if (fromDate >= toDate) {
-                    toast.error("Invalid Date Range, Please Select valid date")
+                toast.error("Invalid Date Range, Please Select valid date")
 
             };
             const response = await axiosInstance.post(`/rental/booking/${id}`, data,
@@ -111,173 +112,175 @@ function Booking() {
 
 
     return (
-        <div className='mb-7 mx-3'>
-            <div className='bg-slate-600 bg-cover h-16 flex items-center justify-between '>
-                <div className='flex-1 '>
-                    <Link to={"/user/profile"}>
-                        <h4 className='ml-4 font-extrabold text-slate-300'>Profile</h4>
+        <div className="mb-7 mx-3">
+            {/* Header Section */}
+            <div className="bg-slate-600 bg-cover h-16 flex items-center justify-between px-4 rounded-md shadow-md">
+                <div className="flex-1">
+                    <Link to="/user/profile">
+                        <h4 className="ml-4 font-extrabold text-slate-300 hover:text-white transition-colors">
+                            Profile
+                        </h4>
                     </Link>
-
-
                 </div>
-                <h1 className='text-lg font-semibold text-red-200 sm:text-lg sm:font-bold sm:text-indigo-800 md:text-xl md:font-extrabold md:text-orange-400lg:text-3xl lg:font-extrabold lg:text-red-600 xl:text-4xl xl:text-black'>
+                <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-red-200 sm:text-indigo-800 md:text-orange-400 lg:text-red-600 xl:text-black">
                     Car Booking Window...!
                 </h1>
-                <div className='flex-1'></div>
-
+                <div className="flex-1"></div>
             </div>
 
-            <div className='container mx-auto min-h-screen flex items-center justify-center   '>
-                {loading ? (<Loader />) : (
-                    <div className="flex w-full flex-col lg:flex-row mt-4">
-                        <div className="card card-body rounded-box lg:h-144 flex flex-grow place-items-center bg-orange-300">
-                            <div className='card  rounded mb-3'>
-                                <img src={carData?.image} alt="image" className=' lg:w-full lg:max-w-sm rounded-lg shadow-lg ' />
+            <div className="container mx-auto min-h-screen flex items-center justify-center">
+                {loading ? (
+                    <Loader />
+                ) : (
+                    <div className="flex w-full flex-col lg:flex-row mt-4 gap-6">
+                        <div className="card bg-orange-300 shadow-lg rounded-lg p-4 flex-grow">
+                            <div className="rounded mb-4 overflow-hidden">
+                                <img
+                                    src={carData?.image}
+                                    alt="Car"
+                                    className=" h-64 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+                                />
                             </div>
-                            <div className='lg:size-96'>
-                                <div className="flex items-center space-x-4">
-                                    <label className="form-label text-black font-bold w-1/3">Name :</label>
-                                    <span className="form-control flex-1 px-4 py-2 border rounded-md bg-white font-serif font-bold"
-                                    >{carData?.carName}</span>
+                            <div className="space-y-3 text-gray-700">
+                                <div className="flex items-center">
+                                    <label className="font-bold w-1/3">Name:</label>
+                                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                                        {carData?.carName}
+                                    </span>
                                 </div>
-                                <div className="flex items-center space-x-4">
-                                    <label className="form-label text-black font-bold w-1/3">Brand :</label>
-                                    <span className="form-control flex-1 px-4 py-2 border rounded-md bg-white font-serif font-bold"
-                                    >{carData?.brand}</span>
+                                <div className="flex items-center">
+                                    <label className="font-bold w-1/3">Brand:</label>
+                                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                                        {carData?.brand}
+                                    </span>
                                 </div>
-
-                                <div className="flex items-center space-x-4">
-                                    <label className="form-label text-black font-bold w-1/3">Fuel:</label>
-                                    <span className="form-control flex-1 px-4 py-2 border rounded-md bg-white font-serif font-bold"
-                                    >{carData?.fuelType}</span>
+                                <div className="flex items-center">
+                                    <label className="font-bold w-1/3">Fuel:</label>
+                                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                                        {carData?.fuelType}
+                                    </span>
                                 </div>
-
-                                <div className="flex items-center space-x-4">
-                                    <label className="form-label text-black font-bold w-1/3">Transmission:</label>
-                                    <span className="form-control flex-1 px-4 py-2 border rounded-md bg-white font-serif font-bold"
-                                    >{carData?.transmission}</span>
+                                <div className="flex items-center">
+                                    <label className="font-bold w-1/3">Transmission:</label>
+                                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                                        {carData?.transmission}
+                                    </span>
                                 </div>
-                                <div className="flex items-center space-x-4">
-                                    <label className="form-label text-black font-bold w-1/3">Type:</label>
-                                    <span className="form-control flex-1 px-4 py-2 border rounded-md bg-white font-serif font-bold"
-                                    >{carData?.carType}</span>
+                                <div className="flex items-center">
+                                    <label className="font-bold w-1/3">Year:</label>
+                                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                                        {carData?.year}
+                                    </span>
                                 </div>
-                                <div className="flex items-center space-x-4">
-                                    <label className="form-label text-black font-bold w-1/3">Year:</label>
-                                    <span className="form-control flex-1 px-4 py-2 border rounded-md bg-white font-serif font-bold"
-                                    >{carData?.year}</span>
-                                </div>
-                                <button className='mt-4 btn-ghost'>
+                                <div className="flex justify-center">
                                     <Link to={`/user/add-review/${carData?._id}`}>
-                                        <p className='text-blue-500'><b>Add Rating And Review</b></p>
+                                        <button className="text-blue-500 hover:underline font-bold">
+                                            Add Rating And Review
+                                        </button>
                                     </Link>
-                                </button>
+                                </div>
                             </div>
                         </div>
+
                         <div className="divider lg:divider-horizontal"></div>
-                        <div className="car dbg-base-300 rounded-box grid h-144 flex-grow">
-                            <div className=" card card-body bg-orange-300  p-4 flex items-center justify-between flex-col">
-                                <div className="flex flex-col justify-between content-center gap-7">
-                                    <h1 className='card card-title underline text-center lg:text-xl font-bold text-slate-800'>Please select your time and date </h1>
 
-                                    <div className="flex">
-                                        <label className="text-lg font-bold text-white w-1/">From Date:</label>
-                                        <DatePicker
-                                            selected={fromDate}
-                                            required:true
-                                            onChange={(date) => setFromDate(date)}
-                                            minDate={new Date()}
-                                            showTimeSelect
-                                            dateFormat="MM/dd/yyyy, h:mm a"
-                                            className="input input-bordered"
-                                        />
-                                    </div>
-                                    <hr />
+                        <div className="card bg-orange-300 shadow-lg rounded-lg p-6 flex flex-col gap-6">
+                            <h1 className="text-xl lg:text-2xl font-bold text-center text-slate-800 underline">
+                                Please Select Your Time and Date
+                            </h1>
 
-                                    <div className="flex ">
-                                        <label className="text-lg font-bold text-white">
-                                            To Date  :
-                                        </label>
-                                        <DatePicker
-                                            selected={toDate}
-                                            required:true
-                                            onChange={(date) => setToDate(date)}
-                                            minDate={new Date()}
-                                            showTimeSelect
-                                            dateFormat="MM/dd/yyyy, h:mm a"
-                                            className="input input-bordered"
-                                        />
-                                    </div>
-                                    <hr />
-                                    <div className="flex flex-col">
-                                        <label className="text-lg font-bold text-white">
-                                            Driving License Number:
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={dLicence}
-                                            onChange={(e) => setDLicence(e.target.value)}
-                                            placeholder="enter:55/14391/2016"
-                                            className="input input-bordered w-full"
-                                            required
-                                        />
-                                    </div>
-                                    <hr />
-                                </div>
-                                <div className="mt-4 text-xl font-semibold text-gray-700">
-                                    Rent per hour:{carData?.price}
-                                </div>
-                                <div className='flex'>
-                                    <h1 className="mt-4 text-xl font-semibold text-gray-700">Total Hours:</h1>
-                                    <span>
-                                        {totalHours !== null && (
-                                            <div className="mt-4 text-xl font-semibold text-gray-700">
-                                                {totalHours.toFixed()}
-                                            </div>
-                                        )}
+                            <div className="flex items-center gap-4">
+                                <label className="font-bold text-lg">From Date:</label>
+                                <DatePicker
+                                    selected={fromDate}
+                                    required
+                                    onChange={(date) => setFromDate(date)}
+                                    minDate={new Date()}
+                                    showTimeSelect
+                                    dateFormat="MM/dd/yyyy, h:mm a"
+                                    className="input input-bordered w-full"
+                                />
+                            </div>
 
-                                    </span>
+                            <div className="flex items-center gap-4">
+                                <label className="font-bold text-lg">To Date:</label>
+                                <DatePicker
+                                    selected={toDate}
+                                    required
+                                    onChange={(date) => setToDate(date)}
+                                    minDate={new Date()}
+                                    showTimeSelect
+                                    dateFormat="MM/dd/yyyy, h:mm a"
+                                    className="input input-bordered w-full"
+                                />
+                            </div>
 
-                                </div>
-                                {totalAmount !== null && (
-                                    <div>total amount:{totalAmount.toFixed()}</div>
+                            <div className="flex flex-col gap-2">
+                                <label className="font-bold text-lg">Driving License Number:</label>
+                                <input
+                                    type="text"
+                                    value={dLicence}
+                                    onChange={(e) => setDLicence(e.target.value)}
+                                    placeholder="Enter: 55/14391/2016"
+                                    className="input input-bordered w-full"
+                                    required
+                                />
+                            </div>
+
+                            <div className="text-gray-700">
+                                <p className="font-bold text-lg">
+                                    Rent per hour: <span className="font-semibold">{carData?.price}</span>
+                                </p>
+                                {totalHours !== null && (
+                                    <p className="font-bold text-lg">
+                                        Total Hours: <span className="font-semibold">{totalHours.toFixed()}</span>
+                                    </p>
                                 )}
+                                {totalAmount !== null && (
+                                    <p className="font-bold text-lg">
+                                        Total Amount: <span className="font-semibold">{totalAmount.toFixed()}</span>
+                                    </p>
+                                )}
+                            </div>
 
-                                <button className="lg:mt-6 lg:px-4 lg:py-2  hover:bg-amber-600 text-blue-600 rounded-md font-bold" onClick={handleBookeCa}>
+                            <div className="text-center">
+                                <button
+                                    onClick={handleBookeCa}
+                                    className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
+                                >
                                     Book Now
                                 </button>
-
                             </div>
-
                         </div>
-
                     </div>
                 )}
-            </div >
-            <div className='divider lg:divider-vertical'>Review</div>
-            <div className='flex '>
-                <div className="reviews-container grid">
+            </div>
+
+            <div className="mt-6">
+                <h2 className="text-2xl font-bold mb-4 text-gray-700">Reviews</h2>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     {review.length > 0 ? (
-                        review.map((rev,index) => (
-                            <div className="card" key={rev._id || "Anonymous"}>
-                                <div className="card-header">
-                                    <h4>{rev?.userId?.name || "Anonymous"}</h4>
-                                </div>
-                                <div className="card-body">
-                                    <p><b>Comment:</b> {rev?.comment || "No comment provided"}</p>
-                                    <p><b>Rating:</b> {rev?.rating || "No rating given"}</p>
-                                </div>
+                        review.map((rev, index) => (
+                            <div
+                                key={rev._id}
+                                className="bg-white p-4 rounded-lg shadow-md"
+                            >
+                                <h4 className="font-bold text-gray-800">
+                                    {rev?.userId?.name }
+                                </h4>
+                                <p className="text-gray-600">
+                                    <b>Comment:</b> {rev?.comment}
+                                </p>
+                                <p className="text-gray-600">
+                                    <b>Rating:</b> {rev?.rating }
+                                </p>
                             </div>
                         ))
                     ) : (
-                        <div className="no-reviews">
-                            <p>No reviews available</p>
-                        </div>
+                        <p className="text-gray-500">No reviews available</p>
                     )}
                 </div>
-
             </div>
-
         </div>
     )
 }

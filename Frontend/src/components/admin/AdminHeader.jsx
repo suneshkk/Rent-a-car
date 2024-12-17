@@ -10,7 +10,6 @@ function AdminHeader() {
     const location = useLocation();
     const navigate = useNavigate();
     const [profile, setProfile] = useState([])
-
     const [isOpen, setIsopen] = useState(false);
 
     const toggleDropdown = () => {
@@ -34,7 +33,7 @@ function AdminHeader() {
     useEffect(() => {
         fetchAdminProfile()
     }, [])
-
+ 
 
     const handleLogout = async () => {
         try {
@@ -97,7 +96,7 @@ function AdminHeader() {
 
                 {isOpen && (
                     <div>
-                        <div className="absolute h-44 md:h-72 md:p-3 right-0 top-16 md:mt-2 md:size-52 bg-white border rounded-lg size-36">
+                        <div className="absolute h-44 md:h-72 md:p-3 right-0 top-16 md:mt-2 md:size-52 bg-white border rounded-lg size-36 z-50">
                             <div>
                                 <div className='text-center '>
 

@@ -13,8 +13,11 @@ const rentalStatus = new mongoose.Schema({
         ref: 'car',
         required: true
     },
-
-
+    adminId: {
+        type: mongoose.Schema.Types.ObjectId,
+        refer: 'admin',
+        required: true
+    },
     totalHours: {
         type: Number,
         required: true,

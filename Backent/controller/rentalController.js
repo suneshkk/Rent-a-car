@@ -5,7 +5,8 @@ export const forBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const carId = req.params.id;
-    const { totalHours, totalAmount, fromDate, toDate, dLicence } = req.body;
+    const { totalHours, totalAmount, fromDate, toDate, dLicence,adminId} = req.body;
+
     if (fromDate >= toDate) {
       return res.status(404).json({ message: "invalid date range" })
     };
@@ -29,6 +30,7 @@ export const forBooking = async (req, res, next) => {
     const newRental = new RentalModel({
       carId: carId,
       userId: userId,
+      adminId: adminId,
       totalAmount: totalAmount,
       totalHours: totalHours,
       fromDate: fromDate,
@@ -48,6 +50,7 @@ export const forBooking = async (req, res, next) => {
 export const bookedCarDetials = async (req, res, next) => {
   try {
     const { user } = req;
+    // console.log("user",user)
     const rental = await RentalModel.findOne({ userId: user.id }).populate("carId").populate("userId");
 
     if (!rental) {
@@ -76,9 +79,10 @@ export const deleteBooking = async (req, res, next) => {
 };
 export const bookedCars = async (req, res, next) => {
   try {
-    const adminId = req.params.id;
-    console.log("rental admin id+++", adminId)
-    const bookedCars = await RentalModel.find().populate({ path: 'carId', match: { adminId: adminId } });
+    const { user } = req;
+    const bookedCars = await RentalModel.find({ adminId: user.id }).populate("userId").populate("carId")
+
+
     if (bookedCars == 0) {
       return res.status(400).json({ message: "no data" });
     } else {

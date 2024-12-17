@@ -26,7 +26,7 @@ function SignUp() {
       }
 
     } catch (error) {
-      toast.error("an error during sign-up")
+      toast.error("please enter valid email and passWord")
       console.log(error)
     }
   }
