@@ -22,7 +22,6 @@ import CreateCar from "../pages/admin/controller/CreateCar.jsx";
 import EditCar from "../pages/admin/controller/EditCar.jsx";
 import DeleteCar from "../pages/admin/controller/DeleteCar.jsx";
 import DeleteUser from "../pages/user/DeleteUser.jsx";
-import Payment from "../pages/user/Payment.jsx";
 import DeleteBooking from "../pages/user/DeleteBooking.jsx"
 import PaymentSuccess from "../pages/user/SuccessPage.jsx";
 import AddReview from "../pages/user/AddReview.jsx";
@@ -114,10 +113,6 @@ const router = createBrowserRouter([
       {
         path: 'book-now/:id',
         element: <Booking />
-      },
-      {
-        path: 'payment',
-        element: <Payment />
       },
       {
         path: "booked-car",

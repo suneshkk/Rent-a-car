@@ -84,7 +84,7 @@ function Booking() {
                 });
             if (response?.data?.data) {
                 toast.success("Car Booked Successfully");
-                navigation('/user/payment');
+                navigation('/user/profile');
 
             }
         } catch (error) {

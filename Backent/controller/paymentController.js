@@ -10,7 +10,6 @@ export const payment = async (req, res, next) => {
     try {
         const { bookingData } = req.body;
 
-
         const lineItems = [
             {
                 price_data: {
@@ -30,16 +29,34 @@ export const payment = async (req, res, next) => {
             success_url: `${client_domain}/user/success`,
             cancel_url: `${client_domain}/user/cancel`,
         });
-
         const order = new Order({
             userId: req.user.id,
             sessionId: session.id,
+            totalPrice: bookingData?.totalAmount,
+            carId: bookingData?.carId?._id
         });
         await order.save();
 
         return res.json({ success: true, sessionId: session.id });
 
 
+
+
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    };
+};
+
+export const checkPayment = async (req, res, next) => {
+    try {
+        // const user = req.params.id;
+        // console.log("dat++++++++",user)
+
+        const paymentdata = await Order.find()
+        if (!paymentdata || paymentdata == 0) {
+            return res.status(404).json({ message: "payment data not available", data: paymentdata });
+        };
 
 
     } catch (error) {

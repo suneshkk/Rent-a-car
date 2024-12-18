@@ -4,14 +4,15 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../../components/util/Loader.jsx';
 import moment from 'moment'
-import { FaUser } from "react-icons/fa";
+import { loadStripe } from "@stripe/stripe-js";
+
 
 function Profile() {
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true)
-    const [bookedCar, setBookedCar] = useState([]);
+    const [bookingData, setBookedCar] = useState([]);
     const navigate = useNavigate();
-    
+
 
     const fetchUserProfile = async () => {
         setLoading(true)
@@ -25,7 +26,7 @@ function Profile() {
             setLoading(false);
 
             setProfile(response?.data?.data);
-            toast.success("welcome");
+            // toast.success("welcome");
 
         } catch (error) {
             toast.error("something went wrong");
@@ -40,7 +41,7 @@ function Profile() {
                 { withCredentials: true });
             setLoading(false);
             setBookedCar(response?.data?.data);
-            console.log("booked car detailes ",response);
+            console.log("booked car detailes ", response);
         } catch (error) {
             console.log(error);
         };
@@ -50,6 +51,23 @@ function Profile() {
         fetchUserProfile();
         fetchBookedCarDetails();
     }, []);
+    const makePayment = async () => {
+        try {
+          const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHEBLE_KEY);
+          const session = await axiosInstance.post('/payment/create-checkout-session',
+            { bookingData },
+            { withCredentials: true }
+          );
+        // console.log("session+++++",session)
+          const result = stripe.redirectToCheckout({
+            sessionId: session.data.sessionId,
+          });
+        } catch (error) {
+          console.log(error);
+        };
+      };
+    
+
 
     const handleLogout = async () => {
 
@@ -122,10 +140,6 @@ function Profile() {
                                         <hr />
                                         <li>
 
-                                            <Link to={`/user/delete-booking/${bookedCar?._id}`}>
-                                                <button ><h1 className=" text-red-700 font-bold">Delete booking</h1></button>
-
-                                            </Link>
 
                                         </li>
                                         <hr />
@@ -142,11 +156,11 @@ function Profile() {
                                 </div>
                                 <div>
                                     <img
-                                        src={profile?.profilePic }
+                                        src={profile?.profilePic}
                                         alt="profile-pic"
                                         className="w-20 h-20 object-cover rounded-full mx-auto mb-2"
                                     />
-                                    
+
                                 </div>
                                 <div className="mb-2 ml-2">
                                     <span className="mr-3 text-base font-semibold">Name :</span>
@@ -175,29 +189,29 @@ function Profile() {
                         <ul className="mt-3 space-y-2">
                             <li>
                                 <label className='text-sm   lg:text-base font-medium'><b>Total Amount :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.totalAmount}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b className='text-blue-600'>{bookingData?.totalAmount}</b></span>
                             </li>
                             <hr />
                             <li>
-                                <label className='text-sm   lg:text-base font-medium'><b>Booking Status :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.status}</b></span>
+                                <label className='text-sm   lg:text-base font-medium'><b className=''>Booking Status :</b> </label>
+                                <span className='text-sm lg:text-base font-medium'><b className='text-green-700'>{bookingData?.status}</b></span>
                             </li>
                             <hr />
                             <li>
                                 <label className='text-sm   lg:text-base font-medium'><b>Total hours :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.totalHours
+                                <span className='text-sm lg:text-base font-medium'><b>{bookingData?.totalHours
                                 }</b></span>
                             </li>
                             <hr />
 
                             <li>
                                 <label className='text-sm   lg:text-base font-medium'><b>From Date:</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{moment(bookedCar?.fromDate).format('DD-MM-YYYY')}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{moment(bookingData?.fromDate).format('DD-MM-YYYY')}</b></span>
                             </li>
                             <hr />
                             <li >
                                 <label className='text-sm   lg:text-base font-medium'><b>Todate Date:</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{moment(bookedCar?.toDate).format('DD-MM-YYYY')}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{moment(bookingData?.toDate).format('DD-MM-YYYY')}</b></span>
                             </li>
                             <hr />
 
@@ -213,31 +227,40 @@ function Profile() {
                         <ul className="mt-3 space-y-2">
                             <li>
                                 <label className='text-sm  lg:text-base font-medium'><b>Rent Per Hour :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.carId?.price}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookingData?.carId?.price}</b></span>
                             </li>
                             <hr />
                             <li>
                                 <label className='text-sm  lg:text-base font-medium'><b>Car Name :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.carId?.carName}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookingData?.carId?.carName}</b></span>
                             </li>
                             <hr />
                             <li>
                                 <label className='text-sm  lg:text-base font-medium'><b>Fueltype :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.carId?.fuelType}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookingData?.carId?.fuelType}</b></span>
                             </li>
                             <hr />
                             <li>
                                 <label className='text-sm  lg:text-base font-medium'><b>driving :</b> </label>
-                                <span className='text-sm lg:text-base font-medium'><b>{bookedCar?.carId?.transmission}</b></span>
+                                <span className='text-sm lg:text-base font-medium'><b>{bookingData?.carId?.transmission}</b></span>
                             </li>
                             <hr />
 
                         </ul>
+                        <div className=' flex justify-evenly'>
+                            <Link to={`/user/delete-booking/${bookingData?._id}`}>
+                            <div className='btn bg-red-500 hover:bg-red-800 rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50 '>Cancel</div>
+                          </Link>
+
+                            <span className='textarea text-xs font-semibold'>confirme your payment : <button onClick={makePayment} className='btn btn-success hover:bg-green-900 rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50'>Pay</button> </span>
+
+
+                        </div>
 
                     </div>
                     <div className='flex justify-center items-center card card-body bg-slate-400 '>
                         <h3 className=' border-b-4 text-sm font-bold text-center font-serif  lg:text-lg lg:font-semibold'>Car</h3>
-                        <img src={bookedCar?.carId?.image} alt="car image" className='md:w-40 lg:w-80' />
+                        <img src={bookingData?.carId?.image} alt="car image" className='md:w-40 lg:w-80' />
                     </div>
 
 
