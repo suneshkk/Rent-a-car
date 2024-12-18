@@ -177,3 +177,40 @@ export const filterCarByType = async (req, res, next) => {
         return next(error);
     };
 };
+
+ 
+export const filterFuelType = async (req, res, next) => {
+    const { car } = req.body;
+    try {
+        const carType = await Car.find({ fuelType: car });
+
+        if (carType == 0) {
+            return res.status(404).json({ message: "No Result For This Search" })
+        }
+        else {
+            return res.status(200).json({ message: "Data fetched successfuly", data: carType });
+        }
+
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    };
+};
+ 
+export const filterTransmission = async (req, res, next) => {
+    const { car } = req.body;
+    try {
+        const carType = await Car.find({ transmission: car });
+
+        if (carType == 0) {
+            return res.status(404).json({ message: "No Result For This Search" })
+        }
+        else {
+            return res.status(200).json({ message: "Data fetched successfuly", data: carType });
+        }
+
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    };
+};

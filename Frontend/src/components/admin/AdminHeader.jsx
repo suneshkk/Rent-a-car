@@ -107,12 +107,12 @@ function AdminHeader() {
                                     </Link>
                                     <hr />
                                 </div>
-                                <Link to={'/admin/edit'}>
+                                {/* <Link to={'/admin/edit'}>
                                     <button className=" text-emerald-900 text-sm my-1 mx-2 font-semibold lg:mt-3 lg:mb-2" onClick={() => {
                                         closeDropdown();
                                     }}>Edit </button>
                                     <h1 > </h1>
-                                </Link>
+                                </Link> */}
                                 <hr />
                                 <Link to={`/admin/delete-account/${profile?._id}`}>
                                     <button className='font-medium mx-2 my-1 text-red-700 md:font-semibold lg:mt-2 lg:mb-2' onClick={() => {

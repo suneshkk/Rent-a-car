@@ -1,14 +1,38 @@
-import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import React, {  useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import MyImage from '../../assets/logo.png'
-import { axiosInstance } from '../../config/axiosInstance.jsx';
-import toast from 'react-hot-toast';
-
 function UserHeader() {
 
     const location = useLocation();
+    const [isOpen, setIsopen] = useState(false);
+    // const [typeIsOpen, setTypeIsOpen] = useState(false);
+    // const [loading, setLoading] = useState(false);
+    // const [carType, setCarType] = useState([]);
 
+    // const toggleDropdown = () => {
+    //     setIsopen(!isOpen);
+    // };
+    // const closeMenu = () => {
+    //     setIsopen(false);
+    // };
+
+
+    // const fetchCarType = async () => {
+    //     setLoading(true);
+    //     try {
+    //         const response = await axiosInstance.get('/car/filter-type', { car: carType },
+    //             { withCredentials: true });
+
+    //         setLoading(false);
+    //     } catch (error) {
+    //         console.log(error);
+    //         // toast.error("no data forthis search ");
+    //         setLoading(false)
+    //     };
+    // };
+    // useEffect(() => {
+    //     fetchCarType();
+    // }, [])
 
     return (
 
@@ -43,6 +67,84 @@ function UserHeader() {
 
                 )}
             </div>
+            {/* <div>
+                {location.pathname == '/user/car-gallery' && (
+                    <div className='relative flex gap-4'>
+                        <div>
+                            <button className='hover:border-b-4 hover:scale-125 text-sm text-red-700 font-bold' onClick={toggleDropdown}>filter</button>
+                        </div>
+                        {isOpen && (
+                            <div className='rounded-xl absolute bg-slate-200 top-20 right-0  w-52 z-50'>
+                                <div>
+                                    <button onClick={() => { setTypeIsOpen(!typeIsOpen) }} className='m-4 '>
+                                         <p className='font-serif font-bold text-sm'>Car Type  </p></button>
+                                    
+                                    {typeIsOpen && (
+                                        <div>
+                                            <ul>
+                                                <li className='ml-3 mb-2'>
+                                                    <span className='text-sm font-semibold text-slate-600'>
+                                                       <button onClick={() =>{closeMenu()}}>
+                                                      <p>sedan</p>  
+                                                        </button> 
+                                                    </span>
+
+                                                    <hr />
+                                                </li>
+                                                <li className='ml-3 mb-2'>
+                                                    <span className='text-sm font-semibold text-slate-600'>
+                                                    <button onClick={() =>{closeMenu()}}>suv</button> 
+                                                    </span>
+                                                    <hr />
+                                                </li>
+                                                <li className='ml-3 mb-2'>
+                                                    <span className='text-sm font-semibold text-slate-600'>
+                                                    <button onClick={() =>{closeMenu()}}>truck</button> 
+                                                    </span>
+                                                    <hr />
+                                                </li>
+                                                <li className='ml-3 mb-2'>
+                                                    <span className='text-sm font-semibold text-slate-600'>
+                                                    <button onClick={() =>{closeMenu()}}>coupe</button> 
+                                                    </span>
+                                                    <hr />
+                                                </li>
+                                                <li className='ml-3 mb-2'>
+                                                    <span className='text-sm font-semibold text-slate-600'>
+                                                    <button onClick={() =>{closeMenu()}}>convertible</button> 
+                                                    </span>
+                                                    <hr />
+                                                </li>
+                                                <li className='ml-3 mb-2'>
+                                                    <span className='text-sm font-semibold text-slate-600'>
+                                                    <button onClick={() =>{closeMenu()}}>wagon</button> 
+                                                    </span>
+                                                    <hr />
+                                                </li>
+                                                <li className='ml-3 mb-2'>
+                                                    <span className='text-sm font-semibold text-slate-600'>
+                                                    <button onClick={() =>{closeMenu()}}>van</button> 
+                                                    </span>
+                                                    <hr />
+                                                </li>
+                                                <li className='ml-3 mb-2'>
+                                                    <span className='text-sm font-semibold text-slate-600'>
+                                                    <button onClick={() =>{closeMenu()}}>hatchback</button> 
+                                                    </span>
+                                                    <hr />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+
+ */}
         </div>
     );
 }

@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.post("/create", adminAuth, upload.single("image"), createCar);
 router.get("/car-list", carlist);
-router.post("/filter",filterCarByType);
+router.post("/filter-type",filterCarByType);
 router.get("/get-car/:id", getCarById);
 router.get("/get-admin-cars/:id", getAdminCars);
 

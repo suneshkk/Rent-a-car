@@ -64,11 +64,6 @@ const router = createBrowserRouter([
         element: <AdminSignup />,
       },
       {
-        path: "car-gallery",
-        element: <CarGallery />
-      },
-
-      {
         path: "admin-login",
         element: <AdminLogin />
       },

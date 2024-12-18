@@ -50,7 +50,7 @@ function UserHome() {
             <div className='  lg:px-12 py-1'>
                 <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center">
                     <h1 className="font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center">
-                        <Link to={'/car-gallery'}>
+                        <Link to={'/user/car-gallery'}>
                             Book Your car now
 
                         </Link>
