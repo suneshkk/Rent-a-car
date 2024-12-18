@@ -8,7 +8,7 @@ function AdminHome() {
 
     const [booking, setBooking] = useState([]);
     const [loading2, setLoading2] = useState(false);
-    const {id} = useParams();
+    const { id } = useParams();
     // const [name, setName] = useState("");
     // const [phone, setPhone] = useState("");
     // const [email, setEmail] = useState("");
@@ -101,52 +101,6 @@ function AdminHome() {
             </div>
 
 
-            <div className="mx-4 mt-11">
-                <div className="card card-body bg-slate-200 rounded-md shadow-md w-96">
-                    {/* <div className="card card-title underline mb-4">
-                            <h3 className="border-b-2">Edite  Admin Details</h3>
-
-                        </div> */}
-                    <div>
-                        {/* <form onSubmit={editProfile} className="">
-                                <div className="mb-2">
-                                    <input
-                                        type="text"
-                                        value={name}
-                                        placeholder="name"
-                                        onChange={(e) => setName(e.target.value)}
-                                        className="w-72 rounded-lg h-10 text-center" />
-
-                                </div>
-
-                                <div className="mb-2">
-                                    <input
-                                        type="text"
-                                        value={email}
-                                        placeholder="email"
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className="w-72 rounded-lg h-10 text-center" />
-
-                                </div>
-
-                                <div className="mb-2">
-                                    <input
-                                        type="text"
-                                        value={phone}
-                                        placeholder="phone"
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        className="w-72 rounded-lg h-10 text-center" />
-
-                                </div>
-                                <div className="text-center">
-                                    <button type="submit" className="bg-blue-600 btn-sm rounded-lg">Submit</button>
-                                </div>
-                            </form> */}
-                    </div>
-
-                </div>
-
-            </div>
 
         </div>
     )
