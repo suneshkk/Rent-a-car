@@ -75,12 +75,12 @@ export const userLogin = async (req, res, next) => {
         // user verifying with email security
         const userExist = await User.findOne({ email });
         if (!userExist) {
-            return res.status(404).json({ success: false, message: "user does not exist" });
+            return res.status(404).json({ success: false, message: "user does not exist check e-mail..!!" });
         }
         //cross checking passwords 
         const passwordMatch = bcrypt.compareSync(password, userExist.password);
         if (!passwordMatch) {
-            return res.status(404).json({ success: false, message: "user not authorized" });
+            return res.status(404).json({ success: false, message: "password is not correct..!!" });
         }
         // generate token 
         const token = generateToken(userExist._id);

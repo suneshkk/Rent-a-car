@@ -55,9 +55,17 @@ function AdminSignup() {
                 placeholder="Enter secret key"
                 className="input input-bordered w-full p-1 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
                 value={secretKey}
-                required
+                {...register('secretKey',
+                  {
+                    required:{
+                      value:true,
+                      message:"please enter secret key"
+                    }
+                  }
+                )}
                 onChange={(e) => setSecretkey(e.target.value)}
               />
+              {errors.secretKey?.message && <p className='text-xs text-red-500'>{errors.secretKey.message}</p>}
             </div>
 
             <div className="form-control mb-1">
@@ -151,13 +159,13 @@ function AdminSignup() {
                   },
                   minLength: {
                     value: 6,
-                    message: "password must 6 charecters"
+                    message: "password must add 6 charecters"
                   },
 
                   pattern: {
                     required: true,
                     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message: "add one upper case lower case number special charecters for better password"
+                    message: "password must add one upper case lower case number special charecters for better password"
                   },
 
                 })}
