@@ -33,7 +33,9 @@ function AdminSignup() {
           navigate('/admin/admin-home');
         }
       } catch (error) {
-        toast.error("Something went wrong");
+        if (error.response.data.message) {
+          toast.error(error.response.data.message);
+        };
         console.log(error);
       }
     }
@@ -57,9 +59,9 @@ function AdminSignup() {
                 value={secretKey}
                 {...register('secretKey',
                   {
-                    required:{
-                      value:true,
-                      message:"please enter secret key"
+                    required: {
+                      value: true,
+                      message: "please enter secret key"
                     }
                   }
                 )}

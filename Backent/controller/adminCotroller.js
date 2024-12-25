@@ -9,15 +9,23 @@ export const adminSignup = async (req, res, next) => {
         const { email, name, password, phone, } = req.body;
 
 
-        if (!email || !name || !password) {
+        if (!email || !name || !password || !phone) {
             return res.status(400).json({ success: false, message: "all field required" });
 
-        }
+        };
+        const isNameExist = await Admin.findOne({name});
+        if(isNameExist){
+            return res.status(400).json({message:"name is already exist add another name"});
+        };
+        const isPhoneExist = await Admin.findOne({ phone});
+        if(isPhoneExist){
+            return res.status(400).json({message:"phone number already exist add another phone number"})
+        };
         const isAdminExist = await Admin.findOne({ email });
         if (isAdminExist) {
             return res.status(400).json({ message: "Admin already exist" });
 
-        }
+        };
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
@@ -56,7 +64,7 @@ export const adminLogin = async (req, res, next) => {
 
         const passwordMatch = bcrypt.compareSync(password, adminExist.password);
         if (!passwordMatch) {
-            return res.status(404).json({ success: false, message: "password is not correct..!!" });
+            return res.status(404).json({ success: false, message: "wrong password..!!" });
         }
         // generate token 
         const token = generateToken(adminExist._id, 'admin');

@@ -16,7 +16,7 @@ export default function DeleteCar() {
                 { withCredentials: true });
             if (response?.data?.success) {
                 toast.success("car Deleted successfully");
-                navigate('/admin/car-list');
+                navigate('/admin/admin-home');
             };
 
         } catch (error) {

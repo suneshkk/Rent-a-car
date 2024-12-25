@@ -4,8 +4,6 @@ import MyImage from '../../assets/wheelz.png'
 import toast from 'react-hot-toast';
 import ProfilPic from '../../assets/profile.png'
 import { axiosInstance } from '../../config/axiosInstance.jsx';
-import DropDownBt from '../util/DropDownBt.jsx';
-
 function AdminHeader() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -48,7 +46,7 @@ function AdminHeader() {
     };
 
     return (
-        < div className="navbar border-b-2 bg-black text-center flex justify-between  items-center px-4 md:px-14 bg-cover h-20  " >
+        < div className='navbar border-b-2 bg-black text-center flex justify-between  items-center px-4 md:px-14 bg-cover h-20 '>
             {location.pathname == '/admin/admin-home' &&
                 <div className='flex gap-5'>
                     <div className='hover:border-b-2' >
@@ -77,6 +75,7 @@ function AdminHeader() {
 
                 </div>
             }
+
             <div className=" flex-2 md:flex-none sm:grid content-center	none: grid leading-relaxed ">
                 <Link to="/" className="btn btn-ghost font-bold">
                     <img src={MyImage} alt="logo" className="h-8 md:h-12" />

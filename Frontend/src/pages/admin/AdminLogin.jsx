@@ -26,8 +26,9 @@ function AdminLogin() {
       }
       // toast.error("something went wrog");
       console.log(error);
+      navigate('/admin-login')
+
     }
-    navigate('/admin-login')
   };
 
   return (

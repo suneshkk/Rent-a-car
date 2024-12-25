@@ -10,25 +10,23 @@ export const createCar = async (req, res, next) => {
         const admin = req.user.id;
         const { carName, brand, year, carType, fuelType, transmission, price, image } = req.body;
         let imageUrl;
+        console.log("data++++++++====")
         // Check if all required fields are provided
         if (!carName || !brand || !price) {
-            return res.status(400).json({ success: false, message: "All fields are required" });
+            return res.status(400).json({  message: "All fields are required" });
         }
 
         const adminData = await Admin.findById(admin);
         if (!adminData) {
             return res.status(404).json({ message: "admin not found" });
         }
-        // Check if the car already exists
-        const isCarExist = await Car.findOne({ carName });
-        if (isCarExist) {
-            return res.status(400).json({ success: false, message: "Car already exists" });
-        }
 
         // Handle image upload if an image is provided
         if (req.file) {
             imageUrl = await handleImageUpload(req.file.path);
-        }
+        }else if(imageUrl == null){
+           return res.status(404).json({message:"please add car image"})
+        };
 
         // Create a new car object and save it to the database
         const newCar = new Car({
@@ -95,8 +93,8 @@ export const getCarById = async (req, res, next) => {
 export const getAdminCars = async (req, res, next) => {
     try {
         const adminId = req.params.id;
-        console.log("adminId ++++++",adminId)
-        const carData = await Car.find({adminId});
+        console.log("adminId ++++++", adminId)
+        const carData = await Car.find({ adminId });
         if (!carData) {
             return res.status(404).json({ message: "no created cars for this admin" })
         } else {
@@ -178,7 +176,7 @@ export const filterCarByType = async (req, res, next) => {
     };
 };
 
- 
+
 export const filterFuelType = async (req, res, next) => {
     const { car } = req.body;
     try {
@@ -196,7 +194,7 @@ export const filterFuelType = async (req, res, next) => {
         return next(error);
     };
 };
- 
+
 export const filterTransmission = async (req, res, next) => {
     const { car } = req.body;
     try {
