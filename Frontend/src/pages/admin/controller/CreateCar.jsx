@@ -18,6 +18,7 @@ function CreateCar() {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [showDropDown, setDropdown] = useState(false);
 
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
@@ -49,7 +50,7 @@ function CreateCar() {
         // console.log(" car ====response", response);
         navigate(`/admin/admin-home`)
         setLoading(false);
-      }
+      };
 
     } catch (error) {
       if (error.response.data.message) {
@@ -63,16 +64,17 @@ function CreateCar() {
 
 
   return (
-
+    // large screen view
     <div className="min-h-screen pt-5 pb-20 flex items-cente justify-center bg-sky-200 ">
       {loading ? (
         <Loader />
       ) : (
-        <div className=" bg-sky-300 shadow-2xl  lg:w-5/6  p-2 rounded-2xl content-center">
-          <form onSubmit={handleSubmit(handleUploadCar)} className="space-y-4  p-10 grid grid-cols-2" noValidate>
+        <div className=" bg-sky-300 mx-4  shadow-2xl md:m-3 lg:w-5/6 rounded-2xl content-center">
+          <div className="m-4 border-b-4"><h4 className="capitalize md:text-lg md:font-bold text-center font-semibold text-lime-700">add car to your website</h4></div>
+          <form onSubmit={handleSubmit(handleUploadCar)} className=" md:space-y-4  md:p-10 md:grid md:grid-cols-2 " noValidate>
             <div>
-              <div className="flex flex-col gap-3 m-3">
-                <label className="form-label capitalize w-2/3 text-lg font-semibold">Car Name :</label>
+              <div className="flex flex-col m-3">
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Car Name :</label>
                 <input
                   type="text"
                   value={carName}
@@ -83,13 +85,13 @@ function CreateCar() {
                     },
                   })}
                   onChange={(e) => setCarName(e.target.value)}
-                  className="form-control capitalize text-base font-semibold flex-1 px-5 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 w-3/4"
+                  className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.carName?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.carName.message}</p>}
+                {errors.carName?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.carName.message}</p>}
 
               </div>
-              <div className="flex flex-col gap-3 m-3">
-                <label className="form-label capitalize w-2/3 text-lg font-semibold">Car Brand :</label>
+              <div className="flex flex-col m-3">
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Car Brand :</label>
                 <input
                   type="text"
                   value={brand}
@@ -100,13 +102,13 @@ function CreateCar() {
                     },
                   })}
                   onChange={(e) => setBrand(e.target.value)}
-                  className="form-control capitalize text-base font-semibold flex-1 px-5 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 w-3/4"
+                  className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.brand?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.brand.message}</p>}
+                {errors.brand?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.brand.message}</p>}
 
               </div>
-              <div className="flex flex-col gap-3 m-3">
-                <label className="form-label capitalize w-2/3 text-lg font-semibold">Model Year :</label>
+              <div className="flex flex-col m-3">
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Model Year :</label>
                 <input
                   type="text"
                   value={year}
@@ -117,33 +119,41 @@ function CreateCar() {
                     },
                   })}
                   onChange={(e) => setYear(e.target.value)}
-                  className="form-control capitalize text-base font-semibold flex-1 px-5 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 w-3/4"
+                  className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.year?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.year.message}</p>}
+                {errors.year?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.year.message}</p>}
 
               </div>
-              <div className="flex flex-col gap-3 m-3">
-                <label className="form-label capitalize w-2/3 text-lg font-semibold">Car Type :</label>
+              <div className="flex flex-col m-3">
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Car Type :</label>
                 <input
                   type="text"
                   value={carType}
-                  className="form-control capitalize text-base font-semibold flex-1 px-5 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 w-3/4"
+                  className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                   {...register('carType', {
                     required: {
                       value: true,
                       message: "please enter cartype"
                     },
                   })}
+                  onFocus={(e) => setDropdown(true)}
+                  onBlur={(e) => setDropdown(false)}
                   onChange={(e) => setCarType(e.target.value)}
                 />
-                {errors.carType?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.carType.message}</p>}
-
+                {errors.carType?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.carType.message}</p>}
+                {showDropDown && (
+                  <div className=""
+                    onMouseEnter={() => setDropdown(true)}
+                    onMouseLeave={() => setDropdown(false)}
+                  >
+                  </div>
+                )}
 
               </div>
             </div>
-            <div>
-            <div className="flex flex-col gap-3 m-3">
-            <label className="form-label capitalize w-2/3 text-lg font-semibold">Fuel Type :</label>
+            <div className="">
+              <div className="flex flex-col m-3">
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Fuel Type :</label>
                 <input
                   type="text"
                   value={fuelType}
@@ -154,13 +164,13 @@ function CreateCar() {
                     },
                   })}
                   onChange={(e) => setFuelType(e.target.value)}
-                  className="form-control capitalize text-base font-semibold flex-1 px-5 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 w-3/4"
+                  className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.fuelType?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.fuelType.message}</p>}
+                {errors.fuelType?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.fuelType.message}</p>}
 
               </div>
-              <div className="flex flex-col gap-3 m-3">
-                <label className="form-label capitalize w-2/3 text-lg font-semibold">Transmission:</label>
+              <div className="flex flex-col m-3">
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Transmission:</label>
                 <input
                   type="text"
                   value={transmission}
@@ -172,13 +182,13 @@ function CreateCar() {
                   })}
 
                   onChange={(e) => setTrasnsmission(e.target.value)}
-                  className="form-control capitalize text-base font-semibold flex-1 px-5 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 w-3/4"
+                  className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.transmission?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.transmission.message}</p>}
+                {errors.transmission?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.transmission.message}</p>}
 
               </div>
-              <div className="flex flex-col gap-3 m-3">
-                <label className="form-label capitalize w-2/3 text-lg font-semibold">Price :</label>
+              <div className="flex flex-col m-3">
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Price :</label>
                 <input
                   type="text"
                   value={price}
@@ -190,19 +200,19 @@ function CreateCar() {
                   })}
 
                   onChange={(e) => setPrice(e.target.value)}
-                  className="form-control capitalize text-base font-semibold flex-1 px-5 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 w-3/4"
+                  className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.price?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.price.message}</p>}
+                {errors.price?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.price.message}</p>}
 
               </div>
-              <div className="flex flex-col gap-3 m-3">
-                <label className="form-label capitalize w-2/3 text-lg font-semibold">Image:</label>
+              <div className="flex flex-col m-3">
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Image:</label>
                 <input
                   type="file"
                   onChange={handleUploadImage}
-                  className="form-control capitalize text-base font-semibold flex-1 px-5 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 w-3/4"
+                  className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.image?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.image.message}</p>}
+                {errors.image?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.image.message}</p>}
 
 
               </div>
@@ -232,6 +242,8 @@ function CreateCar() {
 
 
         </div>
+        //mobile view
+
       )}
     </div>
   )
