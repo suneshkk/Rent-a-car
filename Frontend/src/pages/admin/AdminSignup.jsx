@@ -42,20 +42,20 @@ function AdminSignup() {
   };
 
   return (
-    <div className="hero bg-gradient-to-r from-teal-500 to-cyan-500  flex items-center justify-center">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-white shadow-xl w-full max-w-md p-2 rounded-xl">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-1">Sign Up</h2>
-          <form className="card-body" onSubmit={handleSubmit(handleSignup)} noValidate>
+    <div className="flex items-center justify-center bg-slate-200">
+      <div className="hero-content ">
+        <div className="bg-white shadow-xl rounded-lg ">
+          <h2 className="text-sm font-bold md:text-2xl md:font-bold text-center border-b-4 text-gray-800 mt-2">Sign Up</h2>
+          <form className="w-72 " onSubmit={handleSubmit(handleSignup)} noValidate>
 
-            <div className="form-control mb-1">
-              <label className="label mb-1">
-                <span className="label-text text-lg font-semibold text-gray-700">Secret Key</span>
+            <div className="form-control flex flex-col mx-4">
+              <label className="label ">
+                <span className="label-text md:text-lg font-semibold text-gray-700">Secret Key :</span>
               </label>
               <input
                 type="text"
                 placeholder="Enter secret key"
-                className="input input-bordered w-full p-1 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 value={secretKey}
                 {...register('secretKey',
                   {
@@ -67,18 +67,18 @@ function AdminSignup() {
                 )}
                 onChange={(e) => setSecretkey(e.target.value)}
               />
-              {errors.secretKey?.message && <p className='text-xs text-red-500'>{errors.secretKey.message}</p>}
+              {errors.secretKey?.message && <p className='text-xs text-red-500 font-bold'>{errors.secretKey.message}</p>}
             </div>
 
-            <div className="form-control mb-1">
-              <label className="label mb-1">
-                <span className="label-text text-lg font-semibold text-gray-700">Name</span>
+            <div className="form-control flex flex-col mx-4">
+              <label className="label">
+              <span className="label-text md:text-lg font-semibold text-gray-700">Name :</span>
               </label>
               <input
                 type="text"
                 placeholder="Enter your name"
                 value={name}
-                className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 {...register('name',
                   {
                     required: {
@@ -89,17 +89,17 @@ function AdminSignup() {
                 )}
                 onChange={(e) => setName(e.target.value)}
               />
-              {errors.name?.message && <p className='text-xs text-red-500'>{errors.name.message}</p>}
+              {errors.name?.message && <p className='text-xs text-red-500 font-bold'>{errors.name.message}</p>}
             </div>
 
-            <div className="form-control mb-1">
-              <label className="label mb-1">
-                <span className="label-text text-lg font-semibold text-gray-700">Email</span>
+            <div className="form-control flex flex-col mx-4">
+              <label className="label">
+              <span className="label-text md:text-lg font-semibold text-gray-700">Email :</span>
               </label>
               <input
                 type="email"
                 placeholder="email"
-                className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 {...register('email',
                   {
                     required: {
@@ -115,17 +115,17 @@ function AdminSignup() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {errors.email?.message && <p className='text-xs text-red-500'>{errors.email.message}</p>}
+              {errors.email?.message && <p className='text-xs text-red-500 font-bold'>{errors.email.message}</p>}
             </div>
 
-            <div className="form-control mb-1">
-              <label className="label mb-1">
-                <span className="label-text text-lg font-semibold text-gray-700">Phone</span>
+            <div className="form-control flex flex-col mx-4">
+              <label className="label">
+              <span className="label-text md:text-lg font-semibold text-gray-700">Phone Number :</span>
               </label>
               <input
                 type="text"
                 placeholder="Enter your phone number"
-                className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 {...register('phone',
                   {
                     required: {
@@ -143,17 +143,17 @@ function AdminSignup() {
 
                 onChange={(e) => setPhone(e.target.value)}
               />
-              {errors.phone?.message && <p className='text-xs text-red-500'>{errors.phone.message}</p>}
+              {errors.phone?.message && <p className='text-xs text-red-500 font-bold'>{errors.phone.message}</p>}
             </div>
 
-            <div className="form-control mb-1">
-              <label className="label mb-1">
-                <span className="label-text text-lg font-semibold text-gray-700">Password</span>
+            <div className="form-control flex flex-col mx-4">
+              <label className="label">
+              <span className="label-text md:text-lg font-semibold text-gray-700">PassWord :</span>
               </label>
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 {...register('password', {
                   required: {
                     value: true,
@@ -174,18 +174,18 @@ function AdminSignup() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {errors.password?.message && <p className='text-xs text-red-500'>{errors.password.message}</p>}
-              <label className="label mt-1">
-                <Link to="/admin-login" className="text-teal-500 hover:text-teal-700 font-semibold">
-                  Existing Admin? Login here!
+              {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
+              <label className="label flex justify-center">
+                <Link to="/admin-login" className="text-teal-500 hover:text-teal-700 font-semibold text-xs">
+                  Existing Admin ...? Login here .....!
                 </Link>
               </label>
             </div>
 
-            <div className="form-control mt-1">
+            <div className="form-control flex justify-center items-center my-2">
               <button
                 type="submit"
-                className="btn btn-teal w-full py-3 text-white font-semibold rounded-lg hover:bg-teal-700"
+                className="bg-blue-500 text-xs text-white font-semibold rounded-lg hover:bg-blue-950  h-10 w-20"
               >
                 Sign Up
               </button>
