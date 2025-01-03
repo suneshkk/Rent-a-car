@@ -34,7 +34,7 @@ function AdminLogin() {
   return (
     <div className="hero bg-gradient-to-r from-teal-500 to-cyan-500 min-h-screen flex items-center justify-center">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-white shadow-xl w-128 p-8 rounded-xl">
+        <div className="card bg-white shadow-xl p-8 rounded-xl">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
           <form className="card-body" onSubmit={handleSubmit(registerForm)} noValidate>
             <div className="form-control mb-4">
@@ -59,7 +59,7 @@ function AdminLogin() {
 
                   })}
               />
-              {errors.email?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.email.message}</p>}
+              {errors.email?.message && <p className='text-xs text-red-500 font-bold'>{errors.email.message}</p>}
               </div>
 
             <div className="form-control mb-6">
@@ -88,7 +88,7 @@ function AdminLogin() {
 
                 })}
               />
-              {errors.password?.message && <p className='text-xs text-red-500'>{errors.password.message}</p>}
+              {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
               <label className="label">
                 <Link to="/admin-sign-up" className="text-teal-500 hover:text-teal-700 font-semibold">
                   New admin? Sign up here!

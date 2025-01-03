@@ -42,156 +42,158 @@ function AdminSignup() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-slate-200">
-      <div className="hero-content ">
-        <div className="bg-white shadow-xl rounded-lg ">
-          <h2 className="text-sm font-bold md:text-2xl md:font-bold text-center border-b-4 text-gray-800 mt-2">Sign Up</h2>
-          <form className="w-72 " onSubmit={handleSubmit(handleSignup)} noValidate>
+    <div className="flex items-center justify-center ">
+      <div className="bg-white shadow-xl rounded-lg my-5 lg:my-20 lg:w-4/6 border-2 border-stone-950">
+        <div>
+          <h2 className="text-sm capitalize lg:text-2xl hver:border-cyan-200 font-bold md:text-base md:font-bold text-center m-4 text-gray-800 underline">Sign up</h2>
+        </div>
+        <form className='lg:grid lg:grid-cols-2 lg:m-10' onSubmit={handleSubmit(handleSignup)} noValidate>
 
-            <div className="form-control flex flex-col mx-4">
-              <label className="label ">
-                <span className="label-text md:text-lg font-semibold text-gray-700">Secret Key :</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter secret key"
-                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
-                value={secretKey}
-                {...register('secretKey',
-                  {
-                    required: {
-                      value: true,
-                      message: "please enter secret key"
-                    }
-                  }
-                )}
-                onChange={(e) => setSecretkey(e.target.value)}
-              />
-              {errors.secretKey?.message && <p className='text-xs text-red-500 font-bold'>{errors.secretKey.message}</p>}
-            </div>
-
-            <div className="form-control flex flex-col mx-4">
-              <label className="label">
-              <span className="label-text md:text-lg font-semibold text-gray-700">Name :</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter your name"
-                value={name}
-                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
-                {...register('name',
-                  {
-                    required: {
-                      value: true,
-                      message: 'please enter user name'
-                    }
-                  }
-                )}
-                onChange={(e) => setName(e.target.value)}
-              />
-              {errors.name?.message && <p className='text-xs text-red-500 font-bold'>{errors.name.message}</p>}
-            </div>
-
-            <div className="form-control flex flex-col mx-4">
-              <label className="label">
-              <span className="label-text md:text-lg font-semibold text-gray-700">Email :</span>
-              </label>
-              <input
-                type="email"
-                placeholder="email"
-                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
-                {...register('email',
-                  {
-                    required: {
-                      value: true,
-                      message: "please enter email"
-                    },
-                    pattern: {
-                      required: true,
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "invalid email address"
-                    }
-                  })}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              {errors.email?.message && <p className='text-xs text-red-500 font-bold'>{errors.email.message}</p>}
-            </div>
-
-            <div className="form-control flex flex-col mx-4">
-              <label className="label">
-              <span className="label-text md:text-lg font-semibold text-gray-700">Phone Number :</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter your phone number"
-                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
-                {...register('phone',
-                  {
-                    required: {
-                      value: true,
-                      message: 'please enter phone number'
-                    },
-                    pattern: {
-                      required: true,
-                      value: /^[6-9]\d{9}$/,
-                      message: "enter valide phone number"
-                    }
-                  }
-                )}
-                value={phone}
-
-                onChange={(e) => setPhone(e.target.value)}
-              />
-              {errors.phone?.message && <p className='text-xs text-red-500 font-bold'>{errors.phone.message}</p>}
-            </div>
-
-            <div className="form-control flex flex-col mx-4">
-              <label className="label">
-              <span className="label-text md:text-lg font-semibold text-gray-700">PassWord :</span>
-              </label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
-                {...register('password', {
+          <div className="form-control flex flex-col mx-4 mb-3">
+            <label className="label">
+              <span className="label-text md:text-sm font-bold text-gray-700">Secret Key :</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter secret key"
+              className=" form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              value={secretKey}
+              {...register('secretKey',
+                {
                   required: {
                     value: true,
-                    message: "please enter password"
-                  },
-                  minLength: {
-                    value: 6,
-                    message: "password must add 6 charecters"
-                  },
+                    message: "please enter secret key"
+                  }
+                }
+              )}
+              onChange={(e) => setSecretkey(e.target.value)}
+            />
+            {errors.secretKey?.message && <p className='text-xs text-red-500 font-bold'>{errors.secretKey.message}</p>}
+          </div>
 
+          <div className="form-control flex flex-col mx-4 mb-3">
+            <label className="label">
+              <span className="label-text md:text-sm font-bold text-gray-700">Name :</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              className=" form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              {...register('name',
+                {
+                  required: {
+                    value: true,
+                    message: 'please enter user name'
+                  }
+                }
+              )}
+              onChange={(e) => setName(e.target.value)}
+            />
+            {errors.name?.message && <p className='text-xs text-red-500 font-bold'>{errors.name.message}</p>}
+          </div>
+
+          <div className="form-control flex flex-col mx-4 mb-3">
+            <label className="label">
+              <span className="label-text md:text-sm font-bold text-gray-700">Email :</span>
+            </label>
+            <input
+              type="email"
+              placeholder="email"
+              className="form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              {...register('email',
+                {
+                  required: {
+                    value: true,
+                    message: "please enter email"
+                  },
                   pattern: {
                     required: true,
-                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message: "password must add one upper case lower case number special charecters for better password"
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "invalid email address"
+                  }
+              })}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {errors.email?.message && <p className='text-xs text-red-500 font-bold'>{errors.email.message}</p>}
+          </div>
+
+          <div className="form-control flex flex-col mx-4 mb-3">
+            <label className="label">
+              <span className="label-text md:text-sm font-bold text-gray-700">Phone Number :</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your phone number"
+              className=" form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              {...register('phone',
+                {
+                  required: {
+                    value: true,
+                    message: 'please enter phone number'
                   },
+                  pattern: {
+                    required: true,
+                    value: /^[6-9]\d{9}$/,
+                    message: "enter valide phone number"
+                  }
+                }
+              )}
+              value={phone}
 
-                })}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
-              <label className="label flex justify-center">
-                <Link to="/admin-login" className="text-teal-500 hover:text-teal-700 font-semibold text-xs">
-                  Existing Admin ...? Login here .....!
-                </Link>
-              </label>
-            </div>
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            {errors.phone?.message && <p className='text-xs text-red-500 font-bold'>{errors.phone.message}</p>}
 
-            <div className="form-control flex justify-center items-center my-2">
-              <button
-                type="submit"
-                className="bg-blue-500 text-xs text-white font-semibold rounded-lg hover:bg-blue-950  h-10 w-20"
-              >
-                Sign Up
-              </button>
-            </div>
-          </form>
-        </div>
+          </div>
+
+          <div className="form-control flex flex-col mx-4 mb-3">
+            <label className="label">
+              <span className="label-text md:text-sm font-bold text-gray-700">PassWord :</span>
+            </label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              className=" form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              {...register('password', {
+                required: {
+                  value: true,
+                  message: "please enter password"
+                },
+                minLength: {
+                  value: 6,
+                  message: "password must add 6 charecters"
+                },
+
+                pattern: {
+                  required: true,
+                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  message: "password must add one upper case lower case number special charecters for better password"
+                },
+
+              })}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
+          </div>
+
+          <div className="form-control flex justify-center items-center my-1 mx-5 lg:mt-">
+            <label className="label flex justify-center">
+              <Link to="/admin-login" className="text-teal-500 hover:text-teal-700 font-semibold text-xs lg:text-base">
+                Existing Admin ...? Login here .....!
+              </Link>
+            </label>
+
+            <button
+              type="submit"
+              className="bg-blue-500 text-xs text-white font-semibold rounded-lg hover:bg-blue-950  h-7 w-16"
+            >
+              Save
+            </button>
+          </div>
+        </form>
       </div>
     </div>);
 }
