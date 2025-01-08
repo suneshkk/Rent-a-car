@@ -9,8 +9,9 @@ function AdminSignup() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] =useState("");
   const [secretKey, setSecretkey] = useState("");
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, formState,watch } = useForm();
   const { errors } = formState;
 
   const handleSignup = async (data) => {
@@ -44,8 +45,8 @@ function AdminSignup() {
   return (
     <div className="flex items-center justify-center ">
       <div className="bg-white shadow-xl rounded-lg my-5 lg:my-20 lg:w-4/6 border-2 border-stone-950">
-        <div>
-          <h2 className="text-sm capitalize lg:text-2xl hver:border-cyan-200 font-bold md:text-base md:font-bold text-center m-4 text-gray-800 underline">Sign up</h2>
+        <div className='bg-blue-400 bg-cover p-5'>
+          <h2 className="text-sm capitalize lg:text-2xl hver:border-cyan-200 font-bold md:text-base md:font-bold text-center text-gray-800 underline">Sign up</h2>
         </div>
         <form className='lg:grid lg:grid-cols-2 lg:m-10' onSubmit={handleSubmit(handleSignup)} noValidate>
 
@@ -178,11 +179,38 @@ function AdminSignup() {
             />
             {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
           </div>
+          <div className="form-control">
+              <label className="label">
+                <span className="label-text font-bold text-xs">confirme Password:</span>
+              </label>
+              <input type="conforme password"
+                placeholder="Enter conforme password"
+                value={confirmPassword}
+                className=" form-control input input-bordered hover:border-2 hover:border-blue-600 text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+                {...register('confirmPassword', {
+                  required: {
+                    value: true,
+                    message: "please confirm your password"
+                  },
+                  validate:(value)=>{
+                    if(value == password){
+                      return true;
+                    }else{
+                      return "password not match"
+                    };
+
+                  }
+                })}
+
+                onChange={(e) => setconfirmPassword(e.target.value)} />
+              {errors.confirmPassword?.message && <p className='text-xs text-red-500 font-bold'>{errors.confirmPassword.message}</p>}
+            </div>
+
 
           <div className="form-control flex justify-center items-center my-1 mx-5 lg:mt-">
             <label className="label flex justify-center">
-              <Link to="/admin-login" className="text-teal-500 hover:text-teal-700 font-semibold text-xs lg:text-base">
-                Existing Admin ...? Login here .....!
+              <Link to="/admin-login" className="text-blue-500 font-semibold text-xs lg:text-base">
+                Existing Admiin .....!
               </Link>
             </label>
 

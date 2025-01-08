@@ -27,7 +27,7 @@ function Login() {
       // console.log("respon", responce);
 
     } catch (error) {
-      if(error.response.data.message){
+      if (error.response.data.message) {
         toast.error(error.response.data.message)
       };
       navigate('/login');
@@ -36,35 +36,46 @@ function Login() {
   };
 
   return (
-    <div className="hero bg-slate-400 content-center min-h-screen  lg:min-h-screen">
+    <div className="hero bg-gradient-to-r min-h-128 lg:min-h-screen flex items-center justify-center">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-lime-50 w-full max-w-sm shrink-0 shadow-2xl">
-          <form className="card-body w-64 " onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-control ">
-              <label className="label">
-                <span className="label-text font-bold text-xs">Email :</span>
+        <div className="shadow-xl rounded-xl w-56 lg:w-80">
+          <div className='shadow-xl bg-blue-400 flex justify-around p-3 lg:p-6  lg:mb-5 lg:rounded-t-lg rounded-t-md'>
+            <h2 className="lg:text-3xl font-bold text-gray-800 underline">Login</h2>
+          </div>
+          <form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <div className="form-control mb-4 mx-4">
+              <label className="label lg:mb-2">
+                <span className="label-text text-xs font-bold lg:text-base lg:font-bold text-gray-700">Email :</span>
               </label>
-              <input type="email"
-                {...register("email", {
-                  required: {
-                    value: true,
-                    message: "please enter email id"
-                  },
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "not a valid email"
-                  }
-                })}
-                placeholder="email" className="input input-bordered" />
-              {errors.email?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.email.message}</p>}
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="input input-bordered lg:p-3 rounded-lg shadow-xl hover:border-blue-800 border-2 max-h-8  lg:max-h-10 text-sm font-semibold"
+                {...register('email',
+                  {
+                    required: {
+                      value: true,
+                      message: "please enter email id"
+                    },
+                    pattern: {
+                      required: true,
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "invalid email address"
+                    }
 
+                  })}
+              />
+              {errors.email?.message && <p className='text-xs text-red-500 font-bold'>{errors.email.message}</p>}
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text  font-bold text-xs">Password :</span>
-              </label>
-              <input type="password"
 
+            <div className="form-control lg:mb-6 mx-4">
+              <label className="label lg:mb-2">
+                <span className="label-text text-xs font-bold lg:text-base lg:font-bold text-gray-700">Password :</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="input input-bordered p-3 rounded-lg shadow-xl hover:border-blue-800 border-2 max-h-8 lg:max-h-10 text-sm font-semibold"
                 {...register('password', {
                   required: {
                     value: true,
@@ -82,26 +93,30 @@ function Login() {
                   },
 
                 })}
-                placeholder="password" className="input input-bordered" />
-
-              {errors.password?.message && <p className='text-xs text-slate-100 font-serif bg-red-500 text-center rounded-lg mt-1 p-1'>{errors.password.message}</p>}
-
+              />
+              {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
             </div>
-            <div>
 
+            <div className="form-control shadow-xl bg-blue-400 rounded-b-lg mt-5 lg:mt-10 flex justify-center items-center ">
               <label className="label">
-                <Link to={'/sign-up'} className="text-blue-500 text-sm font-bold">
-                  New User ?
+                <Link to='/sign-up' className="font-serif text-blue-700 font-bold lg:font-bold">
+                  New user...?
                 </Link>
               </label>
-            </div>
-            <div className="form-control ">
-              <button className="btn btn-primary">Login</button>
+
+              <button
+                type="submit"
+                className="py-3 w-16 h-10 mb-3 text-sm  text-white font-bold rounded p-2 hover:bg-blue-700"
+              >
+                Login
+              </button>
             </div>
           </form>
         </div>
       </div>
     </div>
+
+
   )
 }
 

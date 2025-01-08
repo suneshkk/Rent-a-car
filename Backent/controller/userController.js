@@ -7,11 +7,11 @@ import { handleImageUpload } from '../util/imageUpload.js';
 export const userSignup = async (req, res, next) => {
 
     try {
-        const { name, email, password, profilePic, phone } = req.body;
+        const { name, email, password, profilePic, phone, state,district,address } = req.body;
         let imageUrl;
 
         //checking required field are filled or not
-        if (!name || !email || !password || !phone) {
+        if (!name || !email || !password || !phone || !state || !district || !address ) {
             return res.status(400).json({ success: false, message: "all field required" });
         }
 
@@ -38,7 +38,10 @@ export const userSignup = async (req, res, next) => {
             email,
             password: hashedPassword,
             profilePic: imageUrl || profilePic,
-            phone
+            phone,
+            state,
+            district,
+            address
         });
         await newUser.save();
 

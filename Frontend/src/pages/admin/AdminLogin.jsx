@@ -16,12 +16,12 @@ function AdminLogin() {
           password: data.password
         },
         { withCredentials: true }
-        );
+      );
       // console.log(response);
       toast.success("Login successful");
       navigate('/admin/admin-home');
     } catch (error) {
-      if(error.response.data.message){
+      if (error.response.data.message) {
         toast.error(error.response.data.message)
       }
       // toast.error("something went wrog");
@@ -32,19 +32,21 @@ function AdminLogin() {
   };
 
   return (
-    <div className="hero bg-gradient-to-r from-teal-500 to-cyan-500 min-h-screen flex items-center justify-center">
+    <div className="hero bg-gradient-to-r min-h-128 lg:min-h-screen flex items-center justify-center">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-white shadow-xl p-8 rounded-xl">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
-          <form className="card-body" onSubmit={handleSubmit(registerForm)} noValidate>
-            <div className="form-control mb-4">
-              <label className="label mb-2">
-                <span className="label-text text-lg font-semibold text-gray-700">Email</span>
+        <div className="shadow-xl rounded-xl w-56 lg:w-80">
+          <div className='shadow-xl bg-blue-400 flex justify-around p-3 lg:p-6  lg:mb-5 lg:rounded-t-lg rounded-t-md'>
+            <h2 className="lg:text-3xl font-bold text-gray-800 underline">Login</h2>
+          </div>
+          <form className="" onSubmit={handleSubmit(registerForm)} noValidate>
+            <div className="form-control mb-4 mx-4">
+              <label className="label lg:mb-2">
+                <span className="label-text text-xs font-bold lg:text-base lg:font-bold text-gray-700">Email :</span>
               </label>
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                className="input input-bordered lg:p-3 rounded-lg shadow-xl hover:border-blue-800 border-2 max-h-8  lg:max-h-10 text-sm font-semibold"
                 {...register('email',
                   {
                     required: {
@@ -60,16 +62,16 @@ function AdminLogin() {
                   })}
               />
               {errors.email?.message && <p className='text-xs text-red-500 font-bold'>{errors.email.message}</p>}
-              </div>
+            </div>
 
-            <div className="form-control mb-6">
-              <label className="label mb-2">
-                <span className="label-text text-lg font-semibold text-gray-700">Password</span>
+            <div className="form-control lg:mb-6 mx-4">
+              <label className="label lg:mb-2">
+                <span className="label-text text-xs font-bold lg:text-base lg:font-bold text-gray-700">Password :</span>
               </label>
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="input input-bordered w-full p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-teal-400"
+                className="input input-bordered p-3 rounded-lg shadow-xl hover:border-blue-800 border-2 max-h-8  lg:max-h-10 text-sm font-semibold"
                 {...register('password', {
                   required: {
                     value: true,
@@ -89,18 +91,18 @@ function AdminLogin() {
                 })}
               />
               {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
-              <label className="label">
-                <Link to="/admin-sign-up" className="text-teal-500 hover:text-teal-700 font-semibold">
-                  New admin? Sign up here!
-                </Link>
-              </label>
             </div>
 
-            {/* Submit Button */}
-            <div className="form-control ">
+            <div className="form-control shadow-xl bg-blue-400 rounded-b-lg mt-5 lg:mt-10 flex justify-center items-center ">
+              <label className="label">
+                <Link to="/admin-sign-up" className="font-serif text-blue-700 font-bold lg:font-bold">
+                  New user...?
+                </Link>
+              </label>
+
               <button
                 type="submit"
-                className="btn btn-teal w-full py-3 text-white font-semibold rounded-lg hover:bg-teal-700"
+                className="py-3 w-16 h-10 mb-3 text-sm  text-white font-bold rounded p-2 hover:bg-blue-700"
               >
                 Login
               </button>

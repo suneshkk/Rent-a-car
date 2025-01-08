@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-
     email: {
         type: String,
         required: true,
@@ -55,7 +54,6 @@ const userSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid phone number! It should contain exactly 10 digits.`
         }
     },
-
     role: {
         type: String,
         enum: ['user'],
@@ -66,8 +64,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "profilePic",
 
-    }
-
+    },
+    state    : {
+        type: String,
+        required: true,
+    },
+    district: {
+        type: String,
+        required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+    },
 },
     {
         timestamps: true,
