@@ -41,13 +41,13 @@ function SignUp() {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="bg-white shadow-xl rounded-lg my-5 lg:my-20 lg:w-4/6 border-2 border-stone-950">
-        <div className='bg-blue-400 bg-cover p-5 rounded-t-lg'>
-          <h2 className="text-sm capitalize lg:text-2xl hver:border-cyan-200 font-bold md:text-base md:font-bold text-center text-gray-800 underline">Sign up</h2>
+    <div className="lg:flex lg:items-center lg:justify-center rounded-2xl">
+      <div className=" lg:bg-white lg:shadow-xl lg:rounded-lg lg:my-20 lg:w-4/6 lg:border-2 lg:border-stone-950">
+        <div className='flex justify-start  lg:bg-blue-400 lg:p-5 lg:rounded-t-lg pt-3 px-5 pb-2'>
+          <h2 className="text-xs text-violet-950 capitalize lg:text-2xl hover:border-cyan-200 lg:font-bold md:text-base md:font-bold text-center lg:text-gray-800 underline"><b className='text-base font-serif'>Sign</b> <b className='text-lg font-serif text-pink-950'>up</b> <b className='text-base font-serif'>please...,</b></h2>
         </div>
 
-        <form className="lg:grid lg:grid-cols-2 lg:m-10" onSubmit={handleSubmit(handleSignup)} noValidate>
+        <form className=" lg:grid lg:grid-cols-2 lg:m-10 pb-14 px-10  border-2 rounded-lg border-black m-3" onSubmit={handleSubmit(handleSignup)} noValidate>
           <div className='md:mr-4 '>
             <div className="form-control">
               <label className="label">

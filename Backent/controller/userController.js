@@ -83,7 +83,7 @@ export const userLogin = async (req, res, next) => {
         //cross checking passwords 
         const passwordMatch = bcrypt.compareSync(password, userExist.password);
         if (!passwordMatch) {
-            return res.status(404).json({ success: false, message: "password is not correct..!!" });
+            return res.status(404).json({ success: false, message: "password is incorrect..!!" });
         }
         // generate token 
         const token = generateToken(userExist._id);

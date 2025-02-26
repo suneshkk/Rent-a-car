@@ -44,20 +44,20 @@ function AdminSignup() {
 
   return (
     <div className="flex items-center justify-center ">
-      <div className="bg-white shadow-xl rounded-lg my-5 lg:my-20 lg:w-4/6 border-2 border-stone-950">
+      <div className="bg-white shadow-xl rounded-lg w-5/6 my-8 lg:my-20 lg:w-4/6 border-2 border-stone-950" >
         <div className='bg-blue-400 bg-cover p-5'>
           <h2 className="text-sm capitalize lg:text-2xl hver:border-cyan-200 font-bold md:text-base md:font-bold text-center text-gray-800 underline">Sign up</h2>
         </div>
         <form className='lg:grid lg:grid-cols-2 lg:m-10' onSubmit={handleSubmit(handleSignup)} noValidate>
 
-          <div className="form-control flex flex-col mx-4 mb-3">
+          <div className="form-control flex flex-col mx-4 lg:mb-3">
             <label className="label">
               <span className="label-text md:text-sm font-bold text-gray-700">Secret Key :</span>
             </label>
             <input
               type="text"
               placeholder="Enter secret key"
-              className=" form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              className=" form-control  input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
               value={secretKey}
               {...register('secretKey',
                 {
@@ -72,7 +72,7 @@ function AdminSignup() {
             {errors.secretKey?.message && <p className='text-xs text-red-500 font-bold'>{errors.secretKey.message}</p>}
           </div>
 
-          <div className="form-control flex flex-col mx-4 mb-3">
+          <div className="form-control flex flex-col mx-4 lg:mb-3">
             <label className="label">
               <span className="label-text md:text-sm font-bold text-gray-700">Name :</span>
             </label>
@@ -80,7 +80,7 @@ function AdminSignup() {
               type="text"
               placeholder="Enter your name"
               value={name}
-              className=" form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              className=" form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
               {...register('name',
                 {
                   required: {
@@ -94,14 +94,14 @@ function AdminSignup() {
             {errors.name?.message && <p className='text-xs text-red-500 font-bold'>{errors.name.message}</p>}
           </div>
 
-          <div className="form-control flex flex-col mx-4 mb-3">
+          <div className="form-control flex flex-col mx-4 lg:mb-3">
             <label className="label">
               <span className="label-text md:text-sm font-bold text-gray-700">Email :</span>
             </label>
             <input
               type="email"
               placeholder="email"
-              className="form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              className="form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
               {...register('email',
                 {
                   required: {
@@ -120,14 +120,14 @@ function AdminSignup() {
             {errors.email?.message && <p className='text-xs text-red-500 font-bold'>{errors.email.message}</p>}
           </div>
 
-          <div className="form-control flex flex-col mx-4 mb-3">
+          <div className="form-control flex flex-col mx-4 lg:mb-3">
             <label className="label">
               <span className="label-text md:text-sm font-bold text-gray-700">Phone Number :</span>
             </label>
             <input
               type="text"
               placeholder="Enter your phone number"
-              className=" form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              className=" form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
               {...register('phone',
                 {
                   required: {
@@ -149,14 +149,14 @@ function AdminSignup() {
 
           </div>
 
-          <div className="form-control flex flex-col mx-4 mb-3">
+          <div className="form-control flex flex-col mx-4 lg:mb-3">
             <label className="label">
               <span className="label-text md:text-sm font-bold text-gray-700">PassWord :</span>
             </label>
             <input
               type="password"
               placeholder="Enter your password"
-              className=" form-control input hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+              className=" form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
               {...register('password', {
                 required: {
                   value: true,
@@ -179,14 +179,14 @@ function AdminSignup() {
             />
             {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
           </div>
-          <div className="form-control">
+          <div className="form-control flex flex-col mx-4 lg:mb-3">
               <label className="label">
                 <span className="label-text font-bold text-xs">confirme Password:</span>
               </label>
               <input type="conforme password"
                 placeholder="Enter conforme password"
                 value={confirmPassword}
-                className=" form-control input input-bordered hover:border-2 hover:border-blue-600 text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+                className=" form-control input input-bordered hover:border-2 hover:border-blue-600 text-xs py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
                 {...register('confirmPassword', {
                   required: {
                     value: true,

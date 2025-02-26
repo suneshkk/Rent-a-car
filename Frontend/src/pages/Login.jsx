@@ -36,8 +36,8 @@ function Login() {
   };
 
   return (
-    <div className="hero bg-gradient-to-r min-h-128 lg:min-h-screen flex items-center justify-center">
-      <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="bg-gradient-to-r h-128 lg:h-144 lg:my-10 flex items-center justify-center">
+      <div className="flex-col lg:flex-row-reverse">
         <div className="shadow-xl rounded-xl w-56 lg:w-80">
           <div className='shadow-xl bg-blue-400 flex justify-around p-3 lg:p-6  lg:mb-5 lg:rounded-t-lg rounded-t-md'>
             <h2 className="lg:text-3xl font-bold text-gray-800 underline">Login</h2>

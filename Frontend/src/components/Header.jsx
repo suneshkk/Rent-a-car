@@ -18,8 +18,8 @@ function Navbar() {
     return (
         <div className='' >
             {location.pathname == '/' && (
-                <div className='bg-cover bg-orange-600 md:h-8 '>
-                    <p className='text-xs text-center pt-1 text-black font-serif font-semibold'>Your Perfect Driving Partner</p>
+                <div className='bg-cover bg-orange-600 md:h-8 flex justify-center items-center border-b-2 border-t-2 border-t-black'>
+                    <p className='text-sm text-black font-serif font-bold '>Your Perfect Driving Partner</p>
                 </div>
             )}
             <div className="navbar  bg-black bg-cover text-center flex justify-between items-center px-4  md:px-14 md:h-20">
@@ -30,14 +30,17 @@ function Navbar() {
                         <img src={MyImage} alt="logo" className="h-8 md:h-12" />
                     </Link>
                 </div>
+                <div className='md:hidden'></div>
 
                 {/* Mobile menu button */}
+                {location.pathname == '/' && (
                 <button
                     className="text-2xl md:hidden size-4"
                     onClick={toggleMobileMenu}
                 >
                     {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
                 </button>
+                )}
 
                 {/* Mobile Dropdown menu */}
                 {isMobileMenuOpen && (

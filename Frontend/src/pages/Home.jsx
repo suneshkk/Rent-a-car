@@ -1,41 +1,18 @@
-import { useEffect, useState } from 'react';
-import { axiosInstance } from '../config/axiosInstance.jsx';
-import CarList from '../components/Cards.jsx';
 import HeroImage from "../../src/assets/hero.png";
 import BmwCar from "../../src/assets/bmw.png"
 import Benz from '../../src/assets/benz.png';
-import Car2 from '../../src/assets/car2.png';
 import Mustang from '../../src/assets/mustang.png';
 import { FaCar } from "react-icons/fa6";
 
 function Home() {
 
-  // const [data, setData] = useState([]);
-
-  // const fetchCar = async () => {
-  //   setLoading(true)
-  //   try {
-  //     const responce = await axiosInstance.get('/car/car-list', {
-  //       withCredentials: true,
-  //     });
-  //     setLoading(false)
-  //     setData(responce?.data?.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setLoading(false)
-
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchCar();
-  // }, [])
 
 
   return (
     <div className=''>
 
       <div className='bg-cover bg-black'>
-        <div className='bg-cover bg-center min-h-64 md:h-128 opacity-70' style={{ backgroundImage: `url(${HeroImage})` }} >
+        <div className='bg-cover bg-center min-h-64 lg:min-h-screen opacity-70' style={{ backgroundImage: `url(${HeroImage})` }} >
         </div>
 
         <div className="bg-orange-600  hover:bg-slate-300 bg-opacity-100  lg:p-5 rounded-sm text-center ">
