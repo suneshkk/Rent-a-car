@@ -1,10 +1,10 @@
-import { Admin } from "../model/adminModel.js";
+import { Dealer } from "../model/dealerModel.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../util/token.js";
 import { User } from "../model/userModel.js";
 
 
-export const adminSignup = async (req, res, next) => {
+export const dealerSignup = async (req, res, next) => {
     try {
         const { email, name, password, phone, } = req.body;
 
@@ -13,26 +13,26 @@ export const adminSignup = async (req, res, next) => {
             return res.status(400).json({ success: false, message: "all field required" });
 
         };
-        const isNameExist = await Admin.findOne({name});
+        const isNameExist = await Dealer.findOne({name});
         if(isNameExist){
             return res.status(400).json({message:"name is already exist add another name"});
         };
-        const isPhoneExist = await Admin.findOne({ phone});
+        const isPhoneExist = await Dealer.findOne({ phone});
         if(isPhoneExist){
             return res.status(400).json({message:"phone number already exist add another phone number"})
         };
-        const isAdminExist = await Admin.findOne({ email });
-        if (isAdminExist) {
-            return res.status(400).json({ message: "Admin already exist" });
+        const isDealerExist = await Dealer.findOne({ email });
+        if (isDealerExist) {
+            return res.status(400).json({ message: "Dealer already exist" });
 
         };
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
-        const newAdmin = new Admin({ name, email, password: hashedPassword, phone });
-        await newAdmin.save();
+        const newDealer = new Dealer({ name, email, password: hashedPassword, phone });
+        await newDealer.save();
 
-        const token = generateToken(newAdmin._id, 'admin');
+        const token = generateToken(newDealer._id, 'Dealer');
 
         res.cookie("token", token, {
             sameSite: "None",
@@ -40,7 +40,7 @@ export const adminSignup = async (req, res, next) => {
             httpOnly: true
         });
 
-        return res.status(201).json({ success: true, message: "Admin created successfully" });
+        return res.status(201).json({ success: true, message: "Dealer created successfully" });
 
     } catch (error) {
         console.log(error);
@@ -50,15 +50,15 @@ export const adminSignup = async (req, res, next) => {
 
 };
 
-export const adminLogin = async (req, res, next) => {
+export const dealerLogin = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
             return res.status(400).json({ success: false, message: "all field required" });
         }
-        const adminExist = await Admin.findOne({ email });
-        if (!adminExist) {
-            return res.status(400).json({ message: "admin does not exist check e-mail..!!" });
+        const dealerExist = await Dealer.findOne({ email });
+        if (!dealerExist) {
+            return res.status(400).json({ message: "Dealer does not exist check e-mail..!!" });
 
         }
 
@@ -67,7 +67,7 @@ export const adminLogin = async (req, res, next) => {
             return res.status(404).json({ success: false, message: "wrong password..!!" });
         }
         // generate token 
-        const token = generateToken(adminExist._id, 'admin');
+        const token = generateToken(dealerExist._id, 'dealer');
 
         //set the token in a cookie
         res.cookie("token", token, {
@@ -75,7 +75,7 @@ export const adminLogin = async (req, res, next) => {
             secure: true,
             httpOnly: true
 
-        }); return res.json({ success: true, message: "Admin login successfull" });
+        }); return res.json({ success: true, message: "Dealer login successfull" });
     } catch (error) {
         console.log(error);
         return next(error);
@@ -83,16 +83,16 @@ export const adminLogin = async (req, res, next) => {
 
 };
 
-export const adminProfile = async (req, res, next) => {
+export const dealerProfile = async (req, res, next) => {
     try {
         // Assuming you are storing user info in req.user after authentication middleware
-        const admin = req.user;
+        const dealer = req.user;
 
         // Fetch user data from the database
-        const adminData = await Admin.findOne({ _id: admin.id });
+        const dealerData = await Dealer.findOne({ _id: dealer.id });
 
         // Respond with the user data
-        return res.json({ success: true, data: adminData, message: "User Data Fetched" });
+        return res.json({ success: true, data: dealerData, message: "User Data Fetched" });
     } catch (error) {
         console.log(error);
         return next(error);
@@ -100,10 +100,10 @@ export const adminProfile = async (req, res, next) => {
 
 };
 
-export const adminLogout = async (req, res, next) => {
+export const dealerLogout = async (req, res, next) => {
     try {
         res.clearCookie("token");
-        return res.json({ message: "Admin logout success", success: true });
+        return res.json({ message: "Dealer logout success", success: true });
 
     } catch (error) {
         console.log(error);
@@ -113,18 +113,18 @@ export const adminLogout = async (req, res, next) => {
 };
 
 
-export const adminUpdate = async (req, res, next) => {
+export const dealerUpdate = async (req, res, next) => {
     try {
-        const adminId = req.params.id;
+        const dealerId = req.params.id;
         const formData = req.body;
-        // console.log("admin id=======++",adminId)
-        // console.log("admin data=======++",formData)
+        // console.log("dealer id=======++",dealerId)
+        // console.log("dealer data=======++",formData)
 
-        const result = await Admin.findByIdAndUpdate(adminId,formData, {new:true});
+        const result = await Dealer.findByIdAndUpdate(dealerId,formData, {new:true});
         if (!result) {
-            res.status(404).send({ message: "admin not found" });
+            res.status(404).send({ message: "Dealer not found" });
         } else {
-          return  res.status(200).send({ message: "Admin updated successfully" });
+          return  res.status(200).send({ message: "Dealer updated successfully" });
         }
     } catch(error) {
         console.log(error);
@@ -134,12 +134,12 @@ export const adminUpdate = async (req, res, next) => {
 };
 
 
-export const adminDelete = async (req, res, next) => {
+export const dealerDelete = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const result = await Admin.findByIdAndDelete(id);
+        const result = await Dealer.findByIdAndDelete(id);
         if (!result) {
-            return res.status(404).json({ message: "Admin Not Found" });
+            return res.status(404).json({ message: "Dealer Not Found" });
         }
         else {
             return res.status(200).json({ message: "Profile Deleted Successfully", data: result });
@@ -153,14 +153,14 @@ export const adminDelete = async (req, res, next) => {
 
 };
 
-export const adminCheck = async (req, res, next) => {
+export const dealerCheck = async (req, res, next) => {
     try {
-        const admin = req.user;
-        if (!admin) {
-            return res.status(404).json({ success: false, message: "Admin not autherized" });
+        const dealer = req.user;
+        if (!dealer) {
+            return res.status(404).json({ success: false, message: "Dealer not autherized" });
 
         }
-        res.json({ success: true, message: "Admin autherized" });
+        res.json({ success: true, message: "Dealer autherized" });
     } catch (error) {
         console.log(error);
         return next(error)

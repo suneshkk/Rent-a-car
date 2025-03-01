@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 
 const carModelSchema = new mongoose.Schema({
-    adminId: {
+    dealer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Admin',
+        ref: 'Dealer',
         required: true,
     },
 

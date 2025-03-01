@@ -1,13 +1,12 @@
-import { Admin } from '../model/adminModel.js';
 import { Car } from '../model/carModel.js';
 import { RentalModel } from '../model/rentalModel.js';
 import { handleImageUpload } from '../util/imageUpload.js';
-
+import { Dealer } from '../model/dealerModel.js';
 
 //creat car
 export const createCar = async (req, res, next) => {
     try {
-        const admin = req.user.id;
+        const dealer = req.user.id;
         const { carName, brand, year, carType, fuelType, transmission, price, image } = req.body;
         let imageUrl;
         console.log("data++++++++====")
@@ -16,9 +15,9 @@ export const createCar = async (req, res, next) => {
             return res.status(400).json({  message: "All fields are required" });
         }
 
-        const adminData = await Admin.findById(admin);
-        if (!adminData) {
-            return res.status(404).json({ message: "admin not found" });
+        const dealerData = await Dealer.findById(dealer);
+        if (!dealerData) {
+            return res.status(404).json({ message: "Dealer not found" });
         }
 
         // Handle image upload if an image is provided
@@ -30,7 +29,7 @@ export const createCar = async (req, res, next) => {
 
         // Create a new car object and save it to the database
         const newCar = new Car({
-            adminId: admin,
+            dealerId: dealer,
             carName,
             brand,
             year,
@@ -90,13 +89,12 @@ export const getCarById = async (req, res, next) => {
     }
 };
 
-export const getAdminCars = async (req, res, next) => {
+export const getDealerCars = async (req, res, next) => {
     try {
-        const adminId = req.params.id;
-        console.log("adminId ++++++", adminId)
-        const carData = await Car.find({ adminId });
+        const dealerId = req.params.id;
+        const carData = await Car.find({ dealerId });
         if (!carData) {
-            return res.status(404).json({ message: "no created cars for this admin" })
+            return res.status(404).json({ message: "no created cars for this dealer" })
         } else {
             return res.status(200).json({ success: true, message: "Cardata fetched successfuly", data: carData })
         }

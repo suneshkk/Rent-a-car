@@ -13,9 +13,9 @@ const rentalStatus = new mongoose.Schema({
         ref: 'car',
         required: true
     },
-    adminId: {
+    dealerId: {
         type: mongoose.Schema.Types.ObjectId,
-        refer: 'admin',
+        refer: 'Dealer',
         required: true
     },
     totalHours: {

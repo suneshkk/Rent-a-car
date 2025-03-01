@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 
 
-const adminModelSchema = new mongoose.Schema({
+const dealerModelSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -60,8 +60,8 @@ const adminModelSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['admin'],
-        default: 'admin',
+        enum: ['dealer'],
+        default: 'dealer',
 
     },
 },
@@ -70,4 +70,4 @@ const adminModelSchema = new mongoose.Schema({
     },
 );
 
-export const Admin = mongoose.model("Admin", adminModelSchema);
+export const Dealer = mongoose.model("Dealer",  dealerModelSchema);
