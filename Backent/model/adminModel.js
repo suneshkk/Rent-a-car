@@ -7,19 +7,6 @@ const adminSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    phone: {
-      type: String,
-      unique: true,
-      validate: {
-        validator: function (v) {
-          // Phone number length and pattern check
-          const phoneRegex = /^\d{10,15}$/; // Allows phone numbers with exactly 10 digits
-          return phoneRegex.test(v);
-        },
-        message: (props) =>
-          `${props.value} is not a valid phone number! It should contain exactly 10 digits.`,
-      },
-    },
     email: {
       type: String,
       required: true,
@@ -56,10 +43,23 @@ const adminSchema = new mongoose.Schema(
           `Password must be between 8 and 10 characters long, and include at least one uppercase letter, one lowercase letter, one number, and one special character.`,
       },
     },
+    phone: {
+      type: String,
+      unique: true,
+      validate: {
+        validator: function (v) {
+          // Phone number length and pattern check
+          const phoneRegex = /^\d{10,15}$/; // Allows phone numbers with exactly 10 digits
+          return phoneRegex.test(v);
+        },
+        message: (props) =>
+          `${props.value} is not a valid phone number! It should contain exactly 10 digits.`,
+      },
+    },
     role: {
       type: String,
-      enum: ["admin"],
-      default: admin,
+      enum: ["dealer"],
+      default: "dealer",
     },
   },
   {
