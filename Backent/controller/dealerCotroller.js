@@ -51,7 +51,7 @@ export const dealerSignup = async (req, res, next) => {
     });
 
     return res
-      .status(201)
+      .status(200)
       .json({ success: true, message: "Dealer created successfully" });
   } catch (error) {
     console.log(error);
@@ -71,7 +71,7 @@ export const dealerLogin = async (req, res, next) => {
     if (!dealerExist) {
       return res
         .status(400)
-        .json({ message: "Dealer does not exist check e-mail..!!" });
+        .json({ message: "wrong email address enter corect one...!" });
     }
 
     const passwordMatch = bcrypt.compareSync(password, dealerExist.password);
@@ -89,7 +89,7 @@ export const dealerLogin = async (req, res, next) => {
       secure: true,
       httpOnly: true,
     });
-    return res.json({
+    return res.status(202).json({
       success: true,
       message: "Dealer login successfull",
       data: dealerExist,
@@ -123,7 +123,9 @@ export const dealerProfile = async (req, res, next) => {
 export const dealerLogout = async (req, res, next) => {
   try {
     res.clearCookie("token");
-    return res.json({ message: "Dealer logout success", success: true });
+    return res
+      .status(200)
+      .json({ message: "Dealer logout successfully", success: true });
   } catch (error) {
     console.log(error);
     return next(error);
@@ -176,7 +178,9 @@ export const dealerCheck = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: "Dealer not autherized" });
     }
-    res.json({ success: true, message: "Dealer autherized" });
+    return res
+      .status(201)
+      .json({ success: true, message: "Dealer autherized" });
   } catch (error) {
     console.log(error);
     return next(error);
