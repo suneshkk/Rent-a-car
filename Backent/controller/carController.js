@@ -6,10 +6,11 @@ import { Dealer } from '../model/dealerModel.js';
 //creat car
 export const createCar = async (req, res, next) => {
     try {
-        const dealer = req.user.id;
-        const { carName, brand, year, carType, fuelType, transmission, price, image } = req.body;
+        // const dealer = req.user.id;
+        const dealer = req.params.id;
+        const { carName, brand, year, carType, fuelType, transmission, price } = req.body;
+        console.log(dealer,"+++++++")
         let imageUrl;
-        console.log("data++++++++====")
         // Check if all required fields are provided
         if (!carName || !brand || !price) {
             return res.status(400).json({  message: "All fields are required" });
@@ -21,15 +22,15 @@ export const createCar = async (req, res, next) => {
         }
 
         // Handle image upload if an image is provided
-        if (req.file) {
-            imageUrl = await handleImageUpload(req.file.path);
-        }else if(imageUrl == null){
-           return res.status(404).json({message:"please add car image"})
-        };
+        // if (req.file) {
+        //     imageUrl = await handleImageUpload(req.file.path);
+        // }else if(imageUrl == null){
+        //    return res.status(404).json({message:"please add car image"})
+        // };
 
         // Create a new car object and save it to the database
         const newCar = new Car({
-            dealerId: dealer,
+            dealer: dealer,
             carName,
             brand,
             year,
@@ -37,8 +38,9 @@ export const createCar = async (req, res, next) => {
             fuelType,
             transmission,
             price,
-            image: imageUrl || image
+            // image: imageUrl || image
         });
+        console.log("_+_+_+_+_",newCar)
 
         await newCar.save();
 
@@ -89,22 +91,6 @@ export const getCarById = async (req, res, next) => {
     }
 };
 
-export const getDealerCars = async (req, res, next) => {
-    try {
-        const dealerId = req.params.id;
-        const carData = await Car.find({ dealerId });
-        if (!carData) {
-            return res.status(404).json({ message: "no created cars for this dealer" })
-        } else {
-            return res.status(200).json({ success: true, message: "Cardata fetched successfuly", data: carData })
-        }
-
-
-    } catch (error) {
-        console.log(error);
-        return next(error);
-    };
-};
 
 //delete car
 export const deleteCar = async (req, res, next) => {

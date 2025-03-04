@@ -56,7 +56,7 @@ export const userSignup = async (req, res, next) => {
         });
 
         // Respond to the client
-        return res.status(201).json({ success: true, message: "User created successfully" });
+        return res.status(201).json({ success: true, message: "User created successfully",data:newUser });
 
     } catch (error) {
         console.log(error);

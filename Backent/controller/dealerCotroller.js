@@ -52,7 +52,7 @@ export const dealerSignup = async (req, res, next) => {
 
     return res
       .status(200)
-      .json({ success: true, message: "Dealer created successfully" });
+      .json({ success: true, message: "Dealer created successfully",data:newDealer });
   } catch (error) {
     console.log(error);
     return next(error);

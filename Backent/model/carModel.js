@@ -41,11 +41,11 @@ const carModelSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    image: {
-        type: String,
-        default: "image",
-        required:true
-    },
+    // image: {
+    //     type: String,
+    //     default: "image",
+    //     required:true
+    // },
 
 },
     {

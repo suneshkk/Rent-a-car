@@ -1,6 +1,9 @@
 import { Admin } from "../model/adminModel.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../util/token.js";
+import { Dealer } from "../model/dealerModel.js";
+import { Car } from "../model/carModel.js";
+import { populate } from "dotenv";
 
 export const adminSignup = async (req, res, next) => {
   try {
@@ -138,13 +141,11 @@ export const adminDelete = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: "admin data not found...!" });
     } else {
-      return res
-        .status(200)
-        .json({
-          success: true,
-          message: "account deleted successfully..!",
-          data: deleteData,
-        });
+      return res.status(200).json({
+        success: true,
+        message: "account deleted successfully..!",
+        data: deleteData,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -155,23 +156,84 @@ export const adminUpdate = async (req, res, next) => {
   try {
     const adminId = req.params.id;
     const formData = req.body;
-    console.log("data++++++++",formData)
-    console.log("data++++++++",adminId)
+    console.log("data++++++++", formData);
+    console.log("data++++++++", adminId);
 
     const result = await Admin.findByIdAndUpdate(adminId, formData, {
       new: true,
-    })
+    });
     if (!result) {
       return res
         .status(404)
-        .json({ success: false, message: "admin not fount...!",data:result });
+        .json({ success: false, message: "admin not fount...!", data: result });
     } else {
-      return res
-        .status(200)
-        .json({ success: true, message: "data updated successfully..!",data:result });
+      return res.status(200).json({
+        success: true,
+        message: "data updated successfully..!",
+        data: result,
+      });
     }
   } catch (error) {
     console.log(error);
+    return next(error);
+  }
+};
+export const adminFetchDealerData = async (req, res, next) => {
+  try {
+    const dealerData = await Dealer.find();
+    if (!dealerData) {
+      return res
+        .status(404)
+        .json({ success: false, message: "No data Available...!" });
+    } else {
+      return res.status(200).json({ data: dealerData });
+    }
+  } catch (error) {
+    console.log(error);
+    return next(error);
+  }
+};
+export const getDealerCars = async (req, res, next) => {
+  try {
+    const dealerId = req.params.id;
+    console.log("cardata++++++=", dealerId);
+
+    const carData = await Car.find({ dealer:dealerId});
+
+    // const carData = await Car.findById(dealerId).populate("carName");
+
+    console.log("cardata++++++=", carData);
+
+    if (!carData) {
+      return res
+        .status(404)
+        .json({ message: "no created cars for this dealer", data: carData });
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "Car data fetched successfuly",
+        data: carData,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return next(error);
+  }
+};
+export const adminCarList = async (rea, res, next) => {
+  try {
+    const carList = await Car.find();
+    if (!carList) {
+      return res.status(404).json({
+        success: false,
+        message: "No data for this request",
+        data: carList,
+      });
+    } else {
+      return res.status(200).json({ success: true, data: carList });
+    }
+  } catch (error) {
+    console.console(error);
     return next(error);
   }
 };
