@@ -6,13 +6,13 @@ export const forBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const carId = req.params.id;
-    const { totalHours, totalAmount, fromDate, toDate, dLicence, adminId } =
+    const { totalHours, totalAmount, fromDate, toDate, dLicence,  dealerId } =
       req.body;
 
-    const iscarAvailable = await RentalModel.find({ carId: carId });
-    if (iscarAvailable) {
+    const isCarBooked = await RentalModel.find({ carId: carId });
+    if (!isCarBooked) {
       return res
-        .status(404)
+        .status(200)
         .json({ success: false, message: "this car is already booked" });
     }
 
@@ -39,7 +39,7 @@ export const forBooking = async (req, res, next) => {
     const newRental = new RentalModel({
       carId: carId,
       userId: userId,
-      adminId: adminId,
+      dealerId:  dealerId,
       totalAmount: totalAmount,
       totalHours: totalHours,
       fromDate: fromDate,
@@ -128,3 +128,4 @@ export const adminBookedCarsList = async (req, res, next) => {
     return next(error);
   }
 };
+

@@ -40,7 +40,7 @@ function Booking() {
             });
             setLoading(false);
             setCarData(response?.data?.data);
-            // console.log("populate admin", response)
+            console.log("populate admin", response)
             toast.success("Car data fetched successsfully")
         } catch (error) {
             console.log(error);
@@ -68,7 +68,7 @@ function Booking() {
                 toDate,
                 totalHours: hours,
                 totalAmount: calculatedTotalAmount,
-                adminId:carData?.adminId,
+                dealerId:carData?. dealer,
             };
             console.log("data",data)
             if (!dLicence || !fromDate || !toDate) {

@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import { generateToken } from "../util/token.js";
 import { Dealer } from "../model/dealerModel.js";
 import { Car } from "../model/carModel.js";
-import { populate } from "dotenv";
 
 export const adminSignup = async (req, res, next) => {
   try {

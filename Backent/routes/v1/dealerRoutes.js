@@ -22,6 +22,6 @@ router.put("/update/:id", dealerAuth, dealerUpdate);
 router.delete("/delete/:id", dealerAuth, dealerDelete);
 router.get("/user-list", dealerAuth, userlist);
 
-router.get("/check-admin", dealerAuth, dealerCheck);
+router.get("/check", dealerAuth, dealerCheck);
 
 export { router as dealerRouter };

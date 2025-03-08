@@ -180,7 +180,7 @@ export const dealerCheck = async (req, res, next) => {
     }
     return res
       .status(201)
-      .json({ success: true, message: "Dealer autherized" });
+      .json({ success: true, message: "Dealer autherized",data:dealer });
   } catch (error) {
     console.log(error);
     return next(error);

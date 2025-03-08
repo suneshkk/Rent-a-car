@@ -7,6 +7,11 @@ const carModelSchema = new mongoose.Schema({
         ref: 'Dealer',
         required: true,
     },
+    rentalId:{
+     type:mongoose.Schema.Types.ObjectId,
+     ref:'bookingcollections',
+     require:true
+    },
 
     carName: {
         type: String,
