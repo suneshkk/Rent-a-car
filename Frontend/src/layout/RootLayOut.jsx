@@ -6,9 +6,10 @@ import { Outlet } from 'react-router-dom'
 function RootLayOut() {
     return (
         <div >
-            <Header />
+
+            {/* <Header /> */}
             <Outlet />
-            <Footer/>
+            {/* <Footer/> */}
         </div>
     )
 }

@@ -22,7 +22,7 @@ import CreateCar from "../pages/admin/controller/CreateCar.jsx";
 import EditCar from "../pages/admin/controller/EditCar.jsx";
 import DeleteCar from "../pages/admin/controller/DeleteCar.jsx";
 import DeleteUser from "../pages/user/DeleteUser.jsx";
-import DeleteBooking from "../pages/user/DeleteBooking.jsx"
+import DeleteBooking from "../pages/user/DeleteBooking.jsx";
 import PaymentSuccess from "../pages/user/SuccessPage.jsx";
 import AddReview from "../pages/user/AddReview.jsx";
 import AuthAdmin from "./protectedRoutes/AuthAdmin.jsx";
@@ -31,7 +31,6 @@ import DeleteAccount from "../pages/admin/DeleteAccount.jsx";
 import UserList from "../pages/admin/controller/UserList.jsx";
 
 const router = createBrowserRouter([
-
   {
     path: "/",
     element: <RootLayOut />,
@@ -43,19 +42,19 @@ const router = createBrowserRouter([
       },
       {
         path: "aboutus",
-        element: <AboutUs />
+        element: <AboutUs />,
       },
       {
         path: "sign-up",
-        element: <SignUp />
+        element: <SignUp />,
       },
       {
         path: "login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "car-gallery",
-        element: <CarGallery />
+        element: <CarGallery />,
       },
 
       {
@@ -64,22 +63,23 @@ const router = createBrowserRouter([
       },
       {
         path: "admin-login",
-        element: <AdminLogin />
+        element: <AdminLogin />,
       },
     ],
   },
   {
     path: "/user",
-    element:
+    element: (
       <AuthUser>
         <UserLayout />
-      </AuthUser>,
+      </AuthUser>
+    ),
     errorElement: <ErrorPage />,
 
     children: [
       {
         path: "home",
-        element: <UserHome />
+        element: <UserHome />,
       },
       {
         path: "profile",
@@ -87,32 +87,31 @@ const router = createBrowserRouter([
       },
       {
         path: "add-review/:id",
-        element: <AddReview />
+        element: <AddReview />,
       },
       {
         path: "success",
-        element: <PaymentSuccess />
+        element: <PaymentSuccess />,
       },
       {
         path: "delet-user/:id",
-        element: <DeleteUser />
+        element: <DeleteUser />,
       },
       {
         path: "updateUser/:id",
-        element: <UpdateUser />
+        element: <UpdateUser />,
       },
       {
         path: "car-gallery",
-        element: <CarGallery />
+        element: <CarGallery />,
       },
       {
         path: "delete-booking/:id",
-        element: <DeleteBooking />
-
+        element: <DeleteBooking />,
       },
       {
-        path: 'book-now/:id',
-        element: <Booking />
+        path: "book-now/:id",
+        element: <Booking />,
       },
       {
         path: "booked-car",
@@ -121,41 +120,42 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/admin',
-    element:
+    path: "/admin",
+    element: (
       <AuthAdmin>
         <AdminLayout />,
-      </AuthAdmin>,
+      </AuthAdmin>
+    ),
     errorElement: <ErrorPage />,
 
     children: [
       {
         path: "admin-home",
-        element: <AdminHome />
+        element: <AdminHome />,
       },
       {
         path: "delete-account/:id",
-        element: <DeleteAccount />
+        element: <DeleteAccount />,
       },
       {
         path: "car-list/:id",
-        element: <CarList />
+        element: <CarList />,
       },
       {
         path: "edit",
-        element: <AdminEdit />
+        element: <AdminEdit />,
       },
       {
         path: "create-car",
-        element: <CreateCar />
+        element: <CreateCar />,
       },
       {
         path: "edit-car/:id",
-        element: <EditCar />
+        element: <EditCar />,
       },
       {
-        path:"user-list",
-        element:<UserList/>
+        path: "user-list",
+        element: <UserList />,
       },
 
       // {
@@ -164,10 +164,14 @@ const router = createBrowserRouter([
       // },
       {
         path: "delete-car/:id",
-        element: <DeleteCar />
+        element: <DeleteCar />,
       },
-    ]
+    ],
   },
+  {
+    path: "/adminOne",
 
+    children: [],
+  },
 ]);
 export default router;

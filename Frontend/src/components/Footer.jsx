@@ -2,11 +2,11 @@ import React from 'react'
 import { Link,useLocation} from 'react-router-dom'
 
 function Footer() {
-  const location =useLocation()
+  // const location =useLocation()
   return (
-    <div>
+    <div className=''>
       <h1>
-        <footer class="footer footer-center bg-black text-stone-200 text-xs p-10">
+        <footer class="footer footer-center bg-gradient-to-r from-gray-700 to-black text-stone-200 text-xs p-10">
           <aside>
             <svg
               width="50"
@@ -25,15 +25,8 @@ function Footer() {
               Providing Good cervice 24*7 costomer assistance
             </p>
             <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
-            {location.pathname == '/' && (
-              <div className='-mt-4'>
-                <Link to={"/admin-sign-up"}>
-                  <span className='capitalize '><b>addmin use onlly :-</b></span>
-                  <button className='btn btn-ghost capitalize text-green-500'>loging</button>
-                </Link>
-
-              </div>
-            )}
+            {/* {location.pathname == '/' && (
+            )} */}
           </aside>
 
           <nav>

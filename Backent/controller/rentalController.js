@@ -6,7 +6,7 @@ export const forBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const carId = req.params.id;
-    const { totalHours, totalAmount, fromDate, toDate, dLicence,  dealerId } =
+    const { totalHours, totalAmount, fromDate, toDate, dLicence, dealerId } =
       req.body;
 
     const isCarBooked = await RentalModel.find({ carId: carId });
@@ -39,7 +39,7 @@ export const forBooking = async (req, res, next) => {
     const newRental = new RentalModel({
       carId: carId,
       userId: userId,
-      dealerId:  dealerId,
+      dealerId: dealerId,
       totalAmount: totalAmount,
       totalHours: totalHours,
       fromDate: fromDate,
@@ -115,7 +115,7 @@ export const dealerBookedCars = async (req, res, next) => {
 };
 export const adminBookedCarsList = async (req, res, next) => {
   try {
-    const bookedCars = await RentalModel.find();
+    const bookedCars = await RentalModel.find().populate("carId");
     if (!bookedCars) {
       return res.status(400).json({ message: "no Bookings rightnow" });
     } else {
@@ -128,4 +128,3 @@ export const adminBookedCarsList = async (req, res, next) => {
     return next(error);
   }
 };
-

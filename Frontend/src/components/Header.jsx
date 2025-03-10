@@ -16,13 +16,14 @@ function Navbar() {
     };
 
     return (
+        
         <div className='' >
             {location.pathname == '/' && (
                 <div className='bg-cover bg-orange-600 md:h-8 flex justify-center items-center border-b-2 border-t-2 border-t-black'>
                     <p className='text-sm text-black font-serif font-bold '>Your Perfect Driving Partner</p>
                 </div>
             )}
-            <div className="navbar  bg-black bg-cover text-center flex justify-between items-center px-4  md:px-14 md:h-20">
+            <div className="navbar bg-gradient-to-r from-gray-700 to-black bg-cover text-center flex justify-between items-center px-4  md:px-14 md:h-20">
                 <div className='md:hidden'></div>
 
                 <div className="flex-2 md:flex-none sm:grid content-center grid leading-relaxed">

@@ -6,10 +6,18 @@ import { Dealer } from "../model/dealerModel.js";
 //creat car
 export const createCar = async (req, res, next) => {
   try {
-    // const dealer = req.user.id;
-    const dealer = req.params.id;
-    const { carName, brand, year, carType, fuelType, transmission, price } =
-      req.body;
+    const dealer = req.user.id;
+    // const dealer = req.params.id;
+    const {
+      carName,
+      brand,
+      year,
+      carType,
+      fuelType,
+      transmission,
+      price,
+      image,
+    } = req.body;
     console.log(dealer, "+++++++");
     let imageUrl;
     // Check if all required fields are provided
@@ -23,11 +31,11 @@ export const createCar = async (req, res, next) => {
     }
 
     // Handle image upload if an image is provided
-    // if (req.file) {
-    //     imageUrl = await handleImageUpload(req.file.path);
-    // }else if(imageUrl == null){
-    //    return res.status(404).json({message:"please add car image"})
-    // };
+    if (req.file) {
+      imageUrl = await handleImageUpload(req.file.path);
+    } else if (imageUrl == null) {
+      return res.status(404).json({ message: "please add car image" });
+    }
 
     // Create a new car object and save it to the database
     const newCar = new Car({
@@ -39,7 +47,7 @@ export const createCar = async (req, res, next) => {
       fuelType,
       transmission,
       price,
-      // image: imageUrl || image
+      image: imageUrl || image,
     });
     console.log("_+_+_+_+_", newCar);
 
@@ -210,16 +218,38 @@ export const filterTransmission = async (req, res, next) => {
 };
 export const availablCarList = async (req, res, next) => {
   try {
-    const bookedCars = await RentalModel.find().populate("_id");
-    const availableCars = await Car.find();
-    if (bookedCars == availableCars) {
-      return res.status(404).json({ success: false, message: "no data" });
-    } 
-    // else {
-    //   return res
-    //     .status(200)
-    //     .json({ success: true, message: "data fetched" });
+    const bookedCars = await RentalModel.find().distinct("carId");
+    const availableCars = await Car.find({ _id: { $nin: bookedCars } });
+    return res
+      .status(200)
+      .json({ success: true, message: "Available cars", data: availableCars });
+  } catch (error) {
+    console.log(error);
+    return next(error);
+  }
+};
+export const carFilter = async (req, res, next) => {
+  try {
+    const { brand, carType, fuelType, transmission } = req.query;
+    let matchStage = {};
+    if (carType) matchStage.type =carType;
+    if (brand) matchStage.brand = brand;
+    if (fuelType) matchStage.fuelType = fuelType;
+    if (transmission) matchStage.transmission = transmission;
+
+    // let sortStage = {};
+    // if (sortBy) {
+    //   sortStage[sortBy] = order === "desc" ? -1 : 1;
     // }
+
+    const cars = await Car.aggregate([
+      { $match: matchStage },
+      // { $sort: sortStage },
+      { $limit: 20 },
+    ]);
+    return res
+      .status(200)
+      .json({ success: true, message: "data fetched", data: cars });
   } catch (error) {
     console.log(error);
     return next(error);
