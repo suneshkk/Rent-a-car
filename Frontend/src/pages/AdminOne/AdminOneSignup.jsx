@@ -1,44 +1,42 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../../config/axiosInstance.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-function AdminSignup() {
-  const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
-  const [secretKey, setSecretKey] = useState("");
+
+function AdminOneSignup() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
+  const { name, setName } = useState();
+  const { email, setEmail } = useState();
+  const { password, setPassword } = useState();
+  const { confirmPassword, setconfirmPassword } = useState();
+  const { secretKey, setSecretKey } = useState();
+  const { phone, setPhone } = useState();
+  const navigate = useNavigate();
 
-  const handleSignup = async (data) => {
-    if (secretKey !== "Wheelznow") {
-      alert("innvalid secretkey");
+  const adminSignup = async (data) => {
+    if (secretKey != authorized) {
+      alert("invalid secretkey");
     } else {
       try {
         const response = await axiosInstance.post(
-          "/dealer/sign-up",
+          "/admin/sign-up",
           {
             name: data.name,
-            phone: data.phone,
             email: data.email,
             password: data.password,
+            phone: data.phone,
           },
           { withCredentials: true }
         );
-        console.log("data res---", response);
         if (response?.data?.success) {
-          toast.success("Signup successful!");
-          navigate("/admin/admin-home");
+          toast.success("account created");
+          navigate("/admin-login");
         }
       } catch (error) {
-        if (error.response.data.message) {
-          toast.error(error.response.data.message);
-        }
         console.log(error);
+        toast.error("something went wrong");
       }
     }
   };
@@ -60,12 +58,12 @@ function AdminSignup() {
         <div className="bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] shadow-xl rounded-lg w-5/6 my-8 lg:my-20 lg:w-4/6">
           <div className=" p-5">
             <h2 className="text-sm capitalize lg:text-2xl hver:border-cyan-200 font-bold md:text-base md:font-bold text-center underline  text-gray-300">
-              Dealer <b>s</b>ign <b className="text-lime-600">u</b>p
+              Admin <b>s</b>ign <b className="text-lime-600">u</b>p
             </h2>
           </div>
           <form
             className="lg:grid lg:grid-cols-2 lg:m-10"
-            onSubmit={handleSubmit(handleSignup)}
+            onSubmit={handleSubmit(adminSignup)}
             noValidate
           >
             <div className="form-control flex flex-col mx-4 lg:mb-3">
@@ -254,9 +252,9 @@ function AdminSignup() {
 
             <div className="form-control flex justify-center items-center my-1 mx-5 lg:mt-">
               <label className="label flex justify-center">
-                <Link to="/admin-login">
+                <Link to="/adminon-login">
                   <p className="font-serif  font-bold lg:font-bold text-slate-400">
-                    Existing Dealer.....!
+                    Existing Admin....!
                   </p>
                 </Link>
               </label>
@@ -275,4 +273,4 @@ function AdminSignup() {
   );
 }
 
-export default AdminSignup;
+export default AdminOneSignup;

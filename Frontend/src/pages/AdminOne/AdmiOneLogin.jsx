@@ -1,36 +1,31 @@
-import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import LoginPhoto from "../../assets/bugatti.png";
+import { axiosInstance } from "../../config/axiosInstance.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import { axiosInstance } from "../config/axiosInstance.jsx";
-import LoginPhoto from "../../src/assets/bugatti.png";
-
-function Login() {
+function AdmiOneLogin() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
   const navigate = useNavigate();
-
   const onSubmit = async (data) => {
     try {
-      const responce = await axiosInstance.post(
-        "/user/login",
+      const response = await axiosInstance.post(
+        "/admin/login",
         {
           email: data.email,
           password: data.password,
         },
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
-      // console.log(responce);
+      console.log("respon", response);
 
-      toast.success("log-in success");
-      navigate("/user/home");
-      // console.log("respon", responce);
+      toast.success("logined");
+      navigate("/adminone/adminonehome");
     } catch (error) {
       if (error.response.data.message) {
         toast.error(error.response.data.message);
       }
-      navigate("/login");
+
       console.log(error);
     }
   };
@@ -55,7 +50,7 @@ function Login() {
             noValidate
           >
             <h2 className="md:text-xl lg:text-3xl font-bold text-gray-300 lg:mb-8 lg:mt-8">
-             User Log<b className="text-lime-600">i</b>n...
+              Admin Log<b className="text-lime-600">i</b>n...
             </h2>
 
             <div className="form-control mb-4">
@@ -122,7 +117,7 @@ function Login() {
                 </p>
               )}
             </div>
-            <div className="flex flex-col justify-center items-center my-5  ">
+            <div className="flex flex-col justify-center items-center my-5">
               <div className="lg:mt-10">
                 <button
                   type="submit"
@@ -133,20 +128,12 @@ function Login() {
               </div>
               <div className="mb-3">
                 <label className="label">
-                  <Link to="/sign-up">
+                  <Link to="/adminone-signup">
                     <p className="font-serif  font-bold lg:font-bold text-slate-400">
-                      New user...?
+                      New admin...?
                     </p>
                   </Link>
                 </label>
-              </div>
-
-              <div className="-mt-4">
-                <Link to={"/admin-sign-up"}>
-                  <p className=" text-slate-400 font-serif  font-bold lg:font-bold">
-                    Login as a dealer ...!
-                  </p>
-                </Link>
               </div>
             </div>
           </form>
@@ -165,4 +152,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default AdmiOneLogin;

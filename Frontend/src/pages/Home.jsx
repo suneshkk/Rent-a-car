@@ -3,6 +3,7 @@ import BmwCar from "../../src/assets/bmw.png"
 import Benz from '../../src/assets/benz.png';
 import Mustang from '../../src/assets/mustang.png';
 import { FaCar } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function Home() {
 
@@ -117,8 +118,7 @@ function Home() {
             </div>
 
           </div>
-
-
+          
         </div>
 
       </div>

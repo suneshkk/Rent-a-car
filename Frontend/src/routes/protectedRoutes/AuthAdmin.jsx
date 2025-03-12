@@ -14,13 +14,12 @@ function AuthAdmin({ children }) {
 
   const checkAdmin = async () => {
     try {
-      const response = await axiosInstance.get("/admin/check-admin", {
+      const response = await axiosInstance.get("/dealer/check", {
         withCredentials: true,
       });
       dispatch(saveAdmin(response?.data?.data));
     } catch (error) {
       dispatch(clearAdmin());
-      toast.error("please login");
       navigate("/admin-login");
     }
   };

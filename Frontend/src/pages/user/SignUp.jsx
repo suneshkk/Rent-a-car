@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import toast from 'react-hot-toast';
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { axiosInstance } from '../../config/axiosInstance.jsx';
-import { useForm } from 'react-hook-form'
+import { axiosInstance } from "../../config/axiosInstance.jsx";
+import { useForm } from "react-hook-form";
 
 function SignUp() {
   const { register, handleSubmit, formState } = useForm({});
@@ -11,7 +11,7 @@ function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("")
+  const [confirmPassword, setconfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
@@ -20,198 +20,260 @@ function SignUp() {
 
   const handleSignup = async () => {
     try {
-      const response = await axiosInstance.post('/user/signup',
+      const response = await axiosInstance.post(
+        "/user/signup",
         {
-          name, email, password, phone, state, address, district
+          name,
+          email,
+          password,
+          phone,
+          state,
+          address,
+          district,
         },
         {
-          withCredentials: true
-        });
+          withCredentials: true,
+        }
+      );
       if (response?.data?.success) {
-        toast.success('user sig-up successfully');
-        navigate('/user/profile');
-      };
-
+        toast.success("user sig-up successfully");
+        navigate("/user/profile");
+      }
     } catch (error) {
       if (error.response.data.message) {
         toast.error(error.response.data.message);
       }
       console.log(error);
-    };
+    }
   };
 
   return (
-    <div className="lg:flex lg:items-center lg:justify-center rounded-2xl">
-      <div className=" lg:bg-white lg:shadow-xl lg:rounded-lg lg:my-20 lg:w-4/6 lg:border-2 lg:border-stone-950">
-        <div className='flex justify-start  lg:bg-blue-400 lg:p-5 lg:rounded-t-lg pt-3 px-5 pb-2'>
-          <h2 className="text-xs text-violet-950 capitalize lg:text-2xl hover:border-cyan-200 lg:font-bold md:text-base md:font-bold text-center lg:text-gray-800 underline"><b className='text-base font-serif'>Sign</b> <b className='text-lg font-serif text-pink-950'>up</b> <b className='text-base font-serif'>please...,</b></h2>
+    <div className="lg:flex lg:items-center lg:justify-center h-screen bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364]">
+      <div className=" bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] shadow-xl rounded-lg my-20 lg:w-4/6 ">
+        <div className="flex justify-start   lg:p-5 lg:rounded-t-lg pt-3 px-5 pb-2">
+          <h2 className="text-xs capitalize lg:text-2xl lg:font-bold md:text-base md:font-bold text-center  text-gray-300  underline">
+            User
+            <b className="text-base font-serif">Sign</b>
+            <b className="text-lg font-serif text-lime-600">up</b>
+            <b className="text-base font-serif">please...,</b>
+          </h2>
         </div>
 
-        <form className=" lg:grid lg:grid-cols-2 lg:m-10 pb-14 px-10  border-2 rounded-lg border-black m-3" onSubmit={handleSubmit(handleSignup)} noValidate>
-          <div className='md:mr-4 '>
+        <form
+          className=" lg:grid lg:grid-cols-2 lg:m-10 pb-14 px-10 m-3"
+          onSubmit={handleSubmit(handleSignup)}
+          noValidate
+        >
+          <div className="md:mr-4 ">
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs">Name:</span>
+                <span className="label-text font-bold text-cyan-600">
+                  Name:
+                </span>
               </label>
               <input
                 type="text"
                 placeholder="Enter user name"
                 value={name}
                 className=" form-control  input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
-                {...register('name', {
+                {...register("name", {
                   required: {
                     value: true,
-                    message: "please enter user name"
-                  }
+                    message: "please enter user name",
+                  },
                 })}
                 onChange={(e) => setName(e.target.value)}
               />
-              {errors.name?.message && <p className='text-xs text-red-500 font-bold'>{errors.name.message}</p>}
+              {errors.name?.message && (
+                <p className="text-xs text-red-500 font-bold">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs">Email:</span>
+                <span className="label-text font-bold text-cyan-600">
+                  Email:
+                </span>
               </label>
-              <input type="email"
+              <input
+                type="email"
                 placeholder="Enter email address"
                 value={email}
                 className=" form-control input input-bordered hover:border-2 hover:border-blue-600 text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
-                {...register('email', {
+                {...register("email", {
                   required: {
                     value: true,
-                    message: "please enter email id "
+                    message: "please enter email id ",
                   },
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "please enter valid email id"
+                    message: "please enter valid email id",
                   },
                 })}
-                onChange={(e) => setEmail(e.target.value)} />
-              {errors.email?.message && <p className='text-xs text-red-500 font-bold'>{errors.email.message}</p>}
-
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {errors.email?.message && (
+                <p className="text-xs text-red-500 font-bold">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs">Phone:</span>
+                <span className="label-text font-bold text-cyan-600">
+                  Phone:
+                </span>
               </label>
-              <input type="text"
+              <input
+                type="text"
                 placeholder="Enter phone number"
                 value={phone}
                 className=" form-control input input-bordered hover:border-2 hover:border-blue-600 text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
-                {...register('phone', {
+                {...register("phone", {
                   required: {
                     value: true,
-                    message: "please enter phone number"
+                    message: "please enter phone number",
                   },
                   pattern: {
                     value: /^[6-9]\d{9}$/,
-                    message: "please enter valid phone number"
-                  }
+                    message: "please enter valid phone number",
+                  },
                 })}
-                onChange={(e) => setPhone(e.target.value)} />
-              {errors.phone?.message && <p className='text-xs text-red-500 font-bold'>{errors.phone.message}</p>}
-
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              {errors.phone?.message && (
+                <p className="text-xs text-red-500 font-bold">
+                  {errors.phone.message}
+                </p>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs">Password:</span>
+                <span className="label-text font-bold text-cyan-600">
+                  Password:
+                </span>
               </label>
-              <input type="password"
+              <input
+                type="password"
                 placeholder="Enter password"
                 value={password}
                 className=" form-control input input-bordered hover:border-2 hover:border-blue-600 text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
-                {...register('password', {
+                {...register("password", {
                   required: {
                     value: true,
-                    message: "please enter password"
+                    message: "please enter password",
                   },
                   minLength: {
                     value: 6,
-                    message: "password must add 6 charecters"
+                    message: "password must add 6 charecters",
                   },
 
                   pattern: {
                     required: true,
-                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message: "password must add one upper case lower case number special charecters for better password"
+                    value:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    message:
+                      "password must add one upper case lower case number special charecters for better password",
                   },
-
                 })}
-
-                onChange={(e) => setPassword(e.target.value)} />
-              {errors.password?.message && <p className='text-xs text-red-500 font-bold'>{errors.password.message}</p>}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {errors.password?.message && (
+                <p className="text-xs text-red-500 font-bold">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs">confirme Password:</span>
+                <span className="label-text font-bold text-cyan-600">
+                  confirme Password:
+                </span>
               </label>
-              <input type="conforme password"
+              <input
+                type="conforme password"
                 placeholder="Enter conforme password"
                 value={confirmPassword}
                 className=" form-control input input-bordered hover:border-2 hover:border-blue-600 text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
-                {...register('confirmPassword', {
+                {...register("confirmPassword", {
                   required: {
                     value: true,
-                    message: "please confirm your password"
+                    message: "please confirm your password",
                   },
-                  validate:(value)=>{
-                    if(value == password){
+                  validate: (value) => {
+                    if (value == password) {
                       return true;
-                    }else{
-                      return "password not match"
-                    };
-
-                  }
+                    } else {
+                      return "password not match";
+                    }
+                  },
                 })}
-
-                onChange={(e) => setconfirmPassword(e.target.value)} />
-              {errors.confirmPassword?.message && <p className='text-xs text-red-500 font-bold'>{errors.confirmPassword.message}</p>}
+                onChange={(e) => setconfirmPassword(e.target.value)}
+              />
+              {errors.confirmPassword?.message && (
+                <p className="text-xs text-red-500 font-bold">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
             </div>
           </div>
-          <div className='md:ml-5'>
+          <div className="md:ml-5">
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs capitalize">state:</span>
+                <span className="label-text font-bold text-cyan-600 capitalize">
+                  state:
+                </span>
               </label>
               <input
                 type="text"
                 placeholder="Enter your state"
                 value={state}
                 className=" form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
-                {...register('state', {
+                {...register("state", {
                   required: {
                     value: true,
-                    message: "please fill the field"
-                  }
+                    message: "please fill the field",
+                  },
                 })}
                 onChange={(e) => setState(e.target.value)}
               />
-              {errors.state?.message && <p className='text-xs text-red-500 font-bold'>{errors.state.message}</p>}
+              {errors.state?.message && (
+                <p className="text-xs text-red-500 font-bold">
+                  {errors.state.message}
+                </p>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs capitalize">district:</span>
+                <span className="label-text font-bold text-cyan-600 capitalize">
+                  district:
+                </span>
               </label>
               <input
                 type="text"
                 placeholder="Enter your district"
                 value={district}
                 className=" form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
-                {...register('district', {
+                {...register("district", {
                   required: {
                     value: true,
-                    message: "Please enter your district"
-                  }
+                    message: "Please enter your district",
+                  },
                 })}
                 onChange={(e) => setDistrict(e.target.value)}
               />
-              {errors.district?.message && <p className='text-xs text-red-500 font-bold'>{errors.district.message}</p>}
+              {errors.district?.message && (
+                <p className="text-xs text-red-500 font-bold">
+                  {errors.district.message}
+                </p>
+              )}
             </div>
 
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs capitalize">Occupation:</span>
+                <span className="label-text font-bold  capitalize">Occupation:</span>
               </label>
               <input
                 type="text"
@@ -228,18 +290,20 @@ function SignUp() {
                 onChange={(e) => setOccupation(e.target.value)}
               />
               {errors.occupation?.message && <p className="text-xs text-red-500 font-bold"> {errors.occupation.message} </p>}
-            </div>
+            </div> */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold text-xs capitalize">Address:</span>
+                <span className="label-text font-bold text-cyan-600 capitalize">
+                  Address:
+                </span>
               </label>
               <textarea
                 type="text"
-                rows='4'
+                rows="4"
                 placeholder="Enter your address"
                 value={address}
                 className=" form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs pl-2 py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none "
-                {...register('address', {
+                {...register("address", {
                   required: {
                     value: true,
                     message: "Please enter your address",
@@ -247,26 +311,32 @@ function SignUp() {
                 })}
                 onChange={(e) => setAddress(e.target.value)}
               ></textarea>
-              {errors.address?.message && <p className="text-xs text-red-500 font-bold"> {errors.address.message} </p>}
+              {errors.address?.message && (
+                <p className="text-xs text-red-500 font-bold">
+                  {" "}
+                  {errors.address.message}{" "}
+                </p>
+              )}
             </div>
-
-
           </div>
 
           <div className="form-control  ">
             <label className="label-text font-bold text-xs text-blue-500 mb-1 mt-1">
-              <Link to={'/login'}>
-                Existing User!
+              <Link to={"/login"}>
+                <p className=" text-slate-400 text-lg">Existing User!</p>
               </Link>
             </label>
-            <button className="btn btn-ghost font-bold font-serif hover:bg-blue-400 hover:text-gray-50 duration-0  h-7 w-16" type='submit '>save</button>
-
+            <button
+              className="btn btn-ghost font-bold font-serif text-gray-50 duration-0  h-7 w-16"
+              type="submit "
+            >
+              save
+            </button>
           </div>
-
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;

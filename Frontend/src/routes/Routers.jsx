@@ -29,6 +29,10 @@ import AuthAdmin from "./protectedRoutes/AuthAdmin.jsx";
 import UserHome from "../pages/user/UserHome.jsx";
 import DeleteAccount from "../pages/admin/DeleteAccount.jsx";
 import UserList from "../pages/admin/controller/UserList.jsx";
+import AdmiOneLogin from "../pages/AdminOne/AdmiOneLogin.jsx";
+import AdminOneSignup from "../pages/AdminOne/AdminOneSignup.jsx";
+import AuthAdminOne from "./protectedRoutes/AuthAdminOne.jsx";
+import AdminOneHome from "../pages/AdminOne/AdminOneHome.jsx";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +69,13 @@ const router = createBrowserRouter([
         path: "admin-login",
         element: <AdminLogin />,
       },
+      {path:"adminon-login",
+        element:<AdmiOneLogin/>
+      },
+      {
+        path:"Adminone-signup",
+        element:<AdminOneSignup/>
+      }
     ],
   },
   {
@@ -169,9 +180,20 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/adminOne",
+    path: "/adminone",
+    element:(
+      <AuthAdminOne>
 
-    children: [],
+      </AuthAdminOne>
+    ),
+    errorElement: <ErrorPage />,
+
+    children: [
+    {
+      path:"admionehome",
+      element:<AdminOneHome/>
+    }
+    ],
   },
 ]);
 export default router;

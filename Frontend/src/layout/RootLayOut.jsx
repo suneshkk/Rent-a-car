@@ -1,17 +1,22 @@
-import React from 'react'
-import Header from '../components/Header.jsx'
-import Footer from '../components/Footer.jsx'
-import { Outlet } from 'react-router-dom'
+import React from "react";
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import { Outlet } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function RootLayOut() {
-    return (
-        <div >
+  const location = useLocation();
+  return (
+    <div>
+      {location.pathname == "/" && <Header />}
 
-            {/* <Header /> */}
-            <Outlet />
-            {/* <Footer/> */}
-        </div>
-    )
+      <Outlet />
+      
+      {location.pathname == "/" && <Footer/>}
+
+      
+    </div>
+  );
 }
 
-export default RootLayOut
+export default RootLayOut;
