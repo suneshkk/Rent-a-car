@@ -232,7 +232,7 @@ export const carFilter = async (req, res, next) => {
   try {
     const { brand, carType, fuelType, transmission } = req.query;
     let matchStage = {};
-    if (carType) matchStage.type =carType;
+    if (carType) matchStage.type = carType;
     if (brand) matchStage.brand = brand;
     if (fuelType) matchStage.fuelType = fuelType;
     if (transmission) matchStage.transmission = transmission;

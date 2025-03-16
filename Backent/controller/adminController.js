@@ -185,7 +185,7 @@ export const adminFetchDealerData = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: "No data Available...!" });
     } else {
-      return res.status(200).json({ data: dealerData });
+      return res.status(200).json({success:true,message:"data fetched ", data: dealerData });
     }
   } catch (error) {
     console.log(error);

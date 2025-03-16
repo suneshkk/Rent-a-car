@@ -12,9 +12,9 @@ import { adminAuth } from "../../middlewares/adminAuth.js";
 const router = express.Router();
 
 router.post("/booking/:id", userAuth, forBooking);
-router.get("/booked-car", userAuth, userBookedCarDetials);
+router.get("/user-booked-car", userAuth, userBookedCarDetials);
 router.delete("/cancel-booking/:id", userAuth, deleteBooking);
-router.get("/booking-list", dealerAuth, dealerBookedCars);
-router.get("/booked-cars-for-admin", adminAuth, adminBookedCarsList);
+router.get("/dealer-booking-list", dealerAuth, dealerBookedCars);
+router.get("/all-booked-cars", adminAuth, adminBookedCarsList);
 
 export { router as rentalRoutes };

@@ -49,13 +49,23 @@ function SignUp() {
 
   return (
     <div className="lg:flex lg:items-center lg:justify-center h-screen bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364]">
+            <div className="h-20 bg-transparent flex justify-evenly items-center  ">
+        <Link to={"/"}>
+          <h2 className="capitalize text-slate-300 text-3xl">
+            <b className="text-4xl">W</b>
+            <b>heelz </b>
+            <b className="text-4xl">n</b>
+            <b>ow</b>
+          </h2>
+        </Link>
+      </div>
+
       <div className=" bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] shadow-xl rounded-lg my-20 lg:w-4/6 ">
         <div className="flex justify-start   lg:p-5 lg:rounded-t-lg pt-3 px-5 pb-2">
-          <h2 className="text-xs capitalize lg:text-2xl lg:font-bold md:text-base md:font-bold text-center  text-gray-300  underline">
-            User
-            <b className="text-base font-serif">Sign</b>
-            <b className="text-lg font-serif text-lime-600">up</b>
-            <b className="text-base font-serif">please...,</b>
+          <h2 className="text-sm capitalize lg:text-2xl lg:font-bold md:text-base md:font-bold text-center  text-gray-300  underline">
+            User 
+            <b className="text-base font-serif"> S<b className="text-lime-600 text-xl">i</b>gn</b>
+            <b className="text-lg font-serif"> up</b> 
           </h2>
         </div>
 

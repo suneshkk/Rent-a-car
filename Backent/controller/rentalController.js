@@ -115,7 +115,8 @@ export const dealerBookedCars = async (req, res, next) => {
 };
 export const adminBookedCarsList = async (req, res, next) => {
   try {
-    const bookedCars = await RentalModel.find().populate("carId");
+    // const bookedCars = await RentalModel.find().populate("carId");
+    const bookedCars = await RentalModel.find(); 
     if (!bookedCars) {
       return res.status(400).json({ message: "no Bookings rightnow" });
     } else {

@@ -221,8 +221,8 @@ function AdminSignup() {
             </div>
             <div className="form-control flex flex-col mx-4 lg:mb-3">
               <label className="label">
-                <span className="label-text font-bold text-xs ">
-                  confirme Password:
+              <span className="label-text md:text-sm font-bold  text-cyan-600">
+              confirme Password:
                 </span>
               </label>
               <input

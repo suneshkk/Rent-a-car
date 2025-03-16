@@ -7,7 +7,7 @@ import {
   deleteCar,
   updateCar,
   availablCarList,
-  carFilter
+  carFilter,
 } from "../../controller/carController.js";
 import { upload } from "../../middlewares/multer.js";
 
@@ -16,7 +16,7 @@ const router = express.Router();
 router.post("/create/:id", dealerAuth, upload.single("image"), createCar);
 router.get("/car-list", carlist);
 router.get("/get-car/:id", getCarById);
-router.get("/filter-car",carFilter );
+router.get("/filter-car", carFilter);
 router.delete("/delete-car/:id", dealerAuth, deleteCar);
 router.put("/update/:id", dealerAuth, upload.single("image"), updateCar);
 router.get("/available-cars", availablCarList);
