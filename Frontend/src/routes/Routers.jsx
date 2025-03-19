@@ -33,6 +33,7 @@ import AdmiOneLogin from "../pages/AdminOne/AdmiOneLogin.jsx";
 import AdminOneSignup from "../pages/AdminOne/AdminOneSignup.jsx";
 import AuthAdminOne from "./protectedRoutes/AuthAdminOne.jsx";
 import AdminOneHome from "../pages/AdminOne/AdminOneHome.jsx";
+import AdminOneLayout from "../layout/AdminOneLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -69,13 +70,11 @@ const router = createBrowserRouter([
         path: "admin-login",
         element: <AdminLogin />,
       },
-      {path:"adminon-login",
-        element:<AdmiOneLogin/>
-      },
+      { path: "adminon-login", element: <AdmiOneLogin /> },
       {
-        path:"Adminone-signup",
-        element:<AdminOneSignup/>
-      }
+        path: "Adminone-signup",
+        element: <AdminOneSignup />,
+      },
     ],
   },
   {
@@ -169,10 +168,6 @@ const router = createBrowserRouter([
         element: <UserList />,
       },
 
-      // {
-      //   path: "car-detail/:id",
-      //   element: <Details />
-      // },
       {
         path: "delete-car/:id",
         element: <DeleteCar />,
@@ -180,19 +175,18 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/adminone",
-    element:(
+    path: "/admin-one",
+    element: (
       <AuthAdminOne>
-
+        <AdminOneLayout />
       </AuthAdminOne>
     ),
     errorElement: <ErrorPage />,
-
     children: [
-    {
-      path:"admionehome",
-      element:<AdminOneHome/>
-    }
+      {
+        path: "admin-one-home",
+        element: <AdminOneHome />,
+      },
     ],
   },
 ]);

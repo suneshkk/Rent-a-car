@@ -129,7 +129,7 @@ function AdminSignup() {
               <input
                 type="email"
                 placeholder="email"
-                className="form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+                className="form-control input input-bordered hover:border-2 hover:border-blue-600 text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
                 {...register("email", {
                   required: {
                     value: true,
@@ -221,8 +221,8 @@ function AdminSignup() {
             </div>
             <div className="form-control flex flex-col mx-4 lg:mb-3">
               <label className="label">
-              <span className="label-text md:text-sm font-bold  text-cyan-600">
-              confirme Password:
+                <span className="label-text md:text-sm font-bold  text-cyan-600">
+                  confirme Password:
                 </span>
               </label>
               <input

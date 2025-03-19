@@ -1,9 +1,8 @@
-import React from 'react'
 
 function AdminOneHome() {
   return (
-    <div>
-      
+    <div className='bg-black h-screen'>
+      jjjblk
     </div>
   )
 }

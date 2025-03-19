@@ -7,16 +7,16 @@ import { Link, useNavigate } from "react-router-dom";
 function AdminOneSignup() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
-  const { name, setName } = useState();
-  const { email, setEmail } = useState();
-  const { password, setPassword } = useState();
-  const { confirmPassword, setconfirmPassword } = useState();
-  const { secretKey, setSecretKey } = useState();
-  const { phone, setPhone } = useState();
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [secretKey, setSecretKey] = useState();
+  const [phone, setPhone] = useState();
   const navigate = useNavigate();
 
   const adminSignup = async (data) => {
-    if (secretKey != authorized) {
+    if (secretKey !== "Wheelznow") {
       alert("invalid secretkey");
     } else {
       try {
@@ -32,7 +32,7 @@ function AdminOneSignup() {
         );
         if (response?.data?.success) {
           toast.success("account created");
-          navigate("/admin-login");
+          navigate("/adminone/adminonehome");
         }
       } catch (error) {
         console.log(error);
@@ -127,7 +127,7 @@ function AdminOneSignup() {
               <input
                 type="email"
                 placeholder="email"
-                className="form-control input input-bordered hover:border-2 hover:border-blue-600 capitalize text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
+                className="form-control input input-bordered hover:border-2 hover:border-blue-600  text-xs  py-1 rounded md:text-sm flex-1 md:px-5 border md:rounded-md shadow-sm focus:outline-none"
                 {...register("email", {
                   required: {
                     value: true,
@@ -219,7 +219,7 @@ function AdminOneSignup() {
             </div>
             <div className="form-control flex flex-col mx-4 lg:mb-3">
               <label className="label">
-                <span className="label-text font-bold text-xs ">
+                <span className="label-text md:text-sm font-bold  text-cyan-600">
                   confirme Password:
                 </span>
               </label>

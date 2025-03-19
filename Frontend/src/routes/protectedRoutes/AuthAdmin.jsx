@@ -3,7 +3,6 @@ import { axiosInstance } from "../../config/axiosInstance.jsx";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearAdmin, saveAdmin } from "../../redux/features/adminSlice.js";
-import toast from "react-hot-toast";
 
 function AuthAdmin({ children }) {
   const { isAdminExist } = useSelector((state) => state.admin);

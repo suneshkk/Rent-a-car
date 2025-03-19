@@ -20,7 +20,7 @@ function AdmiOneLogin() {
       console.log("respon", response);
 
       toast.success("logined");
-      navigate("/adminone/adminonehome");
+      navigate("/admin-one/admin-one-home");
     } catch (error) {
       if (error.response.data.message) {
         toast.error(error.response.data.message);

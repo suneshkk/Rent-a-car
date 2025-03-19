@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { clearAdminOne, saveAdminOne } from "../../redux/features/adminOne";
-import { axiosInstance } from "../../config/axiosInstance";
+import {
+  clearAdminOne,
+  saveAdminOne,
+} from "../../redux/features/adminOneSlice.js";
+import { axiosInstance } from "../../config/axiosInstance.jsx";
 
-function AuthAdminOne({ chidren }) {
-  const { isAdminOneExist } = useSelector((state) => state.AuthAdminOne);
+function AuthAdminOne({children }) {
+  const { isAdminOneExist } = useSelector((state) => state.adminOne);
   const dispatch = useDispatch();
 
   const checkAdminOne = async () => {
@@ -24,7 +27,7 @@ function AuthAdminOne({ chidren }) {
     checkAdminOne();
   }, []);
 
-  return isAdminOneExist ? chidren : null;
+  return isAdminOneExist ? children : null;
 }
 
 export default AuthAdminOne;

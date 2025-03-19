@@ -1,6 +1,6 @@
 import React from "react";
 
-function UserFooter() {
+function AdminOneFooter() {
   return (
     <div>
       <h1>
@@ -67,4 +67,4 @@ function UserFooter() {
   );
 }
 
-export default UserFooter;
+export default AdminOneFooter;
