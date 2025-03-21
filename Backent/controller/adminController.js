@@ -133,7 +133,7 @@ export const adminLogout = async (req, res, next) => {
 };
 export const adminDelete = async (req, res, next) => {
   try {
-    const id = req.body.id;
+    const id = req.params.id;
     const deleteData = await Admin.findByIdAndDelete(id);
     if (!deleteData) {
       return res

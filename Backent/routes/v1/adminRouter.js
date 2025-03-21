@@ -20,7 +20,7 @@ router.post("/login", adminLogin);
 router.get("/check", adminAuth, adminCheck);
 router.get("/profile", adminAuth, adminProfile);
 router.post("/logout", adminAuth, adminLogout);
-router.delete("/delete", adminAuth, adminDelete);
+router.delete("/delete/:id", adminAuth, adminDelete);
 router.put("/update/:id", adminAuth, adminUpdate);
 router.get("/fetch-dealer-data", adminAuth, adminFetchDealerData);
 router.get("/fetch-car-list", adminAuth, adminCarList);

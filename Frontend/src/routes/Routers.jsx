@@ -34,6 +34,7 @@ import AdminOneSignup from "../pages/AdminOne/AdminOneSignup.jsx";
 import AuthAdminOne from "./protectedRoutes/AuthAdminOne.jsx";
 import AdminOneHome from "../pages/AdminOne/AdminOneHome.jsx";
 import AdminOneLayout from "../layout/AdminOneLayout.jsx";
+import DeleteAcount from "../pages/AdminOne/DeleteAcount.jsx";
 
 const router = createBrowserRouter([
   {
@@ -186,6 +187,10 @@ const router = createBrowserRouter([
       {
         path: "admin-one-home",
         element: <AdminOneHome />,
+      },
+      {
+        path: "delete-account/:id",
+        element: <DeleteAcount />,
       },
     ],
   },
