@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { axiosInstance } from '../config/axiosInstance';
+import { axiosInstance } from '../config/axiosInstance.jsx';
 import toast from 'react-hot-toast';
 
 function CarList({ car }) {

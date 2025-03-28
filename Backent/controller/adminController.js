@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { generateToken } from "../util/token.js";
 import { Dealer } from "../model/dealerModel.js";
 import { Car } from "../model/carModel.js";
+import { User } from "../model/userModel.js";
 
 export const adminSignup = async (req, res, next) => {
   try {
@@ -185,7 +186,9 @@ export const adminFetchDealerData = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: "No data Available...!" });
     } else {
-      return res.status(200).json({success:true,message:"data fetched ", data: dealerData });
+      return res
+        .status(200)
+        .json({ success: true, message: "data fetched ", data: dealerData });
     }
   } catch (error) {
     console.log(error);
@@ -197,7 +200,7 @@ export const getDealerCars = async (req, res, next) => {
     const dealerId = req.params.id;
     console.log("cardata++++++=", dealerId);
 
-    const carData = await Car.find({ dealer:dealerId});
+    const carData = await Car.find({ dealer: dealerId });
 
     // const carData = await Car.findById(dealerId).populate("carName");
 
@@ -219,7 +222,7 @@ export const getDealerCars = async (req, res, next) => {
     return next(error);
   }
 };
-export const adminCarList = async (rea, res, next) => {
+export const adminCarList = async (req, res, next) => {
   try {
     const carList = await Car.find();
     if (!carList) {
@@ -232,7 +235,28 @@ export const adminCarList = async (rea, res, next) => {
       return res.status(200).json({ success: true, data: carList });
     }
   } catch (error) {
-    console.console(error);
+    console.log(error);
+    return next(error);
+  }
+};
+export const fetchUserData = async (req,res,next) => {
+  try {
+    const userData = await User.find();
+    if (!userData) {
+      return res
+        .status(404)
+        .json({ success: false, message: "data not found" });
+    } else {
+      return res
+        .status(200)
+        .json({
+          success: true,
+          message: "data fetched successfully",
+          data: userData,
+        });
+    }
+  } catch (error) {
+    console.log(error);
     return next(error);
   }
 };

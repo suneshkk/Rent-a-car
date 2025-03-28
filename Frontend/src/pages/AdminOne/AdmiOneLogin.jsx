@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import LoginPhoto from "../../assets/bugatti.png";
 import { axiosInstance } from "../../config/axiosInstance.jsx";
 import { Link, useNavigate } from "react-router-dom";
+// import Theme from "../../components/ui/Theme.jsx";
 function AdmiOneLogin() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
@@ -41,6 +42,7 @@ function AdmiOneLogin() {
             <b>ow</b>
           </h2>
         </Link>
+        {/* <Theme/> */}
       </div>
       <div className="flex justify-center items-center mt-9">
         <div className="  md:max-w-3xl md:h-96 lg:max-w-4xl lg:h-144 md:grid md:grid-cols-2 bg-white card card-body shadow-xl bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] ">

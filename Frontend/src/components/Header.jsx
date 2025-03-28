@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import MyImage from "../../src/assets/wheelz.png";
-
+// import Theme from "./ui/Theme";
+// import Theme from "./ui/Theme.jsx";
 function Navbar() {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -32,7 +33,7 @@ function Navbar() {
             <img src={MyImage} alt="logo" className="h-8 md:h-12" />
           </Link>
         </div>
-        <div className="md:hidden"></div>
+        <div className="md:hidden"> </div>
 
         {/* Mobile menu button */}
         {location.pathname == "/" && (
@@ -100,7 +101,7 @@ function Navbar() {
             <div className="flex border-b-2">
               <Link to="/login">
                 <h1 className="text-bold font-serif text-slate-300 font-bold hover:text-sky-600">
-                  Login
+                  Login 
                 </h1>
               </Link>
               <svg
@@ -121,6 +122,7 @@ function Navbar() {
                   Register
                 </h1>
               </Link>
+              {/* <Theme/> */}
             </div>
           )}
         </div>

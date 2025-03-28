@@ -1,5 +1,6 @@
 import bmwPhoto from "../../assets/bmwbg.png";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
 
 function AdminOneHome() {
   return (
@@ -9,6 +10,7 @@ function AdminOneHome() {
           className="h-32 bg-cover bg-center text-center content-center"
           style={{ backgroundImage: `url(${bmwPhoto})` }}
         >
+      
           <div className="">
             <h2 className="mt-1 text-2xl text-gray-50 font-bold text-opacity-100 ">
               <u> Admin Controles</u>
@@ -21,7 +23,7 @@ function AdminOneHome() {
             <ArrowRightIcon className="w-5 h-5 " />
           </div>
           <div className="border-b-2 flex justify-between items-center mb-6">
-            <h2 className="font-bold text-xl text-stone-300">User Data</h2>
+            <h2 className="font-bold text-xl text-stone-300"><Link to={"/admin-one/user-data"}>User data</Link></h2>
             <ArrowRightIcon className="w-5 h-5 " />
           </div>
           <div className="border-b-2 flex justify-between items-center mb-6">
@@ -50,6 +52,7 @@ function AdminOneHome() {
           </div>
         </div>
       </div>
+      <div></div>
     </div>
   );
 }

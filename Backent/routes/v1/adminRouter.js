@@ -10,6 +10,7 @@ import {
   adminProfile,
   adminSignup,
   adminUpdate,
+  fetchUserData,
   getDealerCars,
 } from "../../controller/adminController.js";
 
@@ -25,4 +26,5 @@ router.put("/update/:id", adminAuth, adminUpdate);
 router.get("/fetch-dealer-data", adminAuth, adminFetchDealerData);
 router.get("/fetch-car-list", adminAuth, adminCarList);
 router.get("/get-dealer-car/:id", adminAuth, getDealerCars);
+router.get("/User-data", adminAuth, fetchUserData);
 export { router as adminRouter };

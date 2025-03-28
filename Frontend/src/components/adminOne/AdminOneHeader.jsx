@@ -5,6 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { axiosInstance } from "../../config/axiosInstance";
 import toast from "react-hot-toast";
 import Loader from "../util/Loader";
+// import Theme from "../ui/Theme.jsx";
 function AdminOneHeader() {
   const [loading, setLoading] = useState();
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function AdminOneHeader() {
         withCredentials: true,
       });
       setProfile(response?.data?.data);
-      console.log("response", response);
+      console.log("Admin response", response);
     } catch (error) {
       console.log(error);
       toast.error("admin data no");
@@ -61,8 +62,11 @@ function AdminOneHeader() {
 
       <div className="mt-5 gap-5 mx-8">
         <div>
-          <FaBell className="text-2xl text-amber-400 cursor-pointer" />;
+          <FaBell className="text-2xl text-amber-400 cursor-pointer" />
         </div>
+        {/* <div>
+          <Theme/>
+        </div> */}
 
         <div className="relative">
           <div className="">
@@ -73,6 +77,7 @@ function AdminOneHeader() {
 
           {isOpen && (
             <div className="rounded-lg border-2 absolute top-14 right-7 h-80 w-56 shadow-xl bg-gradient-to-r from-[#032330] to-[#113443]">
+              
               {loading ? (
                 <Loader />
               ) : (
@@ -95,21 +100,41 @@ function AdminOneHeader() {
                   </ol>
                 </div>
               )}
-              <div>
-                <button
-                  className="text-red-800 font-bold text-xl"
-                  onClick={logout}
-                >
-                  Logout
-                </button>
-                <button>
-                  <Link
-                    className="text-white"
-                    to={`/admin-one/delete-account/${profile?._id}`}
+              <div className="pt-9 pl-4">
+                <div>
+                  <button
+                    className="text-green-600 font-bold"
+                    onClick={() => {
+                      closeDropdown();
+                    }}
                   >
-                    Delete Account
-                  </Link>
-                </button>
+                    Update Account
+                  </button>
+                </div>
+                <div>
+                  <button>
+                    <Link
+                      className="text-red-800 font-bold"
+                      to={`/admin-one/delete-account/${profile?._id}`}
+                      onClick={() => {
+                        closeDropdown();
+                      }}
+                    >
+                      Delete Account
+                    </Link>
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="text-red-800 font-bold text-xl"
+                    onClick={() => {
+                      logout();
+                      closeDropdown();
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
               </div>
             </div>
           )}
