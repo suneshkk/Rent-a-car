@@ -219,7 +219,7 @@ export const filterTransmission = async (req, res, next) => {
 export const availablCarList = async (req, res, next) => {
   try {
     const bookedCars = await RentalModel.find().distinct("carId");
-    const availableCars = await Car.find({ _id: { $nin: bookedCars } });
+    const availableCars = await Car.find({ _id: { $nin: bookedCars } }).populate("dealer");
     return res
       .status(200)
       .json({ success: true, message: "Available cars", data: availableCars });

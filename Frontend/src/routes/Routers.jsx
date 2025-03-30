@@ -36,6 +36,11 @@ import AdminOneHome from "../pages/AdminOne/AdminOneHome.jsx";
 import AdminOneLayout from "../layout/AdminOneLayout.jsx";
 import DeleteAcount from "../pages/AdminOne/DeleteAcount.jsx";
 import UserData from "../pages/AdminOne/UserData.jsx";
+import DealerData from "../pages/AdminOne/DealerData.jsx";
+import BookedCars from "../pages/AdminOne/BookedCars.jsx";
+import AvailableCars from "../pages/AdminOne/AvailableCars.jsx";
+import CarReviews from "../pages/AdminOne/CarReviews.jsx";
+import PaymentData from "../pages/AdminOne/PaymentData.jsx";
 
 const router = createBrowserRouter([
   {
@@ -196,6 +201,26 @@ const router = createBrowserRouter([
       {
         path:"user-data",
         element:<UserData/>
+      },
+      {
+        path:"dealer-data",
+        element:<DealerData/>
+      },
+      {
+        path:"booked-cars",
+        element:<BookedCars/>
+      },
+      {
+        path:"available-cars",
+        element:<AvailableCars/>
+      },
+      {
+        path:"reviews",
+        element:<CarReviews/>
+      },
+      {
+        path:"payment-details",
+        element:<PaymentData/>
       }
     ],
   },

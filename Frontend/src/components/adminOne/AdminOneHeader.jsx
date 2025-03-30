@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBell } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { axiosInstance } from "../../config/axiosInstance";
@@ -11,6 +11,7 @@ function AdminOneHeader() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState();
   const [isOpen, setIsopen] = useState();
+  const location = useLocation();
   const toggleDropdown = () => {
     setIsopen(!isOpen);
   };
@@ -19,17 +20,18 @@ function AdminOneHeader() {
   };
 
   const fetchProfile = async () => {
-    // setLoading(true);
+    setLoading(true);
     try {
       const response = await axiosInstance.get("/admin/profile", {
         withCredentials: true,
       });
+      setLoading(false);
       setProfile(response?.data?.data);
       console.log("Admin response", response);
     } catch (error) {
       console.log(error);
       toast.error("admin data no");
-      // setLoading(false);
+      setLoading(false);
     }
   };
   const logout = async () => {
@@ -50,8 +52,15 @@ function AdminOneHeader() {
   }, []);
 
   return (
-    <div className="absolute h-32 navbar flex justify-between ">
-      <div className="mr-10"></div>
+    <div className="absolute h-32 navbar flex items-center justify-between ">
+      {location.pathname !== "/admin-one/admin-one-home" && (
+        <div className="ml-5">
+          <Link to={"admin-one-home"}>
+            <button className="btn btn-active btn-info">Back</button>
+          </Link>
+        </div>
+      )}
+      {location.pathname == "/admin-one/admin-one-home" && <div></div>}
       <div className="opacity-80 px-5 py-3 rounded-lg bg-gradient-to-r from-[#0c2028]  to-[#075d8b] ">
         <Link to={"/"}>
           <h1 class="text-4xl font-bold text-sky-500  uppercase tracking-widest ">
@@ -64,81 +73,78 @@ function AdminOneHeader() {
         <div>
           <FaBell className="text-2xl text-amber-400 cursor-pointer" />
         </div>
-        {/* <div>
-          <Theme/>
-        </div> */}
+        {location.pathname == "/admin-one/admin-one-home" && (
+          <div className="relative ">
+            <div className="">
+              <button onClick={toggleDropdown} className="">
+                <FaUserCircle className="text-4xl text-center text-slate-100 cursor-pointer" />
+              </button>
+            </div>
 
-        <div className="relative">
-          <div className="">
-            <button onClick={toggleDropdown} className="">
-              <FaUserCircle className="text-4xl text-center text-slate-100 cursor-pointer" />
-            </button>
-          </div>
-
-          {isOpen && (
-            <div className="rounded-lg border-2 absolute top-14 right-7 h-80 w-56 shadow-xl bg-gradient-to-r from-[#032330] to-[#113443]">
-              
-              {loading ? (
-                <Loader />
-              ) : (
-                <div className=" border-b-2 h-40 rounded">
-                  <div className="text-center pt-3">
-                    <h2 className="text-slate-50 capitalize underline text-lg font-bold">
-                      {profile?.role}
-                    </h2>
+            {isOpen && (
+              <div className="rounded-lg border-2 absolute top-14 right-7 h-80 w-56 shadow-xl bg-gradient-to-r from-[#032330] to-[#113443]">
+                {loading ? (
+                  <Loader />
+                ) : (
+                  <div className=" border-b-2 h-40 rounded">
+                    <div className="text-center pt-3">
+                      <h2 className="text-slate-50 capitalize underline text-lg font-bold">
+                        {profile?.role}
+                      </h2>
+                    </div>
+                    <ol className="pt-3 pl-4">
+                      <li className="text-slate-100 capitalize text-lg font-serif ">
+                        {profile?.name}
+                      </li>
+                      <li className="text-slate-100 capitalize text-lg font-serif ">
+                        {profile?.phone}
+                      </li>
+                      <li className="text-slate-100 capitalize text-lg font-serif ">
+                        {profile?.email}
+                      </li>
+                    </ol>
                   </div>
-                  <ol className="pt-3 pl-4">
-                    <li className="text-slate-100 capitalize text-lg font-serif ">
-                      {profile?.name}
-                    </li>
-                    <li className="text-slate-100 capitalize text-lg font-serif ">
-                      {profile?.phone}
-                    </li>
-                    <li className="text-slate-100 capitalize text-lg font-serif ">
-                      {profile?.email}
-                    </li>
-                  </ol>
-                </div>
-              )}
-              <div className="pt-9 pl-4">
-                <div>
-                  <button
-                    className="text-green-600 font-bold"
-                    onClick={() => {
-                      closeDropdown();
-                    }}
-                  >
-                    Update Account
-                  </button>
-                </div>
-                <div>
-                  <button>
-                    <Link
-                      className="text-red-800 font-bold"
-                      to={`/admin-one/delete-account/${profile?._id}`}
+                )}
+                <div className="pt-9 pl-4">
+                  <div>
+                    <button
+                      className="text-green-600 font-bold"
                       onClick={() => {
                         closeDropdown();
                       }}
                     >
-                      Delete Account
-                    </Link>
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="text-red-800 font-bold text-xl"
-                    onClick={() => {
-                      logout();
-                      closeDropdown();
-                    }}
-                  >
-                    Logout
-                  </button>
+                      Update Account
+                    </button>
+                  </div>
+                  <div>
+                    <button>
+                      <Link
+                        className="text-red-800 font-bold"
+                        to={`/admin-one/delete-account/${profile?._id}`}
+                        onClick={() => {
+                          closeDropdown();
+                        }}
+                      >
+                        Delete Account
+                      </Link>
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="text-red-800 font-bold text-xl"
+                      onClick={() => {
+                        logout();
+                        closeDropdown();
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

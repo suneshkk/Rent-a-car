@@ -1,6 +1,7 @@
 import { RentalModel } from "../model/rentalModel.js";
 import { Car } from "../model/carModel.js";
 import { User } from "../model/userModel.js";
+import { Dealer } from "../model/dealerModel.js";
 
 export const forBooking = async (req, res, next) => {
   try {
@@ -30,8 +31,11 @@ export const forBooking = async (req, res, next) => {
     if (!userData) {
       return res.status(404).json({ message: "User not find" });
     }
-
-    let cars = await RentalModel.findOne({ userId });
+    const dealerData = await Dealer.findById(dealerId);
+    if (!dealerData) {
+      return res.status(404).json({ success: false, message: "user not find" });
+    }
+    const cars = await RentalModel.findOne({ userId });
     if (!cars) {
       cars = new RentalModel({ userId, car: [] });
     }
@@ -47,9 +51,15 @@ export const forBooking = async (req, res, next) => {
       dLicence: dLicence,
     });
     await newRental.save();
-    return res
-      .status(201)
-      .json({ success: true, message: "Booked successfully", data: newRental });
+    const populateRental = await RentalModel.findById(newRental._id)
+      .populate("carId")
+      .populate("userId")
+      .populate("dealerId");
+    return res.status(201).json({
+      success: true,
+      message: "Booked successfully",
+      data: populateRental,
+    });
   } catch (error) {
     console.error(error);
     return next(error);
@@ -62,7 +72,8 @@ export const userBookedCarDetials = async (req, res, next) => {
     // console.log("user",user)
     const rental = await RentalModel.findOne({ userId: user.id })
       .populate("carId")
-      .populate("userId");
+      .populate("userId")
+      .populate("dealerId")
 
     if (!rental) {
       return res.status(404).json({ message: "There is no Rental" });
@@ -115,8 +126,10 @@ export const dealerBookedCars = async (req, res, next) => {
 };
 export const adminBookedCarsList = async (req, res, next) => {
   try {
-    // const bookedCars = await RentalModel.find().populate("carId");
-    const bookedCars = await RentalModel.find(); 
+    const bookedCars = await RentalModel.find()
+      .populate("carId")
+      .populate("userId")
+      .populate("dealerId");
     if (!bookedCars) {
       return res.status(400).json({ message: "no Bookings rightnow" });
     } else {
