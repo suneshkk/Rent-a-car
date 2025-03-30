@@ -59,7 +59,7 @@ function BookedCars() {
                           alt="car"
                         />
                       </td>
-                      <td className="pl-8 capitalize text-base font-bold">
+                      <td className="pl-8 w-72 capitalize text-base font-bold">
                         <h3 className="">
                           Car brand :{" "}
                           <span className=" ml-6 text-white ">
@@ -118,7 +118,7 @@ function BookedCars() {
                           </span>
                         </h3>
                       </td>
-                      <td className="pl-8 w-96 capitalize text-base font-bold">
+                      <td className="pl-8  capitalize text-base font-bold">
                         <h3 className="">
                           name :{" "}
                           <span className=" ml-6 text-white ">
@@ -144,7 +144,7 @@ function BookedCars() {
                           </span>
                         </h3>
                       </td>
-                      <td className="pl-8 w-96 capitalize text-base font-bold">
+                      <td className="pl-8 w-auto capitalize text-base font-bold">
                         from date :{" "}
                         <span className="ml-6 text-white">
                           {rental?.fromDate
