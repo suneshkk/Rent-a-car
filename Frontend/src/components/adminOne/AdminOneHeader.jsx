@@ -54,9 +54,9 @@ function AdminOneHeader() {
   return (
     <div className="absolute h-32 navbar flex items-center justify-between ">
       {location.pathname !== "/admin-one/admin-one-home" && (
-        <div className="ml-5">
+        <div className="ml-5 ">
           <Link to={"admin-one-home"}>
-            <button className="btn btn-active btn-info">Back</button>
+            <button className="btn border-none btn-active bg-gradient-to-r from-[#233f4a] to-[#2480a8] font-serif">Back</button>
           </Link>
         </div>
       )}
