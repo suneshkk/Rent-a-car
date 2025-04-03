@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../../../config/axiosInstance.jsx";
 import Loader from "../../../components/util/Loader.jsx";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
 function CreateCar() {
   const { register, handleSubmit, formState } = useForm();
@@ -18,11 +18,12 @@ function CreateCar() {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [showDropDown, setDropdown] = useState(false);
+  const {id} = useParams();
+  // const [showDropDown, setDropdown] = useState(false);
 
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
-    setImage(file)
+    setImage(file);
   };
 
   const handleUploadCar = async () => {
@@ -39,29 +40,22 @@ function CreateCar() {
     formData.append("image", image);
 
     try {
-      const response = await axiosInstance.post('/car/create', formData,
-        {
-          withCredentials: true,
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+      const response = await axiosInstance.post(`/car/create/${id}`, formData, {
+        withCredentials: true,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       if (response.data.success) {
         toast.success("Car Created successfully");
         // console.log(" car ====response", response);
-        navigate(`/admin/admin-home`)
+        navigate(`/admin/car-list/:id`);
         setLoading(false);
-      };
-
+      }
     } catch (error) {
-      if (error.response.data.message) {
-        toast.error(error.response.data.message);
-      };
       console.log(error);
       setLoading(false);
-
-    };
+    }
   };
-
 
   return (
     // large screen view
@@ -70,151 +64,196 @@ function CreateCar() {
         <Loader />
       ) : (
         <div className=" bg-sky-300 mx-4  shadow-2xl md:m-3 lg:w-5/6 rounded-2xl content-center">
-          <div className="m-4 border-b-4"><h4 className="capitalize md:text-lg md:font-bold text-center font-semibold text-lime-700">add car to your website</h4></div>
-          <form onSubmit={handleSubmit(handleUploadCar)} className=" md:space-y-4  md:p-10 md:grid md:grid-cols-2 " noValidate>
+          <div className="m-4 border-b-4">
+            <h4 className="capitalize md:text-lg md:font-bold text-center font-semibold text-lime-700">
+              add car to your website
+            </h4>
+          </div>
+          <form
+            onSubmit={handleSubmit(handleUploadCar)}
+            className=" md:space-y-4  md:p-10 md:grid md:grid-cols-2 "
+            noValidate
+          >
             <div>
               <div className="flex flex-col m-3">
-                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Car Name :</label>
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">
+                  Car Name :
+                </label>
                 <input
                   type="text"
                   value={carName}
-                  {...register('carName', {
+                  {...register("carName", {
                     required: {
                       value: true,
-                      message: "please enter car name"
+                      message: "please enter car name",
                     },
                   })}
                   onChange={(e) => setCarName(e.target.value)}
                   className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.carName?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.carName.message}</p>}
-
+                {errors.carName?.message && (
+                  <p className="text-red-600 text-xs font-semibold md:font-semibold">
+                    {errors.carName.message}
+                  </p>
+                )}
               </div>
               <div className="flex flex-col m-3">
-                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Car Brand :</label>
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">
+                  Car Brand :
+                </label>
                 <input
                   type="text"
                   value={brand}
-                  {...register('brand', {
+                  {...register("brand", {
                     required: {
                       value: true,
-                      message: "please enter brand"
+                      message: "please enter brand",
                     },
                   })}
                   onChange={(e) => setBrand(e.target.value)}
                   className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.brand?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.brand.message}</p>}
-
+                {errors.brand?.message && (
+                  <p className="text-red-600 text-xs font-semibold md:font-semibold">
+                    {errors.brand.message}
+                  </p>
+                )}
               </div>
               <div className="flex flex-col m-3">
-                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Model Year :</label>
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">
+                  Model Year :
+                </label>
                 <input
                   type="text"
                   value={year}
-                  {...register('year', {
+                  {...register("year", {
                     required: {
                       value: true,
-                      message: "please enter year"
+                      message: "please enter year",
                     },
                   })}
                   onChange={(e) => setYear(e.target.value)}
                   className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.year?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.year.message}</p>}
-
+                {errors.year?.message && (
+                  <p className="text-red-600 text-xs font-semibold md:font-semibold">
+                    {errors.year.message}
+                  </p>
+                )}
               </div>
               <div className="flex flex-col m-3">
-                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Car Type :</label>
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">
+                  Car Type :
+                </label>
                 <input
                   type="text"
                   value={carType}
                   className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
-                  {...register('carType', {
+                  {...register("carType", {
                     required: {
                       value: true,
-                      message: "please enter cartype"
+                      message: "please enter cartype",
                     },
                   })}
-                  onFocus={(e) => setDropdown(true)}
-                  onBlur={(e) => setDropdown(false)}
+                  // onFocus={(e) => setDropdown(true)}
+                  // onBlur={(e) => setDropdown(false)}
                   onChange={(e) => setCarType(e.target.value)}
                 />
-                {errors.carType?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.carType.message}</p>}
-                {showDropDown && (
+                {errors.carType?.message && (
+                  <p className="text-red-600 text-xs font-semibold md:font-semibold">
+                    {errors.carType.message}
+                  </p>
+                )}
+                {/* {showDropDown && (
                   <div className=""
                     onMouseEnter={() => setDropdown(true)}
                     onMouseLeave={() => setDropdown(false)}
                   >
                   </div>
-                )}
-
+                )} */}
               </div>
             </div>
             <div className="">
               <div className="flex flex-col m-3">
-                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Fuel Type :</label>
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">
+                  Fuel Type :
+                </label>
                 <input
                   type="text"
                   value={fuelType}
-                  {...register('fuelType', {
+                  {...register("fuelType", {
                     required: {
                       value: true,
-                      message: "please enter fuelType"
+                      message: "please enter fuelType",
                     },
                   })}
                   onChange={(e) => setFuelType(e.target.value)}
                   className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.fuelType?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.fuelType.message}</p>}
-
+                {errors.fuelType?.message && (
+                  <p className="text-red-600 text-xs font-semibold md:font-semibold">
+                    {errors.fuelType.message}
+                  </p>
+                )}
               </div>
               <div className="flex flex-col m-3">
-                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Transmission:</label>
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">
+                  Transmission:
+                </label>
                 <input
                   type="text"
                   value={transmission}
-                  {...register('transmission', {
+                  {...register("transmission", {
                     required: {
                       value: true,
-                      message: "please enter transmission"
+                      message: "please enter transmission",
                     },
                   })}
-
                   onChange={(e) => setTrasnsmission(e.target.value)}
                   className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.transmission?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.transmission.message}</p>}
-
+                {errors.transmission?.message && (
+                  <p className="text-red-600 text-xs font-semibold md:font-semibold">
+                    {errors.transmission.message}
+                  </p>
+                )}
               </div>
               <div className="flex flex-col m-3">
-                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Price :</label>
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">
+                  Price :
+                </label>
                 <input
                   type="text"
                   value={price}
-                  {...register('price', {
+                  {...register("price", {
                     required: {
                       value: true,
-                      message: "please enter price"
+                      message: "please enter price",
                     },
                   })}
-
                   onChange={(e) => setPrice(e.target.value)}
                   className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.price?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.price.message}</p>}
-
+                {errors.price?.message && (
+                  <p className="text-red-600 text-xs font-semibold md:font-semibold">
+                    {errors.price.message}
+                  </p>
+                )}
               </div>
               <div className="flex flex-col m-3">
-                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">Image:</label>
+                <label className="form-label text-xs font-semibold capitalize mb-1 md:w-2/3 md:text-lg md:font-semibold">
+                  Image:
+                </label>
                 <input
                   type="file"
                   onChange={handleUploadImage}
                   className=" form-control capitalize text-xs font-semibold pl-2 py-1 rounded md:text-base md:font-semibold flex-1 md:px-5 md:py-2 border md:rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 md:w-3/4"
                 />
-                {errors.image?.message && <p className='text-red-600 text-xs font-semibold md:font-semibold'>{errors.image.message}</p>}
-
-
+                {errors.image?.message && (
+                  <p className="text-red-600 text-xs font-semibold md:font-semibold">
+                    {errors.image.message}
+                  </p>
+                )}
               </div>
             </div>
             <div className="text-center mt-6 flex-none flex ml-4 ">
@@ -224,10 +263,7 @@ function CreateCar() {
               >
                 Save
               </button>
-
             </div>
-
-
           </form>
 
           {/* <div className="flex">
@@ -239,14 +275,11 @@ function CreateCar() {
           {/* <div className="text-center mb-8">
               <h1 className="text-2xl font-semibold text-gray-800 underline">Create New Car</h1>
             </div> */}
-
-
         </div>
         //mobile view
-
       )}
     </div>
-  )
+  );
 }
 
-export default CreateCar
+export default CreateCar;

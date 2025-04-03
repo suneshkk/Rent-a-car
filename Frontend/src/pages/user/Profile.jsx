@@ -37,7 +37,7 @@ function Profile() {
     const fetchBookedCarDetails = async () => {
         setLoading(true);
         try {
-            const response = await axiosInstance.get(`/rental/booked-car`,
+            const response = await axiosInstance.get(`/rental/user-booked-car`,
                 { withCredentials: true });
             setLoading(false);
             setBookedCar(response?.data?.data);
@@ -113,7 +113,7 @@ function Profile() {
                                         <hr />
                                         <li className="content-start ">
                                             <Link to="/user/car-Gallery" >
-                                                <h1 className=" text-white font-bold">Car Gallery</h1>
+                                                <h1 className=" text-white font-bold">Book Now</h1>
                                             </Link>
                                         </li>
 

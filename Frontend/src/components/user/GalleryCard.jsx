@@ -1,11 +1,11 @@
 import React from 'react'
 
-function NewOne() {
+function GalleryCard() {
   return (
     <div>
-      kkr;'gfeop'
+      
     </div>
   )
 }
 
-export default NewOne
+export default GalleryCard

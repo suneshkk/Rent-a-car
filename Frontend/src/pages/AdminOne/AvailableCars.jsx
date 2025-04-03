@@ -33,7 +33,7 @@ function AvailableCars() {
         <h2 className="capitalize pt-4 pl-6 pb-2 text-amber-100 text-xl font-serif shadow-xl">
           available cars
         </h2>
-        <div className="overflow-auto h-4/5">
+        <div className="overflow-y-auto h-4/5">
           <table className="w-full border-spacing-2  border-separate">
             <thead className="sticky top-0 bg-black">
               <tr className="">

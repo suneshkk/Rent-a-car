@@ -45,7 +45,7 @@ export const payment = async (req, res, next) => {
 
 export const checkPayment = async (req, res, next) => {
   try {
-    const paymentdata = await Order.find().populate("carId");
+    const paymentdata = await Order.find().populate("carId").populate("userId");
     if (!paymentdata) {
       return res
         .status(404)

@@ -60,7 +60,7 @@ function AdminHome() {
     const fetchBookingHistory = async () => {
         setLoading2(true);
         try {
-            const response = await axiosInstance.get(`/rental/booking-list`, { withCredential: true });
+            const response = await axiosInstance.get(`/rental/dealer-booking-list`, { withCredential: true });
             setBooking(response?.data?.data)
             // console.log("history", response);
             setLoading2(false);

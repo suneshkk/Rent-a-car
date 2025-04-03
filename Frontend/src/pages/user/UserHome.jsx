@@ -10,17 +10,18 @@ import CarList from '../../components/Cards.jsx'
 
 function UserHome() {
 
-    const [data, setData] = useState([]);
+    const [car, setCar] = useState([]);
     const [loading, setLoading] = useState(false)
 
     const fetchCar = async () => {
         setLoading(true)
         try {
-            const responce = await axiosInstance.get('/car/car-list', {
+            const response = await axiosInstance.get('/car/car-list', {
                 withCredentials: true,
             });
             setLoading(false)
-            setData(responce?.data?.data);
+            setCar(response?.data?.data);
+            console.log("user car galery",response)
         } catch (error) {
             console.log(error);
             setLoading(false)
@@ -60,7 +61,7 @@ function UserHome() {
             <div className='-m-3'>
                 {loading ? (<Loader />) : (
                     <div className='grid grid-cols-2 xl:grid xl:grid-cols-4 lg:flex lg:flex-wrap md:grid md:grid-cols-3 sm:flex sm:flex-wrap'>
-                        {data.map((value) => (
+                        {car.map((value) => (
                             <CarList car={value} key={value?._id} />
                         ))}
 

@@ -86,6 +86,7 @@ export const carlist = async (req, res, next) => {
 export const getCarById = async (req, res, next) => {
   try {
     const carId = req.params.id;
+    console.log("carId",carId)
     const existingBooking = await RentalModel.findOne({ carId: carId });
     if (existingBooking) {
       return res
@@ -94,10 +95,11 @@ export const getCarById = async (req, res, next) => {
     }
     // Find car by ID
     const cars = await Car.findById(carId);
+    console.log("data", cars);
+
     if (!cars) {
       return res.status(404).json({ success: false, message: "Car not found" });
     }
-
     // Return the car details
     return res
       .status(200)
@@ -219,7 +221,9 @@ export const filterTransmission = async (req, res, next) => {
 export const availablCarList = async (req, res, next) => {
   try {
     const bookedCars = await RentalModel.find().distinct("carId");
-    const availableCars = await Car.find({ _id: { $nin: bookedCars } }).populate("dealer");
+    const availableCars = await Car.find({
+      _id: { $nin: bookedCars },
+    }).populate("dealer");
     return res
       .status(200)
       .json({ success: true, message: "Available cars", data: availableCars });

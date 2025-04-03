@@ -13,7 +13,7 @@ const rentalStatus = new mongoose.Schema({
         ref: 'car',
         required: true
     },
-    dealerId: {
+    dealer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Dealer',
         required: true
