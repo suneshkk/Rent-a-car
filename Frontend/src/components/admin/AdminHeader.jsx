@@ -35,7 +35,7 @@ function AdminHeader() {
   const handleLogout = async () => {
     try {
       const response = await axiosInstance.post(
-        "/admin/logout",
+        "/dealer/logout",
         {},
         { withCredentials: true }
       );

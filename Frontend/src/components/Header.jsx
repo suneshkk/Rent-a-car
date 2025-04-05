@@ -58,6 +58,7 @@ function Navbar() {
                   <hr />
                 </div>
               )}
+
               <div className="py-2 flex">
                 <Link to="/login" onClick={closeMenu}>
                   <p className="text-slate-100 font-medium">Login</p>
@@ -91,17 +92,24 @@ function Navbar() {
           className={`md:flex gap-6 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}
         >
           {location.pathname == "/" && (
-            <Link to="/aboutus">
-              <h1 className="text-bold font-serif text-slate-300 font-bold hover:text-sky-600">
-                About Us
-              </h1>
-            </Link>
+            <div className="flex gap-5 items-center">
+              <Link to="/aboutus">
+              <h1 className=" hover:text-sky-600 text-lg text-slate-300 font-serif font-bold capitalize border-b-2 hover:border-none">
+              About Us
+                </h1>
+              </Link>
+              <Link to="/home-car-gallery">
+                <h1 className=" hover:text-sky-600 text-lg text-slate-300 font-serif font-bold capitalize border-b-2 hover:border-none ">
+                  car gallery
+                </h1>
+              </Link>
+            </div>
           )}
           {location.pathname == "/" && (
-            <div className="flex border-b-2">
+            <div className="flex border-b-2 hover:border-none">
               <Link to="/login">
                 <h1 className="text-bold font-serif text-slate-300 font-bold hover:text-sky-600">
-                  Login 
+                  Login
                 </h1>
               </Link>
               <svg

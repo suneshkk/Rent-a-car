@@ -41,6 +41,7 @@ import BookedCars from "../pages/AdminOne/BookedCars.jsx";
 import AvailableCars from "../pages/AdminOne/AvailableCars.jsx";
 import CarReviews from "../pages/AdminOne/CarReviews.jsx";
 import PaymentData from "../pages/AdminOne/PaymentData.jsx";
+import CarGalleryHome from "../pages/CarGalleryHome.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path:"home-car-gallery",
+        element:<CarGalleryHome/>
+      },
+      {
         path: "aboutus",
         element: <AboutUs />,
       },
@@ -63,10 +68,6 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
-      },
-      {
-        path: "car-gallery",
-        element: <CarGallery />,
       },
 
       {
@@ -199,29 +200,29 @@ const router = createBrowserRouter([
         element: <DeleteAcount />,
       },
       {
-        path:"user-data",
-        element:<UserData/>
+        path: "user-data",
+        element: <UserData />,
       },
       {
-        path:"dealer-data",
-        element:<DealerData/>
+        path: "dealer-data",
+        element: <DealerData />,
       },
       {
-        path:"booked-cars",
-        element:<BookedCars/>
+        path: "booked-cars",
+        element: <BookedCars />,
       },
       {
-        path:"available-cars",
-        element:<AvailableCars/>
+        path: "available-cars",
+        element: <AvailableCars />,
       },
       {
-        path:"reviews",
-        element:<CarReviews/>
+        path: "reviews",
+        element: <CarReviews />,
       },
       {
-        path:"payment-details",
-        element:<PaymentData/>
-      }
+        path: "payment-details",
+        element: <PaymentData />,
+      },
     ],
   },
 ]);

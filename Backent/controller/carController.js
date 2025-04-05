@@ -69,7 +69,7 @@ export const createCar = async (req, res, next) => {
 export const carlist = async (req, res, next) => {
   try {
     //find car list from schema
-    const cars = await Car.find();
+    const cars = await Car.find().populate("rentalId");
 
     return res.status(200).json({
       success: true,
@@ -86,7 +86,7 @@ export const carlist = async (req, res, next) => {
 export const getCarById = async (req, res, next) => {
   try {
     const carId = req.params.id;
-    console.log("carId",carId)
+    console.log("carId", carId);
     const existingBooking = await RentalModel.findOne({ carId: carId });
     if (existingBooking) {
       return res
@@ -227,6 +227,27 @@ export const availablCarList = async (req, res, next) => {
     return res
       .status(200)
       .json({ success: true, message: "Available cars", data: availableCars });
+  } catch (error) {
+    console.log(error);
+    return next(error);
+  }
+};
+export const carByDealer = async (req, res, next) => {
+  try {
+    const dealer = req.params.id;
+    console.log(dealer)
+
+    const dealerCars = await Car.find({dealer});
+    console.log(dealerCars)
+    if (!dealerCars  || dealerCars == 0) {
+      return res
+        .status(404)
+        .json({ success: true, message: "no car for this dealer" });
+    } else {
+      return res
+        .status(200)
+        .json({ success: true, message: "Car data fetched", data: dealerCars });
+    }
   } catch (error) {
     console.log(error);
     return next(error);

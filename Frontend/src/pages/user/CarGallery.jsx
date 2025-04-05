@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../config/axiosInstance.jsx";
 import CarList from "../../components/Cards.jsx";
 import Loader from "../../components/util/Loader.jsx";
-import FilterCarCard from "../../components/FilterCarCard.jsx";
 import toast from "react-hot-toast";
 
 function CarGallery() {
@@ -44,14 +43,6 @@ function CarGallery() {
         </div>
       )}
 
-      {/* <div>
-                <div className="md:grid md:grid-cols-5 mr-5" >
-                    {carData.map((v) => (
-                        <FilterCarCard carData={v} key={v?._id} />
-                    ))}
-                </div>
-
-            </div> */}
     </div>
   );
 }

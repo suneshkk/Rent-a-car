@@ -10,12 +10,12 @@ import HomeButton from "../../../components/util/HomeButton.jsx";
 function CarList() {
   const [car, setCar] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const { id } = useParams();
 
   const fetchAdminCar = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get(`/car/car-list`, {
+      const response = await axiosInstance.get(`/car/car-by-dealer/${id}`, {
         withCredentials: true,
       });
 
@@ -23,13 +23,12 @@ function CarList() {
         setCar(response?.data?.data);
         console.log("admin Car++++", response);
         setLoading(false);
-      } 
-        setLoading(false);
-      
+      }
+      setLoading(false);
     } catch (error) {
-        if(error?.response?.data?.message){
-           toast.error(error?.response?.data?.message) 
-        }
+      if (error?.response?.data?.message) {
+        toast.error(error?.response?.data?.message);
+      }
       setLoading(false);
       console.log(error);
     }

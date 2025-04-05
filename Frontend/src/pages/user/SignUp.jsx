@@ -48,8 +48,8 @@ function SignUp() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364]">
-      <div className="h-20 bg-transparent flex justify-evenly items-center  ">
+    <div className=" h-screen bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364]">
+      <div className="h-20 bg-transparent flex justify-evenly items-center -mb-8 ">
         <Link to={"/"}>
           <h2 className="capitalize text-slate-300 text-3xl">
             <b className="text-4xl">W</b>

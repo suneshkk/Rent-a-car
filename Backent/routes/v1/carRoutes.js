@@ -8,6 +8,7 @@ import {
   updateCar,
   availablCarList,
   carFilter,
+  carByDealer,
 } from "../../controller/carController.js";
 import { upload } from "../../middlewares/multer.js";
 
@@ -19,6 +20,7 @@ router.get("/get-car/:id", getCarById);
 router.get("/filter-car", carFilter);
 router.delete("/delete-car/:id", dealerAuth, deleteCar);
 router.put("/update/:id", dealerAuth, upload.single("image"), updateCar);
+router.get("/car-by-dealer/:id",dealerAuth,carByDealer)
 router.get("/available-cars", availablCarList);
 
 export { router as carRouter };

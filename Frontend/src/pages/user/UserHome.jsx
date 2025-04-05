@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import { axiosInstance } from '../../config/axiosInstance.jsx';
+// import React, { useEffect, useState } from 'react'
+// import { axiosInstance } from '../../config/axiosInstance.jsx';
 import HeroImage from '../../../src/assets/hero.png';
 import Car1 from '../../../src/assets/car1.png';
 import Car2 from '../../../src/assets/car2.png';
 import Car3 from '../../../src/assets/car3.png';
-import { Link } from 'react-router-dom';
-import Loader from '../../components/util/Loader.jsx';
-import CarList from '../../components/Cards.jsx'
+// import { Link } from 'react-router-dom';
+// import Loader from '../../components/util/Loader.jsx';
+// import CarList from '../../components/Cards.jsx'
 
 function UserHome() {
 
-    const [car, setCar] = useState([]);
-    const [loading, setLoading] = useState(false)
+    // const [car, setCar] = useState([]);
+    // const [loading, setLoading] = useState(false)
 
-    const fetchCar = async () => {
-        setLoading(true)
-        try {
-            const response = await axiosInstance.get('/car/car-list', {
-                withCredentials: true,
-            });
-            setLoading(false)
-            setCar(response?.data?.data);
-            console.log("user car galery",response)
-        } catch (error) {
-            console.log(error);
-            setLoading(false)
+    // const fetchCar = async () => {
+    //     setLoading(true)
+    //     try {
+    //         const response = await axiosInstance.get('/car/car-list', {
+    //             withCredentials: true,
+    //         });
+    //         setLoading(false)
+    //         setCar(response?.data?.data);
+    //         console.log("user car galery",response)
+    //     } catch (error) {
+    //         console.log(error);
+    //         setLoading(false)
 
-        }
-    };
-    useEffect(() => {
-        fetchCar();
-    }, [])
+    //     }
+    // };
+    // useEffect(() => {
+    //     fetchCar();
+    // }, [])
 
     return (
         <div>
@@ -48,7 +48,7 @@ function UserHome() {
                     </p>
                 </div>
             </section>
-            <div className='  lg:px-12 py-1'>
+            {/* <div className='  lg:px-12 py-1'>
                 <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center">
                     <h1 className="font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center">
                         <Link to={'/user/car-gallery'}>
@@ -57,8 +57,8 @@ function UserHome() {
                         </Link>
                     </h1>
                 </div>
-            </div>
-            <div className='-m-3'>
+            </div> */}
+            {/* <div className='-m-3'>
                 {loading ? (<Loader />) : (
                     <div className='grid grid-cols-2 xl:grid xl:grid-cols-4 lg:flex lg:flex-wrap md:grid md:grid-cols-3 sm:flex sm:flex-wrap'>
                         {car.map((value) => (
@@ -67,7 +67,7 @@ function UserHome() {
 
                     </div>
                 )}
-            </div>
+            </div> */}
             <div className="px-4 sm:px-6 md:px-8 lg:px-12 py-8">
                 <div className="bg-amber-100 flex h-16 sm:h-20 items-center justify-center mb-4 sm:mb-6">
                     <h1 className="font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl text-center">

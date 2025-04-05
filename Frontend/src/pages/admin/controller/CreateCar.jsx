@@ -48,7 +48,7 @@ function CreateCar() {
       if (response.data.success) {
         toast.success("Car Created successfully");
         // console.log(" car ====response", response);
-        navigate(`/admin/car-list/:id`);
+        navigate(`/admin/admin-home`);
         setLoading(false);
       }
     } catch (error) {

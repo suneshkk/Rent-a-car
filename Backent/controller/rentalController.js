@@ -33,7 +33,9 @@ export const forBooking = async (req, res, next) => {
     }
     const dealerData = await Dealer.findById(dealer);
     if (!dealerData) {
-      return res.status(404).json({ success: false, message: "dealer not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "dealer not found" });
     }
     let cars = await RentalModel.findOne({ userId });
     if (!cars) {
@@ -69,11 +71,11 @@ export const forBooking = async (req, res, next) => {
 export const userBookedCarDetials = async (req, res, next) => {
   try {
     const { user } = req;
-    // console.log("user",user)
+    console.log("user", user);
     const rental = await RentalModel.findOne({ userId: user.id })
       .populate("carId")
       .populate("userId")
-      .populate("dealer")
+      .populate("dealer");
 
     if (!rental) {
       return res.status(404).json({ message: "There is no Rental" });
@@ -107,17 +109,18 @@ export const deleteBooking = async (req, res, next) => {
 };
 export const dealerBookedCars = async (req, res, next) => {
   try {
-    const { user } = req;
-    const bookedCars = await RentalModel.find({ adminId: user.id })
+    const {user}  = req;
+    console.log("dealer id", user);
+    const bookedCars = await RentalModel.find({ dealer: user.id })
       .populate("userId")
       .populate("carId");
 
-    if (bookedCars == 0) {
-      return res.status(400).json({ message: "no data" });
+    if (!bookedCars || bookedCars == 0) {
+      return res.status(400).json({ message: "no rental" });
     } else {
       return res
         .status(200)
-        .json({ message: "data fetched successfully", data: bookedCars });
+        .json({ message: "dealer booked cars", data: bookedCars });
     }
   } catch (error) {
     console.log(error);

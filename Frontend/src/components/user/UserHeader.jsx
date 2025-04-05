@@ -33,13 +33,10 @@ function UserHeader() {
   // }, [])
 
   return (
-    <div className="navbar border-b-2 bg-transparent flex justify-between items-center px-4 md:px-14 h-20 absolute">
-        {location.pathname !==  "/user/car-Gallery" && (
-        <div className="flex-1">
-            
-        </div>
-
-        )}
+    <div className="navbar bg-transparent flex justify-between items-center px-4 md:px-14 h-20 absolute">
+      {location.pathname !== "/user/car-Gallery" && (
+        <div className="flex-1"></div>
+      )}
       {location.pathname == "/user/car-Gallery" && (
         <div className="flex-1">
           <h1 className="text-xl font-extrabold text-slate-100">
@@ -47,7 +44,7 @@ function UserHeader() {
           </h1>
         </div>
       )}
-      <div className="opacity-80 px-5 py-3 rounded-lg bg-gradient-to-r from-[#0c2028]  to-[#075d8b] ">
+      <div className="opacity-80 px-5 py-3 rounded-lg bg-gradient-to-r from-[#000203]  to-[#000609] ">
         <Link to={"/"}>
           <h1 class="text-4xl font-bold text-sky-500  uppercase tracking-widest ">
             wheelz n<b className="font-bold text-slate-100">o</b>w
@@ -58,7 +55,7 @@ function UserHeader() {
         {location.pathname == "/user/home" && (
           <Link
             to={"/user/profile"}
-            className="text-lg text-emerald-900 font-bold"
+            className="text-lg text-slate-100 font-bold"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
