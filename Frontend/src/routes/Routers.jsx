@@ -28,7 +28,6 @@ import AddReview from "../pages/user/AddReview.jsx";
 import AuthAdmin from "./protectedRoutes/AuthAdmin.jsx";
 import UserHome from "../pages/user/UserHome.jsx";
 import DeleteAccount from "../pages/admin/DeleteAccount.jsx";
-import UserList from "../pages/admin/controller/UserList.jsx";
 import AdmiOneLogin from "../pages/AdminOne/AdmiOneLogin.jsx";
 import AdminOneSignup from "../pages/AdminOne/AdminOneSignup.jsx";
 import AuthAdminOne from "./protectedRoutes/AuthAdminOne.jsx";
@@ -42,6 +41,7 @@ import AvailableCars from "../pages/AdminOne/AvailableCars.jsx";
 import CarReviews from "../pages/AdminOne/CarReviews.jsx";
 import PaymentData from "../pages/AdminOne/PaymentData.jsx";
 import CarGalleryHome from "../pages/CarGalleryHome.jsx";
+import PaymentReview from "../pages/admin/controller/PaymentReview.jsx";
 
 const router = createBrowserRouter([
   {
@@ -171,15 +171,15 @@ const router = createBrowserRouter([
         path: "edit-car/:id",
         element: <EditCar />,
       },
-      {
-        path: "user-list",
-        element: <UserList />,
-      },
 
       {
         path: "delete-car/:id",
         element: <DeleteCar />,
       },
+      {
+        path:"paymetn-review",
+        element:<PaymentReview/>
+      }
     ],
   },
   {

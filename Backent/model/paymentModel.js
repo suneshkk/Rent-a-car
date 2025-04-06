@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const payment = new mongoose.Schema(
   {
+    dealerId:{
+     type:mongoose.Schema.Types.ObjectId,
+     ref:"Dealer",
+     required:true
+    },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

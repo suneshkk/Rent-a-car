@@ -28,7 +28,7 @@ export const addReview = async (req, res, next) => {
 
     return res
       .status(201)
-      .json({ message: "Review added successfully", data: reviewExist});
+      .json({ message: "Review added successfully", data: reviewExist });
   } catch (error) {
     console.log(error);
     return next(error);
@@ -37,12 +37,12 @@ export const addReview = async (req, res, next) => {
 
 export const getCarReview = async (req, res, next) => {
   try {
-    const { carId } = req.params.id;
-
-    const reviews = await Review.find(carId)
+    const carId = req.params.id;
+    console.log("revie by car", carId);
+    const reviews = await Review.find({carId:carId})
       .populate("userId")
       .populate("carId");
-    if (!reviews.length) {
+    if (!reviews || reviews == 0) {
       return res
         .status(404)
         .json({ success: false, message: "no reviews for this car" });
@@ -64,7 +64,9 @@ export const getReviews = async (req, res, next) => {
     if (reviews.length == 0) {
       return res.status(404).json({ success: false, message: "no data" });
     } else {
-      return res.status(200).json({ success: true, message: "review fetched",data:reviews });
+      return res
+        .status(200)
+        .json({ success: true, message: "review fetched", data: reviews });
     }
   } catch (error) {
     console.log(error);

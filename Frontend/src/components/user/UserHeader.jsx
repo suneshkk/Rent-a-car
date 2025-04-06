@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import MyImage from "../../assets/logo.png";
 function UserHeader() {
   const location = useLocation();
   const [isOpen, setIsopen] = useState(false);
@@ -55,7 +54,7 @@ function UserHeader() {
         {location.pathname == "/user/home" && (
           <Link
             to={"/user/profile"}
-            className="text-lg text-slate-100 font-bold"
+            className="text-lg text-slate-100 font-bold hover:scale-150" 
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

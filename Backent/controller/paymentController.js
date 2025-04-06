@@ -6,17 +6,17 @@ const client_domain = process.env.CLIENT_DOMAIN;
 
 export const payment = async (req, res, next) => {
   try {
-    const { bookingData } = req.body;
-
+    const { bookedCar} = req.body;
+   console.log("paymet=======",bookedCar)
     const lineItems = [
       {
         price_data: {
           currency: "inr",
           product_data: {
-            name: bookingData?.carId?.carName,
-            images: [bookingData?.carId?.image],
+            name: bookedCar?.carId?.carName,
+            images: [bookedCar?.carId?.image],
           },
-          unit_amount: Math.round(bookingData?.totalAmount * 100),
+          unit_amount: Math.round(bookedCar?.totalAmount * 100),
         },
         quantity: 1,
       },
@@ -31,8 +31,9 @@ export const payment = async (req, res, next) => {
     const order = new Order({
       userId: req.user.id,
       sessionId: session.id,
-      totalPrice: bookingData?.totalAmount,
-      carId: bookingData?.carId?._id,
+      totalPrice: bookedCar?.totalAmount,
+      carId: bookedCar?.carId?._id,
+      dealerId:bookedCar?.carId?.dealer
     });
     await order.save();
 
@@ -45,7 +46,7 @@ export const payment = async (req, res, next) => {
 
 export const checkPayment = async (req, res, next) => {
   try {
-    const paymentdata = await Order.find().populate("carId").populate("userId");
+    const paymentdata = await Order.find().populate("userId").populate("carId");
     if (!paymentdata) {
       return res
         .status(404)

@@ -67,10 +67,11 @@ function AdminHome() {
         toast.success(response?.data?.message);
       }
       setLoading2(false);
+      console.log("deler bokedcar",response)
     } catch (error) {
-        if(error?.response?.data?.message){
-            toast.error(error?.response?.data?.message)
-        }
+        // if(error?.response?.data?.message){
+        //     toast.error(error?.response?.data?.message)
+        // }
       console.log(error);
       setLoading2(false);
     }

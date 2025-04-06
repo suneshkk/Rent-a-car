@@ -2,6 +2,7 @@ import { Dealer } from "../model/dealerModel.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../util/token.js";
 import { User } from "../model/userModel.js";
+import { Order } from "../model/paymentModel.js";
 
 export const dealerSignup = async (req, res, next) => {
   try {
@@ -52,7 +53,11 @@ export const dealerSignup = async (req, res, next) => {
 
     return res
       .status(200)
-      .json({ success: true, message: "Dealer created successfully",data:newDealer });
+      .json({
+        success: true,
+        message: "Dealer created successfully",
+        data: newDealer,
+      });
   } catch (error) {
     console.log(error);
     return next(error);
@@ -180,22 +185,35 @@ export const dealerCheck = async (req, res, next) => {
     }
     return res
       .status(201)
-      .json({ success: true, message: "Dealer autherized",data:dealer });
+      .json({ success: true, message: "Dealer autherized", data: dealer });
   } catch (error) {
     console.log(error);
     return next(error);
   }
 };
-export const userlist = async (req, res, next) => {
+export const dealerPayment = async (req, res, next) => {
   try {
-    //find car list from schema
-    const user = await User.find();
-
-    return res.status(200).json({
-      success: true,
-      message: "user List Fetched Successfully",
-      data: user,
-    });
+    const { user } = req;
+    console.log("deler id ",user)
+    const paymentdata = await Order.find({ dealerId: user.id}).populate("userId").populate("carId");
+    console.log("paymetn",paymentdata)
+    if (!paymentdata || paymentdata == 0) {
+      return res
+        .status(404)
+        .json({
+          success: false,
+          message: "no payment for this user",
+          data: paymentdata,
+        });
+    } else {
+      return res
+        .status(200)
+        .json({
+          success: true,
+          message: "paymetn data fetched",
+          data: paymentdata,
+        });
+    }
   } catch (error) {
     console.log(error);
     return next(error);

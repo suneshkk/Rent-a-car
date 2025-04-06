@@ -17,7 +17,7 @@ function DeleteBooking() {
 
             toast.success("deleted...");
             setLoading(false)
-           navigate("/user/profile")
+           navigate("/user/home")
 
 
         } catch (error) {

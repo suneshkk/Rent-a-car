@@ -8,49 +8,10 @@ import { loadStripe } from "@stripe/stripe-js";
 
 
 function Profile() {
-    const [profile, setProfile] = useState([]);
-    const [loading, setLoading] = useState(true)
     const [bookingData, setBookedCar] = useState([]);
     const navigate = useNavigate();
 
 
-    const fetchUserProfile = async () => {
-        setLoading(true)
-        try {
-            const response = await axiosInstance.get('/user/profile',
-                {
-                    withCredentials: true,
-                    timeout: 10000
-
-                });
-            setLoading(false);
-
-            setProfile(response?.data?.data);
-            // toast.success("welcome");
-
-        } catch (error) {
-            toast.error("something went wrong");
-            console.log(error);
-            setLoading(false);
-        };
-    };
-    const fetchBookedCarDetails = async () => {
-        setLoading(true);
-        try {
-            const response = await axiosInstance.get(`/rental/user-booked-car`,
-                { withCredentials: true });
-            setLoading(false);
-            setBookedCar(response?.data?.data);
-            console.log("booked car detailes ", response);
-        } catch (error) {
-            console.log(error);
-        };
-    };
-
-    useEffect(() => {
-        fetchUserProfile();
-        fetchBookedCarDetails();
-    }, []);
     const makePayment = async () => {
         try {
           const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHEBLE_KEY);
@@ -69,20 +30,6 @@ function Profile() {
     
 
 
-    const handleLogout = async () => {
-
-        try {
-            const response = await axiosInstance.post('/user/logout/', {},
-                {
-                    withCredentials: true
-                });
-
-            navigate('/')
-            toast.success("logout-success")
-        } catch (error) {
-            console.log(error);
-        };
-    };
 
 
 
@@ -90,7 +37,7 @@ function Profile() {
 
     return (
         <div className="min-h-screen lg:min-h-screen p-2 bg bg-cover bg-orange-100">
-            {loading ?
+            {/* {loading ?
                 (<Loader />) : (
 
                     <div className=" mb-20">
@@ -99,14 +46,12 @@ function Profile() {
                             <div className="drawer z-50">
                                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                                 <div className="drawer-content">
-                                    {/* Page content here */}
                                     <label htmlFor="my-drawer" className="btn btn-ghost drawer-button">Drawer</label>
                                 </div>
                                 <div className="drawer-side  ">
                                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
 
                                     <ul className="menu bg-cyan-700 text-base-content min-h-full w-80 p-4">
-                                        {/* Sidebar content here */}
                                         <li className="content-center m-4">
                                             <h2 className=" font-bold text-base text-amber-600">Dashboard</h2>
                                         </li>
@@ -120,9 +65,6 @@ function Profile() {
                                         <hr />
 
                                         <li>
-                                            <Link to={`/user/updateUser/${profile?._id}`}>
-                                                <button ><h1 className=" text-white font-bold">Edit Account</h1></button>
-                                            </Link>
 
                                         </li>
                                         <hr />
@@ -131,10 +73,6 @@ function Profile() {
                                         </li>
                                         <hr />
                                         <li>
-                                            <Link to={`/user/delet-user/${profile?._id}`}>
-                                                <button><h1 className=" text-red-700 font-bold">Delete Account</h1></button>
-
-                                            </Link>
 
                                         </li>
                                         <hr />
@@ -149,36 +87,6 @@ function Profile() {
                             </div >
                         </div>
 
-                        <div className='flex justify-center items-center'>
-                            <div className="car  size-72 car-body bg-orange-50  text-black rounded-lg max-w-md lg:size-80">
-                                <div className="border-b border-cyan-400 pb-4 mb-6">
-                                    <h1 className=" text-center text-indigo-500 font-serif text-base font-semibold">Profile</h1>
-                                </div>
-                                <div>
-                                    <img
-                                        src={profile?.profilePic}
-                                        alt="profile-pic"
-                                        className="w-20 h-20 object-cover rounded-full mx-auto mb-2"
-                                    />
-
-                                </div>
-                                <div className="mb-2 ml-2">
-                                    <span className="mr-3 text-base font-semibold">Name :</span>
-                                    <span className='font-serif font-semibold'>{profile?.name}</span>
-                                </div>
-                                <div className="mb-2 ml-2">
-                                    <span className=" text-black text-base font-semibold mr-3">Phone:</span>
-                                    <span className='font-serif font-semibold'>{profile?.phone}</span>
-                                </div>
-                                <div className="mb-2 ml-2">
-                                    <span className=" text-base font-semibold text-black mr-3">Email:</span>
-                                    <span className='font-serif font-semibold'>{profile?.email}</span>
-                                </div>
-                                <div className='flex justify-evenly'>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
                 )}
             <div className="divider lg:divider-vertical text-sm lg:text-lg font-serif font-bold text-amber-950">Your Booking</div>
@@ -266,7 +174,7 @@ function Profile() {
 
                 </div>
 
-            </div>
+            </div> */}
         </div >
     );
 }
