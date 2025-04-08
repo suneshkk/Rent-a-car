@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import UserBackeButton from "./UserBackeButton";
 function UserHeader() {
   const location = useLocation();
   const [isOpen, setIsopen] = useState(false);
@@ -33,7 +34,18 @@ function UserHeader() {
 
   return (
     <div className="navbar bg-transparent flex justify-between items-center px-4 md:px-14 h-20 absolute">
-      {location.pathname !== "/user/car-Gallery" && (
+      {location.pathname == "/user/home" && (
+      <div className="flex-1"></div>
+
+      )}
+      {location.pathname !== "/user/home" && (
+        <div className="flex-1">
+          {" "}
+          <UserBackeButton />
+        </div>
+      )}
+
+      {location.pathname == "/user/car-Gallery" && (
         <div className="flex-1"></div>
       )}
       {location.pathname == "/user/car-Gallery" && (
@@ -51,10 +63,14 @@ function UserHeader() {
         </Link>
       </div>
       <div className="flex-1 flex justify-end ">
+      {location.pathname == "/user/all-cars" &&(
+        <h1 className=" capitalize font-serif text-xl text-slate-200 font-bold border-b-2">this is what we have in our garage..!</h1>
+      )}
+
         {location.pathname == "/user/home" && (
           <Link
             to={"/user/profile"}
-            className="text-lg text-slate-100 font-bold hover:scale-150" 
+            className="text-lg text-slate-100 font-bold hover:scale-150"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

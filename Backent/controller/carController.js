@@ -86,7 +86,7 @@ export const carlist = async (req, res, next) => {
 export const getCarById = async (req, res, next) => {
   try {
     const carId = req.params.id;
-    console.log("carId", carId);
+    // console.log("carId", carId);
     const existingBooking = await RentalModel.findOne({ carId: carId });
     if (existingBooking) {
       return res

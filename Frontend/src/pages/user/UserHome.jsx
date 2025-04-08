@@ -97,7 +97,7 @@ function UserHome() {
               car reviews
             </h2>
             <h2 className="text-slate-400 hover:scale-110 hover:text-slate-300 capitalize text-xl font-serif">
-              car gallery
+              <Link to={'/user/all-cars'}> car gallery</Link>
             </h2>
           </div>
           <div>

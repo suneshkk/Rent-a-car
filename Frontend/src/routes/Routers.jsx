@@ -42,6 +42,7 @@ import CarReviews from "../pages/AdminOne/CarReviews.jsx";
 import PaymentData from "../pages/AdminOne/PaymentData.jsx";
 import CarGalleryHome from "../pages/CarGalleryHome.jsx";
 import PaymentReview from "../pages/admin/controller/PaymentReview.jsx";
+import AllCars from "../pages/user/AllCars.jsx";
 
 const router = createBrowserRouter([
   {
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
         path: "booked-car",
         element: <BookedCar />,
       },
+      {
+        path:'all-cars',
+        element:<AllCars/>
+      }
     ],
   },
   {
