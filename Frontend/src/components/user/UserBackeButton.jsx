@@ -5,7 +5,7 @@ function UserBackeButton() {
     <div className="">
       <Link to={"/user/home"}>
         {" "}
-        <button className="btn border-none btn-active bg-gradient-to-r from-[#233f4a] to-[#2480a8] font-serif">Back</button>
+        <button className="btn border-none btn-active bg-gradient-to-r from-[#233f4a] to-[#2480a8] font-serif">home</button>
         </Link>
     </div>
   );

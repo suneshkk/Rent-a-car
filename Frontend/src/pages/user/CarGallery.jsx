@@ -32,7 +32,7 @@ function CarGallery() {
   }, []);
 
   return (
-    <div className="min-h-screen md:flex md:gap-3 bg-gradient-to-r from-[#032330] via-[#065476] to-[#04384e]">
+    <div className="bg-gradient-to-r from-[#032330] via-[#065476] to-[#04384e]">
       {loading ? (
         <Loader />
       ) : (

@@ -6,9 +6,10 @@ import Car2 from "../../../src/assets/car2.png";
 import Car3 from "../../../src/assets/car3.png";
 import { axiosInstance } from "../../config/axiosInstance";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { loadStripe } from "@stripe/stripe-js";
+import toast from "react-hot-toast";
 
 // import { Link } from 'react-router-dom';
 // import Loader from '../../components/util/Loader.jsx';
@@ -17,7 +18,7 @@ import { loadStripe } from "@stripe/stripe-js";
 function UserHome() {
   const [profile, setProfile] = useState([]);
   const [bookedCar, setBookedCar] = useState([]);
-
+ const navigate = useNavigate()
   const fetchBookedCarDetails = async () => {
     try {
       const response = await axiosInstance.get(`/rental/user-booked-car`, {
@@ -71,12 +72,13 @@ function UserHome() {
       const stripe = await loadStripe(
         import.meta.env.VITE_STRIPE_PUBLISHEBLE_KEY
       );
+      console.log("session+++++",stripe)
+
       const session = await axiosInstance.post(
         "/payment/create-checkout-session",
         { bookedCar },
         { withCredentials: true }
       );
-      // console.log("session+++++",session)
       const result = stripe.redirectToCheckout({
         sessionId: session.data.sessionId,
       });
@@ -92,9 +94,6 @@ function UserHome() {
           <div className="ml-5 flex gap-5">
             <h2 className="text-slate-400 hover:scale-110 hover:text-slate-300 capitalize text-xl font-serif">
               <Link to="/user/car-Gallery"> available cars</Link>
-            </h2>
-            <h2 className="text-slate-400 hover:scale-110 hover:text-slate-300 capitalize text-xl font-serif">
-              car reviews
             </h2>
             <h2 className="text-slate-400 hover:scale-110 hover:text-slate-300 capitalize text-xl font-serif">
               <Link to={'/user/all-cars'}> car gallery</Link>
@@ -133,8 +132,8 @@ function UserHome() {
             </h1>
             <img
               className="rounded-xl h-40 lg:h-64 lg:w-80 bg-cover bg-center"
-              src={bookedCar?.carId?.image}
-              alt=""
+             src={bookedCar?.carId?.image}
+              alt={bookedCar?.carId?.carName}
             />
             <div className="flex ">
               <div>

@@ -16,7 +16,10 @@ export const forBooking = async (req, res, next) => {
         .status(200)
         .json({ success: false, message: "this car is already booked" });
     }
-
+    const isUserBooked = await RentalModel.findOne({ userId: userId });
+    if (isUserBooked) {
+      return res.status(404).json({ message: "user already booked a car" });
+    }
     if (fromDate >= toDate) {
       return res.status(404).json({ message: "invalid date range" });
     }
@@ -109,7 +112,7 @@ export const deleteBooking = async (req, res, next) => {
 };
 export const dealerBookedCars = async (req, res, next) => {
   try {
-    const {user}  = req;
+    const { user } = req;
     console.log("dealer id", user);
     const bookedCars = await RentalModel.find({ dealer: user.id })
       .populate("userId")

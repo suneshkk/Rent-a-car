@@ -5,16 +5,22 @@ import Loader from "../../components/util/Loader";
 
 function AllCars() {
   const [allCars, setAllCars] = useState([]);
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(true);
   const fetchAllCars = async () => {
+    setLoading(true);
     try {
       const response = await axiosInstance.get("/car/car-list", {
         withCredentials: true,
       });
       setAllCars(response?.data?.data);
+      setLoading(false);
       toast.success(response?.data?.message);
       console.log("all cars", response);
     } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      }
+      setLoading(false);
       console.log(error);
     }
   };
@@ -23,11 +29,11 @@ function AllCars() {
   }, []);
   return (
     <div className="bg-gradient-to-r from-[#032330] via-[#065476] to-[#04384e]">
-      <div className="min-h-screen md:grid-flow-row md:grid md:grid-cols-4 ">
-        {loading ? (
-          <Loader />
-        ) : (
-          allCars.map((cars) => (
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="min-h-screen md:grid-flow-row md:grid md:grid-cols-4 ">
+          {allCars.map((cars) => (
             <div
               key={cars._id}
               className="mt-24 flex justify-center items-center p-4"
@@ -49,9 +55,9 @@ function AllCars() {
                 </div>
               </div>
             </div>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

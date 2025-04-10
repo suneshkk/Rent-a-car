@@ -27,7 +27,7 @@ function AddReview() {
 
       const response = await axiosInstance.post(`/review/add-review/${id}`,data, { withCredentials: true });
       setLoading(false);
-    navigate('/user/profile')
+    navigate('/user/home')
     } catch (error) {
       setLoading(false)
       console.log(error);

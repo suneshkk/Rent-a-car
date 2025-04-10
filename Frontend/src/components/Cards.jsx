@@ -21,7 +21,7 @@ function CarList({ availableCars }) {
   };
 
   return (
-    <div className="flex justify-center items-center p-4">
+    <div className="flex justify-center items-center p-4 mt-24">
       <div className="card w-80 bg-white shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300">
         <div className="overflow-hidden rounded-t-lg">
           <img

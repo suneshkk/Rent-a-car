@@ -16,8 +16,7 @@ function Booking() {
   const [review, setReview] = useState({});
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigate();
-
+  const navigation = useNavigate("");
   //    console.log("car-=====data",carData);
   // Function to calculate total hours
   const calculateTotalHours = (fromDate, toDate) => {
@@ -50,7 +49,7 @@ function Booking() {
     fetchCarDetailes();
   }, []);
 
-  const handleBookeCa = async () => {
+  const handleBookeCar = async () => {
     try {
       const hours = calculateTotalHours(fromDate, toDate);
       setTotalHours(hours);
@@ -79,9 +78,12 @@ function Booking() {
       console.log("booking data", response);
       if (response?.data?.data) {
         toast.success("Car Booked Successfully");
-        navigation('/user/profile');
+        navigation("/user/home");
       }
     } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      }
       console.error(error);
     }
   };
@@ -92,9 +94,8 @@ function Booking() {
         withCredentials: true,
       });
       setReview(response?.data?.data);
-      // console.log("review  ==",response);
+      console.log("review  ==", response);
     } catch (error) {
-      toast.error("somthing went Wrong in review fetching");
       console.log(error);
       // setFetchReview(false);
     }
@@ -104,71 +105,87 @@ function Booking() {
   }, []);
 
   return (
-    <div className="mb-7 mx-3">
-      {/* Header Section */}
-      <div className="bg-slate-600 bg-cover h-16 flex items-center justify-between px-4 rounded-md shadow-md">
-        <div className="flex-1">
-          <Link to="/user/profile">
-            <h4 className="ml-4 font-extrabold text-slate-300 hover:text-white transition-colors">
-              Profile
-            </h4>
-          </Link>
-        </div>
-        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-red-200 sm:text-indigo-800 md:text-orange-400 lg:text-red-600 xl:text-black">
-          Car Booking Window...!
-        </h1>
-        <div className="flex-1"></div>
-      </div>
-
-      <div className="container mx-auto min-h-screen flex items-center justify-center">
+    <div className="mb-1 bg-gradient-to-r from-[#032330] via-[#065476] to-[#04384e]">
+      <div className="p-10 mx-auto min-h-screen flex items-center justify-center">
         {loading ? (
           <Loader />
         ) : (
-          <div className="flex w-full flex-col lg:flex-row mt-4 gap-6">
-            <div className="card bg-orange-300 shadow-lg rounded-lg p-4 flex-grow">
-              <div className="rounded mb-4 overflow-hidden">
-                <img
-                  src={carData?.image}
-                  alt="Car"
-                  className=" h-64 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
-                />
+          <div className="shadow-xl rounded-lg flex lg:w-full flex-col lg:p-6 lg:flex-row mt-24 gap-6">
+            <div className="shadow-lg rounded-lg p-4 lg:w- lg:flex lg:flex-row lg:w-3/5">
+              <div className="flex lg:flex-col lg:flex-grow">
+                <div className="rounded object-cover  mb-4 overflow-hidden">
+                  <img
+                    src={carData?.image}
+                    alt={carData?.carName}
+                    className=" h-64 w-full rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="space-y-3 bg-white text-gray-700 rounded-lg p-2">
+                  <div className="flex items-center">
+                    <label className="font-bold w-1/3">Name:</label>
+                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                      {carData?.carName}
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="font-bold w-1/3">Brand:</label>
+                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                      {carData?.brand}
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="font-bold w-1/3">Fuel:</label>
+                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                      {carData?.fuelType}
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="font-bold w-1/3">Transmission:</label>
+                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                      {carData?.transmission}
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="font-bold w-1/3">Year:</label>
+                    <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
+                      {carData?.year}
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div className="space-y-3 text-gray-700">
-                <div className="flex items-center">
-                  <label className="font-bold w-1/3">Name:</label>
-                  <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
-                    {carData?.carName}
-                  </span>
+              <div className="w-2/4 bg-white mx-2 rounded-lg p-2">
+                <div className="mt-1 flex flex-col">
+                  <h2 className="text-1xl font-bold text-black text-center ">
+                    Customer Reviews <hr />
+                  </h2>
+                  <div className=" overflow-y-auto max-h-96 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {review.length > 0 ? (
+                      review.map((rev) => (
+                        <div
+                          key={rev._id}
+                          className=" p-4 rounded-lg shadow-md"
+                        >
+                          <h4 className="font-bold text-gray-800">
+                            {rev?.userId?.name}
+                          </h4>
+                          <p className="text-gray-600">
+                            <b>Comment:</b> {rev?.comment}
+                          </p>
+                          <p className="text-gray-600">
+                            <b>Rating:</b> {rev?.rating}
+                          </p>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-gray-500">No reviews available</p>
+                    )}
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <label className="font-bold w-1/3">Brand:</label>
-                  <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
-                    {carData?.brand}
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <label className="font-bold w-1/3">Fuel:</label>
-                  <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
-                    {carData?.fuelType}
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <label className="font-bold w-1/3">Transmission:</label>
-                  <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
-                    {carData?.transmission}
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <label className="font-bold w-1/3">Year:</label>
-                  <span className="flex-1 bg-white px-4 py-2 rounded-md shadow-inner">
-                    {carData?.year}
-                  </span>
-                </div>
-                <div className="flex justify-center">
+                <div className="">
                   <Link to={`/user/add-review/${carData?._id}`}>
-                    <button className="text-blue-500 hover:underline font-bold">
+                    <h2 className="text-blue-500 text-center mt-10 hover:underline font-bold">
                       Add Rating And Review
-                    </button>
+                    </h2>
                   </Link>
                 </div>
               </div>
@@ -176,37 +193,37 @@ function Booking() {
 
             <div className="divider lg:divider-horizontal"></div>
 
-            <div className="card bg-orange-300 shadow-lg rounded-lg p-6 flex flex-col gap-6">
-              <h1 className="text-xl lg:text-2xl font-bold text-center text-slate-800 underline">
-                Please Select Your Time and Date
+            <div className=" card bg-white shadow-lg rounded-lg p-3  flex flex-col flex-grow gap-6">
+              <h1 className="text-xl text-orange-600  capitalize lg:text-2xl font-bold text-center ">
+                Book your car now <hr />
               </h1>
+              <div className="flex rounded-md p-4 justify-center items-center">
+                <div className=" items-center ">
+                  <label className="font-bold text-base">From Date:</label>
+                  <DatePicker
+                    selected={fromDate}
+                    required
+                    onChange={(date) => setFromDate(date)}
+                    minDate={new Date()}
+                    showTimeSelect
+                    dateFormat="MM/dd/yyyy, h:mm a"
+                    className="input input-bordered border-4 border-orange-600 w-full"
+                  />
+                </div>
 
-              <div className="flex items-center gap-4">
-                <label className="font-bold text-lg">From Date:</label>
-                <DatePicker
-                  selected={fromDate}
-                  required
-                  onChange={(date) => setFromDate(date)}
-                  minDate={new Date()}
-                  showTimeSelect
-                  dateFormat="MM/dd/yyyy, h:mm a"
-                  className="input input-bordered w-full"
-                />
+                <div className="items-center ">
+                  <label className="font-bold text-base">To Date:</label>
+                  <DatePicker
+                    selected={toDate}
+                    required
+                    onChange={(date) => setToDate(date)}
+                    minDate={new Date()}
+                    showTimeSelect
+                    dateFormat="MM/dd/yyyy, h:mm a"
+                    className="input input-bordered w-full border-4 border-orange-600"
+                  />
+                </div>
               </div>
-
-              <div className="flex items-center gap-4">
-                <label className="font-bold text-lg">To Date:</label>
-                <DatePicker
-                  selected={toDate}
-                  required
-                  onChange={(date) => setToDate(date)}
-                  minDate={new Date()}
-                  showTimeSelect
-                  dateFormat="MM/dd/yyyy, h:mm a"
-                  className="input input-bordered w-full"
-                />
-              </div>
-
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-lg">
                   Driving License Number:
@@ -216,7 +233,7 @@ function Booking() {
                   value={dLicence}
                   onChange={(e) => setDLicence(e.target.value)}
                   placeholder="Enter: 55/14391/2016"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-2/4 border-4 border-orange-600"
                   required
                 />
               </div>
@@ -228,7 +245,7 @@ function Booking() {
                 </p>
                 {totalHours !== null && (
                   <p className="font-bold text-lg">
-                    Total Hours:{" "}
+                    Total Hours:{""}
                     <span className="font-semibold">
                       {totalHours.toFixed()}
                     </span>
@@ -246,36 +263,15 @@ function Booking() {
 
               <div className="text-center">
                 <button
-                  onClick={handleBookeCa}
-                  className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
+                  onClick={handleBookeCar}
+                  className=" px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
                 >
-                  Book Now
+                  save
                 </button>
               </div>
             </div>
           </div>
         )}
-      </div>
-
-      <div className="mt-6">
-        <h2 className="text-2xl font-bold mb-4 text-gray-700">Reviews</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {review.length > 0 ? (
-            review.map((rev, index) => (
-              <div key={rev._id} className="bg-white p-4 rounded-lg shadow-md">
-                <h4 className="font-bold text-gray-800">{rev?.userId?.name}</h4>
-                <p className="text-gray-600">
-                  <b>Comment:</b> {rev?.comment}
-                </p>
-                <p className="text-gray-600">
-                  <b>Rating:</b> {rev?.rating}
-                </p>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-500">No reviews available</p>
-          )}
-        </div>
       </div>
     </div>
   );

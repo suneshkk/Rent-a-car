@@ -17,18 +17,18 @@ export const addReview = async (req, res, next) => {
     }
 
     //creating or updating the review with the help of upsert (update,insert)
-    const reviewExist = await Review.findOneAndUpdate(
-      { userId, carId },
-      { rating, comment },
-      { new: true, upsert: true }
-    );
+    // const reviewExist = await Review.findOneAndUpdate(
+    //   { userId, carId },
+    //   { rating, comment },
+    //   { new: true, upsert: true }
+    // );
 
-    // const newReview = await Review({ userId, carId, rating, comment });
-    // await newReview.save();
+    const newReview = await Review({ userId, carId, rating, comment });
+    await newReview.save();
 
     return res
       .status(201)
-      .json({ message: "Review added successfully", data: reviewExist });
+      .json({ message: "Review added successfully", data: newReview });
   } catch (error) {
     console.log(error);
     return next(error);

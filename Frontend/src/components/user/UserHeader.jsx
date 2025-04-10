@@ -34,10 +34,7 @@ function UserHeader() {
 
   return (
     <div className="navbar bg-transparent flex justify-between items-center px-4 md:px-14 h-20 absolute">
-      {location.pathname == "/user/home" && (
-      <div className="flex-1"></div>
-
-      )}
+      {location.pathname == "/user/home" && <div className="flex-1"></div>}
       {location.pathname !== "/user/home" && (
         <div className="flex-1">
           {" "}
@@ -45,16 +42,9 @@ function UserHeader() {
         </div>
       )}
 
-      {location.pathname == "/user/car-Gallery" && (
+      {/* {location.pathname == "/user/car-Gallery" && (
         <div className="flex-1"></div>
-      )}
-      {location.pathname == "/user/car-Gallery" && (
-        <div className="flex-1">
-          <h1 className="text-xl font-extrabold text-slate-100">
-            Available Cars....
-          </h1>
-        </div>
-      )}
+      )} */}
       <div className="opacity-80 px-5 py-3 rounded-lg bg-gradient-to-r from-[#000203]  to-[#000609] ">
         <Link to={"/"}>
           <h1 class="text-4xl font-bold text-sky-500  uppercase tracking-widest ">
@@ -63,9 +53,11 @@ function UserHeader() {
         </Link>
       </div>
       <div className="flex-1 flex justify-end ">
-      {location.pathname == "/user/all-cars" &&(
-        <h1 className=" capitalize font-serif text-xl text-slate-200 font-bold border-b-2">this is what we have in our garage..!</h1>
-      )}
+        {location.pathname == "/user/all-cars" && (
+          <h1 className=" capitalize font-serif text-xl text-slate-200 font-bold border-b-2">
+            this is what we have in our garage..!
+          </h1>
+        )}
 
         {location.pathname == "/user/home" && (
           <Link
@@ -85,6 +77,11 @@ function UserHeader() {
               />
             </svg>
           </Link>
+        )}
+        {location.pathname == "/user/car-Gallery" && (
+          <h1 className="text-xl font-extrabold text-slate-100">
+            Available Cars....
+          </h1>
         )}
       </div>
       {/* <div>
