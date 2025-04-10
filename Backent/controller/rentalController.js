@@ -75,7 +75,7 @@ export const userBookedCarDetials = async (req, res, next) => {
   try {
     const { user } = req;
     console.log("user", user);
-    const rental = await RentalModel.findone({ userId: user.id })
+    const rental = await RentalModel.findOne({ userId: user.id })
       .populate("carId")
       .populate("userId")
       .populate("dealer");
