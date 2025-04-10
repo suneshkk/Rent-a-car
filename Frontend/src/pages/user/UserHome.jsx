@@ -18,7 +18,8 @@ import toast from "react-hot-toast";
 function UserHome() {
   const [profile, setProfile] = useState([]);
   const [bookedCar, setBookedCar] = useState([]);
- const navigate = useNavigate()
+  const [payment, setPayment] = useState("");
+  const navigate = useNavigate();
   const fetchBookedCarDetails = async () => {
     try {
       const response = await axiosInstance.get(`/rental/user-booked-car`, {
@@ -45,9 +46,21 @@ function UserHome() {
       console.log(error);
     }
   };
+  const fetchUserPayment = async () => {
+    try {
+      const response = await axiosInstance.get("/payment/user-payment", {
+        withCredentials: true,
+      });
+      setPayment(response?.data?.data);
+      console.log("payment", response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     fetchUserProfile();
     fetchBookedCarDetails();
+    fetchUserPayment();
   }, []);
 
   const handleLogout = async () => {
@@ -70,9 +83,9 @@ function UserHome() {
   const makePayment = async () => {
     try {
       const stripe = await loadStripe(
-        import.meta.env.VITE_STRIPE_PUBLISHEBLE_KEY
+        import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
       );
-      console.log("session+++++",stripe)
+      console.log("session+++++", stripe);
 
       const session = await axiosInstance.post(
         "/payment/create-checkout-session",
@@ -96,7 +109,7 @@ function UserHome() {
               <Link to="/user/car-Gallery"> available cars</Link>
             </h2>
             <h2 className="text-slate-400 hover:scale-110 hover:text-slate-300 capitalize text-xl font-serif">
-              <Link to={'/user/all-cars'}> car gallery</Link>
+              <Link to={"/user/all-cars"}> car gallery</Link>
             </h2>
           </div>
           <div>
@@ -106,7 +119,7 @@ function UserHome() {
                 className="text-slate-400 hover:scale-110 hover:text-slate-300 capitalize text-xl font-serif"
               >
                 {" "}
-                sing out
+                sign out
               </button>
               <Link to={`/user/updateUser/${profile?._id}`}>
                 {" "}
@@ -124,35 +137,42 @@ function UserHome() {
         </div>
       </div>
 
-      <div className=" w-full h-144 grid grid-cols-2 mt-2">
+      <div className=" w-full h-144 grid grid-cols-2 mt-2 px-10">
         <div className="rounded-lg shadow-xl grid grid-cols-2">
           <div className="  mt-2 mx-2 h- flex flex-col  ">
             <h1 className="capitalize text-2xl text-center mb-3 font-bold text-yellow-200">
-              Booked car detailes
+              Booked Car detailes
             </h1>
             <img
               className="rounded-xl h-40 lg:h-64 lg:w-80 bg-cover bg-center"
-             src={bookedCar?.carId?.image}
-              alt={bookedCar?.carId?.carName}
+              src={bookedCar?.carId?.image || "car image"}
+              alt={bookedCar?.carId?.carName || "null"}
             />
-            <div className="flex ">
-              <div>
-                <h2 className="text-red-200 text-lg font-semibold">
-                  cancel booking
-                </h2>
-                <Link to={`/user/delete-booking/${bookedCar?._id}`}>
-                  <div className="btn bg-red-500 hover:scale-110  rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50 ">
-                    Cancel
-                  </div>
-                </Link>
-                <span className=" text-xs font-semibold">
-                  <button
-                    onClick={makePayment}
-                    className="btn ml-32 btn-success hover:bg-green-900 rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50"
-                  >
-                    Pay now
-                  </button>{" "}
-                </span>
+            <div className="">
+              <div className="flex">
+                <div>
+                  <h2 className="text-red-200 text-lg font-semibold">
+                    cancel booking
+                  </h2>
+                  <Link to={`/user/delete-booking/${bookedCar?._id}`}>
+                    <div className="btn bg-red-500 hover:scale-110  rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50 ">
+                      Cancel
+                    </div>
+                  </Link>
+                  <span className=" text-xs font-semibold">
+                    {payment?.status !== "payed" && (
+                      <button
+                        onClick={makePayment}
+                        className="btn ml-32 btn-success hover:bg-green-900 rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50"
+                      >
+                        Pay now
+                      </button>
+                    )}
+                  </span>
+                </div>
+              </div>
+              <div className="bg-slate-50 p-5 mt-10 font-bold  text-green-800 text-center text-2xl">
+                <span className="">cash:{payment?.status || "Not payed"}</span>
               </div>
             </div>
           </div>
@@ -216,8 +236,8 @@ function UserHome() {
             </div>
           </div>
         </div>
-        <div className=" flex justify-end">
-          <div className="bg-gradient-to-r from-[#3399c1] via-[#89a9b7] to-[#4ea0c4] rounded-lg mr-4 w-60 h-144">
+        <div className=" flex justify-end ">
+          <div className=" flex flex-col w-2/4 bg-gradient-to-r from-[#3399c1] via-[#89a9b7] to-[#4ea0c4] rounded-lg mr-4 h-144">
             <div className="border-b border-cyan-400 pb-4 mb-6">
               <h1 className="mt-7 text-center text-xl font-serif  font-semibold">
                 Profile

@@ -75,7 +75,7 @@ export const userBookedCarDetials = async (req, res, next) => {
   try {
     const { user } = req;
     console.log("user", user);
-    const rental = await RentalModel.findOne({ userId: user.id })
+    const rental = await RentalModel.findone({ userId: user.id })
       .populate("carId")
       .populate("userId")
       .populate("dealer");
@@ -114,10 +114,10 @@ export const dealerBookedCars = async (req, res, next) => {
   try {
     const { user } = req;
     console.log("dealer id", user);
-    const bookedCars = await RentalModel.find({ dealer: user.id })
+    const bookedCars = await RentalModel.find({dealer:user.id})
       .populate("userId")
       .populate("carId");
-
+console.log("booking----",bookedCars)
     if (!bookedCars || bookedCars == 0) {
       return res.status(400).json({ message: "no rental" });
     } else {

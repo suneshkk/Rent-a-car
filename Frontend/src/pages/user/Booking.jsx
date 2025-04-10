@@ -239,7 +239,7 @@ function Booking() {
               </div>
 
               <div className="text-gray-700">
-                <p className="font-bold text-lg">
+                <p className="font-bold text-lg text-orange-600">
                   Rent per hour:{" "}
                   <span className="font-semibold">{carData?.price}</span>
                 </p>

@@ -6,8 +6,8 @@ const client_domain = process.env.CLIENT_DOMAIN;
 
 export const payment = async (req, res, next) => {
   try {
-    const { bookedCar} = req.body;
-   console.log("paymet=======",bookedCar)
+    const { bookedCar } = req.body;
+    console.log("paymet=======", bookedCar);
     const lineItems = [
       {
         price_data: {
@@ -33,7 +33,7 @@ export const payment = async (req, res, next) => {
       sessionId: session.id,
       totalPrice: bookedCar?.totalAmount,
       carId: bookedCar?.carId?._id,
-      dealerId:bookedCar?.carId?.dealer
+      dealerId: bookedCar?.carId?.dealer,
     });
     await order.save();
 
@@ -43,7 +43,19 @@ export const payment = async (req, res, next) => {
     return next(error);
   }
 };
-
+export const userPayment = async (req, res, next) => {
+  try {
+    const { user } = req;
+    const paymentData = await Order.findOne({ userId: user.id }).populate("carId").populate("userId");
+    if(!paymentData){
+      return res.status(404).json({success:false,message:"no payment"})
+    }else{
+      return res.status(200).json({success:true,message:"payment data fetched",data:paymentData})
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const checkPayment = async (req, res, next) => {
   try {
     const paymentdata = await Order.find().populate("userId").populate("carId");

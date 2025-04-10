@@ -20,7 +20,7 @@ const PaymentSuccess = () => {
                         Thank you for your payment. Your transaction has been completed successfully.
                     </p>
                     <div className="card-actions justify-center mt-4">
-                        <Link className="btn btn-primary btn-outline" to={"/user/profile"}>Go To Profile</Link>
+                        <Link className="btn btn-primary btn-outline" to={"/user/home"}>Go To Profile</Link>
                     </div>
                 </div>
             </div>
