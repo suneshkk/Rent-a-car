@@ -46,11 +46,19 @@ export const payment = async (req, res, next) => {
 export const userPayment = async (req, res, next) => {
   try {
     const { user } = req;
-    const paymentData = await Order.findOne({ userId: user.id }).populate("carId").populate("userId");
-    if(!paymentData){
-      return res.status(404).json({success:false,message:"no payment"})
-    }else{
-      return res.status(200).json({success:true,message:"payment data fetched",data:paymentData})
+    const paymentData = await Order.findOne({ userId: user.id })
+      .populate("carId")
+      .populate("userId");
+    if (!paymentData) {
+      return res.status(404).json({ success: false, message: "no payment" });
+    } else {
+      return res
+        .status(200)
+        .json({
+          success: true,
+          message: "payment data fetched",
+          data: paymentData,
+        });
     }
   } catch (error) {
     console.log(error);
@@ -71,5 +79,26 @@ export const checkPayment = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     return next(error);
+  }
+};
+export const deletePayment = async (req, res, next) => {
+  {
+    try {
+      const paymentId = req.params.id;
+
+      const deletePayment = await Order.findByIdAndDelete(paymentId);
+      if (!deletePayment) {
+        return res
+          .status(404)
+          .json({ success: false, message: "no payment", data: deletePayment });
+      } else {
+        return res
+          .status(200)
+          .json({ success: true, message: "payment deleted" });
+      }
+    } catch (error) {
+      console.log(error);
+      return next(error);
+    }
   }
 };

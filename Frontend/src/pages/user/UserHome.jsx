@@ -99,6 +99,18 @@ function UserHome() {
       console.log(error);
     }
   };
+  const deletePayment = async () => {
+    try {
+      const response = await axiosInstance.delete(
+        `/payment/delete-payment/${payment?._id}`,
+        { withCredentials: true }
+      );
+      toast.success(response?.dada?.message);
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message);
+    }
+  };
 
   return (
     <div className="rounded-xl bg-gradient-to-r from-[#032330] via-[#065476] to-[#04384e]">
@@ -171,8 +183,14 @@ function UserHome() {
                   </span>
                 </div>
               </div>
-              <div className="bg-slate-50 p-5 mt-10 font-bold  text-green-800 text-center text-2xl">
+              <div className="bg-slate-50 p-5 mt-10 font-bold  text-green-800 text-center text-2xl flex justify-between">
                 <span className="">cash:{payment?.status || "Not payed"}</span>
+                {payment?.status ||
+                  ("payed" && (
+                    <div onClick={deletePayment}>
+                      <button className="btn text-red-800 font-bold">cancel</button>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
