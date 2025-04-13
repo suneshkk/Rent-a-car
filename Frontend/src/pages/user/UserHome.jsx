@@ -185,12 +185,13 @@ function UserHome() {
               </div>
               <div className="bg-slate-50 p-5 mt-10 font-bold  text-green-800 text-center text-2xl flex justify-between">
                 <span className="">cash:{payment?.status || "Not payed"}</span>
-                {payment?.status ||
-                  ("payed" && (
-                    <div onClick={deletePayment}>
-                      <button className="btn text-red-800 font-bold">cancel</button>
-                    </div>
-                  ))}
+                {payment?.status == "payed" && (
+                  <div onClick={deletePayment}>
+                    <button className="btn text-red-800 font-bold">
+                      cancel
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@ function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const responce = await axiosInstance.post(
+      const response = await axiosInstance.post(
         "/user/login",
         {
           email: data.email,
@@ -21,14 +21,14 @@ function Login() {
           withCredentials: true,
         }
       );
-      // console.log(responce);
+      console.log(response);
 
       toast.success("log-in success");
       navigate("/user/home");
       // console.log("respon", responce);
     } catch (error) {
-      if (error.response.data.message) {
-        toast.error(error.response.data.message);
+      if(error?.response?.data?.message){
+        toast.error(error?.response?.data?.message)
       }
       navigate("/login");
       console.log(error);
