@@ -19,19 +19,27 @@ function Navbar() {
   return (
     <div className="bg-transparent">
       {location.pathname == "/" && (
-        <div className="bg-cover bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] md:h-6 flex justify-center items-center">
-          <p className="text-sm text-black font-serif font-bold ">
+        <div className="bg-cover bg-red-500 brightness-75 md:h-6 flex justify-center items-center">
+          <p className="text-sm text- font-serif font-bold cursor-">
             Your Perfect Driving Partner
           </p>
         </div>
       )}
-      <div className="navbar bg-transparent absolute text-center flex justify-between items-center px-4  md:px-14 md:h-20">
+      <div className="navbar absolute  text-center flex justify-between items-center px-4  md:px-14 md:h-20">
         <div className="md:hidden"></div>
 
-        <div className="flex-2 md:flex-none sm:grid content-center grid leading-relaxed">
-          <Link to="/">
-            <img src={MyImage} alt="logo" className="h-8 md:h-12" />
+        <div className="backdrop-brightness-50 brightness-200 flex-2 md:flex-none sm:grid content-center grid leading-relaxed">
+        <Link to={"/"}>
+            <h1 class="text-4xl font-bold text-red-700  uppercase tracking-widest">
+              wheelz n<b className="font-bold text-slate-100">o</b>w
+            </h1>
           </Link>
+
+          {/* <Link to={"/"}>
+            <h1 class="text-4xl font-bold text-sky-500  uppercase tracking-widest">
+              wheelz n<b className="font-bold text-slate-100">o</b>w
+            </h1>
+          </Link> */}
         </div>
         <div className="md:hidden"> </div>
 
@@ -53,7 +61,7 @@ function Navbar() {
                 <div className="py-2">
                   <Link to="/aboutus" onClick={closeMenu}>
                     {" "}
-                    <p className="text-slate-100 font-medium">About Us</p>
+                    <p className="text-slate-500 font-medium">About Us</p>
                   </Link>
                   <hr />
                 </div>
@@ -89,17 +97,17 @@ function Navbar() {
 
         {/* Links - visible on larger screens */}
         <div
-          className={`md:flex gap-6 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full bg-base-100 md:bg-transparent md:w-auto z-10`}
+          className={`md:flex gap-6 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full md:bg-transparent md:w-auto z-10`}
         >
           {location.pathname == "/" && (
             <div className="flex gap-5 items-center">
               <Link to="/aboutus">
-              <h1 className=" hover:text-sky-600 text-lg text-slate-300 font-serif font-bold capitalize border-b-2 hover:border-none">
-              About Us
+                <h1 className=" hover:text-sky-600 text-lg brightness-75 text-red-500 font-serif font-bold capitalize border-b-2 hover:border-none">
+                  About Us
                 </h1>
               </Link>
               <Link to="/home-car-gallery">
-                <h1 className=" hover:text-sky-600 text-lg text-slate-300 font-serif font-bold capitalize border-b-2 hover:border-none ">
+                <h1 className=" hover:text-sky-600 text-lg brightness-75 text-red-500 font-serif font-bold capitalize border-b-2 hover:border-none ">
                   car gallery
                 </h1>
               </Link>
@@ -108,7 +116,7 @@ function Navbar() {
           {location.pathname == "/" && (
             <div className="flex border-b-2 hover:border-none">
               <Link to="/login">
-                <h1 className="text-bold font-serif text-slate-300 font-bold hover:text-sky-600">
+                <h1 className="text-bold font-serif brightness-75 text-red-500 font-bold hover:text-sky-600">
                   Login
                 </h1>
               </Link>
@@ -126,7 +134,7 @@ function Navbar() {
               </svg>
 
               <Link to="/sign-up" className="">
-                <h1 className="text-bold font-serif text-slate-300 font-bold hover:text-sky-500">
+                <h1 className="text-bold font-serif text-red-500 brightness-75 font-bold hover:text-sky-500">
                   Register
                 </h1>
               </Link>

@@ -1,6 +1,3 @@
-// import React, { useEffect, useState } from 'react'
-// import { axiosInstance } from '../../config/axiosInstance.jsx';
-import HeroImage from "../../../src/assets/hero.png";
 import Car1 from "../../../src/assets/car1.png";
 import Car2 from "../../../src/assets/car2.png";
 import Car3 from "../../../src/assets/car3.png";
@@ -11,23 +8,26 @@ import moment from "moment";
 import { loadStripe } from "@stripe/stripe-js";
 import toast from "react-hot-toast";
 
-// import { Link } from 'react-router-dom';
-// import Loader from '../../components/util/Loader.jsx';
-// import CarList from '../../components/Cards.jsx'
+import Loader from "../../components/util/Loader.jsx";
 
 function UserHome() {
+  const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState([]);
   const [bookedCar, setBookedCar] = useState([]);
   const [payment, setPayment] = useState("");
   const navigate = useNavigate();
+
   const fetchBookedCarDetails = async () => {
+    setLoading(true);
     try {
       const response = await axiosInstance.get(`/rental/user-booked-car`, {
         withCredentials: true,
       });
+      setLoading(false);
       setBookedCar(response?.data?.data);
       console.log("booked car detailes ", response);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -92,7 +92,7 @@ function UserHome() {
         { bookedCar },
         { withCredentials: true }
       );
-      const result = stripe.redirectToCheckout({
+      const result = await stripe.redirectToCheckout({
         sessionId: session.data.sessionId,
       });
     } catch (error) {
@@ -105,7 +105,7 @@ function UserHome() {
         `/payment/delete-payment/${payment?._id}`,
         { withCredentials: true }
       );
-      toast.success(response?.dada?.message);
+      toast.success(response?.data?.message);
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);
@@ -151,106 +151,101 @@ function UserHome() {
 
       <div className=" w-full h-144 grid grid-cols-2 mt-2 px-10">
         <div className="rounded-lg shadow-xl grid grid-cols-2">
-          <div className="  mt-2 mx-2 h- flex flex-col  ">
+          <div className="mt-2 mx-2 flex flex-col">
             <h1 className="capitalize text-2xl text-center mb-3 font-bold text-yellow-200">
-              Booked Car detailes
+              Booked Car details
             </h1>
             <img
-              className="rounded-xl h-40 lg:h-64 lg:w-80 bg-cover bg-center"
+              className="text-white rounded-xl h-40 lg:h-64 lg:w-80 bg-cover bg-center"
               src={bookedCar?.carId?.image || "car image"}
               alt={bookedCar?.carId?.carName || "null"}
             />
-            <div className="">
+            <div>
               <div className="flex">
-                <div>
-                  <h2 className="text-red-200 text-lg font-semibold">
-                    cancel booking
-                  </h2>
-                  <Link to={`/user/delete-booking/${bookedCar?._id}`}>
-                    <div className="btn bg-red-500 hover:scale-110  rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50 ">
-                      Cancel
-                    </div>
-                  </Link>
-                  <span className=" text-xs font-semibold">
-                    {payment?.status !== "payed" && (
-                      <button
-                        onClick={makePayment}
-                        className="btn ml-32 btn-success hover:bg-green-900 rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50"
-                      >
-                        Pay now
+                <div className="flex mt-3 items-center justify-between w-full">
+                  {bookedCar?.status === "booked" && (
+                    <Link to={`/user/delete-booking/${bookedCar?._id}`}>
+                      <button className="btn bg-red-500 hover:scale-110 rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50">
+                        Cancel
                       </button>
-                    )}
-                  </span>
+                    </Link>
+                  )}
+                  {bookedCar?.status === "booked" && (
+                    <button
+                      onClick={makePayment}
+                      className="btn ml-4 btn-success hover:bg-green-900 rounded-full transition-colors duration-300 text-xs font-bold textarea-bordered text-amber-50"
+                    >
+                      Pay now
+                    </button>
+                  )}
                 </div>
               </div>
-              <div className="bg-slate-50 p-5 mt-10 font-bold  text-green-800 text-center text-2xl flex justify-between">
-                <span className="">cash:{payment?.status || "Not payed"}</span>
-                {payment?.status == "payed" && (
-                  <div onClick={deletePayment}>
-                    <button className="btn text-red-800 font-bold">
-                      cancel
-                    </button>
-                  </div>
+              <div className="bg-slate-50 p-5 mt-10 font-bold text-green-800 text-center text-2xl flex justify-between">
+                <span>cash: {payment?.status || "Not paid"}</span>
+                {payment?.status === "payed" && (
+                  <button
+                    onClick={deletePayment}
+                    className="btn text-red-800 font-bold"
+                  >
+                    Cancel
+                  </button>
                 )}
               </div>
             </div>
           </div>
-          <div className="  w-full">
-            <div className="flex flex-col m-2">
-              <h1 className="text-center text-lg font-semibold mt-2 text-slate-50">
-                car data
-              </h1>
 
+          <div className="w-full items-center">
+            <div className="flex flex-col m-2">
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                car name :{bookedCar?.carId?.carName}
+                car name: {bookedCar?.carId?.carName}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                car brand :{bookedCar?.carId?.brand}
+                car brand: {bookedCar?.carId?.brand}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                rent rate :{bookedCar?.carId?.price}
+                rent rate: {bookedCar?.carId?.price}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                car type :{bookedCar?.carId?.carType}
+                car type: {bookedCar?.carId?.carType}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                transmission :{bookedCar?.carId?.transmission}
+                transmission: {bookedCar?.carId?.transmission}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                model year :{bookedCar?.carId?.year}
+                model year: {bookedCar?.carId?.year}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                fuel type :{bookedCar?.carId?.fuelType}
+                fuel type: {bookedCar?.carId?.fuelType}
               </span>
             </div>
-            <div className=" flex flex-col ml-2">
+
+            <div className="flex flex-col ml-2">
               <h1 className="capitalize text-center text-xl font-semibold text-orange-400">
-                dealer and booking data
+                Dealer and booking data
               </h1>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                dealer name :{bookedCar?.dealer?.name}
+                dealer name: {bookedCar?.dealer?.name}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                dealer phone :{bookedCar?.dealer?.phone}
+                dealer phone: {bookedCar.dealer?.phone}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                dealer email :{bookedCar?.dealer?.email}
+                dealer email: {bookedCar?.dealer?.email}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                total amount :{bookedCar?.totalAmount}
+                total amount: {bookedCar?.totalAmount}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                total time :{bookedCar?.totalHours}
+                total time: {bookedCar?.totalHours}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                from date :{moment(bookedCar?.fromDate).format("DD-MM-YYYY")}
+                from date: {moment(bookedCar?.fromDate).format("DD-MM-YYYY")}
               </span>
               <span className="capitalize text-gray-100 text-lg font-semibold">
-                to date :{moment(bookedCar?.toDate).format("DD-MM-YYYY")}
+                to date: {moment(bookedCar?.toDate).format("DD-MM-YYYY")}
               </span>
-
               <span className="capitalize text-green-500 text-lg font-semibold">
-                booking status:{bookedCar?.status}
+                booking status: {bookedCar?.status}
               </span>
             </div>
           </div>

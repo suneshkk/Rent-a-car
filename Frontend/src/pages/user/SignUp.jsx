@@ -16,7 +16,6 @@ function SignUp() {
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
   const [address, setAddress] = useState("");
-  const [occupation, setOccupation] = useState("");
 
   const handleSignup = async () => {
     try {
@@ -37,7 +36,7 @@ function SignUp() {
       );
       if (response?.data?.success) {
         toast.success("user sig-up successfully");
-        navigate("/user/profile");
+        navigate("/user/home");
       }
     } catch (error) {
       if (error.response.data.message) {
