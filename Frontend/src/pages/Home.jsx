@@ -3,24 +3,26 @@ import BmwCar from "../../src/assets/bmw.png"
 import Benz from '../../src/assets/benz.png';
 import Mustang from '../../src/assets/mustang.png';
 import { FaCar } from "react-icons/fa6";
+import DateTime from "../components/DateTime.jsx";
 
 function Home() {
-
 
 
   return (
     <div className=''>
 
       <div className='bg-cover bg-black'>
-        <div className='bg-cover bg-center min-h-64 lg:min-h-screen opacity-70' style={{ backgroundImage: `url(${HeroImage})` }} >
+        <div className='bg-cover bg-center min-h-128 lg:min-h-screen flex justify-center items-center' style={{ backgroundImage: `url(${HeroImage})` }} >
+         <div className="h-10 p-3 text-xs font-serif rounded-md xl:mt-28 xl:mr-4 xl:p-5 xl:rounded-2xl bg-red-500 xl:h-20 flex items-center">          <DateTime/>
+         </div>
         </div>
 
-        <div className="bg-orange-600  hover:bg-slate-300 bg-opacity-100  lg:p-5 rounded-sm text-center ">
-          <h1 className="text-lg p-2 font-extrabold md:text-5xl md:font-extrabold text-black md:mb-3">
+        <div className="bg-orange-600 pb-1 hover:bg-slate-300 bg-opacity-100  lg:p-5 rounded-sm text-center ">
+          <h1 className="lg:p-2 pt-1 text-xs font-medium lg:font-extrabold md:text-5xl md:font-extrabold text-black md:mb-3">
             RENT YOUR DREAM CAR TODAY
           </h1>
           <hr className='hidden' />
-          <p className="font-semibold font-mono md:text-lg md:font-black text-black ">
+          <p className="md:font-semibold text-xs md:text-lg text-black ">
             Choose from a wide range of
             vehicles to suit your needs.
           </p>
@@ -33,12 +35,12 @@ function Home() {
           </div>
           <div className="md:grid md:grid-cols-2 mt-3 mx-4 grid grid-cols-1">
             <div className='h-52 m-2 bg-center rounded-md md:h-80 bg-cover grid md:grid-cols-2  ' style={{ backgroundImage: `url(${BmwCar})` }} >
-              <div className='md:mt-14 md:ml-8'>
-                <h1 className='font-bold md:text-3xl text-slate-200 font-serif md:font-extrabold ml-1 mt-2'>Our Brand New Car </h1>
+              <div className='md:mt-14 xl:mt-2 md:ml-8'>
+                <h1 className='text-sm md:text-3xl text-slate-200 font-serif md:font-extrabold ml-1 mt-2'><b>Our Brand New Car </b> </h1>
                 <hr className='hidden' />
-                <p className='ml-1 md:text-2xl text-black md:font-extrabold font-bold  '>BMW 7 series</p>
+                <p className='ml-1 md:text-2xl text-black md:font-extrabold '><b>BMW 7 series</b> </p>
               </div>
-              <div className='ml-44 mb-10 flex flex-col-reverse'>
+              <div className=' lg:mb-10  flex flex-col-reverse ml-1 xl:ml-44'>
                 <p className='font-semibold md:text-lg text-gray-300 md:font-bold font-serif'>First 5 Booking</p>
                 <p className='text-sm font-semibold md:text-lg text-white font-mono md:font-bold'>Up to 5% Discount For</p>
                 <hr className='hidden' />

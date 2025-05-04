@@ -65,7 +65,7 @@ function Footer() {
                 </svg>
               </a>
               <button className='btn bg-black hover:bg-blue-600 duration-0 '>
-              <Link to={'/adminon-login'} ><p className="text-slate-200 text-lg font-bold">admin login</p></Link>
+              <Link to={'/adminon-login'} ><p className="text-slate-200 lg:text-lg lg:font-bold">admin login</p></Link>
 
               </button>
 

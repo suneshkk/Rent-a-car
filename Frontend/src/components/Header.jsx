@@ -19,34 +19,28 @@ function Navbar() {
   return (
     <div className="bg-transparent">
       {location.pathname == "/" && (
-        <div className="bg-cover bg-red-500 brightness-75 md:h-6 flex justify-center items-center">
-          <p className="text-sm text- font-serif font-bold cursor-">
-            Your Perfect Driving Partner
+        <div className="rounded-t-lg bg-cover bg-red-500 md:h-6 flex justify-center items-center">
+          <p className="text-xs font-medium lg:text-sm font-serif lg:font-bold">
+            <b>Your Perfect Driving Partner</b>
           </p>
         </div>
       )}
-      <div className="navbar absolute  text-center flex justify-between items-center px-4  md:px-14 md:h-20">
-        <div className="md:hidden"></div>
+      <div className="navbar min-h-3 absolute  text-center flex justify-between items-center md:px-5 md:h-9 xl:h-14">
+        <div className="hidden md:hidden"></div>
 
-        <div className="backdrop-brightness-50 brightness-200 flex-2 md:flex-none sm:grid content-center grid leading-relaxed">
-        <Link to={"/"}>
-            <h1 class="text-4xl font-bold text-red-700  uppercase tracking-widest">
+        <div className="flex-2 md:flex-none lg:content-center grid md:leading-relaxed">
+          <Link to={"/"}>
+            <h1 class="lg:text-2xl xl:text-3xl text-lg font-bold text-red-700  uppercase lg:tracking-widest">
               wheelz n<b className="font-bold text-slate-100">o</b>w
             </h1>
           </Link>
-
-          {/* <Link to={"/"}>
-            <h1 class="text-4xl font-bold text-sky-500  uppercase tracking-widest">
-              wheelz n<b className="font-bold text-slate-100">o</b>w
-            </h1>
-          </Link> */}
         </div>
-        <div className="md:hidden"> </div>
+        <div className="hidden md:hidden"> </div>
 
         {/* Mobile menu button */}
         {location.pathname == "/" && (
           <button
-            className="text-2xl md:hidden size-4"
+            className="text-2xl md:hidden size-4 text-slate-50"
             onClick={toggleMobileMenu}
           >
             {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -55,13 +49,13 @@ function Navbar() {
 
         {/* Mobile Dropdown menu */}
         {isMobileMenuOpen && (
-          <div className="bg-black absolute top-20 right-1 z-10 flex-col bottom-0  mt-1 w-32 h-40 bg-center rounded-lg shadow-lg py-2 ">
+          <div className="bg-slate-600 absolute top-9  right-1 z-10 flex-col bottom-0  mt-1 w-32 h-40 bg-center rounded-lg shadow-lg py-2 ">
             <div className="p-5">
               {location.pathname == "/" && (
                 <div className="py-2">
                   <Link to="/aboutus" onClick={closeMenu}>
                     {" "}
-                    <p className="text-slate-500 font-medium">About Us</p>
+                    <p className="text-slate-100 font-medium">About Us</p>
                   </Link>
                   <hr />
                 </div>
@@ -100,24 +94,24 @@ function Navbar() {
           className={`md:flex gap-6 hidden md:flex-row md:items-center md:static absolute top-full left-0 w-full md:bg-transparent md:w-auto z-10`}
         >
           {location.pathname == "/" && (
-            <div className="flex gap-5 items-center">
+            <div className="flex gap-5 items-center ">
               <Link to="/aboutus">
-                <h1 className=" hover:text-sky-600 text-lg brightness-75 text-red-500 font-serif font-bold capitalize border-b-2 hover:border-none">
+                <h1 className=" hover:text-sky-600 xl:text-lg text-red-500 font-serif xl:font-bold capitalize md:font-bold hover:border-none">
                   About Us
                 </h1>
               </Link>
               <Link to="/home-car-gallery">
-                <h1 className=" hover:text-sky-600 text-lg brightness-75 text-red-500 font-serif font-bold capitalize border-b-2 hover:border-none ">
-                  car gallery
+              <h1 className=" hover:text-sky-600 xl:text-lg text-red-500 font-serif xl:font-bold capitalize md:font-bold hover:border-none">
+              car gallery
                 </h1>
               </Link>
             </div>
           )}
           {location.pathname == "/" && (
-            <div className="flex border-b-2 hover:border-none">
+            <div className="flex">
               <Link to="/login">
-                <h1 className="text-bold font-serif brightness-75 text-red-500 font-bold hover:text-sky-600">
-                  Login
+              <h1 className=" hover:text-sky-600 xl:text-lg text-red-500 font-serif xl:font-bold capitalize md:font-bold hover:border-none">
+              Login
                 </h1>
               </Link>
               <svg
@@ -134,8 +128,8 @@ function Navbar() {
               </svg>
 
               <Link to="/sign-up" className="">
-                <h1 className="text-bold font-serif text-red-500 brightness-75 font-bold hover:text-sky-500">
-                  Register
+              <h1 className=" hover:text-sky-600 xl:text-lg text-red-500 font-serif xl:font-bold capitalize md:font-bold hover:border-none">
+              Register
                 </h1>
               </Link>
               {/* <Theme/> */}

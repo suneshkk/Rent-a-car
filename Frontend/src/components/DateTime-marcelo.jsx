@@ -20,7 +20,7 @@ function DateTime() {
       second: "numeric",
     };
     return (
-      <div className="lg:text-lg lg:font-semibold text-orange-200 ">
+      <div className="lg:text-lg lg:font-semibold text-orange-200">
         {currentDateTime.toLocaleString("en-IN", options)}
       </div>
     );
