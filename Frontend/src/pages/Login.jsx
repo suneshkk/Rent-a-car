@@ -112,7 +112,7 @@ function Login() {
                     value:
                       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                     message:
-                      "password must add one upper case lower case number special charecters for better password",
+                      "In valid passWord ",
                   },
                 })}
               />
