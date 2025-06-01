@@ -64,6 +64,7 @@ function Booking() {
         totalHours: hours,
         totalAmount: calculatedTotalAmount,
         dealer: carData?.dealer,
+        review:review,
       };
       console.log("data", data);
       if (!dLicence || !fromDate || !toDate) {

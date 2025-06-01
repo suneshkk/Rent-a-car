@@ -52,7 +52,7 @@ function UpdateUser() {
             });
             toast.success("Data updated successfully");
             setLoading(false);
-            navigate("/user/profile");
+            navigate("/user/home");
         } catch (error) {
             toast.error("Something went wrong");
             console.error(error);

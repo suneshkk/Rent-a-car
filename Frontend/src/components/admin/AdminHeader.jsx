@@ -68,7 +68,7 @@ function AdminHeader() {
           <div className="hover:border-b-2">
             <Link to={"/admin/paymetn-review"}>
               <h3 className="text-center text-lg font-bold text-slate-100">
-                payment and review
+                payment
               </h3>
             </Link>
           </div>

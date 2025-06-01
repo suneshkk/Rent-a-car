@@ -13,6 +13,11 @@ const rentalStatus = new mongoose.Schema({
         ref: 'car',
         required: true
     },
+    review:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Review',
+        required:true
+    }],
     dealer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Dealer',

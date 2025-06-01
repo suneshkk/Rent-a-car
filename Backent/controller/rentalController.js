@@ -7,9 +7,17 @@ export const forBooking = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const carId = req.params.id;
-    const { totalHours, totalAmount, fromDate, toDate, dLicence, dealer } =
-      req.body;
 
+    const {
+      totalHours,
+      totalAmount,
+      fromDate,
+      toDate,
+      dLicence,
+      dealer,
+      review,
+    } = req.body;
+    console.log("review ======= =", review);
     const isCarBooked = await RentalModel.find({ carId: carId });
     if (!isCarBooked) {
       return res
@@ -54,12 +62,14 @@ export const forBooking = async (req, res, next) => {
       fromDate: fromDate,
       toDate: toDate,
       dLicence: dLicence,
+      review: review,
     });
     await newRental.save();
     const populateRental = await RentalModel.findById(newRental._id)
       .populate("carId")
       .populate("userId")
-      .populate("dealer");
+      .populate("dealer")
+      .populate("review");
     return res.status(201).json({
       success: true,
       message: "Booked successfully",
@@ -114,10 +124,12 @@ export const dealerBookedCars = async (req, res, next) => {
   try {
     const { user } = req;
     console.log("dealer id", user);
-    const bookedCars = await RentalModel.find({dealer:user.id})
+    const bookedCars = await RentalModel.find({ dealer: user.id })
       .populate("userId")
-      .populate("carId");
-console.log("booking----",bookedCars)
+      .populate("carId")
+      .populate("review");
+
+    console.log("booking----", bookedCars);
     if (!bookedCars || bookedCars == 0) {
       return res.status(400).json({ message: "no rental" });
     } else {

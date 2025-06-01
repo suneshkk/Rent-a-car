@@ -59,7 +59,7 @@ function UserHeader() {
           </h1>
         )}
 
-        {location.pathname == "/user/home" && (
+        {/* {location.pathname == "/user/home" && (
           <Link
             to={"/user/profile"}
             className="text-lg text-slate-100 font-bold hover:scale-150"
@@ -77,7 +77,7 @@ function UserHeader() {
               />
             </svg>
           </Link>
-        )}
+        )} */}
         {location.pathname == "/user/car-Gallery" && (
           <h1 className="text-xl font-extrabold text-slate-100">
             Available Cars....
