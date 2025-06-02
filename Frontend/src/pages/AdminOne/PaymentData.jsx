@@ -65,7 +65,7 @@ function PaymentData() {
                 ) : (
                   <tr>
                     <td colSpan="4" className="p-4 text-center text-gray-500">
-                      No reviews data available
+                      No data available
                     </td>
                   </tr>
                 )}
