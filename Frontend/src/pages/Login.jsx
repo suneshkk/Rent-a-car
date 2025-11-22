@@ -142,7 +142,8 @@ function Login() {
               </div>
 
               <div className="-mt-4">
-                <Link to={"/admin-sign-up"}>
+                <Link to={"/admin-login"}>
+
                   <p className=" text-slate-400 font-serif  font-bold lg:font-bold">
                     Login as a dealer ...!
                   </p>
