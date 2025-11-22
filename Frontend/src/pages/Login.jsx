@@ -145,7 +145,7 @@ function Login() {
                 <Link to={"/admin-login"}>
 
                   <p className=" text-slate-400 font-serif  font-bold lg:font-bold">
-                    Login as a dealer ...!
+                    dealer login...!
                   </p>
                 </Link>
               </div>

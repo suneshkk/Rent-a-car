@@ -121,7 +121,7 @@ function AdminLogin() {
                 <label className="label">
                   <Link to="/admin-sign-up">
                     <p className="font-serif  font-bold lg:font-bold text-slate-400">
-                      New user...?
+                      New dealer...?
                     </p>
                   </Link>
                 </label>
