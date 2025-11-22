@@ -32,7 +32,7 @@ function AdminOneSignup() {
         );
         if (response?.data?.success) {
           toast.success("account created");
-          navigate("/adminone/adminonehome");
+          navigate("/adminon-login");
         }
       } catch (error) {
         console.log(error);

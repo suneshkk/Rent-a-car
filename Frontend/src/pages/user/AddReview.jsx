@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { axiosInstance } from '../../config/axiosInstance.jsx';
-import { useNavigate, useParams } from 'react-router-dom';
-import Loader from '../../components/util/Loader.jsx';
+import { useState } from "react";
+import { axiosInstance } from "../../config/axiosInstance.jsx";
+import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../../components/util/Loader.jsx";
 
 function AddReview() {
   const [loading, setLoading] = useState(false);
@@ -9,7 +9,6 @@ function AddReview() {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState("");
   const navigate = useNavigate();
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,24 +22,36 @@ function AddReview() {
       // console.log(data,"data========")
       if (!comment || !rating) {
         alert("alfields required");
-      };
+      }
 
-      const response = await axiosInstance.post(`/review/add-review/${id}`,data, { withCredentials: true });
+      const response = await axiosInstance.post(
+        `/review/add-review/${id}`,
+        data,
+        { withCredentials: true }
+      );
+      console.log(response, "idddddd======");
       setLoading(false);
-    navigate('/user/home')
+      navigate("/user/home");
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log(error);
-    };
+    }
   };
 
   return (
-    <div className='min-h-screen flex justify-center items-center bg-cover bg-sky-400'>
-      {loading ? (<Loader />) : (
-        <div className='card card-body bg-cover bg-white shadow-md lg:min-h-128 lg:mx-128 md:mx-20'>
-          <h1 className='text-blue-950 card-title lg:border-b-8 '><b>Car Review</b></h1>
+    <div className="min-h-screen flex justify-center items-center bg-cover bg-sky-400">
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="card card-body bg-cover bg-white shadow-md lg:min-h-128 lg:mx-128 md:mx-20">
+          <h1 className="text-blue-950 card-title lg:border-b-8 ">
+            <b>Car Review</b>
+          </h1>
           <div>
-            <p className='font-bold font-serif bg-cyan-800 text-slate-400'> Share your experience and help others choose the perfect car!</p>
+            <p className="font-bold font-serif bg-cyan-800 text-slate-400">
+              {" "}
+              Share your experience and help others choose the perfect car!
+            </p>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -71,14 +82,10 @@ function AddReview() {
               Submit Review
             </button>
           </form>
-
-
         </div>
       )}
-
-
     </div>
-  )
+  );
 }
 
-export default AddReview
+export default AddReview;

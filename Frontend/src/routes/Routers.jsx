@@ -55,8 +55,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path:"home-car-gallery",
-        element:<CarGalleryHome/>
+        path: "home-car-gallery",
+        element: <CarGalleryHome />,
       },
       {
         path: "aboutus",
@@ -137,9 +137,9 @@ const router = createBrowserRouter([
         element: <BookedCar />,
       },
       {
-        path:'all-cars',
-        element:<AllCars/>
-      }
+        path: "all-cars",
+        element: <AllCars />,
+      },
     ],
   },
   {
@@ -182,9 +182,9 @@ const router = createBrowserRouter([
         element: <DeleteCar />,
       },
       {
-        path:"paymetn-review",
-        element:<PaymentReview/>
-      }
+        path: "paymetn-review",
+        element: <PaymentReview />,
+      },
     ],
   },
   {
