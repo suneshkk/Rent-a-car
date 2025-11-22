@@ -29,7 +29,7 @@ function AddReview() {
         data,
         { withCredentials: true }
       );
-      console.log(response, "idddddd======");
+      console.log(response, "idddddd");
       setLoading(false);
       navigate(`/user/book-now/${id}`);
     } catch (error) {
