@@ -31,7 +31,7 @@ function AddReview() {
       );
       console.log(response, "idddddd======");
       setLoading(false);
-      navigate("/user/home");
+      navigate(`/user/book-now/${id}`);
     } catch (error) {
       setLoading(false);
       console.log(error);
