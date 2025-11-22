@@ -85,7 +85,7 @@ function Booking() {
       if (error.response.data.message) {
         toast.error(error.response.data.message);
       }
-      console.error(error);
+      console.error(error.response.data.message);
     }
   };
 
