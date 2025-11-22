@@ -35,7 +35,7 @@ function AdminOneSignup() {
           navigate("/adminon-login");
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
         toast.error("something went wrong");
       }
     }
