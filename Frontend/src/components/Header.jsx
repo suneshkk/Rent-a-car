@@ -21,7 +21,7 @@ function Navbar() {
       {location.pathname == "/" && (
         <div className="rounded-t-lg bg-cover bg-red-500 md:h-6 flex justify-center items-center">
           <p className="text-xs font-medium lg:text-sm font-serif lg:font-bold">
-            <b>Your Perfect Driving Partner</b>
+            <b>come with us</b>
           </p>
         </div>
       )}
